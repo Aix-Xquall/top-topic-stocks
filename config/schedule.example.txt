@@ -1,0 +1,14 @@
+# Windows 工作排程器建議設定
+#
+# 觸發程序：
+# - 每天
+# - 台北時間 07:30
+#
+# 動作：
+# - 程式或指令碼：powershell.exe
+# - 引數：
+#   -ExecutionPolicy Bypass -File "D:\Dropbox\影片\scripts\run_daily.ps1"
+#
+# 若 Windows 的 python alias 無法執行，請指定 PythonExe：
+#   -ExecutionPolicy Bypass -File "D:\Dropbox\影片\scripts\run_daily.ps1" -PythonExe "C:\Path\To\python.exe"
+

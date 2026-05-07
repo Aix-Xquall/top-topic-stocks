@@ -1,0 +1,43 @@
+[
+  {
+    "title": "AI server demand lifts Nvidia, TSMC and memory chip suppliers as datacenter spending rises",
+    "url": "https://example.com/sample/ai-server-demand",
+    "source": "sample",
+    "published_at": "2026-05-07T06:00:00Z",
+    "summary": "Investors focus on AI accelerator demand, CoWoS capacity, HBM supply and server supply chains.",
+    "language": "English"
+  },
+  {
+    "title": "台股半導體族群受惠先進封裝與 AI 晶片需求，台積電、日月光與記憶體相關個股受關注",
+    "url": "https://example.com/sample/tw-semiconductor",
+    "source": "sample",
+    "published_at": "2026-05-07T07:00:00+08:00",
+    "summary": "市場討論 AI 晶片、先進封裝、HBM 與晶圓代工供應鏈。",
+    "language": "Traditional Chinese"
+  },
+  {
+    "title": "Tariff uncertainty pressures Apple hardware supply chain while investors watch Taiwan exporters",
+    "url": "https://example.com/sample/tariff-apple",
+    "source": "sample",
+    "published_at": "2026-05-07T05:30:00Z",
+    "summary": "Tariffs and export restrictions remain a focus for consumer electronics and contract manufacturers.",
+    "language": "English"
+  },
+  {
+    "title": "降息預期升溫，美股科技股與高本益比成長股估值重新受到討論",
+    "url": "https://example.com/sample/rate-cut-tech",
+    "source": "sample",
+    "published_at": "2026-05-07T08:00:00+08:00",
+    "summary": "市場關注通膨、利率與大型科技股估值。",
+    "language": "Traditional Chinese"
+  },
+  {
+    "title": "EV competition and battery pricing put Tesla and power semiconductor suppliers in focus",
+    "url": "https://example.com/sample/ev-battery",
+    "source": "sample",
+    "published_at": "2026-05-07T04:00:00Z",
+    "summary": "Electric vehicle makers face margin pressure while battery and power chip demand remains watched.",
+    "language": "English"
+  }
+]
+

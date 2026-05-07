@@ -1,0 +1,209 @@
+{
+  "date": "2026-05-07",
+  "topics": [
+    {
+      "name": "記憶體與 HBM 供應鏈",
+      "score": 2,
+      "direction": "正向",
+      "sentiment_score": 1,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "MU",
+          "name_zh": "美光",
+          "name_en": "Micron Technology",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.86",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A"
+        },
+        {
+          "market": "TW",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "name_en": "Taiwan Semiconductor Manufacturing",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.82",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A"
+        },
+        {
+          "market": "US",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "name_en": "NVIDIA",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.77",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A"
+        },
+        {
+          "market": "TW",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "name_en": "ASE Technology",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.70",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A"
+        }
+      ]
+    },
+    {
+      "name": "關稅與供應鏈轉移",
+      "score": 2,
+      "direction": "正向",
+      "sentiment_score": 1,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "AAPL",
+          "name_zh": "蘋果",
+          "name_en": "Apple",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.77",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A"
+        },
+        {
+          "market": "TW",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "name_en": "Taiwan Semiconductor Manufacturing",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.70",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A"
+        },
+        {
+          "market": "TW",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "name_en": "ASE Technology",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.70",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A"
+        },
+        {
+          "market": "TW",
+          "ticker": "2317",
+          "name_zh": "鴻海",
+          "name_en": "Foxconn",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.39",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A"
+        }
+      ]
+    },
+    {
+      "name": "消費電子與手機",
+      "score": 1,
+      "direction": "中性",
+      "sentiment_score": 0,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "AAPL",
+          "name_zh": "蘋果",
+          "name_en": "Apple",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "0.00",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A"
+        },
+        {
+          "market": "TW",
+          "ticker": "2317",
+          "name_zh": "鴻海",
+          "name_en": "Foxconn",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A"
+        },
+        {
+          "market": "TW",
+          "ticker": "2454",
+          "name_zh": "聯發科",
+          "name_en": "MediaTek",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A"
+        }
+      ]
+    },
+    {
+      "name": "利率與成長股估值",
+      "score": 1,
+      "direction": "正向",
+      "sentiment_score": 1,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "MSFT",
+          "name_zh": "微軟",
+          "name_en": "Microsoft",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A"
+        }
+      ]
+    },
+    {
+      "name": "電動車與電池",
+      "score": 1,
+      "direction": "負向",
+      "sentiment_score": -1,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "TSLA",
+          "name_zh": "特斯拉",
+          "name_en": "Tesla",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "-0.82",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A"
+        }
+      ]
+    }
+  ],
+  "data_gaps": [
+    "FinMind 月營收抓取失敗：2317，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "FinMind 月營收抓取失敗：2330，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "FinMind 月營收抓取失敗：2454，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "FinMind 月營收抓取失敗：3711，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "FinMind 綜合損益表抓取失敗：2317，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "FinMind 綜合損益表抓取失敗：2330，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "FinMind 綜合損益表抓取失敗：2454，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "FinMind 綜合損益表抓取失敗：3711，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "FinMind 股價抓取失敗：2317，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "FinMind 股價抓取失敗：2330，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "FinMind 股價抓取失敗：2454，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "FinMind 股價抓取失敗：3711，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "TWSE PER/PBR 抓取失敗：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "Yahoo Finance 日線抓取失敗：AAPL，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "Yahoo Finance 日線抓取失敗：MSFT，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "Yahoo Finance 日線抓取失敗：MU，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "Yahoo Finance 日線抓取失敗：NVDA，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "Yahoo Finance 日線抓取失敗：TSLA，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "使用離線樣本新聞，未連線抓取即時新聞。"
+  ]
+}

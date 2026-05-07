@@ -1,0 +1,18 @@
+market,ticker,name_zh,name_en,aliases,industry,tags,cik
+US,NVDA,輝達,NVIDIA,Nvidia|NVIDIA Corp|GPU|Blackwell,半導體,AI|artificial intelligence|GPU|datacenter|AI server|semiconductor|chip|HBM,0001045810
+US,AMD,超微,Advanced Micro Devices,AMD|Advanced Micro Devices|MI300|GPU,半導體,AI|GPU|datacenter|semiconductor|chip|AI server,0000002488
+US,INTC,英特爾,Intel,Intel|Intel Corp|Intel Corporation|INTC|x86|foundry,半導體,AI|CPU|server CPU|x86|foundry|semiconductor|chip|AI server,0000050863
+US,MU,美光,Micron Technology,Micron|Micron Technology|MU|HBM|DRAM|NAND|memory,記憶體,AI memory|memory|HBM|HBM4|DRAM|NAND|SSD|semiconductor|chip,0000723125
+US,SNDK,SanDisk,SanDisk,SanDisk|SNDK|NAND|SSD|flash memory,記憶體,NAND|SSD|flash memory|memory|semiconductor|chip,
+US,MSFT,微軟,Microsoft,Microsoft|Azure|OpenAI,雲端軟體,AI|cloud|datacenter|software|rate cut,0000789019
+US,AAPL,蘋果,Apple,Apple|iPhone|Apple Inc,消費電子,tariff|hardware|consumer electronics|supply chain|smartphone,0000320193
+US,TSLA,特斯拉,Tesla,Tesla|EV|electric vehicle,電動車,EV|electric vehicle|battery|autonomous driving,0001318605
+US,AVGO,博通,Broadcom,Broadcom|networking chip|ASIC,半導體,AI|datacenter|semiconductor|networking|ASIC|chip,0001730168
+TW,2330,台積電,Taiwan Semiconductor Manufacturing,TSMC|Taiwan Semiconductor|台灣積體電路|晶圓代工,半導體,AI|semiconductor|chip|foundry|advanced packaging|CoWoS|AI server,
+TW,2317,鴻海,Foxconn,Hon Hai|Foxconn|鴻海精密|伺服器,電子代工,AI server|server|hardware|supply chain|consumer electronics|tariff,
+TW,2454,聯發科,MediaTek,Mediatek|MediaTek|手機晶片|ASIC,IC 設計,AI|smartphone|semiconductor|chip|edge AI,
+TW,2303,聯電,United Microelectronics,UMC|United Microelectronics|晶圓代工,半導體,semiconductor|foundry|chip,
+TW,3711,日月光投控,ASE Technology,ASE|日月光|advanced packaging|封測,半導體封測,advanced packaging|semiconductor|chip|AI,
+TW,3037,欣興,Unimicron,Unimicron|ABF|載板,PCB/載板,AI server|ABF|PCB|datacenter|semiconductor,
+TW,3017,奇鋐,AVC,AVC|散熱|thermal,散熱,AI server|thermal|datacenter|server,
+TW,6669,緯穎,Wiwynn,Wiwynn|雲端伺服器|server,伺服器,AI server|datacenter|server|cloud,

@@ -1,0 +1,7 @@
+# 可自行加入財經 RSS。抓取失敗不會中斷報告。
+https://news.google.com/rss/search?q=stock%20market%20AI%20semiconductor%20when:1d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant
+https://news.google.com/rss/search?q=AMD%20Intel%20INTC%20stock%20AI%20chip%20earnings%20when:3d&hl=en-US&gl=US&ceid=US:en
+https://news.google.com/rss/search?q=Micron%20MU%20SanDisk%20SNDK%20HBM%20memory%20AI%20stock%20when:3d&hl=en-US&gl=US&ceid=US:en
+https://news.google.com/rss/search?q=%E5%A5%87%E9%8B%90%20%E8%BC%9D%E9%81%94%20%E6%95%A3%E7%86%B1%20Rubin%20when:7d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant
+https://www.marketwatch.com/rss/topstories
+https://feeds.a.dj.com/rss/RSSMarketsMain.xml
