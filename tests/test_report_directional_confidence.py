@@ -45,7 +45,7 @@ class ReportDirectionalConfidenceTest(unittest.TestCase):
         self.assertIn("方向性信心", markdown)
         self.assertNotIn("影響方向", markdown)
         self.assertNotIn("信心分數", markdown)
-        self.assertIn("| TW | 3017 | 奇鋐 / AVC | 新聞直接提及 | -0.95 | N/A | N/A | N/A |", markdown)
+        self.assertIn("| 3017 奇鋐 | 新聞直接提及 | -0.95 | N/A | N/A | N/A |", markdown)
 
     def test_diverging_price_validation_dampens_directional_confidence(self) -> None:
         company = Company(
@@ -79,7 +79,7 @@ class ReportDirectionalConfidenceTest(unittest.TestCase):
             data_gaps=[],
         )
 
-        self.assertIn("| US | NVDA | 輝達 / NVIDIA | 新聞直接提及 | -0.45 |", markdown)
+        self.assertIn("| NVDA 輝達 | 新聞直接提及 | -0.45 |", markdown)
 
 
 if __name__ == "__main__":

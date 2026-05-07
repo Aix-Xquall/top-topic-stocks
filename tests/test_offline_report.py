@@ -22,8 +22,9 @@ class OfflineReportTest(unittest.TestCase):
         html = Path(result.output_html).read_text(encoding="utf-8")
 
         self.assertIn("每日股市熱門話題分析 - 2026-05-07", markdown)
-        self.assertIn("今日熱門話題排行", markdown)
-        self.assertIn("可能相關公司", markdown)
+        self.assertIn("重點摘要", markdown)
+        self.assertIn("市場驗證", markdown)
+        self.assertIn("相關公司", markdown)
         self.assertIn("新聞直接提及", markdown)
         self.assertIn('<html lang="zh-Hant">', html)
         self.assertIn('<meta charset="utf-8">', html)

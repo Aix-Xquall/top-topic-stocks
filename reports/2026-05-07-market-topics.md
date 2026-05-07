@@ -2,36 +2,49 @@
 
 本報告由自動化流程產生，僅供研究輔助，不構成任何投資建議。
 
-## 今日熱門話題排行
+## 重點摘要
 
-1. **記憶體與 HBM 供應鏈**：熱度分數 2，方向 正向
-2. **關稅與供應鏈轉移**：熱度分數 2，方向 正向
-3. **消費電子與手機**：熱度分數 1，方向 中性
-4. **利率與成長股估值**：熱度分數 1，方向 正向
-5. **電動車與電池**：熱度分數 1，方向 負向
+1. **記憶體與 HBM 供應鏈**｜正向｜熱度 2｜市場確認 N/A｜同向 0/0
+2. **關稅與供應鏈轉移**｜正向｜熱度 2｜市場確認 N/A｜同向 0/0
+3. **消費電子與手機**｜中性｜熱度 1｜市場確認 N/A｜同向 0/0
+4. **利率與成長股估值**｜正向｜熱度 1｜市場確認 N/A｜同向 0/0
+5. **電動車與電池**｜負向｜熱度 1｜市場確認 N/A｜同向 0/0
+
+## 市場驗證
+
+為避免循環驗證，相關係數使用「價格調整前」方向信心與股價報酬計算。
+
+- 3日相關係數：N/A（樣本 0）
+- 5日相關係數：N/A（樣本 0）
+- 同向比例：0/0
+
+| 話題 | 市場確認 | 同向 | 背離 | 3日方向報酬 | 5日方向報酬 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 記憶體與 HBM 供應鏈 | N/A | 0/0 | 0 | N/A | N/A |
+| 關稅與供應鏈轉移 | N/A | 0/0 | 0 | N/A | N/A |
+| 消費電子與手機 | N/A | 0/0 | 0 | N/A | N/A |
+| 利率與成長股估值 | N/A | 0/0 | 0 | N/A | N/A |
+| 電動車與電池 | N/A | 0/0 | 0 | N/A | N/A |
 
 ## 記憶體與 HBM 供應鏈
 
-- 熱度分數：2
-- 話題方向：正向（分數 1）
-- 中文摘要：記憶體與 HBM 供應鏈 相關新聞集中在：AI server demand lifts Nvidia, TSMC and memory chip suppliers as datacenter spending rises；台股半導體族群受惠先進封裝與 AI 晶片需求，台積電、日月光與記憶體相關個股受關注
+摘要：記憶體與 HBM 供應鏈 相關新聞集中在：AI server demand lifts Nvidia, TSMC and memory chip suppliers as datacenter spending rises；台股半導體族群受惠先進封裝與 AI 晶片需求，台積電、日月光與記憶體相關個股受關注
 
-### 可能相關公司
+### 相關公司
 
-| 市場 | Ticker | 公司 | 關聯類型 | 方向性信心 | 3日漲幅 | 5日漲幅 | 價格驗證 | EPS | 本益比 | 營收 | 營收 YoY | 資料日期 | 來源 |
-| --- | --- | --- | --- | ---: | ---: | ---: | --- | ---: | ---: | ---: | ---: | --- | --- |
-| US | MU | 美光 / Micron Technology | 新聞直接提及 | +0.86 | N/A | N/A | N/A | N/A | N/A | N/A USD | N/A | N/A | N/A |
-| TW | 2330 | 台積電 / Taiwan Semiconductor Manufacturing | 新聞直接提及 | +0.82 | N/A | N/A | N/A | N/A | N/A | N/A TWD | N/A | N/A | N/A |
-| US | NVDA | 輝達 / NVIDIA | 新聞直接提及 | +0.77 | N/A | N/A | N/A | N/A | N/A | N/A USD | N/A | N/A | N/A |
-| TW | 3711 | 日月光投控 / ASE Technology | 新聞直接提及 | +0.70 | N/A | N/A | N/A | N/A | N/A | N/A TWD | N/A | N/A | N/A |
+| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
+| --- | --- | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
+| MU 美光 | 新聞直接提及 | +0.86 | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
+| 2330 台積電 | 新聞直接提及 | +0.82 | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
+| NVDA 輝達 | 新聞直接提及 | +0.77 | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
+| 3711 日月光投控 | 新聞直接提及 | +0.70 | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
 
-關聯理由：
+關聯理由（前 3）：
 - MU：新聞直接提及「memory」，共 1 篇新聞命中。 同時符合主題標籤：AI memory, memory, HBM, HBM4。 方向判斷命中詞：受惠。
   - 資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。
 - 2330：新聞直接提及「TSMC、台積電」，共 2 篇新聞命中。 方向判斷命中詞：受惠。
 - NVDA：新聞直接提及「NVIDIA」，共 1 篇新聞命中。 同時符合主題標籤：HBM。 方向判斷命中詞：受惠。
   - 資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。
-- 3711：新聞直接提及「日月光」，共 1 篇新聞命中。 方向判斷命中詞：受惠。
 
 ### 主要來源
 
@@ -40,25 +53,22 @@
 
 ## 關稅與供應鏈轉移
 
-- 熱度分數：2
-- 話題方向：正向（分數 1）
-- 中文摘要：關稅與供應鏈轉移 相關新聞集中在：台股半導體族群受惠先進封裝與 AI 晶片需求，台積電、日月光與記憶體相關個股受關注；Tariff uncertainty pressures Apple hardware supply chain while investors watch Taiwan exporters
+摘要：關稅與供應鏈轉移 相關新聞集中在：台股半導體族群受惠先進封裝與 AI 晶片需求，台積電、日月光與記憶體相關個股受關注；Tariff uncertainty pressures Apple hardware supply chain while investors watch Taiwan exporters
 
-### 可能相關公司
+### 相關公司
 
-| 市場 | Ticker | 公司 | 關聯類型 | 方向性信心 | 3日漲幅 | 5日漲幅 | 價格驗證 | EPS | 本益比 | 營收 | 營收 YoY | 資料日期 | 來源 |
-| --- | --- | --- | --- | ---: | ---: | ---: | --- | ---: | ---: | ---: | ---: | --- | --- |
-| US | AAPL | 蘋果 / Apple | 新聞直接提及 | +0.77 | N/A | N/A | N/A | N/A | N/A | N/A USD | N/A | N/A | N/A |
-| TW | 2330 | 台積電 / Taiwan Semiconductor Manufacturing | 新聞直接提及 | +0.70 | N/A | N/A | N/A | N/A | N/A | N/A TWD | N/A | N/A | N/A |
-| TW | 3711 | 日月光投控 / ASE Technology | 新聞直接提及 | +0.70 | N/A | N/A | N/A | N/A | N/A | N/A TWD | N/A | N/A | N/A |
-| TW | 2317 | 鴻海 / Foxconn | 產業/供應鏈推估 | +0.39 | N/A | N/A | N/A | N/A | N/A | N/A TWD | N/A | N/A | N/A |
+| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
+| --- | --- | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
+| AAPL 蘋果 | 新聞直接提及 | +0.77 | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
+| 2330 台積電 | 新聞直接提及 | +0.70 | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
+| 3711 日月光投控 | 新聞直接提及 | +0.70 | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
+| 2317 鴻海 | 產業/供應鏈推估 | +0.39 | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
 
-關聯理由：
+關聯理由（前 3）：
 - AAPL：新聞直接提及「Apple」，共 1 篇新聞命中。 同時符合主題標籤：tariff, supply chain。
   - 資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。
 - 2330：新聞直接提及「台積電」，共 1 篇新聞命中。 方向判斷命中詞：受惠。
 - 3711：新聞直接提及「日月光」，共 1 篇新聞命中。 方向判斷命中詞：受惠。
-- 2317：產業/供應鏈推估：公司標籤符合「關稅與供應鏈轉移」關鍵字 supply chain, tariff；其中 1 篇新聞出現相關標籤。
 
 ### 主要來源
 
@@ -67,19 +77,17 @@
 
 ## 消費電子與手機
 
-- 熱度分數：1
-- 話題方向：中性（分數 0）
-- 中文摘要：消費電子與手機 相關新聞集中在：Tariff uncertainty pressures Apple hardware supply chain while investors watch Taiwan exporters
+摘要：消費電子與手機 相關新聞集中在：Tariff uncertainty pressures Apple hardware supply chain while investors watch Taiwan exporters
 
-### 可能相關公司
+### 相關公司
 
-| 市場 | Ticker | 公司 | 關聯類型 | 方向性信心 | 3日漲幅 | 5日漲幅 | 價格驗證 | EPS | 本益比 | 營收 | 營收 YoY | 資料日期 | 來源 |
-| --- | --- | --- | --- | ---: | ---: | ---: | --- | ---: | ---: | ---: | ---: | --- | --- |
-| US | AAPL | 蘋果 / Apple | 新聞直接提及 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A USD | N/A | N/A | N/A |
-| TW | 2317 | 鴻海 / Foxconn | 產業/供應鏈推估 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A TWD | N/A | N/A | N/A |
-| TW | 2454 | 聯發科 / MediaTek | 產業/供應鏈推估 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A TWD | N/A | N/A | N/A |
+| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
+| --- | --- | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
+| AAPL 蘋果 | 新聞直接提及 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
+| 2317 鴻海 | 產業/供應鏈推估 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
+| 2454 聯發科 | 產業/供應鏈推估 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
 
-關聯理由：
+關聯理由（前 3）：
 - AAPL：新聞直接提及「Apple」，共 1 篇新聞命中。 同時符合主題標籤：hardware, consumer electronics, smartphone。
   - 資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。
 - 2317：產業/供應鏈推估：公司標籤符合「消費電子與手機」關鍵字 hardware, consumer electronics；其中 1 篇新聞出現相關標籤。
@@ -91,17 +99,15 @@
 
 ## 利率與成長股估值
 
-- 熱度分數：1
-- 話題方向：正向（分數 1）
-- 中文摘要：利率與成長股估值 相關新聞集中在：降息預期升溫，美股科技股與高本益比成長股估值重新受到討論
+摘要：利率與成長股估值 相關新聞集中在：降息預期升溫，美股科技股與高本益比成長股估值重新受到討論
 
-### 可能相關公司
+### 相關公司
 
-| 市場 | Ticker | 公司 | 關聯類型 | 方向性信心 | 3日漲幅 | 5日漲幅 | 價格驗證 | EPS | 本益比 | 營收 | 營收 YoY | 資料日期 | 來源 |
-| --- | --- | --- | --- | ---: | ---: | ---: | --- | ---: | ---: | ---: | ---: | --- | --- |
-| US | MSFT | 微軟 / Microsoft | 產業/供應鏈推估 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A USD | N/A | N/A | N/A |
+| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
+| --- | --- | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
+| MSFT 微軟 | 產業/供應鏈推估 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
 
-關聯理由：
+關聯理由（前 3）：
 - MSFT：產業/供應鏈推估：公司標籤符合「利率與成長股估值」關鍵字 rate cut；其中 0 篇新聞出現相關標籤。
   - 資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。
 
@@ -111,17 +117,15 @@
 
 ## 電動車與電池
 
-- 熱度分數：1
-- 話題方向：負向（分數 -1）
-- 中文摘要：電動車與電池 相關新聞集中在：EV competition and battery pricing put Tesla and power semiconductor suppliers in focus
+摘要：電動車與電池 相關新聞集中在：EV competition and battery pricing put Tesla and power semiconductor suppliers in focus
 
-### 可能相關公司
+### 相關公司
 
-| 市場 | Ticker | 公司 | 關聯類型 | 方向性信心 | 3日漲幅 | 5日漲幅 | 價格驗證 | EPS | 本益比 | 營收 | 營收 YoY | 資料日期 | 來源 |
-| --- | --- | --- | --- | ---: | ---: | ---: | --- | ---: | ---: | ---: | ---: | --- | --- |
-| US | TSLA | 特斯拉 / Tesla | 新聞直接提及 | -0.82 | N/A | N/A | N/A | N/A | N/A | N/A USD | N/A | N/A | N/A |
+| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
+| --- | --- | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
+| TSLA 特斯拉 | 新聞直接提及 | -0.82 | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
 
-關聯理由：
+關聯理由（前 3）：
 - TSLA：新聞直接提及「Tesla」，共 1 篇新聞命中。 同時符合主題標籤：EV, electric vehicle, battery, autonomous driving。 方向判斷命中詞：pressure。
   - 資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。
 

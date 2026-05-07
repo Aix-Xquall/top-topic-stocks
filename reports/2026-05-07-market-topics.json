@@ -185,6 +185,79 @@
       ]
     }
   ],
+  "market_validation": {
+    "sample_count_3d": 0,
+    "sample_count_5d": 0,
+    "correlation_3d": null,
+    "correlation_5d": null,
+    "aligned_count": 0,
+    "diverged_count": 0,
+    "unclear_count": 0,
+    "validated_count": 0,
+    "aligned_ratio": null,
+    "topics": [
+      {
+        "topic": "記憶體與 HBM 供應鏈",
+        "company_count": 4,
+        "validated_count": 0,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "aligned_ratio": null,
+        "avg_directional_return_3d": null,
+        "avg_directional_return_5d": null,
+        "market_confirmation_score": null
+      },
+      {
+        "topic": "關稅與供應鏈轉移",
+        "company_count": 4,
+        "validated_count": 0,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "aligned_ratio": null,
+        "avg_directional_return_3d": null,
+        "avg_directional_return_5d": null,
+        "market_confirmation_score": null
+      },
+      {
+        "topic": "消費電子與手機",
+        "company_count": 3,
+        "validated_count": 0,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "aligned_ratio": null,
+        "avg_directional_return_3d": null,
+        "avg_directional_return_5d": null,
+        "market_confirmation_score": null
+      },
+      {
+        "topic": "利率與成長股估值",
+        "company_count": 1,
+        "validated_count": 0,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "aligned_ratio": null,
+        "avg_directional_return_3d": null,
+        "avg_directional_return_5d": null,
+        "market_confirmation_score": null
+      },
+      {
+        "topic": "電動車與電池",
+        "company_count": 1,
+        "validated_count": 0,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "aligned_ratio": null,
+        "avg_directional_return_3d": null,
+        "avg_directional_return_5d": null,
+        "market_confirmation_score": null
+      }
+    ]
+  },
   "data_gaps": [
     "FinMind 月營收抓取失敗：2317，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
     "FinMind 月營收抓取失敗：2330，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",

@@ -6,6 +6,7 @@ from datetime import date
 from pathlib import Path
 
 from .analysis import TopicAnalyzer
+from .analysis.validation import adjusted_directional_confidence, daily_market_validation
 from .collectors import FundamentalsCollector, NewsCollector, PricePerformanceCollector
 from .config import load_company_universe, load_rss_feeds, load_sentiment_keywords, load_topic_keywords
 from .models import RunResult
@@ -88,11 +89,13 @@ def run_report(
             relation.metrics = fundamentals.collect_for_company(relation.company)
             relation.price_performance = prices.collect_for_company(relation.company, relation.impact_direction)
 
+    validation = daily_market_validation(topics)
+    validation_history = load_validation_history(reports_dir, report_date.isoformat(), validation)
     renderer = ReportRenderer()
-    markdown_text = renderer.render_markdown(report_date, topics, data_gaps)
-    html_text = renderer.render_html(markdown_text)
+    markdown_text = renderer.render_markdown(report_date, topics, data_gaps, validation_history)
+    html_text = renderer.render_html(markdown_text, topics, validation_history)
     markdown_path, html_path = renderer.write(reports_dir, report_date, markdown_text, html_text)
-    summary_path = write_summary(reports_dir, report_date, topics, data_gaps)
+    summary_path = write_summary(reports_dir, report_date, topics, data_gaps, validation)
 
     return RunResult(
         report_date=report_date,
@@ -104,16 +107,50 @@ def run_report(
     )
 
 
-def write_summary(reports_dir: Path, report_date: date, topics: list, data_gaps: list[str]) -> Path:
+def write_summary(
+    reports_dir: Path,
+    report_date: date,
+    topics: list,
+    data_gaps: list[str],
+    validation: dict | None = None,
+) -> Path:
     reports_dir.mkdir(parents=True, exist_ok=True)
     path = summary_path_for_date(reports_dir, report_date.isoformat())
     payload = {
         "date": report_date.isoformat(),
         "topics": [_topic_to_summary(topic) for topic in topics],
+        "market_validation": validation or daily_market_validation(topics),
         "data_gaps": sorted(set(data_gaps)),
     }
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     return path
+
+
+def load_validation_history(reports_dir: Path, report_date: str, current_validation: dict) -> list[dict]:
+    history: dict[str, dict] = {}
+    if reports_dir.exists():
+        for path in reports_dir.glob("*-market-topics.json"):
+            try:
+                payload = json.loads(path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                continue
+            validation = payload.get("market_validation")
+            date_text = str(payload.get("date", ""))
+            if not date_text or not isinstance(validation, dict):
+                continue
+            history[date_text] = _history_item(date_text, validation)
+    history[report_date] = _history_item(report_date, current_validation)
+    return [history[key] for key in sorted(history)][-30:]
+
+
+def _history_item(report_date: str, validation: dict) -> dict:
+    return {
+        "date": report_date,
+        "correlation_3d": validation.get("correlation_3d"),
+        "correlation_5d": validation.get("correlation_5d"),
+        "aligned_ratio": validation.get("aligned_ratio"),
+        "validated_count": validation.get("validated_count", 0),
+    }
 
 
 def _topic_to_summary(topic) -> dict:
@@ -147,13 +184,4 @@ def _relation_to_summary(relation) -> dict:
 
 
 def _directional_confidence_value(direction: str, confidence: float, price_validation: str) -> str:
-    adjusted = confidence
-    if price_validation == "背離":
-        adjusted *= 0.50
-    elif price_validation == "未明確":
-        adjusted *= 0.75
-    if direction == "正向":
-        return f"+{adjusted:.2f}"
-    if direction == "負向":
-        return f"-{adjusted:.2f}"
-    return "0.00"
+    return adjusted_directional_confidence(direction, confidence, price_validation)

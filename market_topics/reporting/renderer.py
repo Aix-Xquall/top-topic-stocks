@@ -4,6 +4,12 @@ import html
 from datetime import date
 from pathlib import Path
 
+from ..analysis.validation import (
+    adjusted_directional_confidence,
+    daily_market_validation,
+    format_optional_number,
+    format_optional_percent,
+)
 from ..models import Topic
 
 
@@ -11,53 +17,67 @@ DISCLAIMER = "本報告由自動化流程產生，僅供研究輔助，不構成
 
 
 class ReportRenderer:
-    def render_markdown(self, report_date: date, topics: list[Topic], data_gaps: list[str]) -> str:
+    def render_markdown(
+        self,
+        report_date: date,
+        topics: list[Topic],
+        data_gaps: list[str],
+        validation_history: list[dict] | None = None,
+    ) -> str:
+        validation = daily_market_validation(topics)
         lines: list[str] = [
             f"# 每日股市熱門話題分析 - {report_date.isoformat()}",
             "",
             DISCLAIMER,
             "",
-            "## 今日熱門話題排行",
+            "## 重點摘要",
             "",
         ]
         if not topics:
             lines.extend(["目前沒有足夠新聞可形成熱門話題。", ""])
         else:
-            for index, topic in enumerate(topics, start=1):
-                lines.append(f"{index}. **{topic.name}**：熱度分數 {topic.score}，方向 {topic.direction}")
+            for index, topic in enumerate(topics[:5], start=1):
+                topic_validation = next(
+                    (item for item in validation["topics"] if item["topic"] == topic.name),
+                    {},
+                )
+                confirmation = format_optional_number(topic_validation.get("market_confirmation_score"))
+                aligned = topic_validation.get("aligned_count", 0)
+                validated = topic_validation.get("validated_count", 0)
+                lines.append(
+                    f"{index}. **{topic.name}**｜{topic.direction}｜熱度 {topic.score}｜"
+                    f"市場確認 {confirmation}｜同向 {aligned}/{validated}"
+                )
             lines.append("")
+
+        lines.extend(_validation_markdown(validation))
+        lines.extend(_history_markdown(validation_history or []))
 
         for topic in topics:
             lines.extend(
                 [
                     f"## {topic.name}",
                     "",
-                    f"- 熱度分數：{topic.score}",
-                    f"- 話題方向：{topic.direction}（分數 {topic.sentiment_score}）",
-                    f"- 中文摘要：{topic.summary}",
+                    f"摘要：{topic.summary}",
                     "",
-                    "### 可能相關公司",
+                    "### 相關公司",
                     "",
                 ]
             )
             if topic.related_companies:
                 lines.append(
-                    "| 市場 | Ticker | 公司 | 關聯類型 | 方向性信心 | 3日漲幅 | 5日漲幅 | 價格驗證 | EPS | 本益比 | 營收 | 營收 YoY | 資料日期 | 來源 |"
+                    "| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 驗證 | EPS | PER | 營收 / YoY | 日期 |"
                 )
-                lines.append("| --- | --- | --- | --- | ---: | ---: | ---: | --- | ---: | ---: | ---: | ---: | --- | --- |")
+                lines.append("| --- | --- | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |")
                 for relation in topic.related_companies:
                     company = relation.company
                     metrics = relation.metrics
                     price = relation.price_performance
-                    sources = "<br>".join(metrics.sources) if metrics.sources else "N/A"
-                    combined_sources = _join_sources(sources, price.source)
                     lines.append(
                         "| "
                         + " | ".join(
                             [
-                                company.market,
-                                company.ticker,
-                                f"{company.name_zh} / {company.name_en}",
+                                f"{company.ticker} {company.name_zh}",
                                 relation.relation_type,
                                 _directional_confidence(
                                     relation.impact_direction,
@@ -69,24 +89,22 @@ class ReportRenderer:
                                 price.validation,
                                 metrics.eps,
                                 metrics.pe,
-                                f"{metrics.revenue} {metrics.currency}".strip(),
-                                metrics.revenue_yoy,
+                                _revenue_cell(metrics.revenue, metrics.currency, metrics.revenue_yoy),
                                 metrics.as_of_date,
-                                combined_sources,
                             ]
                         )
                         + " |"
                     )
                 lines.append("")
-                lines.append("關聯理由：")
-                for relation in topic.related_companies:
+                lines.append("關聯理由（前 3）：")
+                for relation in topic.related_companies[:3]:
                     lines.append(f"- {relation.company.ticker}：{relation.reason}")
                     if relation.metrics.notes:
                         lines.append(f"  - 資料備註：{'；'.join(relation.metrics.notes)}")
             else:
                 lines.append("目前沒有足夠依據推估相關公司。")
             lines.extend(["", "### 主要來源", ""])
-            for article in topic.articles:
+            for article in topic.articles[:3]:
                 title = _escape_md(article.title)
                 lines.append(f"- [{title}]({article.url}) - {article.source} {article.published_at}".strip())
             lines.append("")
@@ -100,8 +118,15 @@ class ReportRenderer:
         lines.append("")
         return "\n".join(lines)
 
-    def render_html(self, markdown_text: str) -> str:
+    def render_html(
+        self,
+        markdown_text: str,
+        topics: list[Topic] | None = None,
+        validation_history: list[dict] | None = None,
+    ) -> str:
         body = _markdown_subset_to_html(markdown_text)
+        chart = _validation_chart_html(topics or [])
+        history_chart = _history_chart_html(validation_history or [])
         return "\n".join(
             [
                 "<!doctype html>",
@@ -111,15 +136,17 @@ class ReportRenderer:
                 '<meta name="viewport" content="width=device-width, initial-scale=1">',
                 "<title>每日股市熱門話題分析</title>",
                 "<style>",
-                "body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;line-height:1.65;margin:32px;color:#1f2937;background:#f8fafc}",
-                "main{max-width:1180px;margin:0 auto;background:#fff;padding:28px;border:1px solid #e5e7eb;border-radius:8px}",
-                "h1,h2,h3{line-height:1.25;color:#111827} table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0 20px}",
-                "th,td{border:1px solid #d1d5db;padding:8px;vertical-align:top} th{background:#f3f4f6;text-align:left}",
-                "a{color:#0f766e} code{background:#f3f4f6;padding:2px 4px;border-radius:4px}",
+                "body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;line-height:1.55;margin:24px;color:#1f2937;background:#f8fafc}",
+                "main{max-width:1180px;margin:0 auto;background:#fff;padding:24px;border:1px solid #e5e7eb;border-radius:8px}",
+                "h1,h2,h3{line-height:1.25;color:#111827} h1{margin-top:0} table{border-collapse:collapse;width:100%;font-size:13px;margin:10px 0 18px}",
+                "th,td{border:1px solid #d1d5db;padding:7px;vertical-align:top} th{background:#f3f4f6;text-align:left}",
+                "a{color:#0f766e} code{background:#f3f4f6;padding:2px 4px;border-radius:4px} .chart{margin:16px 0 24px;padding:14px;border:1px solid #e5e7eb;border-radius:8px;background:#fbfdff}.bar-row{display:grid;grid-template-columns:minmax(120px,220px) 1fr 64px;gap:10px;align-items:center;margin:8px 0}.bar-track{height:14px;background:#e5e7eb;border-radius:999px;overflow:hidden}.bar{height:100%;background:#0f766e}.bar.low{background:#b45309}.bar.mid{background:#2563eb}.muted{color:#6b7280;font-size:13px}",
                 "</style>",
                 "</head>",
                 "<body><main>",
                 body,
+                chart,
+                history_chart,
                 "</main></body></html>",
             ]
         )
@@ -138,22 +165,152 @@ def _escape_md(value: str) -> str:
     return value.replace("[", "\\[").replace("]", "\\]")
 
 
+def _revenue_cell(revenue: str, currency: str, revenue_yoy: str) -> str:
+    revenue_text = f"{revenue} {currency}".strip()
+    return f"{revenue_text} / {revenue_yoy}"
+
+
+def _validation_markdown(validation: dict) -> list[str]:
+    correlation_3d = validation.get("correlation_3d")
+    correlation_5d = validation.get("correlation_5d")
+    aligned = validation.get("aligned_count", 0)
+    validated = validation.get("validated_count", 0)
+    lines = [
+        "## 市場驗證",
+        "",
+        "為避免循環驗證，相關係數使用「價格調整前」方向信心與股價報酬計算。",
+        "",
+        f"- 3日相關係數：{format_optional_number(correlation_3d)}（樣本 {validation.get('sample_count_3d', 0)}）",
+        f"- 5日相關係數：{format_optional_number(correlation_5d)}（樣本 {validation.get('sample_count_5d', 0)}）",
+        f"- 同向比例：{aligned}/{validated}",
+        "",
+        "| 話題 | 市場確認 | 同向 | 背離 | 3日方向報酬 | 5日方向報酬 |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for item in validation.get("topics", [])[:8]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    item["topic"],
+                    format_optional_number(item.get("market_confirmation_score")),
+                    f"{item.get('aligned_count', 0)}/{item.get('validated_count', 0)}",
+                    str(item.get("diverged_count", 0)),
+                    format_optional_percent(item.get("avg_directional_return_3d")),
+                    format_optional_percent(item.get("avg_directional_return_5d")),
+                ]
+            )
+            + " |"
+        )
+    lines.append("")
+    return lines
+
+
+def _history_markdown(history: list[dict]) -> list[str]:
+    rows = [item for item in history if item.get("validated_count", 0)]
+    if not rows:
+        return []
+    lines = [
+        "## 每日迭代追蹤",
+        "",
+        "此表用來觀察每日模型分數是否逐步貼近市場表現。",
+        "",
+        "| 日期 | 3日相關 | 5日相關 | 同向比例 | 樣本 |",
+        "| --- | ---: | ---: | ---: | ---: |",
+    ]
+    for item in rows[-14:]:
+        aligned_ratio = item.get("aligned_ratio")
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    str(item.get("date", "")),
+                    format_optional_number(item.get("correlation_3d")),
+                    format_optional_number(item.get("correlation_5d")),
+                    format_optional_percent(aligned_ratio * 100 if aligned_ratio is not None else None),
+                    str(item.get("validated_count", 0)),
+                ]
+            )
+            + " |"
+        )
+    lines.append("")
+    return lines
+
+
+def _validation_chart_html(topics: list[Topic]) -> str:
+    validation = daily_market_validation(topics)
+    rows = [
+        item
+        for item in validation.get("topics", [])[:8]
+        if item.get("market_confirmation_score") is not None
+    ]
+    if not rows:
+        return ""
+    output = [
+        '<section class="chart">',
+        "<h2>市場確認圖表</h2>",
+        '<p class="muted">分數越高，代表題材方向與近 3 日股價表現越一致；低於 50 代表市場確認偏弱。</p>',
+    ]
+    for item in rows:
+        score = float(item["market_confirmation_score"])
+        width = max(0.0, min(100.0, score))
+        css_class = "low" if score < 50 else "mid" if score < 70 else ""
+        output.append(
+            '<div class="bar-row">'
+            f"<div>{html.escape(str(item['topic']))}</div>"
+            '<div class="bar-track">'
+            f'<div class="bar {css_class}" style="width:{width:.1f}%"></div>'
+            "</div>"
+            f"<strong>{score:.1f}</strong>"
+            "</div>"
+        )
+    output.append("</section>")
+    return "\n".join(output)
+
+
+def _history_chart_html(history: list[dict]) -> str:
+    rows = [item for item in history[-14:] if item.get("validated_count", 0)]
+    if not rows:
+        return ""
+    output = [
+        '<section class="chart">',
+        "<h2>每日相關性追蹤</h2>",
+        '<p class="muted">長條為 3 日相關係數，0 在中線；越往右代表方向信心與個股表現越正相關。</p>',
+    ]
+    for item in rows:
+        correlation = item.get("correlation_3d")
+        if correlation is None:
+            width = 0.0
+            offset = 50.0
+            label = "N/A"
+        else:
+            bounded = max(-1.0, min(1.0, float(correlation)))
+            width = abs(bounded) * 50.0
+            offset = 50.0 if bounded >= 0 else 50.0 - width
+            label = f"{bounded:.2f}"
+        color = "#0f766e" if correlation is None or float(correlation) >= 0 else "#b91c1c"
+        output.append(
+            '<div class="bar-row">'
+            f"<div>{html.escape(str(item.get('date', '')))}</div>"
+            '<div class="bar-track" style="position:relative">'
+            '<div style="position:absolute;left:50%;top:0;width:1px;height:100%;background:#64748b"></div>'
+            f'<div style="position:absolute;left:{offset:.1f}%;top:0;width:{width:.1f}%;height:100%;background:{color}"></div>'
+            "</div>"
+            f"<strong>{label}</strong>"
+            "</div>"
+        )
+    output.append("</section>")
+    return "\n".join(output)
+
+
 def _directional_confidence(direction: str, confidence: float, price_validation: str = "N/A") -> str:
-    if direction == "正向":
-        return f"+{_market_adjusted_confidence(confidence, price_validation):.2f}"
-    if direction == "負向":
-        return f"-{_market_adjusted_confidence(confidence, price_validation):.2f}"
-    return "0.00"
+    return adjusted_directional_confidence(direction, confidence, price_validation)
 
 
 def _market_adjusted_confidence(confidence: float, price_validation: str) -> float:
-    if price_validation == "同向":
-        return confidence
-    if price_validation == "背離":
-        return confidence * 0.50
-    if price_validation == "未明確":
-        return confidence * 0.75
-    return confidence
+    from ..analysis.validation import market_adjusted_confidence
+
+    return market_adjusted_confidence(confidence, price_validation)
 
 
 def _join_sources(fundamental_sources: str, price_source: str) -> str:
