@@ -1,0 +1,372 @@
+{
+  "date": "2026-05-08",
+  "topics": [
+    {
+      "name": "AI 伺服器與資料中心",
+      "score": 10,
+      "direction": "正向",
+      "sentiment_score": 7,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "AMD",
+          "name_zh": "超微",
+          "name_en": "Advanced Micro Devices",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.95",
+          "return_3d": "+18.66%",
+          "return_5d": "+14.32%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "name_en": "Intel",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.76",
+          "return_3d": "+15.16%",
+          "return_5d": "+16.74%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "name_en": "NVIDIA",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.63",
+          "return_3d": "+6.96%",
+          "return_5d": "+6.38%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "TW",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "name_en": "Taiwan Semiconductor Manufacturing",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.58",
+          "return_3d": "+1.54%",
+          "return_5d": "+5.96%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "MSFT",
+          "name_zh": "微軟",
+          "name_en": "Microsoft",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.42",
+          "return_3d": "+2.13%",
+          "return_5d": "+3.59%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "AVGO",
+          "name_zh": "博通",
+          "name_en": "Broadcom",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.32",
+          "return_3d": "+0.17%",
+          "return_5d": "-0.06%",
+          "price_validation": "未明確"
+        },
+        {
+          "market": "TW",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "name_en": "ASE Technology",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.42",
+          "return_3d": "+2.86%",
+          "return_5d": "+10.54%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "TW",
+          "ticker": "2454",
+          "name_zh": "聯發科",
+          "name_en": "MediaTek",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.42",
+          "return_3d": "+19.16%",
+          "return_5d": "+32.82%",
+          "price_validation": "同向"
+        }
+      ]
+    },
+    {
+      "name": "散熱與液冷供應鏈",
+      "score": 9,
+      "direction": "負向",
+      "sentiment_score": -6,
+      "companies": [
+        {
+          "market": "TW",
+          "ticker": "3017",
+          "name_zh": "奇鋐",
+          "name_en": "AVC",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "-0.95",
+          "return_3d": "-16.29%",
+          "return_5d": "-14.81%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "name_en": "NVIDIA",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "-0.47",
+          "return_3d": "+7.00%",
+          "return_5d": "+6.41%",
+          "price_validation": "背離"
+        }
+      ]
+    },
+    {
+      "name": "半導體與晶片供應鏈",
+      "score": 6,
+      "direction": "正向",
+      "sentiment_score": 4,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "AMD",
+          "name_zh": "超微",
+          "name_en": "Advanced Micro Devices",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.83",
+          "return_3d": "+18.66%",
+          "return_5d": "+14.32%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "name_en": "Intel",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.78",
+          "return_3d": "+15.16%",
+          "return_5d": "+16.74%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "TW",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "name_en": "Taiwan Semiconductor Manufacturing",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.54",
+          "return_3d": "+1.54%",
+          "return_5d": "+5.96%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "TW",
+          "ticker": "2303",
+          "name_zh": "聯電",
+          "name_en": "United Microelectronics",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.54",
+          "return_3d": "+18.84%",
+          "return_5d": "+29.53%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "name_en": "NVIDIA",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.42",
+          "return_3d": "+6.96%",
+          "return_5d": "+6.38%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "MU",
+          "name_zh": "美光",
+          "name_en": "Micron Technology",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.42",
+          "return_3d": "+12.20%",
+          "return_5d": "+25.07%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "SNDK",
+          "name_zh": "SanDisk",
+          "name_en": "SanDisk",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.42",
+          "return_3d": "+6.46%",
+          "return_5d": "+21.93%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "AVGO",
+          "name_zh": "博通",
+          "name_en": "Broadcom",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.32",
+          "return_3d": "+0.17%",
+          "return_5d": "-0.06%",
+          "price_validation": "未明確"
+        }
+      ]
+    },
+    {
+      "name": "綜合市場情緒",
+      "score": 6,
+      "direction": "負向",
+      "sentiment_score": -1,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "name_en": "Intel",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "-0.35",
+          "return_3d": "+15.22%",
+          "return_5d": "+16.81%",
+          "price_validation": "背離"
+        }
+      ]
+    },
+    {
+      "name": "記憶體與 HBM 供應鏈",
+      "score": 4,
+      "direction": "正向",
+      "sentiment_score": 3,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "MU",
+          "name_zh": "美光",
+          "name_en": "Micron Technology",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.95",
+          "return_3d": "+12.20%",
+          "return_5d": "+25.07%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "SNDK",
+          "name_zh": "SanDisk",
+          "name_en": "SanDisk",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.95",
+          "return_3d": "+6.46%",
+          "return_5d": "+21.93%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "AMD",
+          "name_zh": "超微",
+          "name_en": "Advanced Micro Devices",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.70",
+          "return_3d": "+18.66%",
+          "return_5d": "+14.32%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "name_en": "Intel",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.70",
+          "return_3d": "+15.16%",
+          "return_5d": "+16.74%",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "name_en": "NVIDIA",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "+7.02%",
+          "return_5d": "+6.43%",
+          "price_validation": "不適用"
+        }
+      ]
+    },
+    {
+      "name": "消費電子與手機",
+      "score": 1,
+      "direction": "中性",
+      "sentiment_score": 0,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "AAPL",
+          "name_zh": "蘋果",
+          "name_en": "Apple",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "+4.44%",
+          "return_5d": "+6.55%",
+          "price_validation": "不適用"
+        },
+        {
+          "market": "TW",
+          "ticker": "2317",
+          "name_zh": "鴻海",
+          "name_en": "Foxconn",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "+11.43%",
+          "return_5d": "+12.67%",
+          "price_validation": "不適用"
+        },
+        {
+          "market": "TW",
+          "ticker": "2454",
+          "name_zh": "聯發科",
+          "name_en": "MediaTek",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "+19.16%",
+          "return_5d": "+32.82%",
+          "price_validation": "不適用"
+        }
+      ]
+    },
+    {
+      "name": "電動車與電池",
+      "score": 1,
+      "direction": "中性",
+      "sentiment_score": 0,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "TSLA",
+          "name_zh": "特斯拉",
+          "name_en": "Tesla",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "0.00",
+          "return_3d": "+3.95%",
+          "return_5d": "+6.91%",
+          "price_validation": "不適用"
+        }
+      ]
+    }
+  ],
+  "data_gaps": [
+    "GDELT 新聞抓取失敗：Expecting value: line 1 column 1 (char 0)"
+  ]
+}
