@@ -6,6 +6,7 @@ from datetime import date
 from pathlib import Path
 
 from .analysis import TopicAnalyzer
+from .analysis.topics import BROAD_TOPICS
 from .analysis.validation import adjusted_directional_confidence, daily_market_validation
 from .backtesting import DEFAULT_BACKTEST_DAYS, latest_backtest_summary, run_backtest
 from .collectors import FundamentalsCollector, NewsCollector, PricePerformanceCollector
@@ -129,10 +130,11 @@ def run_report(
 
     validation = daily_market_validation(topics)
     historical_topic_scores = load_historical_topic_scores(reports_dir, report_date.isoformat())
-    topics = optimize_topic_order(topics, validation, historical_topic_scores, model_weights)
+    backtest_summary = latest_backtest_summary(reports_dir)
+    backtest_topic_scores = load_backtest_topic_scores(reports_dir)
+    topics = optimize_topic_order(topics, validation, historical_topic_scores, model_weights, backtest_topic_scores)
     validation = daily_market_validation(topics)
     validation_history = load_validation_history(reports_dir, report_date.isoformat(), validation)
-    backtest_summary = latest_backtest_summary(reports_dir)
     renderer = ReportRenderer()
     markdown_text = renderer.render_markdown(
         report_date,
@@ -234,13 +236,32 @@ def load_historical_topic_scores(reports_dir: Path, report_date: str) -> dict[st
     return {topic: sum(values) / len(values) for topic, values in scores.items() if values}
 
 
+def load_backtest_topic_scores(reports_dir: Path) -> dict[str, float]:
+    history_path = reports_dir / "backtests" / "model-weight-history.json"
+    if not history_path.exists():
+        return {}
+    try:
+        payload = json.loads(history_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    if not isinstance(payload, list) or not payload:
+        return {}
+    latest = payload[-1].get("aggregate", {}) if isinstance(payload[-1], dict) else {}
+    scores = latest.get("topic_scores", {})
+    if not isinstance(scores, dict):
+        return {}
+    return {str(topic): float(score) for topic, score in scores.items() if isinstance(score, (int, float))}
+
+
 def optimize_topic_order(
     topics: list,
     validation: dict,
     historical_topic_scores: dict[str, float],
     model_weights: dict[str, float] | None = None,
+    backtest_topic_scores: dict[str, float] | None = None,
 ) -> list:
     weights = model_weights or {}
+    calibration_scores = backtest_topic_scores or {}
     current_scores = {
         item["topic"]: item.get("market_confirmation_score")
         for item in validation.get("topics", [])
@@ -260,6 +281,15 @@ def optimize_topic_order(
             optimized += current_component
         if isinstance(history_score, (int, float)):
             optimized += (float(history_score) - 50.0) * float(weights.get("historical_topic_score_weight", 0.35))
+        calibration_score = calibration_scores.get(topic.name)
+        if isinstance(calibration_score, (int, float)):
+            optimized += (float(calibration_score) - 50.0) * float(
+                weights.get("historical_topic_score_weight", 0.35)
+            )
+        if topic.name in BROAD_TOPICS and (not isinstance(current_score, (int, float)) or float(current_score) < 70.0):
+            optimized *= float(weights.get("broad_topic_penalty", 0.65))
+        if not getattr(topic, "related_companies", []):
+            optimized -= 1000.0
         return (optimized, topic.score)
 
     return sorted(topics, key=sort_key, reverse=True)

@@ -10,6 +10,7 @@ from .http import HttpError, get_json
 
 
 YAHOO_CHART_URL = "https://query1.finance.yahoo.com/v8/finance/chart/{symbol}"
+MAX_RECENT_RETURN_ABS = 80.0
 
 
 class PricePerformanceCollector:
@@ -35,6 +36,7 @@ class PricePerformanceCollector:
 
     def _collect_us(self, company: Company, direction: str) -> PricePerformance:
         rows = self._collect_yahoo_rows(company.ticker, company.ticker)
+        rows = _rows_until(rows, self.report_date)
         return _build_performance(rows, direction, "Yahoo Finance chart")
 
     def _collect_tw(self, company: Company, direction: str) -> PricePerformance:
@@ -59,7 +61,7 @@ class PricePerformanceCollector:
             if row.get("date") and row.get("close") is not None
         ]
         performance = _build_performance(rows, direction, "FinMind TaiwanStockPrice")
-        history_rows = self._collect_yahoo_rows(f"{company.ticker}.TW", company.ticker)
+        history_rows = _rows_until(self._collect_yahoo_rows(f"{company.ticker}.TW", company.ticker), self.report_date)
         if history_rows:
             _merge_price_history(performance, history_rows, "Yahoo Finance chart")
         return performance
@@ -88,6 +90,11 @@ def _parse_yahoo_chart(payload: dict[str, Any]) -> list[tuple[str, float]]:
             continue
         rows.append((datetime.fromtimestamp(timestamp, tz=timezone.utc).date().isoformat(), float(close)))
     return rows
+
+
+def _rows_until(rows: list[tuple[str, float]], end_date: date) -> list[tuple[str, float]]:
+    end_text = end_date.isoformat()
+    return [(day, close) for day, close in rows if day <= end_text]
 
 
 def _build_performance(rows: list[tuple[str, float]], direction: str, source: str) -> PricePerformance:
@@ -119,7 +126,10 @@ def _period_return(rows: list[tuple[str, float]], trading_days: int) -> float | 
     base = rows[-(trading_days + 1)][1]
     if base == 0:
         return None
-    return (current / base - 1) * 100
+    value = (current / base - 1) * 100
+    if abs(value) > MAX_RECENT_RETURN_ABS:
+        return None
+    return value
 
 
 def _format_pct(value: float | None) -> str:

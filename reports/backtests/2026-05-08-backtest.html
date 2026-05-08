@@ -16,20 +16,28 @@ table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0 20px}th,t
 <h2>方法品質</h2>
 <ul>
 <li>有效天數：5，低可信天數：0</li>
-<li>3日相關：-0.3707，5日相關：-0.411</li>
-<li>同向比例：0.8889，樣本：45</li>
-<li>方法品質分數：54.4342</li>
+<li>3日相關：0.0443，5日相關：0.2471</li>
+<li>同向比例：0.8889，樣本：36</li>
+<li>方法品質分數：66.8831</li>
 </ul>
 <h2>權重調整</h2>
-<p>近 5 日方向信心與股價呈負相關，降低推估權重並加重背離扣分。</p>
-<table><tr><th>權重</th><th>調整前</th><th>調整後</th></tr><tr><td>direct_mention_weight</td><td>0.95</td><td>0.9025</td></tr>
-<tr><td>inferred_supply_chain_weight</td><td>0.585</td><td>0.5265</td></tr>
-<tr><td>broad_topic_penalty</td><td>0.765</td><td>0.6885</td></tr>
-<tr><td>price_divergence_penalty</td><td>0.45</td><td>0.405</td></tr></table>
+<h2>信心校準診斷</h2>
+<ul>
+<li>方向準確度：0.8889</li>
+<li>信心排序準確度：0.0443</li>
+<li>診斷：低相關</li>
+</ul>
+<p>近 5 日信心分數與股價關係偏低，提高價格確認，降低寬題材推估。</p>
+<table><tr><th>權重</th><th>調整前</th><th>調整後</th></tr><tr><td>current_market_confirmation_weight</td><td>0.65</td><td>0.715</td></tr>
+<tr><td>historical_topic_score_weight</td><td>0.35</td><td>0.3675</td></tr>
+<tr><td>inferred_supply_chain_weight</td><td>0.5265</td><td>0.4738</td></tr>
+<tr><td>broad_topic_penalty</td><td>0.6885</td><td>0.6197</td></tr></table>
 <h2>題材市場確認分數</h2>
 <table><tr><th>題材</th><th>平均分數</th></tr><tr><td>散熱與液冷供應鏈</td><td>100.00</td></tr>
 <tr><td>綜合市場情緒</td><td>95.60</td></tr>
-<tr><td>AI 伺服器與資料中心</td><td>90.67</td></tr>
-<tr><td>記憶體與 HBM 供應鏈</td><td>75.06</td></tr>
+<tr><td>記憶體與 HBM 供應鏈</td><td>92.23</td></tr>
+<tr><td>AI 伺服器與資料中心</td><td>74.38</td></tr>
 <tr><td>半導體與晶片供應鏈</td><td>50.00</td></tr></table>
+<h2>高信心錯配樣本</h2>
+<table><tr><th>日期</th><th>題材</th><th>公司</th><th>關聯</th><th>信心</th><th>3日</th><th>價格驗證</th></tr><tr><td>2026-05-07</td><td>AI 伺服器與資料中心</td><td>3711 日月光投控</td><td>新聞直接提及</td><td>0.73</td><td>-0.77%</td><td>未明確</td></tr></table>
 </main></body></html>

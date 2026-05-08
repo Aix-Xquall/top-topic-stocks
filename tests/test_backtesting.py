@@ -6,7 +6,7 @@ from datetime import date
 from pathlib import Path
 from unittest.mock import patch
 
-from market_topics.backtesting import adjust_model_weights, normalize_backtest_days, run_backtest
+from market_topics.backtesting import aggregate_backtest, adjust_model_weights, normalize_backtest_days, run_backtest
 from market_topics.collectors.news import NewsCollector
 from market_topics.models import PricePerformance
 
@@ -71,6 +71,100 @@ class BacktestingTest(unittest.TestCase):
         after = adjustment["weights_after"]
         self.assertLessEqual(after["current_market_confirmation_weight"], 1.1)
         self.assertLessEqual(after["inferred_supply_chain_weight"], after["direct_mention_weight"])
+
+    def test_high_direction_accuracy_negative_correlation_triggers_confidence_calibration(self) -> None:
+        weights = {
+            "news_heat_weight": 1.0,
+            "current_market_confirmation_weight": 0.65,
+            "historical_topic_score_weight": 0.35,
+            "direct_mention_weight": 0.95,
+            "inferred_supply_chain_weight": 0.65,
+            "broad_topic_penalty": 0.75,
+            "price_divergence_penalty": 0.5,
+        }
+        adjustment = adjust_model_weights(
+            weights,
+            {
+                "days": 5,
+                "minimum_required_samples": 15,
+                "sample_count_3d": 45,
+                "correlation_3d": -0.3707,
+                "aligned_ratio": 0.8889,
+                "direction_accuracy": 0.8889,
+            },
+        )
+
+        self.assertTrue(adjustment["updated"])
+        self.assertEqual(adjustment["strategy"], "信心校準問題")
+        self.assertEqual(adjustment["weights_after"]["direct_mention_weight"], weights["direct_mention_weight"])
+        self.assertLess(adjustment["weights_after"]["inferred_supply_chain_weight"], weights["inferred_supply_chain_weight"])
+        self.assertLess(adjustment["weights_after"]["broad_topic_penalty"], weights["broad_topic_penalty"])
+
+    def test_low_direction_accuracy_negative_correlation_lowers_direct_weight(self) -> None:
+        weights = {
+            "news_heat_weight": 1.0,
+            "current_market_confirmation_weight": 0.65,
+            "historical_topic_score_weight": 0.35,
+            "direct_mention_weight": 0.95,
+            "inferred_supply_chain_weight": 0.65,
+            "broad_topic_penalty": 0.75,
+            "price_divergence_penalty": 0.5,
+        }
+        adjustment = adjust_model_weights(
+            weights,
+            {
+                "days": 5,
+                "minimum_required_samples": 15,
+                "sample_count_3d": 45,
+                "correlation_3d": -0.3707,
+                "aligned_ratio": 0.4,
+                "direction_accuracy": 0.4,
+            },
+        )
+
+        self.assertEqual(adjustment["strategy"], "方向與信心皆需修正")
+        self.assertLess(adjustment["weights_after"]["direct_mention_weight"], weights["direct_mention_weight"])
+
+    def test_aggregate_reports_confidence_diagnostics_and_misses(self) -> None:
+        aggregate = aggregate_backtest(
+            [
+                {
+                    "date": "2026-05-07",
+                    "low_confidence": False,
+                    "validation": {
+                        "validated_count": 2,
+                        "aligned_count": 2,
+                        "diverged_count": 0,
+                        "sample_count_3d": 2,
+                        "sample_count_5d": 2,
+                        "correlation_3d": -0.5,
+                        "correlation_5d": -0.4,
+                        "topics": [{"topic": "記憶體與 HBM 供應鏈", "market_confirmation_score": 80}],
+                    },
+                    "relation_stats": {"新聞直接提及": {"validated": 1, "aligned": 1, "diverged": 0}},
+                    "keyword_returns": {"記憶體與 HBM 供應鏈": [2.0, -1.0]},
+                    "relations": [
+                        {
+                            "topic": "記憶體與 HBM 供應鏈",
+                            "ticker": "ABC",
+                            "name_zh": "測試公司",
+                            "relation_type": "新聞直接提及",
+                            "impact_direction": "正向",
+                            "confidence": 0.91,
+                            "return_3d": "-2.00%",
+                            "return_5d": "-1.00%",
+                            "directional_return_3d": -2.0,
+                            "price_validation": "背離",
+                        }
+                    ],
+                }
+            ]
+        )
+
+        self.assertEqual(aggregate["direction_accuracy"], 1.0)
+        self.assertEqual(aggregate["confidence_calibration"], -0.5)
+        self.assertEqual(aggregate["calibration_strategy"], "信心校準問題")
+        self.assertEqual(aggregate["overconfident_misses"][0]["ticker"], "ABC")
 
     def test_backtest_days_are_limited_to_three_to_five_days(self) -> None:
         self.assertEqual(normalize_backtest_days(1), 3)

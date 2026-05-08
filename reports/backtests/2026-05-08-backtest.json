@@ -6,59 +6,69 @@
   "aggregate": {
     "valid_days": 5,
     "low_confidence_days": 0,
-    "sample_count_3d": 45,
-    "sample_count_5d": 45,
-    "validated_count": 45,
-    "aligned_count": 40,
-    "diverged_count": 2,
+    "sample_count_3d": 36,
+    "sample_count_5d": 36,
+    "validated_count": 36,
+    "aligned_count": 32,
+    "diverged_count": 1,
     "aligned_ratio": 0.8889,
-    "correlation_3d": -0.3707,
-    "correlation_5d": -0.411,
-    "method_quality_score": 54.4342,
+    "direction_accuracy": 0.8889,
+    "correlation_3d": 0.0443,
+    "correlation_5d": 0.2471,
+    "confidence_calibration": 0.0443,
+    "calibration_strategy": "低相關",
+    "method_quality_score": 66.8831,
     "topic_scores": {
       "散熱與液冷供應鏈": 100.0,
       "綜合市場情緒": 95.599,
-      "AI 伺服器與資料中心": 90.6667,
-      "記憶體與 HBM 供應鏈": 75.065,
+      "記憶體與 HBM 供應鏈": 92.2262,
+      "AI 伺服器與資料中心": 74.3811,
       "半導體與晶片供應鏈": 50.0
     },
     "relation_stats": {
       "新聞直接提及": {
-        "validated": 34,
-        "aligned": 30,
-        "diverged": 1,
-        "aligned_ratio": 0.8824
+        "validated": 31,
+        "aligned": 28,
+        "diverged": 0,
+        "aligned_ratio": 0.9032
       },
       "產業/供應鏈推估": {
-        "validated": 11,
-        "aligned": 10,
+        "validated": 5,
+        "aligned": 4,
         "diverged": 1,
-        "aligned_ratio": 0.9091
+        "aligned_ratio": 0.8
       }
     },
     "keyword_returns": {
-      "AI 伺服器與資料中心": 64.4567,
-      "半導體與晶片供應鏈": 22.2475,
       "散熱與液冷供應鏈": 16.29,
       "綜合市場情緒": 11.0618,
-      "記憶體與 HBM 供應鏈": 6.49
+      "半導體與晶片供應鏈": 10.45,
+      "AI 伺服器與資料中心": 10.0233,
+      "記憶體與 HBM 供應鏈": 9.1775
     },
+    "overconfident_misses": [
+      {
+        "date": "2026-05-07",
+        "topic": "AI 伺服器與資料中心",
+        "ticker": "3711",
+        "name_zh": "日月光投控",
+        "relation_type": "新聞直接提及",
+        "impact_direction": "正向",
+        "confidence": 0.73,
+        "return_3d": "-0.77%",
+        "return_5d": "+7.95%",
+        "directional_return_3d": -0.77,
+        "price_validation": "未明確"
+      }
+    ],
     "days": 5,
     "minimum_required_samples": 15
   },
   "weight_adjustment": {
     "updated": true,
-    "reason": "近 5 日方向信心與股價呈負相關，降低推估權重並加重背離扣分。",
+    "strategy": "低相關",
+    "reason": "近 5 日信心分數與股價關係偏低，提高價格確認，降低寬題材推估。",
     "weights_before": {
-      "news_heat_weight": 1.0,
-      "current_market_confirmation_weight": 0.65,
-      "historical_topic_score_weight": 0.35,
-      "direct_mention_weight": 0.95,
-      "inferred_supply_chain_weight": 0.585,
-      "broad_topic_penalty": 0.765,
-      "price_divergence_penalty": 0.45
-    },
-    "weights_after": {
       "news_heat_weight": 1.0,
       "current_market_confirmation_weight": 0.65,
       "historical_topic_score_weight": 0.35,
@@ -67,22 +77,31 @@
       "broad_topic_penalty": 0.6885,
       "price_divergence_penalty": 0.405
     },
+    "weights_after": {
+      "news_heat_weight": 1.0,
+      "current_market_confirmation_weight": 0.715,
+      "historical_topic_score_weight": 0.3675,
+      "direct_mention_weight": 0.9025,
+      "inferred_supply_chain_weight": 0.4738,
+      "broad_topic_penalty": 0.6197,
+      "price_divergence_penalty": 0.405
+    },
     "changes": {
-      "direct_mention_weight": {
-        "before": 0.95,
-        "after": 0.9025
+      "current_market_confirmation_weight": {
+        "before": 0.65,
+        "after": 0.715
+      },
+      "historical_topic_score_weight": {
+        "before": 0.35,
+        "after": 0.3675
       },
       "inferred_supply_chain_weight": {
-        "before": 0.585,
-        "after": 0.5265
+        "before": 0.5265,
+        "after": 0.4738
       },
       "broad_topic_penalty": {
-        "before": 0.765,
-        "after": 0.6885
-      },
-      "price_divergence_penalty": {
-        "before": 0.45,
-        "after": 0.405
+        "before": 0.6885,
+        "after": 0.6197
       }
     }
   },
@@ -94,15 +113,15 @@
       "low_confidence": false,
       "low_confidence_reasons": [],
       "validation": {
-        "sample_count_3d": 11,
-        "sample_count_5d": 11,
-        "correlation_3d": -0.8048,
-        "correlation_5d": -0.8545,
-        "aligned_count": 10,
-        "diverged_count": 1,
+        "sample_count_3d": 8,
+        "sample_count_5d": 8,
+        "correlation_3d": -0.0469,
+        "correlation_5d": 0.0405,
+        "aligned_count": 8,
+        "diverged_count": 0,
         "unclear_count": 0,
-        "validated_count": 11,
-        "aligned_ratio": 0.9091,
+        "validated_count": 8,
+        "aligned_ratio": 1.0,
         "topics": [
           {
             "topic": "綜合市場情緒",
@@ -131,25 +150,25 @@
           {
             "topic": "記憶體與 HBM 供應鏈",
             "company_count": 4,
-            "validated_count": 2,
+            "validated_count": 1,
             "aligned_count": 1,
-            "diverged_count": 1,
+            "diverged_count": 0,
             "unclear_count": 0,
-            "aligned_ratio": 0.5,
-            "avg_directional_return_3d": -96.265,
-            "avg_directional_return_5d": -322.125,
-            "market_confirmation_score": 5.0
+            "aligned_ratio": 1.0,
+            "avg_directional_return_3d": 5.39,
+            "avg_directional_return_5d": 1.58,
+            "market_confirmation_score": 86.17
           },
           {
             "topic": "AI 伺服器與資料中心",
             "company_count": 5,
-            "validated_count": 5,
-            "aligned_count": 5,
+            "validated_count": 3,
+            "aligned_count": 3,
             "diverged_count": 0,
             "unclear_count": 0,
             "aligned_ratio": 1.0,
-            "avg_directional_return_3d": 70.712,
-            "avg_directional_return_5d": 168.344,
+            "avg_directional_return_3d": 20.1333,
+            "avg_directional_return_5d": 16.7733,
             "market_confirmation_score": 100.0
           },
           {
@@ -168,16 +187,239 @@
       },
       "relation_stats": {
         "新聞直接提及": {
-          "validated": 8,
+          "validated": 7,
           "aligned": 7,
-          "diverged": 1
+          "diverged": 0
         },
         "產業/供應鏈推估": {
-          "validated": 3,
-          "aligned": 3,
+          "validated": 1,
+          "aligned": 1,
           "diverged": 0
         }
       },
+      "relations": [
+        {
+          "topic": "綜合市場情緒",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.74,
+          "return_3d": "+5.39%",
+          "return_5d": "+1.58%",
+          "price_validation": "同向",
+          "directional_return_3d": 5.39,
+          "directional_return_5d": 1.58
+        },
+        {
+          "topic": "綜合市場情緒",
+          "ticker": "2454",
+          "name_zh": "聯發科",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.74,
+          "return_3d": "+31.42%",
+          "return_5d": "+31.17%",
+          "price_validation": "同向",
+          "directional_return_3d": 31.42,
+          "directional_return_5d": 31.17
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.86,
+          "return_3d": "+9.62%",
+          "return_5d": "+5.75%",
+          "price_validation": "同向",
+          "directional_return_3d": 9.62,
+          "directional_return_5d": 5.75
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "2454",
+          "name_zh": "聯發科",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.79,
+          "return_3d": "+31.42%",
+          "return_5d": "+31.17%",
+          "price_validation": "同向",
+          "directional_return_3d": 31.42,
+          "directional_return_5d": 31.17
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.27,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.16,
+          "return_3d": "+5.39%",
+          "return_5d": "+1.58%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "2303",
+          "name_zh": "聯電",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.16,
+          "return_3d": "+18.24%",
+          "return_5d": "+21.70%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "MU",
+          "name_zh": "美光",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "負向",
+          "confidence": 0.85,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.63,
+          "return_3d": "+5.39%",
+          "return_5d": "+1.58%",
+          "price_validation": "同向",
+          "directional_return_3d": 5.39,
+          "directional_return_5d": 1.58
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "SNDK",
+          "name_zh": "SanDisk",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.36,
+          "return_3d": "+18.01%",
+          "return_5d": "+17.35%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.11,
+          "return_3d": "+19.36%",
+          "return_5d": "+13.40%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.86,
+          "return_3d": "+9.62%",
+          "return_5d": "+5.75%",
+          "price_validation": "同向",
+          "directional_return_3d": 9.62,
+          "directional_return_5d": 5.75
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "2454",
+          "name_zh": "聯發科",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.73,
+          "return_3d": "+31.42%",
+          "return_5d": "+31.17%",
+          "price_validation": "同向",
+          "directional_return_3d": 31.42,
+          "directional_return_5d": 31.17
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "正向",
+          "confidence": 0.27,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "正向",
+          "confidence": 0.22,
+          "return_3d": "+19.36%",
+          "return_5d": "+13.40%",
+          "price_validation": "同向",
+          "directional_return_3d": 19.36,
+          "directional_return_5d": 13.4
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "AMD",
+          "name_zh": "超微",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "正向",
+          "confidence": 0.2,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "利率與成長股估值",
+          "ticker": "MSFT",
+          "name_zh": "微軟",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.18,
+          "return_3d": "-16.96%",
+          "return_5d": "+5.99%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        }
+      ],
       "keyword_returns": {
         "綜合市場情緒": [
           5.39,
@@ -188,15 +430,12 @@
           31.42
         ],
         "記憶體與 HBM 供應鏈": [
-          -197.92,
           5.39
         ],
         "AI 伺服器與資料中心": [
           9.62,
           31.42,
-          188.29,
-          23.83,
-          100.4
+          19.36
         ]
       }
     },
@@ -207,14 +446,14 @@
       "low_confidence": false,
       "low_confidence_reasons": [],
       "validation": {
-        "sample_count_3d": 11,
-        "sample_count_5d": 11,
-        "correlation_3d": 0.3454,
-        "correlation_5d": 0.1905,
-        "aligned_count": 11,
+        "sample_count_3d": 10,
+        "sample_count_5d": 10,
+        "correlation_3d": 0.6991,
+        "correlation_5d": 0.6496,
+        "aligned_count": 10,
         "diverged_count": 0,
         "unclear_count": 0,
-        "validated_count": 11,
+        "validated_count": 10,
         "aligned_ratio": 1.0,
         "topics": [
           {
@@ -244,13 +483,13 @@
           {
             "topic": "半導體與晶片供應鏈",
             "company_count": 5,
-            "validated_count": 4,
-            "aligned_count": 4,
+            "validated_count": 3,
+            "aligned_count": 3,
             "diverged_count": 0,
             "unclear_count": 0,
             "aligned_ratio": 1.0,
-            "avg_directional_return_3d": 34.62,
-            "avg_directional_return_5d": 82.4575,
+            "avg_directional_return_3d": 11.2167,
+            "avg_directional_return_5d": 12.2033,
             "market_confirmation_score": 100.0
           },
           {
@@ -281,11 +520,260 @@
       },
       "relation_stats": {
         "新聞直接提及": {
-          "validated": 11,
-          "aligned": 11,
+          "validated": 10,
+          "aligned": 10,
           "diverged": 0
         }
       },
+      "relations": [
+        {
+          "topic": "綜合市場情緒",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.85,
+          "return_3d": "+1.54%",
+          "return_5d": "+5.96%",
+          "price_validation": "同向",
+          "directional_return_3d": 1.54,
+          "directional_return_5d": 5.96
+        },
+        {
+          "topic": "綜合市場情緒",
+          "ticker": "2303",
+          "name_zh": "聯電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.74,
+          "return_3d": "+18.84%",
+          "return_5d": "+29.53%",
+          "price_validation": "同向",
+          "directional_return_3d": 18.84,
+          "directional_return_5d": 29.53
+        },
+        {
+          "topic": "綜合市場情緒",
+          "ticker": "2454",
+          "name_zh": "聯發科",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.63,
+          "return_3d": "+19.16%",
+          "return_5d": "+32.82%",
+          "price_validation": "同向",
+          "directional_return_3d": 19.16,
+          "directional_return_5d": 32.82
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.74,
+          "return_3d": "+1.54%",
+          "return_5d": "+5.96%",
+          "price_validation": "同向",
+          "directional_return_3d": 1.54,
+          "directional_return_5d": 5.96
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "2454",
+          "name_zh": "聯發科",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.74,
+          "return_3d": "+19.16%",
+          "return_5d": "+32.82%",
+          "price_validation": "同向",
+          "directional_return_3d": 19.16,
+          "directional_return_5d": 32.82
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "2303",
+          "name_zh": "聯電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.63,
+          "return_3d": "+18.84%",
+          "return_5d": "+29.53%",
+          "price_validation": "同向",
+          "directional_return_3d": 18.84,
+          "directional_return_5d": 29.53
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "MU",
+          "name_zh": "美光",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.39,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "SNDK",
+          "name_zh": "SanDisk",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.36,
+          "return_3d": "+28.25%",
+          "return_5d": "+40.30%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.68,
+          "return_3d": "+19.36%",
+          "return_5d": "+13.40%",
+          "price_validation": "同向",
+          "directional_return_3d": 19.36,
+          "directional_return_5d": 13.4
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "AMD",
+          "name_zh": "超微",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.68,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.68,
+          "return_3d": "+2.86%",
+          "return_5d": "+10.54%",
+          "price_validation": "同向",
+          "directional_return_3d": 2.86,
+          "directional_return_5d": 10.54
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "2317",
+          "name_zh": "鴻海",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.63,
+          "return_3d": "+11.43%",
+          "return_5d": "+12.67%",
+          "price_validation": "同向",
+          "directional_return_3d": 11.43,
+          "directional_return_5d": 12.67
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.27,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "中性",
+          "confidence": 0.76,
+          "return_3d": "+19.36%",
+          "return_5d": "+13.40%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "AMD",
+          "name_zh": "超微",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "中性",
+          "confidence": 0.74,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.22,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.16,
+          "return_3d": "+1.54%",
+          "return_5d": "+5.96%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "3017",
+          "name_zh": "奇鋐",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.11,
+          "return_3d": "-16.29%",
+          "return_5d": "-14.81%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "散熱與液冷供應鏈",
+          "ticker": "3017",
+          "name_zh": "奇鋐",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "負向",
+          "confidence": 0.65,
+          "return_3d": "-16.29%",
+          "return_5d": "-14.81%",
+          "price_validation": "同向",
+          "directional_return_3d": 16.29,
+          "directional_return_5d": 14.81
+        }
+      ],
       "keyword_returns": {
         "綜合市場情緒": [
           1.54,
@@ -298,8 +786,7 @@
           18.84
         ],
         "半導體與晶片供應鏈": [
-          23.82,
-          100.37,
+          19.36,
           2.86,
           11.43
         ],
@@ -315,14 +802,14 @@
       "low_confidence": false,
       "low_confidence_reasons": [],
       "validation": {
-        "sample_count_3d": 5,
-        "sample_count_5d": 5,
-        "correlation_3d": -0.5628,
-        "correlation_5d": -0.5486,
-        "aligned_count": 5,
+        "sample_count_3d": 4,
+        "sample_count_5d": 4,
+        "correlation_3d": -0.5132,
+        "correlation_5d": -0.3075,
+        "aligned_count": 4,
         "diverged_count": 0,
         "unclear_count": 0,
-        "validated_count": 5,
+        "validated_count": 4,
         "aligned_ratio": 1.0,
         "topics": [
           {
@@ -352,14 +839,14 @@
           {
             "topic": "記憶體與 HBM 供應鏈",
             "company_count": 5,
-            "validated_count": 3,
-            "aligned_count": 3,
+            "validated_count": 2,
+            "aligned_count": 2,
             "diverged_count": 0,
             "unclear_count": 0,
             "aligned_ratio": 1.0,
-            "avg_directional_return_3d": 67.0167,
-            "avg_directional_return_5d": 175.26,
-            "market_confirmation_score": 100.0
+            "avg_directional_return_3d": 5.825,
+            "avg_directional_return_5d": 12.685,
+            "market_confirmation_score": 87.475
           },
           {
             "topic": "AI 伺服器與資料中心",
@@ -389,11 +876,247 @@
       },
       "relation_stats": {
         "新聞直接提及": {
-          "validated": 5,
-          "aligned": 5,
+          "validated": 4,
+          "aligned": 4,
           "diverged": 0
         }
       },
+      "relations": [
+        {
+          "topic": "綜合市場情緒",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.86,
+          "return_3d": "+1.78%",
+          "return_5d": "+7.26%",
+          "price_validation": "同向",
+          "directional_return_3d": 1.78,
+          "directional_return_5d": 7.26
+        },
+        {
+          "topic": "綜合市場情緒",
+          "ticker": "2454",
+          "name_zh": "聯發科",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.74,
+          "return_3d": "+15.06%",
+          "return_5d": "+39.08%",
+          "price_validation": "同向",
+          "directional_return_3d": 15.06,
+          "directional_return_5d": 39.08
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.27,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.16,
+          "return_3d": "+1.78%",
+          "return_5d": "+7.26%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "2303",
+          "name_zh": "聯電",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.16,
+          "return_3d": "+9.87%",
+          "return_5d": "+18.11%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.12,
+          "return_3d": "+19.36%",
+          "return_5d": "+13.40%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "AMD",
+          "name_zh": "超微",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.12,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.74,
+          "return_3d": "+1.78%",
+          "return_5d": "+7.26%",
+          "price_validation": "同向",
+          "directional_return_3d": 1.78,
+          "directional_return_5d": 7.26
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.63,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "2303",
+          "name_zh": "聯電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.63,
+          "return_3d": "+9.87%",
+          "return_5d": "+18.11%",
+          "price_validation": "同向",
+          "directional_return_3d": 9.87,
+          "directional_return_5d": 18.11
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "MU",
+          "name_zh": "美光",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.39,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "SNDK",
+          "name_zh": "SanDisk",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.36,
+          "return_3d": "+18.79%",
+          "return_5d": "+32.49%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "中性",
+          "confidence": 0.78,
+          "return_3d": "+1.78%",
+          "return_5d": "+7.26%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "中性",
+          "confidence": 0.71,
+          "return_3d": "-0.77%",
+          "return_5d": "+7.95%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.23,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.19,
+          "return_3d": "+19.36%",
+          "return_5d": "+13.40%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "AMD",
+          "name_zh": "超微",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.17,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "利率與成長股估值",
+          "ticker": "MSFT",
+          "name_zh": "微軟",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.18,
+          "return_3d": "-16.96%",
+          "return_5d": "+5.99%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        }
+      ],
       "keyword_returns": {
         "綜合市場情緒": [
           1.78,
@@ -401,7 +1124,6 @@
         ],
         "記憶體與 HBM 供應鏈": [
           1.78,
-          189.4,
           9.87
         ]
       }
@@ -413,15 +1135,15 @@
       "low_confidence": false,
       "low_confidence_reasons": [],
       "validation": {
-        "sample_count_3d": 10,
-        "sample_count_5d": 10,
-        "correlation_3d": -0.5445,
-        "correlation_5d": -0.5063,
-        "aligned_count": 8,
+        "sample_count_3d": 8,
+        "sample_count_5d": 8,
+        "correlation_3d": -0.3843,
+        "correlation_5d": 0.082,
+        "aligned_count": 6,
         "diverged_count": 0,
         "unclear_count": 2,
-        "validated_count": 10,
-        "aligned_ratio": 0.8,
+        "validated_count": 8,
+        "aligned_ratio": 0.75,
         "topics": [
           {
             "topic": "綜合市場情緒",
@@ -462,14 +1184,14 @@
           {
             "topic": "AI 伺服器與資料中心",
             "company_count": 5,
-            "validated_count": 5,
-            "aligned_count": 4,
+            "validated_count": 3,
+            "aligned_count": 2,
             "diverged_count": 0,
             "unclear_count": 1,
-            "aligned_ratio": 0.8,
-            "avg_directional_return_3d": 62.768,
-            "avg_directional_return_5d": 164.138,
-            "market_confirmation_score": 86.0
+            "aligned_ratio": 0.6667,
+            "avg_directional_return_3d": 6.79,
+            "avg_directional_return_5d": 9.5367,
+            "market_confirmation_score": 67.0367
           },
           {
             "topic": "關稅與供應鏈轉移",
@@ -492,11 +1214,260 @@
           "diverged": 0
         },
         "產業/供應鏈推估": {
-          "validated": 4,
-          "aligned": 4,
+          "validated": 2,
+          "aligned": 2,
           "diverged": 0
         }
       },
+      "relations": [
+        {
+          "topic": "綜合市場情緒",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.85,
+          "return_3d": "+1.78%",
+          "return_5d": "+7.26%",
+          "price_validation": "同向",
+          "directional_return_3d": 1.78,
+          "directional_return_5d": 7.26
+        },
+        {
+          "topic": "綜合市場情緒",
+          "ticker": "2454",
+          "name_zh": "聯發科",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.63,
+          "return_3d": "+15.06%",
+          "return_5d": "+39.08%",
+          "price_validation": "同向",
+          "directional_return_3d": 15.06,
+          "directional_return_5d": 39.08
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.68,
+          "return_3d": "-0.77%",
+          "return_5d": "+7.95%",
+          "price_validation": "未明確",
+          "directional_return_3d": -0.77,
+          "directional_return_5d": 7.95
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.27,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.16,
+          "return_3d": "+1.78%",
+          "return_5d": "+7.26%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "2303",
+          "name_zh": "聯電",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.16,
+          "return_3d": "+9.87%",
+          "return_5d": "+18.11%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.12,
+          "return_3d": "+19.36%",
+          "return_5d": "+13.40%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.63,
+          "return_3d": "+1.78%",
+          "return_5d": "+7.26%",
+          "price_validation": "同向",
+          "directional_return_3d": 1.78,
+          "directional_return_5d": 7.26
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "2454",
+          "name_zh": "聯發科",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.63,
+          "return_3d": "+15.06%",
+          "return_5d": "+39.08%",
+          "price_validation": "同向",
+          "directional_return_3d": 15.06,
+          "directional_return_5d": 39.08
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "MU",
+          "name_zh": "美光",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.39,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "SNDK",
+          "name_zh": "SanDisk",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.36,
+          "return_3d": "+6.70%",
+          "return_5d": "+22.20%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.11,
+          "return_3d": "+19.36%",
+          "return_5d": "+13.40%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.73,
+          "return_3d": "-0.77%",
+          "return_5d": "+7.95%",
+          "price_validation": "未明確",
+          "directional_return_3d": -0.77,
+          "directional_return_5d": 7.95
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "正向",
+          "confidence": 0.24,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "正向",
+          "confidence": 0.2,
+          "return_3d": "+19.36%",
+          "return_5d": "+13.40%",
+          "price_validation": "同向",
+          "directional_return_3d": 19.36,
+          "directional_return_5d": 13.4
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "AMD",
+          "name_zh": "超微",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "正向",
+          "confidence": 0.18,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "正向",
+          "confidence": 0.18,
+          "return_3d": "+1.78%",
+          "return_5d": "+7.26%",
+          "price_validation": "同向",
+          "directional_return_3d": 1.78,
+          "directional_return_5d": 7.26
+        },
+        {
+          "topic": "關稅與供應鏈轉移",
+          "ticker": "AAPL",
+          "name_zh": "蘋果",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.19,
+          "return_3d": "+23.82%",
+          "return_5d": "+18.86%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "關稅與供應鏈轉移",
+          "ticker": "2317",
+          "name_zh": "鴻海",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.19,
+          "return_3d": "+4.38%",
+          "return_5d": "+13.90%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        }
+      ],
       "keyword_returns": {
         "綜合市場情緒": [
           1.78,
@@ -511,9 +1482,7 @@
         ],
         "AI 伺服器與資料中心": [
           -0.77,
-          188.78,
-          23.82,
-          100.23,
+          19.36,
           1.78
         ]
       }
@@ -525,15 +1494,15 @@
       "low_confidence": false,
       "low_confidence_reasons": [],
       "validation": {
-        "sample_count_3d": 8,
-        "sample_count_5d": 8,
-        "correlation_3d": -0.4212,
-        "correlation_5d": -0.4233,
-        "aligned_count": 6,
+        "sample_count_3d": 6,
+        "sample_count_5d": 6,
+        "correlation_3d": 0.0174,
+        "correlation_5d": 0.4417,
+        "aligned_count": 4,
         "diverged_count": 1,
         "unclear_count": 1,
-        "validated_count": 8,
-        "aligned_ratio": 0.75,
+        "validated_count": 6,
+        "aligned_ratio": 0.6667,
         "topics": [
           {
             "topic": "綜合市場情緒",
@@ -562,14 +1531,14 @@
           {
             "topic": "AI 伺服器與資料中心",
             "company_count": 5,
-            "validated_count": 5,
-            "aligned_count": 4,
+            "validated_count": 3,
+            "aligned_count": 2,
             "diverged_count": 1,
             "unclear_count": 0,
-            "aligned_ratio": 0.8,
-            "avg_directional_return_3d": 59.89,
-            "avg_directional_return_5d": 160.688,
-            "market_confirmation_score": 86.0
+            "aligned_ratio": 0.6667,
+            "avg_directional_return_3d": 3.1467,
+            "avg_directional_return_5d": 3.31,
+            "market_confirmation_score": 56.1067
           },
           {
             "topic": "記憶體與 HBM 供應鏈",
@@ -604,11 +1573,234 @@
           "diverged": 0
         },
         "產業/供應鏈推估": {
-          "validated": 4,
-          "aligned": 3,
+          "validated": 2,
+          "aligned": 1,
           "diverged": 1
         }
       },
+      "relations": [
+        {
+          "topic": "綜合市場情緒",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.86,
+          "return_3d": "+1.78%",
+          "return_5d": "+7.26%",
+          "price_validation": "同向",
+          "directional_return_3d": 1.78,
+          "directional_return_5d": 7.26
+        },
+        {
+          "topic": "綜合市場情緒",
+          "ticker": "2303",
+          "name_zh": "聯電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.63,
+          "return_3d": "+9.87%",
+          "return_5d": "+18.11%",
+          "price_validation": "同向",
+          "directional_return_3d": 9.87,
+          "directional_return_5d": 18.11
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.68,
+          "return_3d": "-0.77%",
+          "return_5d": "+7.95%",
+          "price_validation": "未明確",
+          "directional_return_3d": -0.77,
+          "directional_return_5d": 7.95
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.27,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.16,
+          "return_3d": "+1.78%",
+          "return_5d": "+7.26%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "2303",
+          "name_zh": "聯電",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.16,
+          "return_3d": "+9.87%",
+          "return_5d": "+18.11%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "半導體與晶片供應鏈",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.12,
+          "return_3d": "+23.22%",
+          "return_5d": "+12.43%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.79,
+          "return_3d": "+1.78%",
+          "return_5d": "+7.26%",
+          "price_validation": "同向",
+          "directional_return_3d": 1.78,
+          "directional_return_5d": 7.26
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "正向",
+          "confidence": 0.28,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "正向",
+          "confidence": 0.23,
+          "return_3d": "+23.27%",
+          "return_5d": "+12.48%",
+          "price_validation": "同向",
+          "directional_return_3d": 23.27,
+          "directional_return_5d": 12.48
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "AMD",
+          "name_zh": "超微",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "正向",
+          "confidence": 0.21,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "N/A",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "MSFT",
+          "name_zh": "微軟",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "正向",
+          "confidence": 0.15,
+          "return_3d": "-15.61%",
+          "return_5d": "-9.81%",
+          "price_validation": "背離",
+          "directional_return_3d": -15.61,
+          "directional_return_5d": -9.81
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "MU",
+          "name_zh": "美光",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.37,
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "SNDK",
+          "name_zh": "SanDisk",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.35,
+          "return_3d": "+4.39%",
+          "return_5d": "+23.67%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "記憶體與 HBM 供應鏈",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.1,
+          "return_3d": "+23.22%",
+          "return_5d": "+12.43%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "關稅與供應鏈轉移",
+          "ticker": "AAPL",
+          "name_zh": "蘋果",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.19,
+          "return_3d": "+5.43%",
+          "return_5d": "+46.37%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        },
+        {
+          "topic": "關稅與供應鏈轉移",
+          "ticker": "2317",
+          "name_zh": "鴻海",
+          "relation_type": "產業/供應鏈推估",
+          "impact_direction": "中性",
+          "confidence": 0.19,
+          "return_3d": "+4.38%",
+          "return_5d": "+13.90%",
+          "price_validation": "不適用",
+          "directional_return_3d": null,
+          "directional_return_5d": null
+        }
+      ],
       "keyword_returns": {
         "綜合市場情緒": [
           1.78,
@@ -619,10 +1811,8 @@
         ],
         "AI 伺服器與資料中心": [
           1.78,
-          188.75,
-          23.76,
-          100.33,
-          -15.17
+          23.27,
+          -15.61
         ]
       }
     }

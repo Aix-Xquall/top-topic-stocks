@@ -46,59 +46,69 @@
     "aggregate": {
       "valid_days": 5,
       "low_confidence_days": 0,
-      "sample_count_3d": 45,
-      "sample_count_5d": 45,
-      "validated_count": 45,
-      "aligned_count": 40,
-      "diverged_count": 2,
+      "sample_count_3d": 36,
+      "sample_count_5d": 36,
+      "validated_count": 36,
+      "aligned_count": 32,
+      "diverged_count": 1,
       "aligned_ratio": 0.8889,
-      "correlation_3d": -0.3707,
-      "correlation_5d": -0.411,
-      "method_quality_score": 54.4342,
+      "direction_accuracy": 0.8889,
+      "correlation_3d": 0.0443,
+      "correlation_5d": 0.2471,
+      "confidence_calibration": 0.0443,
+      "calibration_strategy": "低相關",
+      "method_quality_score": 66.8831,
       "topic_scores": {
         "散熱與液冷供應鏈": 100.0,
         "綜合市場情緒": 95.599,
-        "AI 伺服器與資料中心": 90.6667,
-        "記憶體與 HBM 供應鏈": 75.065,
+        "記憶體與 HBM 供應鏈": 92.2262,
+        "AI 伺服器與資料中心": 74.3811,
         "半導體與晶片供應鏈": 50.0
       },
       "relation_stats": {
         "新聞直接提及": {
-          "validated": 34,
-          "aligned": 30,
-          "diverged": 1,
-          "aligned_ratio": 0.8824
+          "validated": 31,
+          "aligned": 28,
+          "diverged": 0,
+          "aligned_ratio": 0.9032
         },
         "產業/供應鏈推估": {
-          "validated": 11,
-          "aligned": 10,
+          "validated": 5,
+          "aligned": 4,
           "diverged": 1,
-          "aligned_ratio": 0.9091
+          "aligned_ratio": 0.8
         }
       },
       "keyword_returns": {
-        "AI 伺服器與資料中心": 64.4567,
-        "半導體與晶片供應鏈": 22.2475,
         "散熱與液冷供應鏈": 16.29,
         "綜合市場情緒": 11.0618,
-        "記憶體與 HBM 供應鏈": 6.49
+        "半導體與晶片供應鏈": 10.45,
+        "AI 伺服器與資料中心": 10.0233,
+        "記憶體與 HBM 供應鏈": 9.1775
       },
+      "overconfident_misses": [
+        {
+          "date": "2026-05-07",
+          "topic": "AI 伺服器與資料中心",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "relation_type": "新聞直接提及",
+          "impact_direction": "正向",
+          "confidence": 0.73,
+          "return_3d": "-0.77%",
+          "return_5d": "+7.95%",
+          "directional_return_3d": -0.77,
+          "price_validation": "未明確"
+        }
+      ],
       "days": 5,
       "minimum_required_samples": 15
     },
     "weight_adjustment": {
       "updated": true,
-      "reason": "近 5 日方向信心與股價呈負相關，降低推估權重並加重背離扣分。",
+      "strategy": "低相關",
+      "reason": "近 5 日信心分數與股價關係偏低，提高價格確認，降低寬題材推估。",
       "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.65,
-        "historical_topic_score_weight": 0.35,
-        "direct_mention_weight": 0.95,
-        "inferred_supply_chain_weight": 0.585,
-        "broad_topic_penalty": 0.765,
-        "price_divergence_penalty": 0.45
-      },
-      "weights_after": {
         "news_heat_weight": 1.0,
         "current_market_confirmation_weight": 0.65,
         "historical_topic_score_weight": 0.35,
@@ -107,22 +117,31 @@
         "broad_topic_penalty": 0.6885,
         "price_divergence_penalty": 0.405
       },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 0.715,
+        "historical_topic_score_weight": 0.3675,
+        "direct_mention_weight": 0.9025,
+        "inferred_supply_chain_weight": 0.4738,
+        "broad_topic_penalty": 0.6197,
+        "price_divergence_penalty": 0.405
+      },
       "changes": {
-        "direct_mention_weight": {
-          "before": 0.95,
-          "after": 0.9025
+        "current_market_confirmation_weight": {
+          "before": 0.65,
+          "after": 0.715
+        },
+        "historical_topic_score_weight": {
+          "before": 0.35,
+          "after": 0.3675
         },
         "inferred_supply_chain_weight": {
-          "before": 0.585,
-          "after": 0.5265
+          "before": 0.5265,
+          "after": 0.4738
         },
         "broad_topic_penalty": {
-          "before": 0.765,
-          "after": 0.6885
-        },
-        "price_divergence_penalty": {
-          "before": 0.45,
-          "after": 0.405
+          "before": 0.6885,
+          "after": 0.6197
         }
       }
     }

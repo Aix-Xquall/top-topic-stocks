@@ -119,6 +119,8 @@ def aggregate_backtest(daily_results: list[dict[str, Any]]) -> dict[str, Any]:
     topic_scores = _aggregate_topic_scores(valid_days)
     relation_stats = _aggregate_relation_stats(valid_days)
     keyword_returns = _aggregate_keyword_returns(valid_days)
+    overconfident_misses = _aggregate_overconfident_misses(valid_days)
+    calibration_strategy = _calibration_strategy(avg_corr_3d, aligned_ratio)
     return {
         "valid_days": len(valid_days),
         "low_confidence_days": len(daily_results) - len(valid_days),
@@ -128,12 +130,16 @@ def aggregate_backtest(daily_results: list[dict[str, Any]]) -> dict[str, Any]:
         "aligned_count": aligned_count,
         "diverged_count": diverged_count,
         "aligned_ratio": _round(aligned_ratio),
+        "direction_accuracy": _round(aligned_ratio),
         "correlation_3d": _round(avg_corr_3d),
         "correlation_5d": _round(avg_corr_5d),
+        "confidence_calibration": _round(avg_corr_3d),
+        "calibration_strategy": calibration_strategy,
         "method_quality_score": _round(_method_quality_score(avg_corr_3d, aligned_ratio)),
         "topic_scores": topic_scores,
         "relation_stats": relation_stats,
         "keyword_returns": keyword_returns,
+        "overconfident_misses": overconfident_misses,
     }
 
 
@@ -143,13 +149,16 @@ def adjust_model_weights(weights_before: dict[str, float], aggregate: dict[str, 
     days = int(aggregate.get("days", DEFAULT_BACKTEST_DAYS) or DEFAULT_BACKTEST_DAYS)
     minimum_samples = int(aggregate.get("minimum_required_samples", minimum_required_samples(days)))
     correlation = aggregate.get("correlation_3d")
+    aligned_ratio = aggregate.get("direction_accuracy", aggregate.get("aligned_ratio"))
+    strategy = _calibration_strategy(correlation, aligned_ratio)
     reasons: list[str] = []
     factors = {key: 1.0 for key in weights}
 
     if sample_count < minimum_samples or correlation is None:
-        reasons.append(f"近 {days} 日有效樣本 {sample_count} 未達 {minimum_samples}，不自動調權重。")
+        reasons.append(f"近 {days} 日有效樣本 {sample_count} 筆，低於 {minimum_samples} 筆門檻，暫不調整權重。")
         return {
             "updated": False,
+            "strategy": "樣本不足",
             "reason": "；".join(reasons),
             "weights_before": weights,
             "weights_after": weights,
@@ -157,18 +166,28 @@ def adjust_model_weights(weights_before: dict[str, float], aggregate: dict[str, 
         }
 
     if correlation > 0.20:
-        reasons.append(f"近 {days} 日相關性為正，提高市場確認與歷史題材分數權重。")
+        reasons.append(f"近 {days} 日信心分數與後續報酬呈正相關，提高市場確認、歷史題材與直接提及權重。")
         factors["current_market_confirmation_weight"] = 1.05
         factors["historical_topic_score_weight"] = 1.05
         factors["direct_mention_weight"] = 1.03
-    elif -0.10 <= correlation <= 0.10:
-        reasons.append(f"近 {days} 日相關性偏弱，提高價格確認，降低泛題材推估。")
+    elif strategy == "信心校準問題":
+        reasons.append(
+            f"近 {days} 日方向判斷多數同向，但信心分數與後續報酬呈負相關；判定為信心校準問題，"
+            "優先降低高信心膨脹、寬題材推估與背離容忍。"
+        )
+        factors["current_market_confirmation_weight"] = 1.08
+        factors["historical_topic_score_weight"] = 1.05
+        factors["inferred_supply_chain_weight"] = 0.92
+        factors["broad_topic_penalty"] = 0.90
+        factors["price_divergence_penalty"] = 0.90
+    elif -0.10 <= float(correlation) <= 0.10:
+        reasons.append(f"近 {days} 日信心分數與股價關係偏低，提高價格確認，降低寬題材推估。")
         factors["current_market_confirmation_weight"] = 1.10
         factors["historical_topic_score_weight"] = 1.05
         factors["inferred_supply_chain_weight"] = 0.90
         factors["broad_topic_penalty"] = 0.90
     else:
-        reasons.append(f"近 {days} 日方向信心與股價呈負相關，降低推估權重並加重背離扣分。")
+        reasons.append(f"近 {days} 日方向與信心排序皆偏弱，降低方向詞與供應鏈推估權重，並加重背離扣分。")
         factors["direct_mention_weight"] = 0.95
         factors["inferred_supply_chain_weight"] = 0.90
         factors["broad_topic_penalty"] = 0.90
@@ -177,7 +196,7 @@ def adjust_model_weights(weights_before: dict[str, float], aggregate: dict[str, 
     weights_after = {key: _bounded_weight(key, value * factors[key]) for key, value in weights.items()}
     if weights_after["inferred_supply_chain_weight"] > weights_after["direct_mention_weight"]:
         weights_after["inferred_supply_chain_weight"] = weights_after["direct_mention_weight"]
-        reasons.append("供應鏈推估權重上限套用：不得高於新聞直接提及。")
+        reasons.append("供應鏈推估權重不得高於直接提及權重。")
 
     changes = {
         key: {"before": round(weights[key], 4), "after": round(weights_after[key], 4)}
@@ -186,6 +205,7 @@ def adjust_model_weights(weights_before: dict[str, float], aggregate: dict[str, 
     }
     return {
         "updated": bool(changes),
+        "strategy": strategy,
         "reason": "；".join(reasons),
         "weights_before": weights,
         "weights_after": weights_after,
@@ -205,6 +225,18 @@ def render_backtest_html(payload: dict[str, Any]) -> str:
         f"<tr><td>{_html(key)}</td><td>{value['before']}</td><td>{value['after']}</td></tr>"
         for key, value in adjustment.get("changes", {}).items()
     ) or '<tr><td colspan="3">本次未調整</td></tr>'
+    miss_rows = "\n".join(
+        "<tr>"
+        f"<td>{_html(item.get('date', ''))}</td>"
+        f"<td>{_html(item.get('topic', ''))}</td>"
+        f"<td>{_html(item.get('ticker', ''))} {_html(item.get('name_zh', ''))}</td>"
+        f"<td>{_html(item.get('relation_type', ''))}</td>"
+        f"<td>{_html(item.get('confidence', ''))}</td>"
+        f"<td>{_html(item.get('return_3d', 'N/A'))}</td>"
+        f"<td>{_html(item.get('price_validation', 'N/A'))}</td>"
+        "</tr>"
+        for item in aggregate.get("overconfident_misses", [])[:12]
+    ) or '<tr><td colspan="7">無明顯高信心錯配樣本</td></tr>'
     return f"""<!doctype html>
 <html lang="zh-Hant">
 <head>
@@ -228,10 +260,18 @@ table{{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0 20px}}th
 <li>方法品質分數：{aggregate['method_quality_score']}</li>
 </ul>
 <h2>權重調整</h2>
+<h2>信心校準診斷</h2>
+<ul>
+<li>方向準確度：{aggregate.get('direction_accuracy')}</li>
+<li>信心排序準確度：{aggregate.get('confidence_calibration')}</li>
+<li>診斷：{_html(aggregate.get('calibration_strategy', 'N/A'))}</li>
+</ul>
 <p>{_html(adjustment['reason'])}</p>
 <table><tr><th>權重</th><th>調整前</th><th>調整後</th></tr>{change_rows}</table>
 <h2>題材市場確認分數</h2>
 <table><tr><th>題材</th><th>平均分數</th></tr>{topic_rows}</table>
+<h2>高信心錯配樣本</h2>
+<table><tr><th>日期</th><th>題材</th><th>公司</th><th>關聯</th><th>信心</th><th>3日</th><th>價格驗證</th></tr>{miss_rows}</table>
 </main></body></html>"""
 
 
@@ -254,8 +294,13 @@ def latest_backtest_summary(reports_dir: Path) -> dict[str, Any]:
         "correlation_3d": aggregate.get("correlation_3d"),
         "correlation_5d": aggregate.get("correlation_5d"),
         "aligned_ratio": aggregate.get("aligned_ratio"),
+        "direction_accuracy": aggregate.get("direction_accuracy"),
+        "confidence_calibration": aggregate.get("confidence_calibration"),
+        "calibration_strategy": aggregate.get("calibration_strategy"),
+        "overconfident_misses": aggregate.get("overconfident_misses", [])[:5],
         "validated_count": aggregate.get("validated_count", 0),
         "updated": adjustment.get("updated", False),
+        "adjustment_strategy": adjustment.get("strategy", ""),
         "reason": adjustment.get("reason", ""),
     }
 
@@ -316,6 +361,7 @@ def _backtest_day(
         "low_confidence_reasons": low_confidence_reasons,
         "validation": validation,
         "relation_stats": _relation_stats(topics),
+        "relations": _relation_snapshots(topics),
         "keyword_returns": _keyword_returns(topics),
     }
 
@@ -336,6 +382,29 @@ def _append_weight_history(path: Path, end_date: date, aggregate: dict[str, Any]
         }
     )
     path.write_text(json.dumps(history[-90:], ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def _relation_snapshots(topics: list[Topic]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for topic in topics:
+        for relation in topic.related_companies:
+            price = relation.price_performance
+            rows.append(
+                {
+                    "topic": topic.name,
+                    "ticker": relation.company.ticker,
+                    "name_zh": relation.company.name_zh,
+                    "relation_type": relation.relation_type,
+                    "impact_direction": relation.impact_direction,
+                    "confidence": relation.confidence,
+                    "return_3d": price.return_3d,
+                    "return_5d": price.return_5d,
+                    "price_validation": price.validation,
+                    "directional_return_3d": relation_directional_return(relation, "3d"),
+                    "directional_return_5d": relation_directional_return(relation, "5d"),
+                }
+            )
+    return rows
 
 
 def _relation_stats(topics: list[Topic]) -> dict[str, dict[str, int]]:
@@ -365,6 +434,55 @@ def _keyword_returns(topics: list[Topic]) -> dict[str, list[float]]:
         if values:
             output[topic.name] = values
     return output
+
+
+def _aggregate_overconfident_misses(valid_days: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    misses: list[dict[str, Any]] = []
+    for day in valid_days:
+        report_date = day.get("date", "")
+        for row in day.get("relations", []):
+            confidence = row.get("confidence")
+            directional_return = row.get("directional_return_3d")
+            if not isinstance(confidence, (int, float)) or not isinstance(directional_return, (int, float)):
+                continue
+            if confidence < 0.70 or directional_return > 0:
+                continue
+            misses.append(
+                {
+                    "date": report_date,
+                    "topic": row.get("topic", ""),
+                    "ticker": row.get("ticker", ""),
+                    "name_zh": row.get("name_zh", ""),
+                    "relation_type": row.get("relation_type", ""),
+                    "impact_direction": row.get("impact_direction", ""),
+                    "confidence": _round(float(confidence)),
+                    "return_3d": row.get("return_3d", "N/A"),
+                    "return_5d": row.get("return_5d", "N/A"),
+                    "directional_return_3d": _round(float(directional_return)),
+                    "price_validation": row.get("price_validation", "N/A"),
+                }
+            )
+    return sorted(
+        misses,
+        key=lambda item: (float(item.get("confidence", 0) or 0), -float(item.get("directional_return_3d", 0) or 0)),
+        reverse=True,
+    )[:12]
+
+
+def _calibration_strategy(correlation: Any, aligned_ratio: Any) -> str:
+    if not isinstance(correlation, (int, float)):
+        return "樣本不足"
+    aligned = float(aligned_ratio) if isinstance(aligned_ratio, (int, float)) else None
+    corr = float(correlation)
+    if aligned is not None and aligned >= 0.70 and corr < 0:
+        return "信心校準問題"
+    if corr < -0.10:
+        return "方向與信心皆需修正"
+    if corr <= 0.10:
+        return "低相關"
+    if corr <= 0.20:
+        return "弱正相關"
+    return "正相關"
 
 
 def _aggregate_relation_stats(valid_days: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:

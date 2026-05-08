@@ -86,6 +86,60 @@ class MarketValidationTest(unittest.TestCase):
         self.assertEqual(ordered[0].name, "新聞少但同向")
 
 
+    def test_broad_topic_is_penalized_when_market_confirmation_is_weak(self) -> None:
+        broad_topic = Topic(name="AI 伺服器與資料中心", score=9, summary="皜祈岫", articles=[])
+        confirmed_topic = Topic(name="記憶體與 HBM 供應鏈", score=3, summary="皜祈岫", articles=[])
+        validation = {
+            "topics": [
+                {"topic": "AI 伺服器與資料中心", "market_confirmation_score": 40.0},
+                {"topic": "記憶體與 HBM 供應鏈", "market_confirmation_score": 95.0},
+            ]
+        }
+
+        ordered = optimize_topic_order(
+            [broad_topic, confirmed_topic],
+            validation,
+            {},
+            {
+                "news_heat_weight": 1.0,
+                "current_market_confirmation_weight": 0.65,
+                "historical_topic_score_weight": 0.35,
+                "broad_topic_penalty": 0.5,
+                "price_divergence_penalty": 0.5,
+            },
+            {"記憶體與 HBM 供應鏈": 90.0},
+        )
+
+        self.assertEqual(ordered[0].name, "記憶體與 HBM 供應鏈")
+
+    def test_topic_without_companies_is_penalized(self) -> None:
+        empty_topic = Topic(name="綜合市場情緒", score=10, summary="皜祈岫", articles=[])
+        company_topic = Topic(
+            name="記憶體與 HBM 供應鏈",
+            score=3,
+            summary="皜祈岫",
+            articles=[],
+            related_companies=[_relation("MU", "甇??", "+5.00%", "??")],
+        )
+        validation = {"topics": [{"topic": "記憶體與 HBM 供應鏈", "market_confirmation_score": 90.0}]}
+
+        ordered = optimize_topic_order(
+            [empty_topic, company_topic],
+            validation,
+            {},
+            {
+                "news_heat_weight": 1.0,
+                "current_market_confirmation_weight": 0.65,
+                "historical_topic_score_weight": 0.35,
+                "broad_topic_penalty": 0.5,
+                "price_divergence_penalty": 0.5,
+            },
+            {"記憶體與 HBM 供應鏈": 90.0},
+        )
+
+        self.assertEqual(ordered[0].name, "記憶體與 HBM 供應鏈")
+
+
 def _relation(
     ticker: str,
     direction: str,

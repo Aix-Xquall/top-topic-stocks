@@ -280,6 +280,26 @@ def _backtest_summary_markdown(summary: dict) -> list[str]:
         f"- 權重狀態：{adjusted}",
         "",
     ]
+    direction_accuracy = summary.get("direction_accuracy", summary.get("aligned_ratio"))
+    confidence_calibration = summary.get("confidence_calibration", summary.get("correlation_3d"))
+    lines.extend(
+        [
+            f"- 方向準確度：{format_optional_percent(direction_accuracy * 100 if direction_accuracy is not None else None)}",
+            f"- 信心排序準確度：{format_optional_number(confidence_calibration)}",
+            f"- 診斷：{summary.get('calibration_strategy') or summary.get('adjustment_strategy') or 'N/A'}",
+            "",
+        ]
+    )
+    misses = summary.get("overconfident_misses") or []
+    if misses:
+        lines.extend(["主要錯誤來源（高信心但報酬不佳）：", ""])
+        for item in misses[:5]:
+            lines.append(
+                f"- {item.get('topic', 'N/A')}｜{item.get('ticker', '')} {item.get('name_zh', '')}｜"
+                f"信心 {item.get('confidence', 'N/A')}｜3日 {item.get('return_3d', 'N/A')}｜"
+                f"{item.get('price_validation', 'N/A')}"
+            )
+        lines.append("")
     if summary.get("reason"):
         lines.extend([f"調整原因：{summary['reason']}", ""])
     return lines
