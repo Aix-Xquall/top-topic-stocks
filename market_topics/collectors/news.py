@@ -38,7 +38,20 @@ class NewsCollector:
             return load_sample_articles()
         return deduped[:max_articles]
 
-    def _fetch_gdelt(self, max_articles: int) -> list[Article]:
+    def collect_historical(self, report_date: date, max_articles: int = 120) -> list[Article]:
+        articles = self._fetch_gdelt(
+            max_articles=max_articles,
+            start_date=report_date,
+            end_date=report_date + timedelta(days=1),
+        )
+        return _filter_fresh_articles(_dedupe_articles(articles), report_date)[:max_articles]
+
+    def _fetch_gdelt(
+        self,
+        max_articles: int,
+        start_date: date | None = None,
+        end_date: date | None = None,
+    ) -> list[Article]:
         query = (
             "stock OR market OR earnings OR revenue OR semiconductor OR AI "
             "OR tariff OR inflation OR electric vehicle OR datacenter"
@@ -48,9 +61,13 @@ class NewsCollector:
             "mode": "artlist",
             "format": "json",
             "maxrecords": str(max_articles),
-            "timespan": "1d",
             "sort": "hybridrel",
         }
+        if start_date and end_date:
+            params["startdatetime"] = _gdelt_datetime(start_date)
+            params["enddatetime"] = _gdelt_datetime(end_date)
+        else:
+            params["timespan"] = "1d"
         url = f"{GDELT_DOC_URL}?{urllib.parse.urlencode(params)}"
         try:
             payload = get_json(url, headers={"User-Agent": "market-topics-research/0.1"})
@@ -178,3 +195,7 @@ def _parse_rss_date(value: str) -> date | None:
         return parsedate_to_datetime(value).date()
     except (TypeError, ValueError, IndexError, AttributeError):
         return None
+
+
+def _gdelt_datetime(value: date) -> str:
+    return value.strftime("%Y%m%d%H%M%S")

@@ -57,6 +57,22 @@ tests/
 python -m unittest discover -s tests
 ```
 
+## 近 30 天回測與自動調權重
+
+```powershell
+python -m market_topics backtest --days 30
+```
+
+輸出：
+
+- `reports/backtests/YYYY-MM-DD-backtest.json`
+- `reports/backtests/YYYY-MM-DD-backtest.html`
+- `reports/backtests/model-weight-history.json`
+
+回測會使用 GDELT 歷史新聞與歷史價格驗證目前分析方法，計算 3/5 日相關係數、同向比例、題材市場確認分數，並在有效樣本足夠時自動更新 `config/model_weights.json`。
+
+若有效樣本不足，系統會產生回測報告，但不調整權重。每日報告會讀取最新回測摘要，顯示近 30 日驗證結果與權重是否調整。
+
 ## GitHub Actions 每日自動執行
 
 建議建立 public GitHub repository：

@@ -126,7 +126,7 @@
           "name_zh": "鴻海",
           "name_en": "Foxconn",
           "relation_type": "產業/供應鏈推估",
-          "directional_confidence": "+0.39",
+          "directional_confidence": "+0.25",
           "return_3d": "N/A",
           "return_5d": "N/A",
           "current_price": "N/A",
@@ -309,6 +309,15 @@
         "market_confirmation_score": null
       }
     ]
+  },
+  "backtest_summary": {
+    "date": "2026-05-07",
+    "correlation_3d": null,
+    "correlation_5d": null,
+    "aligned_ratio": null,
+    "validated_count": 0,
+    "updated": false,
+    "reason": "有效樣本 0 未達 50，不自動調權重。"
   },
   "data_gaps": [
     "FinMind 月營收抓取失敗：2317，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",

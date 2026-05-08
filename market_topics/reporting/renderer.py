@@ -23,6 +23,7 @@ class ReportRenderer:
         topics: list[Topic],
         data_gaps: list[str],
         validation_history: list[dict] | None = None,
+        backtest_summary: dict | None = None,
     ) -> str:
         validation = daily_market_validation(topics)
         lines: list[str] = [
@@ -52,6 +53,7 @@ class ReportRenderer:
 
         lines.extend(_validation_markdown(validation))
         lines.extend(_history_markdown(validation_history or []))
+        lines.extend(_backtest_summary_markdown(backtest_summary or {}))
 
         for topic in topics:
             lines.extend(
@@ -257,6 +259,26 @@ def _history_markdown(history: list[dict]) -> list[str]:
             + " |"
         )
     lines.append("")
+    return lines
+
+
+def _backtest_summary_markdown(summary: dict) -> list[str]:
+    if not summary:
+        return []
+    aligned_ratio = summary.get("aligned_ratio")
+    adjusted = "已調整" if summary.get("updated") else "未調整"
+    lines = [
+        "## 歷史回測摘要",
+        "",
+        f"- 回測日期：{summary.get('date', 'N/A')}",
+        f"- 近30日 3日相關：{format_optional_number(summary.get('correlation_3d'))}",
+        f"- 近30日 5日相關：{format_optional_number(summary.get('correlation_5d'))}",
+        f"- 同向比例：{format_optional_percent(aligned_ratio * 100 if aligned_ratio is not None else None)}",
+        f"- 權重狀態：{adjusted}",
+        "",
+    ]
+    if summary.get("reason"):
+        lines.extend([f"調整原因：{summary['reason']}", ""])
     return lines
 
 

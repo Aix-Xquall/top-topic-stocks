@@ -74,10 +74,12 @@ class TopicAnalyzer:
         topic_keywords: dict[str, list[str]],
         companies: list[Company],
         sentiment_keywords: dict[str, list[str]] | None = None,
+        model_weights: dict[str, float] | None = None,
     ) -> None:
         self.topic_keywords = topic_keywords
         self.companies = companies
         self.sentiment_keywords = sentiment_keywords or {"positive": [], "negative": []}
+        self.model_weights = model_weights or {}
 
     def analyze(
         self,
@@ -155,6 +157,7 @@ class TopicAnalyzer:
 
             if direct_hits:
                 confidence = _direct_confidence(direct_hits, title_hits, len(tag_overlap), tag_article_hits)
+                confidence *= float(self.model_weights.get("direct_mention_weight", 1.0))
                 alias_text = "、".join(aliases[:3])
                 reason = f"新聞直接提及「{alias_text}」，共 {direct_hits} 篇新聞命中。"
                 if tag_overlap:
@@ -168,6 +171,9 @@ class TopicAnalyzer:
                     topic.score,
                     specific_overlap_count,
                 )
+                confidence *= float(self.model_weights.get("inferred_supply_chain_weight", 1.0))
+                if specific_overlap_count == 0 or topic.name in BROAD_TOPICS:
+                    confidence *= float(self.model_weights.get("broad_topic_penalty", 1.0))
                 reason = (
                     f"產業/供應鏈推估：公司標籤符合「{topic.name}」關鍵字 "
                     f"{', '.join(tag_overlap[:4])}；其中 {tag_article_hits} 篇新聞出現相關標籤。"
@@ -185,7 +191,7 @@ class TopicAnalyzer:
                         company=company,
                         relation_type=relation_type,
                         reason=reason,
-                        confidence=round(confidence, 2),
+                        confidence=round(max(0.0, min(0.95, confidence)), 2),
                         impact_direction=impact_direction,
                         impact_score=impact_score,
                     ),

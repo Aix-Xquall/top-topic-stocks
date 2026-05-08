@@ -1,0 +1,44 @@
+[
+  {
+    "date": "2026-05-07",
+    "aggregate": {
+      "valid_days": 0,
+      "low_confidence_days": 2,
+      "sample_count_3d": 0,
+      "sample_count_5d": 0,
+      "validated_count": 0,
+      "aligned_count": 0,
+      "diverged_count": 0,
+      "aligned_ratio": null,
+      "correlation_3d": null,
+      "correlation_5d": null,
+      "method_quality_score": null,
+      "topic_scores": {},
+      "relation_stats": {},
+      "keyword_returns": {}
+    },
+    "weight_adjustment": {
+      "updated": false,
+      "reason": "有效樣本 0 未達 50，不自動調權重。",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 0.65,
+        "historical_topic_score_weight": 0.35,
+        "direct_mention_weight": 1.0,
+        "inferred_supply_chain_weight": 0.65,
+        "broad_topic_penalty": 0.85,
+        "price_divergence_penalty": 0.5
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 0.65,
+        "historical_topic_score_weight": 0.35,
+        "direct_mention_weight": 1.0,
+        "inferred_supply_chain_weight": 0.65,
+        "broad_topic_penalty": 0.85,
+        "price_divergence_penalty": 0.5
+      },
+      "changes": {}
+    }
+  }
+]

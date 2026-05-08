@@ -1,0 +1,174 @@
+{
+  "date": "2026-05-07",
+  "days": 2,
+  "start_date": "2026-05-06",
+  "end_date": "2026-05-07",
+  "aggregate": {
+    "valid_days": 0,
+    "low_confidence_days": 2,
+    "sample_count_3d": 0,
+    "sample_count_5d": 0,
+    "validated_count": 0,
+    "aligned_count": 0,
+    "diverged_count": 0,
+    "aligned_ratio": null,
+    "correlation_3d": null,
+    "correlation_5d": null,
+    "method_quality_score": null,
+    "topic_scores": {},
+    "relation_stats": {},
+    "keyword_returns": {}
+  },
+  "weight_adjustment": {
+    "updated": false,
+    "reason": "有效樣本 0 未達 50，不自動調權重。",
+    "weights_before": {
+      "news_heat_weight": 1.0,
+      "current_market_confirmation_weight": 0.65,
+      "historical_topic_score_weight": 0.35,
+      "direct_mention_weight": 1.0,
+      "inferred_supply_chain_weight": 0.65,
+      "broad_topic_penalty": 0.85,
+      "price_divergence_penalty": 0.5
+    },
+    "weights_after": {
+      "news_heat_weight": 1.0,
+      "current_market_confirmation_weight": 0.65,
+      "historical_topic_score_weight": 0.35,
+      "direct_mention_weight": 1.0,
+      "inferred_supply_chain_weight": 0.65,
+      "broad_topic_penalty": 0.85,
+      "price_divergence_penalty": 0.5
+    },
+    "changes": {}
+  },
+  "daily_results": [
+    {
+      "date": "2026-05-06",
+      "article_count": 5,
+      "low_confidence": true,
+      "low_confidence_reasons": [
+        "價格驗證樣本 0 少於 3"
+      ],
+      "validation": {
+        "sample_count_3d": 0,
+        "sample_count_5d": 0,
+        "correlation_3d": null,
+        "correlation_5d": null,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "validated_count": 0,
+        "aligned_ratio": null,
+        "topics": [
+          {
+            "topic": "記憶體與 HBM 供應鏈",
+            "company_count": 3,
+            "validated_count": 0,
+            "aligned_count": 0,
+            "diverged_count": 0,
+            "unclear_count": 0,
+            "aligned_ratio": null,
+            "avg_directional_return_3d": null,
+            "avg_directional_return_5d": null,
+            "market_confirmation_score": null
+          },
+          {
+            "topic": "關稅與供應鏈轉移",
+            "company_count": 3,
+            "validated_count": 0,
+            "aligned_count": 0,
+            "diverged_count": 0,
+            "unclear_count": 0,
+            "aligned_ratio": null,
+            "avg_directional_return_3d": null,
+            "avg_directional_return_5d": null,
+            "market_confirmation_score": null
+          },
+          {
+            "topic": "消費電子與手機",
+            "company_count": 3,
+            "validated_count": 0,
+            "aligned_count": 0,
+            "diverged_count": 0,
+            "unclear_count": 0,
+            "aligned_ratio": null,
+            "avg_directional_return_3d": null,
+            "avg_directional_return_5d": null,
+            "market_confirmation_score": null
+          }
+        ]
+      },
+      "relation_stats": {},
+      "keyword_returns": {}
+    },
+    {
+      "date": "2026-05-07",
+      "article_count": 5,
+      "low_confidence": true,
+      "low_confidence_reasons": [
+        "價格驗證樣本 0 少於 3"
+      ],
+      "validation": {
+        "sample_count_3d": 0,
+        "sample_count_5d": 0,
+        "correlation_3d": null,
+        "correlation_5d": null,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "validated_count": 0,
+        "aligned_ratio": null,
+        "topics": [
+          {
+            "topic": "記憶體與 HBM 供應鏈",
+            "company_count": 3,
+            "validated_count": 0,
+            "aligned_count": 0,
+            "diverged_count": 0,
+            "unclear_count": 0,
+            "aligned_ratio": null,
+            "avg_directional_return_3d": null,
+            "avg_directional_return_5d": null,
+            "market_confirmation_score": null
+          },
+          {
+            "topic": "關稅與供應鏈轉移",
+            "company_count": 3,
+            "validated_count": 0,
+            "aligned_count": 0,
+            "diverged_count": 0,
+            "unclear_count": 0,
+            "aligned_ratio": null,
+            "avg_directional_return_3d": null,
+            "avg_directional_return_5d": null,
+            "market_confirmation_score": null
+          },
+          {
+            "topic": "消費電子與手機",
+            "company_count": 3,
+            "validated_count": 0,
+            "aligned_count": 0,
+            "diverged_count": 0,
+            "unclear_count": 0,
+            "aligned_ratio": null,
+            "avg_directional_return_3d": null,
+            "avg_directional_return_5d": null,
+            "market_confirmation_score": null
+          }
+        ]
+      },
+      "relation_stats": {},
+      "keyword_returns": {}
+    }
+  ],
+  "data_gaps": [
+    "FinMind 股價抓取失敗：2317，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "FinMind 股價抓取失敗：2330，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "FinMind 股價抓取失敗：2454，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "FinMind 股價抓取失敗：3711，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "Yahoo Finance 歷史價格抓取失敗：AAPL，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "Yahoo Finance 歷史價格抓取失敗：MU，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>",
+    "Yahoo Finance 歷史價格抓取失敗：NVDA，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>"
+  ]
+}

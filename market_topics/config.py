@@ -9,6 +9,15 @@ from .models import Company
 
 DEFAULT_CONFIG_DIR = Path("config")
 DEFAULT_REPORTS_DIR = Path("reports")
+DEFAULT_MODEL_WEIGHTS = {
+    "news_heat_weight": 1.0,
+    "current_market_confirmation_weight": 0.65,
+    "historical_topic_score_weight": 0.35,
+    "direct_mention_weight": 1.0,
+    "inferred_supply_chain_weight": 0.65,
+    "broad_topic_penalty": 0.85,
+    "price_divergence_penalty": 0.50,
+}
 
 
 def load_company_universe(config_dir: Path = DEFAULT_CONFIG_DIR) -> list[Company]:
@@ -60,6 +69,28 @@ def load_rss_feeds(config_dir: Path = DEFAULT_CONFIG_DIR) -> list[str]:
         for line in path.read_text(encoding="utf-8").splitlines()
         if line.strip() and not line.strip().startswith("#")
     ]
+
+
+def load_model_weights(config_dir: Path = DEFAULT_CONFIG_DIR) -> dict[str, float]:
+    path = config_dir / "model_weights.json"
+    if not path.exists():
+        return dict(DEFAULT_MODEL_WEIGHTS)
+    with path.open("r", encoding="utf-8") as handle:
+        raw = json.load(handle)
+    weights = dict(DEFAULT_MODEL_WEIGHTS)
+    for key, default in DEFAULT_MODEL_WEIGHTS.items():
+        value = raw.get(key, default)
+        if isinstance(value, (int, float)):
+            weights[key] = float(value)
+    return weights
+
+
+def write_model_weights(config_dir: Path, weights: dict[str, float]) -> Path:
+    config_dir.mkdir(parents=True, exist_ok=True)
+    path = config_dir / "model_weights.json"
+    normalized = {key: round(float(weights.get(key, value)), 4) for key, value in DEFAULT_MODEL_WEIGHTS.items()}
+    path.write_text(json.dumps(normalized, ensure_ascii=False, indent=2), encoding="utf-8")
+    return path
 
 
 def _split_multi(value: str) -> tuple[str, ...]:

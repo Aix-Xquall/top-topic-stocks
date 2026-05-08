@@ -38,6 +38,11 @@ jobs:
       - name: Run tests
         run: python -m unittest discover -s tests
 
+      - name: Backtest and update model weights
+        env:
+          FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
+        run: python -m market_topics backtest --days 30 --end-date "${{ steps.date.outputs.report_date }}"
+
       - name: Generate report
         env:
           ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
@@ -49,7 +54,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports
+          git add reports config/model_weights.json
           if git diff --cached --quiet; then
             echo "No report changes to commit."
           else
