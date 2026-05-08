@@ -20,7 +20,9 @@ from .config import (
 from .models import Article, Topic
 
 
-MIN_BACKTEST_SAMPLES = 50
+DEFAULT_BACKTEST_DAYS = 5
+MIN_BACKTEST_DAYS = 3
+MAX_BACKTEST_DAYS = 5
 MIN_DAILY_SAMPLES = 3
 MIN_DAILY_ARTICLES = 5
 MAX_DAILY_WEIGHT_CHANGE = 0.10
@@ -44,6 +46,7 @@ def run_backtest(
     max_topics: int = 8,
     max_companies: int = 8,
 ) -> tuple[Path, Path]:
+    days = normalize_backtest_days(days)
     output_dir = reports_dir / "backtests"
     news_cache_dir = output_dir / "news-cache"
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -69,6 +72,8 @@ def run_backtest(
         )
 
     aggregate = aggregate_backtest(daily_results)
+    aggregate["days"] = days
+    aggregate["minimum_required_samples"] = minimum_required_samples(days)
     adjustment = adjust_model_weights(weights_before, aggregate)
     if adjustment["updated"]:
         write_model_weights(config_dir, adjustment["weights_after"])
@@ -135,12 +140,14 @@ def aggregate_backtest(daily_results: list[dict[str, Any]]) -> dict[str, Any]:
 def adjust_model_weights(weights_before: dict[str, float], aggregate: dict[str, Any]) -> dict[str, Any]:
     weights = {key: float(weights_before.get(key, value)) for key, value in DEFAULT_MODEL_WEIGHTS.items()}
     sample_count = int(aggregate.get("sample_count_3d", 0) or 0)
+    days = int(aggregate.get("days", DEFAULT_BACKTEST_DAYS) or DEFAULT_BACKTEST_DAYS)
+    minimum_samples = int(aggregate.get("minimum_required_samples", minimum_required_samples(days)))
     correlation = aggregate.get("correlation_3d")
     reasons: list[str] = []
     factors = {key: 1.0 for key in weights}
 
-    if sample_count < MIN_BACKTEST_SAMPLES or correlation is None:
-        reasons.append(f"有效樣本 {sample_count} 未達 {MIN_BACKTEST_SAMPLES}，不自動調權重。")
+    if sample_count < minimum_samples or correlation is None:
+        reasons.append(f"近 {days} 日有效樣本 {sample_count} 未達 {minimum_samples}，不自動調權重。")
         return {
             "updated": False,
             "reason": "；".join(reasons),
@@ -150,18 +157,18 @@ def adjust_model_weights(weights_before: dict[str, float], aggregate: dict[str, 
         }
 
     if correlation > 0.20:
-        reasons.append("近 30 天相關性為正，提高市場確認與歷史題材分數權重。")
+        reasons.append(f"近 {days} 日相關性為正，提高市場確認與歷史題材分數權重。")
         factors["current_market_confirmation_weight"] = 1.05
         factors["historical_topic_score_weight"] = 1.05
         factors["direct_mention_weight"] = 1.03
     elif -0.10 <= correlation <= 0.10:
-        reasons.append("近 30 天相關性偏弱，提高價格確認，降低泛題材推估。")
+        reasons.append(f"近 {days} 日相關性偏弱，提高價格確認，降低泛題材推估。")
         factors["current_market_confirmation_weight"] = 1.10
         factors["historical_topic_score_weight"] = 1.05
         factors["inferred_supply_chain_weight"] = 0.90
         factors["broad_topic_penalty"] = 0.90
     else:
-        reasons.append("近 30 天方向信心與股價呈負相關，降低推估權重並加重背離扣分。")
+        reasons.append(f"近 {days} 日方向信心與股價呈負相關，降低推估權重並加重背離扣分。")
         factors["direct_mention_weight"] = 0.95
         factors["inferred_supply_chain_weight"] = 0.90
         factors["broad_topic_penalty"] = 0.90
@@ -189,6 +196,7 @@ def adjust_model_weights(weights_before: dict[str, float], aggregate: dict[str, 
 def render_backtest_html(payload: dict[str, Any]) -> str:
     aggregate = payload["aggregate"]
     adjustment = payload["weight_adjustment"]
+    days = int(payload.get("days", DEFAULT_BACKTEST_DAYS))
     topic_rows = "\n".join(
         f"<tr><td>{_html(topic)}</td><td>{score:.2f}</td></tr>"
         for topic, score in list(aggregate.get("topic_scores", {}).items())[:12]
@@ -202,7 +210,7 @@ def render_backtest_html(payload: dict[str, Any]) -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>近 30 天歷史回測</title>
+<title>近 {days} 日歷史回測</title>
 <style>
 body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;line-height:1.6;margin:24px;color:#1f2937;background:#f8fafc}}
 main{{max-width:1080px;margin:0 auto;background:#fff;padding:24px;border:1px solid #e5e7eb;border-radius:8px}}
@@ -210,7 +218,7 @@ table{{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0 20px}}th
 </style>
 </head>
 <body><main>
-<h1>近 30 天歷史回測 - {_html(payload['end_date'])}</h1>
+<h1>近 {days} 日歷史回測 - {_html(payload['end_date'])}</h1>
 <p>區間：{_html(payload['start_date'])} 至 {_html(payload['end_date'])}</p>
 <h2>方法品質</h2>
 <ul>
@@ -242,6 +250,7 @@ def latest_backtest_summary(reports_dir: Path) -> dict[str, Any]:
     adjustment = latest.get("weight_adjustment", {})
     return {
         "date": latest.get("date", ""),
+        "days": aggregate.get("days", latest.get("days", DEFAULT_BACKTEST_DAYS)),
         "correlation_3d": aggregate.get("correlation_3d"),
         "correlation_5d": aggregate.get("correlation_5d"),
         "aligned_ratio": aggregate.get("aligned_ratio"),
@@ -249,6 +258,14 @@ def latest_backtest_summary(reports_dir: Path) -> dict[str, Any]:
         "updated": adjustment.get("updated", False),
         "reason": adjustment.get("reason", ""),
     }
+
+
+def normalize_backtest_days(days: int) -> int:
+    return max(MIN_BACKTEST_DAYS, min(MAX_BACKTEST_DAYS, int(days)))
+
+
+def minimum_required_samples(days: int) -> int:
+    return max(MIN_DAILY_SAMPLES * normalize_backtest_days(days), 9)
 
 
 def _backtest_day(

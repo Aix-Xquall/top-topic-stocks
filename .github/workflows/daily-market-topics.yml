@@ -41,7 +41,7 @@ jobs:
       - name: Backtest and update model weights
         env:
           FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
-        run: python -m market_topics backtest --days 30 --end-date "${{ steps.date.outputs.report_date }}"
+        run: python -m market_topics backtest --days 5 --end-date "${{ steps.date.outputs.report_date }}"
 
       - name: Generate report
         env:

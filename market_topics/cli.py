@@ -7,7 +7,7 @@ from pathlib import Path
 
 from .analysis import TopicAnalyzer
 from .analysis.validation import adjusted_directional_confidence, daily_market_validation
-from .backtesting import latest_backtest_summary, run_backtest
+from .backtesting import DEFAULT_BACKTEST_DAYS, latest_backtest_summary, run_backtest
 from .collectors import FundamentalsCollector, NewsCollector, PricePerformanceCollector
 from .config import (
     load_company_universe,
@@ -40,7 +40,12 @@ def main(argv: list[str] | None = None) -> int:
     notify_parser.add_argument("--report-url", required=True, help="HTML 報告公開網址")
 
     backtest_parser = subparsers.add_parser("backtest", help="回測近 N 天並自動調整模型權重")
-    backtest_parser.add_argument("--days", type=int, default=30, help="回測天數")
+    backtest_parser.add_argument(
+        "--days",
+        type=int,
+        default=DEFAULT_BACKTEST_DAYS,
+        help="回測天數，系統會限制在 3 到 5 日",
+    )
     backtest_parser.add_argument("--end-date", default=date.today().isoformat(), help="回測結束日期 YYYY-MM-DD")
     backtest_parser.add_argument("--config-dir", default="config", help="設定檔目錄")
     backtest_parser.add_argument("--reports-dir", default="reports", help="報告輸出目錄")

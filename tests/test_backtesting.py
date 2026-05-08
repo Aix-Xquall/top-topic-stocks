@@ -6,7 +6,7 @@ from datetime import date
 from pathlib import Path
 from unittest.mock import patch
 
-from market_topics.backtesting import adjust_model_weights, run_backtest
+from market_topics.backtesting import adjust_model_weights, normalize_backtest_days, run_backtest
 from market_topics.collectors.news import NewsCollector
 from market_topics.models import PricePerformance
 
@@ -47,7 +47,7 @@ class BacktestingTest(unittest.TestCase):
     def test_low_sample_backtest_does_not_update_weights(self) -> None:
         adjustment = adjust_model_weights(
             {"direct_mention_weight": 1.0, "inferred_supply_chain_weight": 0.65},
-            {"sample_count_3d": 10, "correlation_3d": 0.5},
+            {"days": 5, "minimum_required_samples": 15, "sample_count_3d": 10, "correlation_3d": 0.5},
         )
 
         self.assertFalse(adjustment["updated"])
@@ -62,12 +62,20 @@ class BacktestingTest(unittest.TestCase):
             "broad_topic_penalty": 0.8,
             "price_divergence_penalty": 0.5,
         }
-        adjustment = adjust_model_weights(weights, {"sample_count_3d": 80, "correlation_3d": 0.0})
+        adjustment = adjust_model_weights(
+            weights,
+            {"days": 5, "minimum_required_samples": 15, "sample_count_3d": 80, "correlation_3d": 0.0},
+        )
 
         self.assertTrue(adjustment["updated"])
         after = adjustment["weights_after"]
         self.assertLessEqual(after["current_market_confirmation_weight"], 1.1)
         self.assertLessEqual(after["inferred_supply_chain_weight"], after["direct_mention_weight"])
+
+    def test_backtest_days_are_limited_to_three_to_five_days(self) -> None:
+        self.assertEqual(normalize_backtest_days(1), 3)
+        self.assertEqual(normalize_backtest_days(4), 4)
+        self.assertEqual(normalize_backtest_days(30), 5)
 
     def test_run_backtest_outputs_json_and_html_without_network_news(self) -> None:
         reports_dir = Path("reports") / "_test_output" / "backtest_case"

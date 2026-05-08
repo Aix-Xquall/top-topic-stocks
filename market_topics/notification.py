@@ -29,12 +29,13 @@ def build_line_message(summary: dict[str, Any], report_url: str) -> str:
     ]
     backtest = summary.get("backtest_summary", {})
     if backtest:
+        days = int(backtest.get("days", 5) or 5)
         aligned_ratio = backtest.get("aligned_ratio")
         aligned_text = "N/A" if aligned_ratio is None else f"{float(aligned_ratio) * 100:.0f}%"
         correlation = backtest.get("correlation_3d")
         correlation_text = "N/A" if correlation is None else f"{float(correlation):+.2f}"
         updated_text = "已調整" if backtest.get("updated") else "未調整"
-        lines.append(f"近30日驗證：3日相關 {correlation_text}，同向 {aligned_text}，權重{updated_text}")
+        lines.append(f"近{days}日驗證：3日相關 {correlation_text}，同向 {aligned_text}，權重{updated_text}")
     lines.append("")
 
     for index, topic in enumerate(summary.get("topics", [])[:3], start=1):

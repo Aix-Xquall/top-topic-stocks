@@ -269,12 +269,13 @@ def _backtest_summary_markdown(summary: dict) -> list[str]:
         return []
     aligned_ratio = summary.get("aligned_ratio")
     adjusted = "已調整" if summary.get("updated") else "未調整"
+    days = int(summary.get("days", 5) or 5)
     lines = [
         "## 歷史回測摘要",
         "",
         f"- 回測日期：{summary.get('date', 'N/A')}",
-        f"- 近30日 3日相關：{format_optional_number(summary.get('correlation_3d'))}",
-        f"- 近30日 5日相關：{format_optional_number(summary.get('correlation_5d'))}",
+        f"- 近{days}日 3日相關：{format_optional_number(summary.get('correlation_3d'))}",
+        f"- 近{days}日 5日相關：{format_optional_number(summary.get('correlation_5d'))}",
         f"- 同向比例：{format_optional_percent(aligned_ratio * 100 if aligned_ratio is not None else None)}",
         f"- 權重狀態：{adjusted}",
         "",

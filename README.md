@@ -57,10 +57,10 @@ tests/
 python -m unittest discover -s tests
 ```
 
-## 近 30 天回測與自動調權重
+## 近 3 到 5 日回測與自動調權重
 
 ```powershell
-python -m market_topics backtest --days 30
+python -m market_topics backtest --days 5
 ```
 
 輸出：
@@ -69,10 +69,10 @@ python -m market_topics backtest --days 30
 - `reports/backtests/YYYY-MM-DD-backtest.html`
 - `reports/backtests/model-weight-history.json`
 
-回測會使用 GDELT 歷史新聞與歷史價格驗證目前分析方法，計算 3/5 日相關係數、同向比例、題材市場確認分數，並在有效樣本足夠時自動更新 `config/model_weights.json`。
+回測天數會限制在 3 到 5 日，預設為 5 日。回測會使用歷史新聞與歷史價格驗證目前分析方法，計算 3/5 日相關係數、同向比例、題材市場確認分數，並在有效樣本足夠時自動更新 `config/model_weights.json`。
 歷史新聞會優先使用 Google News 日期區間查詢，涵蓋 Yahoo 奇摩股市、鉅亨網、MoneyDJ、經濟日報 money 與美股關鍵字；GDELT 僅作為補充來源。已抓到的歷史新聞會快取在 `reports/backtests/news-cache/`，此目錄不提交到 git。
 
-若有效樣本不足，系統會產生回測報告，但不調整權重。每日報告會讀取最新回測摘要，顯示近 30 日驗證結果與權重是否調整。
+若有效樣本不足，系統會產生回測報告，但不調整權重。每日報告會讀取最新回測摘要，顯示近 3 到 5 日驗證結果與權重是否調整。
 
 ## 參考來源
 
