@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>每日股市熱門話題分析</title>
 <style>
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;line-height:1.65;margin:32px;color:#1f2937;background:#f8fafc}
-main{max-width:1180px;margin:0 auto;background:#fff;padding:28px;border:1px solid #e5e7eb;border-radius:8px}
-h1,h2,h3{line-height:1.25;color:#111827} table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0 20px}
-th,td{border:1px solid #d1d5db;padding:8px;vertical-align:top} th{background:#f3f4f6;text-align:left}
-a{color:#0f766e} code{background:#f3f4f6;padding:2px 4px;border-radius:4px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;line-height:1.55;margin:24px;color:#1f2937;background:#f8fafc}
+main{max-width:1180px;margin:0 auto;background:#fff;padding:24px;border:1px solid #e5e7eb;border-radius:8px}
+h1,h2,h3{line-height:1.25;color:#111827} h1{margin-top:0} table{border-collapse:collapse;width:100%;font-size:13px;margin:10px 0 18px}
+th,td{border:1px solid #d1d5db;padding:7px;vertical-align:top} th{background:#f3f4f6;text-align:left}
+a{color:#0f766e} code{background:#f3f4f6;padding:2px 4px;border-radius:4px} .chart{margin:16px 0 24px;padding:14px;border:1px solid #e5e7eb;border-radius:8px;background:#fbfdff}.bar-row{display:grid;grid-template-columns:minmax(120px,220px) 1fr 64px;gap:10px;align-items:center;margin:8px 0}.bar-track{height:14px;background:#e5e7eb;border-radius:999px;overflow:hidden}.bar{height:100%;background:#0f766e}.bar.low{background:#b45309}.bar.mid{background:#2563eb}.muted{color:#6b7280;font-size:13px}
 </style>
 </head>
 <body><main>
@@ -17,37 +17,140 @@ a{color:#0f766e} code{background:#f3f4f6;padding:2px 4px;border-radius:4px}
 
 <p>本報告由自動化流程產生，僅供研究輔助，不構成任何投資建議。</p>
 
-<h2>今日熱門話題排行</h2>
+<h2>重點摘要</h2>
 
 <ol>
-<li>散熱與液冷供應鏈：熱度分數 9，方向 負向</li>
-<li>綜合市場情緒：熱度分數 8，方向 正向</li>
-<li>AI 伺服器與資料中心：熱度分數 7，方向 中性</li>
-<li>半導體與晶片供應鏈：熱度分數 5，方向 正向</li>
-<li>記憶體與 HBM 供應鏈：熱度分數 4，方向 正向</li>
-<li>消費電子與手機：熱度分數 1，方向 中性</li>
-<li>利率與成長股估值：熱度分數 1，方向 中性</li>
+<li>綜合市場情緒｜中性｜熱度 23｜市場確認 N/A｜同向 0/0</li>
+<li>記憶體與 HBM 供應鏈｜正向｜熱度 7｜市場確認 100.00｜同向 4/4</li>
+<li>散熱與液冷供應鏈｜負向｜熱度 10｜市場確認 17.51｜同向 1/2</li>
+<li>半導體與晶片供應鏈｜正向｜熱度 1｜市場確認 100.00｜同向 8/8</li>
+<li>AI 伺服器與資料中心｜正向｜熱度 2｜市場確認 80.00｜同向 5/7</li>
 </ol>
+
+<h2>市場驗證</h2>
+
+<p>為避免循環驗證，相關係數使用「價格調整前」方向信心與股價報酬計算。</p>
+
+<ul>
+<li>3日相關係數：0.43（樣本 21）</li>
+<li>5日相關係數：0.45（樣本 21）</li>
+<li>同向比例：18/21</li>
+</ul>
+
+<table>
+<tr><th>話題</th><th>市場確認</th><th>同向</th><th>背離</th><th>3日方向報酬</th><th>5日方向報酬</th></tr>
+<tr><td>綜合市場情緒</td><td>N/A</td><td>0/0</td><td>0</td><td>N/A</td><td>N/A</td></tr>
+<tr><td>記憶體與 HBM 供應鏈</td><td>100.00</td><td>4/4</td><td>0</td><td>+109.55%</td><td>+334.09%</td></tr>
+<tr><td>散熱與液冷供應鏈</td><td>17.51</td><td>1/2</td><td>1</td><td>-5.83%</td><td>+1.55%</td></tr>
+<tr><td>半導體與晶片供應鏈</td><td>100.00</td><td>8/8</td><td>0</td><td>+63.05%</td><td>+174.61%</td></tr>
+<tr><td>AI 伺服器與資料中心</td><td>80.00</td><td>5/7</td><td>1</td><td>+42.73%</td><td>+110.20%</td></tr>
+</table>
+
+<h3>方法調整建議</h3>
+
+<ul>
+<li>方向信心與股價大致正相關；維持目前方法，優先擴充樣本與資料源。</li>
+</ul>
+
+<h2>每日迭代追蹤</h2>
+
+<p>此表用來觀察每日模型分數是否逐步貼近市場表現。</p>
+
+<table>
+<tr><th>日期</th><th>3日相關</th><th>5日相關</th><th>同向比例</th><th>樣本</th></tr>
+<tr><td>2026-05-08</td><td>0.43</td><td>0.45</td><td>+85.71%</td><td>21</td></tr>
+</table>
+
+<h2>歷史回測摘要</h2>
+
+<ul>
+<li>回測日期：2026-05-08</li>
+<li>近30日 3日相關：-0.14</li>
+<li>近30日 5日相關：-0.16</li>
+<li>同向比例：+80.00%</li>
+<li>權重狀態：已調整</li>
+</ul>
+
+<p>調整原因：近 30 天方向信心與股價呈負相關，降低推估權重並加重背離扣分。</p>
+
+<h2>參考來源</h2>
+
+<table>
+<tr><th>類別</th><th>平台</th><th>用途</th><th>讀取方式</th></tr>
+<tr><td>官方資料</td><td><a href="https://mops.twse.com.tw/" target="_blank" rel="noopener noreferrer">公開資訊觀測站（MOPS）</a></td><td>財報、月營收、重大訊息、年報、法說資料</td><td>人工核對 / 後續可擴充自動抓取</td></tr>
+<tr><td>官方資料</td><td><a href="https://www.twse.com.tw/zh/trading/historical/stock-day.html" target="_blank" rel="noopener noreferrer">臺灣證券交易所（TWSE）</a></td><td>上市股價、成交資訊、本益比、殖利率、法人與交易統計</td><td>已部分自動抓取</td></tr>
+<tr><td>官方資料</td><td><a href="https://www.tpex.org.tw/zh-tw/mainboard/trading/info/stock-pricing.html" target="_blank" rel="noopener noreferrer">櫃買中心（TPEx）</a></td><td>上櫃、興櫃行情、歷史行情、注意股、券商買賣資料</td><td>人工核對 / 後續可擴充自動抓取</td></tr>
+<tr><td>看盤＋新聞</td><td><a href="https://tw.stock.yahoo.com/" target="_blank" rel="noopener noreferrer">Yahoo 奇摩股市</a></td><td>個股報價、個股新聞、自選股、行事曆、類股整理</td><td>已加入 RSS</td></tr>
+<tr><td>財經新聞</td><td><a href="https://news.cnyes.com/news/cat/tw_stock_news" target="_blank" rel="noopener noreferrer">鉅亨網</a></td><td>台股即時新聞、個股新聞、盤後整理</td><td>已加入 RSS</td></tr>
+<tr><td>財經新聞</td><td><a href="https://www.moneydj.com/kmdj/common/listnewarticles.aspx?a=X0200000&amp;svc=NW" target="_blank" rel="noopener noreferrer">MoneyDJ 理財網</a></td><td>個股情報、台股即時新聞、產業新聞</td><td>Google News RSS 備援</td></tr>
+<tr><td>財經新聞</td><td><a href="https://money.udn.com/money/cate/5590" target="_blank" rel="noopener noreferrer">經濟日報 money</a></td><td>證券新聞、即時財經、產業與法人觀點</td><td>Google News RSS 備援</td></tr>
+<tr><td>圖表分析</td><td><a href="https://tw.tradingview.com/markets/stocks-taiwan/market-movers-all-stocks/" target="_blank" rel="noopener noreferrer">TradingView</a></td><td>K 線圖、技術分析、財務欄位、股票篩選</td><td>人工核對 / 圖表參考</td></tr>
+</table>
+
+<h2>綜合市場情緒</h2>
+
+<p>摘要：綜合市場情緒 相關新聞集中在：《台股盤後》收跌329點、守5日線，週K翻紅- 新聞 - MoneyDJ理財網；國票證券：台股多方氣勢強盛 - 台股 - 新聞 - MoneyDJ理財網；統一證券：台股技術面為強勢多方格局- 新聞 - MoneyDJ理財網</p>
+
+<h3>相關公司</h3>
+
+<p>目前沒有足夠依據推估相關公司。</p>
+
+<h3>主要來源</h3>
+
+<ul>
+<li><a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxOZkE2bUJKemtyX1lrWVBUYVFISFA3ZXVSakRDOGh5LXdERVN2aEd6YkdHWXI1Ny1heHlaOXF3NkRMY3I3S21sZzBOTWEwV2puU2RQNDVnLWpyVlNsbzV5YlhxdkhJcmxpUmlDT0FnR3U0UXNYLUxyRmJfOHYtTVpMS19VTkZFWERJY0Y4bkVvN0lKdw?oc=5" target="_blank" rel="noopener noreferrer">《台股盤後》收跌329點、守5日線，週K翻紅- 新聞 - MoneyDJ理財網</a> - https://news.google.com/rss/search?q=site%3Amoneydj.com%20%E5%8F%B0%E8%82%A1%20OR%20%E5%80%8B%E8%82%A1%20when%3A7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Fri, 08 May 2026 07:53:00 GMT</li>
+<li><a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxNR19kRWFlZVNUYjEzN2dyMUxPRGJYOFduLTlBWFZCbHRTcFJHdk94MkJvMndwNU96SGpoTzh0RmhUcU9qeFdfQS1TMVFENXYydWswTHFkU1Azb3lfUVRocXE3REhObGM3QzM0Sk9Nam1UMDBzMVgtM2ZCRWQycUhBR0ZOMEVFcFFTeU9WekZreU9PM1JIckEzN3Jwbw?oc=5" target="_blank" rel="noopener noreferrer">國票證券：台股多方氣勢強盛 - 台股 - 新聞 - MoneyDJ理財網</a> - https://news.google.com/rss/search?q=site%3Amoneydj.com%20%E5%8F%B0%E8%82%A1%20OR%20%E5%80%8B%E8%82%A1%20when%3A7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Fri, 08 May 2026 00:54:00 GMT</li>
+<li><a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxOZWFwc0tkTF9MRHlMM0VCbUE4dkZsNzdhRFAyS3JRTTk4OHBFcVlhRXZCWERKeVNBNFl2b3BuTXFGcnJyakVBcjJ1eXJlaVVlMGlqUmticklRdWRhUXhTNS10U3I3bWN6WUJiMEstTTNGYjg2N2xuTWFHeGNtbmRFd21KSEZBSF9tTVN5d2hSMFVaUQ?oc=5" target="_blank" rel="noopener noreferrer">統一證券：台股技術面為強勢多方格局- 新聞 - MoneyDJ理財網</a> - https://news.google.com/rss/search?q=site%3Amoneydj.com%20%E5%8F%B0%E8%82%A1%20OR%20%E5%80%8B%E8%82%A1%20when%3A7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Fri, 08 May 2026 00:54:00 GMT</li>
+</ul>
+
+<h2>記憶體與 HBM 供應鏈</h2>
+
+<p>摘要：記憶體與 HBM 供應鏈 相關新聞集中在：INTC, AMD, MU stocks hit 52-week highs today: What&#x27;s triggering the rally? - MSN；Sandisk vs Micron: Which Stock Has a Better Chance of Continuing Its Magical Run? - TIKR.com；Micron (MU) and SanDisk (SNDK) – Here’s Why a Top Analyst Has Raised Price Targets for These AI Stocks - TipRanks</p>
+
+<h3>相關公司</h3>
+
+<table>
+<tr><th>公司</th><th>關聯</th><th>方向性信心</th><th>3日</th><th>5日</th><th>現價</th><th>歷高</th><th>距高點</th><th>驗證</th><th>EPS</th><th>PER</th><th>營收 / YoY</th><th>日期</th></tr>
+<tr><td>MU 美光</td><td>新聞直接提及</td><td>+0.90</td><td>+173.44%</td><td>+584.55%</td><td>646.63</td><td>646.63</td><td>0.00%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+<tr><td>SNDK SanDisk</td><td>新聞直接提及</td><td>+0.90</td><td>+6.70%</td><td>+22.20%</td><td>1,339.96</td><td>1,409.98</td><td>-4.97%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+<tr><td>AMD 超微</td><td>新聞直接提及</td><td>+0.66</td><td>+87.77%</td><td>+268.88%</td><td>408.46</td><td>408.46</td><td>0.00%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+<tr><td>INTC 英特爾</td><td>新聞直接提及</td><td>+0.66</td><td>+170.27%</td><td>+460.72%</td><td>109.62</td><td>109.62</td><td>0.00%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+<tr><td>NVDA 輝達</td><td>產業/供應鏈推估</td><td>0.00</td><td>+21.27%</td><td>+10.66%</td><td>211.50</td><td>211.50</td><td>0.00%</td><td>不適用</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+</table>
+
+<p>關聯理由（前 3）：</p>
+<ul>
+<li>MU：新聞直接提及「MU、Micron」，共 6 篇新聞命中。 同時符合主題標籤：AI memory, memory, HBM, HBM4。 方向判斷命中詞：rally, 52-week highs, hit 52-week highs。</li>
+<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
+<li>SNDK：新聞直接提及「SanDisk、SNDK」，共 3 篇新聞命中。 同時符合主題標籤：NAND, SSD, flash memory, memory。</li>
+<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；company_universe.csv 未提供 CIK，無法抓取 SEC EDGAR XBRL。</li>
+<li>AMD：新聞直接提及「AMD」，共 1 篇新聞命中。 方向判斷命中詞：rally, 52-week highs, hit 52-week highs。</li>
+<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
+</ul>
+
+<h3>主要來源</h3>
+
+<ul>
+<li><a href="https://news.google.com/rss/articles/CBMimANBVV95cUxNWnBwXy11U0pvUXdLcE5sSkpudVFPVVRVRVhCc1RBVEVHdFRFVG1KSWlnWGt0bFo3ZkJNSFlwR2JPNXFkcERmLTJLYXJsTlpGRUZIcjRpOWROVFN2YVU2d1AxY2U1ZldUUk9abDBzN0hyZ0RPZG1KaWh0Y1dmYTcwb3piNzZFWF9zMUdjSWFSVVVndlNPYVpJSjJtNlc4YmZLc3N3cjJtTXNsYU5jQjFGQjA2Z213aUUwRE1nc0J3ZVVNb1Z0TmlnUU9LamRrNjhWR28yM3Q2UjBpZEdQUlJfQTlZQlRycnExTGdiSEZBTmxmUHFPTjMwTFFRR1RqVkZWYmFFTVZUeHBycE9VdndfcWwtTW84YlF6UGVPbGcwdmpzSTVURGxOc21PZ2ZrOFJCQ2NEVG9IY2JZWnF6eng5MDFkemhiNWUwRWpfU243MjF1Vnpuc2FrcWJyMnBWNENhVnVjOHFGQTdEVlJsZ0tSRHYzdzFkel9lZXI1LWhhZlVtTFBYWURBOVdROFVzZzZTRWxBQXlVOVY?oc=5" target="_blank" rel="noopener noreferrer">INTC, AMD, MU stocks hit 52-week highs today: What&#x27;s triggering the rally? - MSN</a> - https://news.google.com/rss/search?q=AMD%20Intel%20INTC%20stock%20AI%20chip%20earnings%20when%3A3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Fri, 08 May 2026 09:40:07 GMT</li>
+<li><a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxPOEpuY2xIYjFtU2dUcl9XWnlrNHdPLU1EQTMzVUFld01fQVBoMVJZQTFYU2xra05NRGNaeEFBZUZBbVFtQmZCeE9Yb21DOEt6NEI4cUJXb3NBT1o0V1dqSDRCQTEtVWtLLVcxMVkzd1J3OWJGYWwtMHpSZjBsTHhRRklaWjdMeThDLTZEVUtxeEFmNUlCbGxRRHZKc3F4MTRBd0VjM1dfazY?oc=5" target="_blank" rel="noopener noreferrer">Sandisk vs Micron: Which Stock Has a Better Chance of Continuing Its Magical Run? - TIKR.com</a> - https://news.google.com/rss/search?q=Micron%20MU%20SanDisk%20SNDK%20HBM%20memory%20AI%20stock%20when%3A3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Thu, 07 May 2026 16:08:20 GMT</li>
+<li><a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxOOUlTd0p2SlhiY1FXMXA1eFlOX1VrY01HVGM0Y2dZa01fSVZ3WDRzdmFRX0drQUlzbXd4bjV6UllDaUgwbU9lMDBzQmozY0F4NWtfNXNBajRUODZ6dTBCSnpjVWVKSjFpOXRBaGVuZkZ3RmhsTC1GMVRRSmRKakJhSWwxVU5fVXVLWDJYekZsQ1F1SGRIc2tobmxXWGVkRGYydXR3OU5BQ2tMM3ZyYmtxU3czaTFJZ0Z3MW95alhwRFJGSGZxOWFrZG1PYWJzUQ?oc=5" target="_blank" rel="noopener noreferrer">Micron (MU) and SanDisk (SNDK) – Here’s Why a Top Analyst Has Raised Price Targets for These AI Stocks - TipRanks</a> - https://news.google.com/rss/search?q=Micron%20MU%20SanDisk%20SNDK%20HBM%20memory%20AI%20stock%20when%3A3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Wed, 06 May 2026 10:10:04 GMT</li>
+</ul>
 
 <h2>散熱與液冷供應鏈</h2>
 
-<ul>
-<li>熱度分數：9</li>
-<li>話題方向：負向（分數 -6）</li>
-<li>中文摘要：散熱與液冷供應鏈 相關新聞集中在：輝達Rubin散熱遇瓶頸！奇鋐、健策同摜跌停 投信連砍「這檔」2刀收回近100億元 - Yahoo股市；輝達Rubin驚傳規格大閹割！散熱三雄慘遭血洗拆解奇鋐、健策背後致命一擊- 財經 - 中時新聞網；輝達Rubin傳改散熱設計！投信出貨奇鋐回收25億 「金融股這檔」遭清倉4.3萬張、連挨17刀 - Yahoo股市</li>
-</ul>
+<p>摘要：散熱與液冷供應鏈 相關新聞集中在：輝達Rubin散熱遇瓶頸！奇鋐、健策同摜跌停 投信連砍「這檔」2刀收回近100億元 - Yahoo股市；輝達Rubin驚傳規格大閹割！散熱三雄慘遭血洗拆解奇鋐、健策背後致命一擊- 財經 - 中時新聞網；輝達Rubin傳改散熱設計！投信出貨奇鋐回收25億 「金融股這檔」遭清倉4.3萬張、連挨17刀 - Yahoo股市</p>
 
-<h3>可能相關公司</h3>
+<h3>相關公司</h3>
 
 <table>
-<tr><th>市場</th><th>Ticker</th><th>公司</th><th>關聯類型</th><th>方向性信心</th><th>3日漲幅</th><th>5日漲幅</th><th>價格驗證</th><th>EPS</th><th>本益比</th><th>營收</th><th>營收 YoY</th><th>資料日期</th><th>來源</th></tr>
-<tr><td>TW</td><td>3017</td><td>奇鋐 / AVC</td><td>新聞直接提及</td><td>-0.95</td><td>-16.29%</td><td>-14.81%</td><td>同向</td><td>49.17</td><td>49.37</td><td>15.63B TWD</td><td>71.62%</td><td>2026-05-01</td><td>TWSE OpenAPI BWIBBU_ALL<br>FinMind TaiwanStockMonthRevenue<br>FinMind TaiwanStockFinancialStatements EPS TTM<br>FinMind TaiwanStockPrice</td></tr>
-<tr><td>US</td><td>NVDA</td><td>輝達 / NVIDIA</td><td>新聞直接提及</td><td>-0.47</td><td>+6.56%</td><td>+5.98%</td><td>背離</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
+<tr><th>公司</th><th>關聯</th><th>方向性信心</th><th>3日</th><th>5日</th><th>現價</th><th>歷高</th><th>距高點</th><th>驗證</th><th>EPS</th><th>PER</th><th>營收 / YoY</th><th>日期</th></tr>
+<tr><td>3017 奇鋐</td><td>新聞直接提及</td><td>-0.90</td><td>-9.61%</td><td>-13.76%</td><td>2,445.00</td><td>2,835.00</td><td>-13.76%</td><td>同向</td><td>49.17</td><td>49.37</td><td>15.63B TWD / 71.62%</td><td>2026-05-01</td></tr>
+<tr><td>NVDA 輝達</td><td>新聞直接提及</td><td>-0.45</td><td>+21.27%</td><td>+10.66%</td><td>211.50</td><td>211.50</td><td>0.00%</td><td>背離</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
 </table>
 
-<p>關聯理由：</p>
+<p>關聯理由（前 3）：</p>
 <ul>
-<li>3017：新聞直接提及「奇鋐、散熱」，共 6 篇新聞命中。 同時符合主題標籤：thermal。 方向判斷命中詞：改單片, 均熱片, 跌停, 暴跌。</li>
+<li>3017：新聞直接提及「奇鋐、散熱、3017」，共 6 篇新聞命中。 同時符合主題標籤：thermal。 方向判斷命中詞：改單片, 均熱片, 跌停, 暴跌。</li>
 <li>NVDA：新聞直接提及「輝達」，共 5 篇新聞命中。 方向判斷命中詞：改單片, 均熱片, 跌停, 暴跌。</li>
 <li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
 </ul>
@@ -55,249 +158,98 @@ a{color:#0f766e} code{background:#f3f4f6;padding:2px 4px;border-radius:4px}
 <h3>主要來源</h3>
 
 <ul>
-<li><a href="https://news.google.com/rss/articles/CBMi4wJBVV95cUxNbktLV0ZneVliZk5rS2xQNG9GSVlkZ2NyV0x5N3FDYWlyRlhJcjktak9XV2xLYy13RGIyWGdESDNqbmJhOVpGWEZmZDE0SUFOS1hKdWRrZy04Y2FIYkpKaGVXTkl4UWYtaGNtUEdudjBrVEVDUHgwNS1QNDZoV242bjB2MV85QmpkVVZQdFJPVWhjVzlVaURweGpHMGNDWXc4dzZ4VzZzUW5jcWNrdGh4R0tNVEJ0U2dOZ09wMklqcTNmYWphLUJERWQzdEpUcXRvOFRxY3lkR0Y1QTVXWVFrVGwwUFZpXzRhSmdtNkhFLXR0Q2FYT3pCcVZRM1YxTEpZZjV1b0dUeGNUeHozNHpwZnl5TjJCMkRPcnNEaEg0THRQOE9sNmlsc1A3UTA2QmxxNzUtb2dzc0RRQmhIYnhWMkRiVXhpWVBYaUxTUGFmZlBHYjVWdTdGME9senhpbzhlbTlN?oc=5" target="_blank" rel="noopener noreferrer">輝達Rubin散熱遇瓶頸！奇鋐、健策同摜跌停 投信連砍「這檔」2刀收回近100億元 - Yahoo股市</a> - https://news.google.com/rss/search?q=%E5%A5%87%E9%8B%90%20%E8%BC%9D%E9%81%94%20%E6%95%A3%E7%86%B1%20Rubin%20when:7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Wed, 06 May 2026 11:30:00 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE1Qejc0cFVHeTJ1QTZ5LVhFR1JibUdnZE9rMU96TnBWY2Vzenlqa2ZjWWJNTlJVZlM3eEtReXhxNmwyYWVJSnpmSERmVy1BXzdhamRhaGVMaUwzWlJKdDBvc05faUFxVVV5VHFsOC1B?oc=5" target="_blank" rel="noopener noreferrer">輝達Rubin驚傳規格大閹割！散熱三雄慘遭血洗拆解奇鋐、健策背後致命一擊- 財經 - 中時新聞網</a> - https://news.google.com/rss/search?q=%E5%A5%87%E9%8B%90%20%E8%BC%9D%E9%81%94%20%E6%95%A3%E7%86%B1%20Rubin%20when:7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Wed, 06 May 2026 05:35:06 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMisANBVV95cUxQUVdpczJId3BfUnRFcjBKdXRJcWdUamdfMXo1a1U0aXBpelFKMWcwUHFGWDN6ZktaUWRkRkxJNk5Vek9HbEhSOGlPS21EY25wZkk4Slp1YkFYMDZGZ2Z6d1k2QXZxNjBxTE9YOGxDcGpGdTMyT1RtelVRWjE4Z2lqdjkzRC1XbG91MG5qNFBDSC02cGlRM21oM3NidG1kcXJicTFlTmxKZWY2SkhxVXBhcjVNVUVBWVN5YUx4azhjQmRBZFJ1YlhIRmtsXzVHQ1Bxc0c0eU45cTB2V2hhcWNyR213TENWUkVlblRtNWJ6X1lHNFB6ODg2WmVKT096eERrOXFjVDRLZnlLVFZuTzFEN3dNS0tJdUNkbllQTmNYQ200c25ROHI5dU1HRi1NQ3VTQUZLNlBYc3B1RWJaVXZ4RklNeFBKeGVDNlMzYXRKSTlNRmsyNDRlbmhWZk1NamowWHJ1ZkhIQk5KdGVzS1lIcTBIV2JHSXM2MzgzQnkzR1pnR3FhRzlabFJONGRzVFNxQXNWQ2F3ZDI3dmxYTmRUekMzLUJYejl3NFp5TTllcUo?oc=5" target="_blank" rel="noopener noreferrer">輝達Rubin傳改散熱設計！投信出貨奇鋐回收25億 「金融股這檔」遭清倉4.3萬張、連挨17刀 - Yahoo股市</a> - https://news.google.com/rss/search?q=%E5%A5%87%E9%8B%90%20%E8%BC%9D%E9%81%94%20%E6%95%A3%E7%86%B1%20Rubin%20when:7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 11:30:00 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBqMnEwOWsycmg4NUpSbHJmSzJXOWsyaWZOLTRVaDNQNnRZUkxPSEdqX0I5NFA5UVdxSFYzTjZWb0ZuYzVQc3QycjRFTzZjYVU?oc=5" target="_blank" rel="noopener noreferrer">〈焦點股〉市場傳輝達Rubin修改散熱設計 健策再吞跌停 - news.cnyes.com</a> - https://news.google.com/rss/search?q=%E5%A5%87%E9%8B%90%20%E8%BC%9D%E9%81%94%20%E6%95%A3%E7%86%B1%20Rubin%20when:7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 03:37:34 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTE1XLTlCYXZSZkR1T1pYUWRBU2I4dWJBb1g3VlgwOFI5Nm1ydlhrZ1RpOUdPN21rczQ5dlBIWjZoU3ZPdXdibVdRMC1mRkpBZUlQTEM3YzlaV04?oc=5" target="_blank" rel="noopener noreferrer">3653 健策 - 【新聞】散熱股為何暴跌？輝達Rubin均熱片傳從雙片改單片-股市爆料同學會 - CMoney</a> - https://news.google.com/rss/search?q=%E5%A5%87%E9%8B%90%20%E8%BC%9D%E9%81%94%20%E6%95%A3%E7%86%B1%20Rubin%20when:7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Wed, 06 May 2026 00:03:35 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE9sY2NqV2ZfRHhBUU41T0hOOU9vTmEwYmhCUGVfQ3BHc3kzUnlYUlhHUzRqbmRybjBZM3U0UEc3T3BXSTBrQWN3MVRhUEZTbFhOZ045V20xTjh0YnJlVVRF0gFkQVVfeXFMTTFOb2d3OG5HaVV2S01Hc2p6UWRrX3YwM1gwZm1wNnI1RWhXQVhVZVJmRlVvT0tGaUpUVXBaamoxSVFXNWdUUnBPU2QxUDBpS0JOeTM5VlFyNGh1UjVVLUZNbml6NQ?oc=5" target="_blank" rel="noopener noreferrer">焦點股》奇鋐：AI散熱股遭調節 打入跌停 - 自由財經</a> - https://news.google.com/rss/search?q=%E5%A5%87%E9%8B%90%20%E8%BC%9D%E9%81%94%20%E6%95%A3%E7%86%B1%20Rubin%20when:7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Wed, 06 May 2026 02:59:51 GMT</li>
-</ul>
-
-<h2>綜合市場情緒</h2>
-
-<ul>
-<li>熱度分數：8</li>
-<li>話題方向：正向（分數 1）</li>
-<li>中文摘要：綜合市場情緒 相關新聞集中在：Emerging Market Stocks Are Outperforming the S&amp;P 500. How to Play the Rally. -- Barrons.com - 富途牛牛；Why Intel (INTC) Stock Is Up Today - The Globe and Mail；‘Americans are not great at managing money’: Social Security and Medicare saved my father from financial ruin</li>
-</ul>
-
-<h3>可能相關公司</h3>
-
-<table>
-<tr><th>市場</th><th>Ticker</th><th>公司</th><th>關聯類型</th><th>方向性信心</th><th>3日漲幅</th><th>5日漲幅</th><th>價格驗證</th><th>EPS</th><th>本益比</th><th>營收</th><th>營收 YoY</th><th>資料日期</th><th>來源</th></tr>
-<tr><td>US</td><td>INTC</td><td>英特爾 / Intel</td><td>新聞直接提及</td><td>+0.70</td><td>+14.45%</td><td>+16.02%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-</table>
-
-<p>關聯理由：</p>
-<ul>
-<li>INTC：新聞直接提及「INTC」，共 1 篇新聞命中。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-</ul>
-
-<h3>主要來源</h3>
-
-<ul>
-<li><a href="https://news.google.com/rss/articles/CBMingFBVV95cUxNU3RNeVdrN3pMQlNYR2xva3hsbUEzQlY4RG1kWjVyUzdjdkVWZ0d0WFVEU2c1dlhGQmg0VXJxWldfNjdyZ3FwbmItMFJTdnAyd3BubEV2a0NKcVBvZk1yUWQzb1p6MXV5UlJnTmg3T3FFUDF2WF9URTlwSzVtWU9qRTY4U2NUTzBmODFaaG13Zi1VRnBsaE1PcHFZN09FUQ?oc=5" target="_blank" rel="noopener noreferrer">Emerging Market Stocks Are Outperforming the S&amp;P 500. How to Play the Rally. -- Barrons.com - 富途牛牛</a> - https://news.google.com/rss/search?q=stock%20market%20AI%20semiconductor%20when:1d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 06:21:50 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxNSEhGVjE4eVNkcXRVNmQ1MzY3bVdlOW4xVWJaaFdnOHlFWVdOVk9IOFY3eF9LUGNWMlpCNC0tZHE0WnhsUlZMUmdLMGpwN1N0SWhDVlJXd3V4VHlheG8zcW9NODlBTFRGYTBvMUxOWHNfU0lodGpOeTZ3Q3ZjbVZwODRBXzk3OHdSNDRmZmsyc1lkQ29ocEIwUkRiaXZqUVl4dktCMXMwemFlVGVpLUZMOHlBb3UzMFB2?oc=5" target="_blank" rel="noopener noreferrer">Why Intel (INTC) Stock Is Up Today - The Globe and Mail</a> - https://news.google.com/rss/search?q=AMD%20Intel%20INTC%20stock%20AI%20chip%20earnings%20when:3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Wed, 06 May 2026 19:20:00 GMT</li>
-<li><a href="https://www.marketwatch.com/story/americans-are-not-great-at-managing-money-social-security-and-medicare-saved-my-father-from-financial-ruin-am-i-wrong-878bd7a2?mod=mw_rss_topstories" target="_blank" rel="noopener noreferrer">‘Americans are not great at managing money’: Social Security and Medicare saved my father from financial ruin</a> - https://www.marketwatch.com/rss/topstories Thu, 07 May 2026 22:30:00 GMT</li>
-<li><a href="https://www.marketwatch.com/story/rocket-labs-stock-rises-upon-new-signs-its-business-is-expanding-rapidly-dc7abdfc?mod=mw_rss_topstories" target="_blank" rel="noopener noreferrer">Rocket Lab’s stock rises upon new signs its business is expanding rapidly</a> - https://www.marketwatch.com/rss/topstories Thu, 07 May 2026 22:21:00 GMT</li>
-<li><a href="https://www.marketwatch.com/story/the-s-p-500-seems-to-be-doing-particularly-well-im-66-is-this-a-good-time-to-invest-100-000-in-the-stock-market-46fb8ff8?mod=mw_rss_topstories" target="_blank" rel="noopener noreferrer">‘The S&amp;P 500 seems to be doing particularly well’: I’m 66. Is this a good time to invest $100,000 in the stock market?</a> - https://www.marketwatch.com/rss/topstories Thu, 07 May 2026 22:16:00 GMT</li>
-<li><a href="https://www.marketwatch.com/story/a-key-sector-has-been-awol-from-the-stock-market-rally-investors-should-be-worried-43822eb5?mod=mw_rss_topstories" target="_blank" rel="noopener noreferrer">A key sector has been AWOL from the stock-market rally. Investors should be worried.</a> - https://www.marketwatch.com/rss/topstories Thu, 07 May 2026 22:09:00 GMT</li>
-</ul>
-
-<h2>AI 伺服器與資料中心</h2>
-
-<ul>
-<li>熱度分數：7</li>
-<li>話題方向：中性（分數 0）</li>
-<li>中文摘要：AI 伺服器與資料中心 相關新聞集中在：Oil, AI Outlooks Buoy Asian Stock Markets - 富途牛牛；AMD Shares Continue to Surge as Investors Turn Bullish on Its AI Growth Outlook - TMGM；IBD: Stock Market Today: Dow Rises Ahead Of Jobless Claims; AI Stock Dives On Earnings (Live Coverage) - 富途牛牛</li>
-</ul>
-
-<h3>可能相關公司</h3>
-
-<table>
-<tr><th>市場</th><th>Ticker</th><th>公司</th><th>關聯類型</th><th>方向性信心</th><th>3日漲幅</th><th>5日漲幅</th><th>價格驗證</th><th>EPS</th><th>本益比</th><th>營收</th><th>營收 YoY</th><th>資料日期</th><th>來源</th></tr>
-<tr><td>US</td><td>AMD</td><td>超微 / Advanced Micro Devices</td><td>新聞直接提及</td><td>0.00</td><td>+19.59%</td><td>+15.22%</td><td>不適用</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>US</td><td>INTC</td><td>英特爾 / Intel</td><td>產業/供應鏈推估</td><td>0.00</td><td>+14.45%</td><td>+16.02%</td><td>不適用</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>US</td><td>NVDA</td><td>輝達 / NVIDIA</td><td>產業/供應鏈推估</td><td>0.00</td><td>+6.56%</td><td>+5.98%</td><td>不適用</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>TW</td><td>2330</td><td>台積電 / Taiwan Semiconductor Manufacturing</td><td>產業/供應鏈推估</td><td>0.00</td><td>+1.54%</td><td>+5.96%</td><td>不適用</td><td>66.26</td><td>34.87</td><td>415.19B TWD</td><td>45.19%</td><td>2026-04-01</td><td>TWSE OpenAPI BWIBBU_ALL<br>FinMind TaiwanStockMonthRevenue<br>FinMind TaiwanStockFinancialStatements EPS TTM<br>FinMind TaiwanStockPrice</td></tr>
-<tr><td>US</td><td>MSFT</td><td>微軟 / Microsoft</td><td>產業/供應鏈推估</td><td>0.00</td><td>+1.73%</td><td>+3.19%</td><td>不適用</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>US</td><td>AVGO</td><td>博通 / Broadcom</td><td>產業/供應鏈推估</td><td>0.00</td><td>-0.95%</td><td>-1.17%</td><td>不適用</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>TW</td><td>3711</td><td>日月光投控 / ASE Technology</td><td>產業/供應鏈推估</td><td>0.00</td><td>+2.86%</td><td>+10.54%</td><td>不適用</td><td>9.37</td><td>58.13</td><td>61.58B TWD</td><td>14.57%</td><td>2026-04-01</td><td>TWSE OpenAPI BWIBBU_ALL<br>FinMind TaiwanStockMonthRevenue<br>FinMind TaiwanStockFinancialStatements EPS TTM<br>FinMind TaiwanStockPrice</td></tr>
-<tr><td>TW</td><td>2454</td><td>聯發科 / MediaTek</td><td>產業/供應鏈推估</td><td>0.00</td><td>+19.16%</td><td>+32.82%</td><td>不適用</td><td>66.17</td><td>51.83</td><td>63.22B TWD</td><td>12.90%</td><td>2026-04-01</td><td>TWSE OpenAPI BWIBBU_ALL<br>FinMind TaiwanStockMonthRevenue<br>FinMind TaiwanStockFinancialStatements EPS TTM<br>FinMind TaiwanStockPrice</td></tr>
-</table>
-
-<p>關聯理由：</p>
-<ul>
-<li>AMD：新聞直接提及「AMD」，共 1 篇新聞命中。 同時符合主題標籤：AI, GPU, datacenter, AI server。 方向判斷命中詞：cut, falls, lower, buoy, growth。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-<li>INTC：產業/供應鏈推估：公司標籤符合「AI 伺服器與資料中心」關鍵字 AI, CPU, server CPU, x86；其中 6 篇新聞出現相關標籤。 方向判斷命中詞：cut, falls, lower, buoy, growth。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-<li>NVDA：產業/供應鏈推估：公司標籤符合「AI 伺服器與資料中心」關鍵字 AI, artificial intelligence, GPU, datacenter；其中 6 篇新聞出現相關標籤。 方向判斷命中詞：cut, falls, lower, buoy, growth。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-<li>2330：產業/供應鏈推估：公司標籤符合「AI 伺服器與資料中心」關鍵字 AI, advanced packaging, CoWoS, AI server；其中 6 篇新聞出現相關標籤。 方向判斷命中詞：cut, falls, lower, buoy, growth。</li>
-<li>MSFT：產業/供應鏈推估：公司標籤符合「AI 伺服器與資料中心」關鍵字 AI, datacenter；其中 6 篇新聞出現相關標籤。 方向判斷命中詞：cut, falls, lower, buoy, growth。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-<li>AVGO：產業/供應鏈推估：公司標籤符合「AI 伺服器與資料中心」關鍵字 AI, datacenter；其中 6 篇新聞出現相關標籤。 方向判斷命中詞：cut, falls, lower, buoy, growth。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-<li>3711：產業/供應鏈推估：公司標籤符合「AI 伺服器與資料中心」關鍵字 advanced packaging, AI；其中 6 篇新聞出現相關標籤。 方向判斷命中詞：cut, falls, lower, buoy, growth。</li>
-<li>2454：產業/供應鏈推估：公司標籤符合「AI 伺服器與資料中心」關鍵字 AI；其中 6 篇新聞出現相關標籤。 方向判斷命中詞：cut, falls, lower, buoy, growth。</li>
-</ul>
-
-<h3>主要來源</h3>
-
-<ul>
-<li><a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxQQUhPY1VZRlQ5R1JDNlJuYTNsalhqb2YxcnJ0UnZ6UWQ1OURZX2FvZ2xzVEtwWVNONHpVZUE5bWlHbTdkTUx6b2lWaTBYRW1QWW91ZHBJd1psRkUtb1dNVkU0WmV1OEttcmNScXc4V24ydVNhQ1RfcVJoMnJJdkNCSklWNFE0NE8w?oc=5" target="_blank" rel="noopener noreferrer">Oil, AI Outlooks Buoy Asian Stock Markets - 富途牛牛</a> - https://news.google.com/rss/search?q=stock%20market%20AI%20semiconductor%20when:1d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 10:38:03 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxQT2FCU0FuNWIzejdtc2FHWUpJZ29SQWZ0UjdFOV9RSHpOajhPczN1eExlVnA3RlNpVkZMbjJ0T3hyUlh3NDVDcHRxYkRjekU2Q05zNEVRbTVhY3NWaURNU3VrZXdZcEp6M21HbXhid096bDFNRXI0dktjcTFZSEJlU0pWSFRrV0dBMkNOQmZiY2JzMS1HOUpMYkZ5VjFxclZoOXc?oc=5" target="_blank" rel="noopener noreferrer">AMD Shares Continue to Surge as Investors Turn Bullish on Its AI Growth Outlook - TMGM</a> - https://news.google.com/rss/search?q=stock%20market%20AI%20semiconductor%20when:1d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 06:41:21 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMingFBVV95cUxPbDktUG01QnQzd2RyWUw0YXg3YTdnV0NkY2FIMGNSQ1ZTbmo5d0NCZHFGeUxDcUhsX25BWXY0RHdLSVdxREVIWE4zS0R6SXpXN0sxTUg4cWFvTG1EeTVkejVMc0UtQWJYQmd1M1I3LUZ1bWVaQU5lcnhDX1gtaXN6dDRZMXhGVmk2dmVTbE9iTF9CWTlMTlJKRHlyOWxnZw?oc=5" target="_blank" rel="noopener noreferrer">IBD: Stock Market Today: Dow Rises Ahead Of Jobless Claims; AI Stock Dives On Earnings (Live Coverage) - 富途牛牛</a> - https://news.google.com/rss/search?q=stock%20market%20AI%20semiconductor%20when:1d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 12:15:00 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxOWjJzYWttUXl2V1FENzNnV1QxVkpKTExRYjZWLThlYnBFTEZqczhKQWd2aUZaTElLNkdHdG1lczNRaTZjTndGZlk2MUVCazYzT0lkcV9VRlQ0RnlyODY3NzFYX21uaHkyREhsWXdkeWpPNGVoRFVkbURTcm5DUGlfLVQ1ZDktdnpKV1daenpoR1d0cWRyNjhNRDRZMkJmZ0tGUlZR?oc=5" target="_blank" rel="noopener noreferrer">IBD: Stock Market Today: Dow Edges Higher After Jobless Claims; AI Stock Dives On Earnings (Live Coverage) - 富途牛牛</a> - https://news.google.com/rss/search?q=stock%20market%20AI%20semiconductor%20when:1d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 13:54:00 GMT</li>
-<li><a href="https://www.marketwatch.com/story/cloudflare-to-cut-20-of-staff-in-a-big-bet-on-ai-investors-arent-sold-501d4aa3?mod=mw_rss_topstories" target="_blank" rel="noopener noreferrer">Cloudflare to cut 20% of staff in a big bet on AI. Investors aren’t sold.</a> - https://www.marketwatch.com/rss/topstories Thu, 07 May 2026 22:48:00 GMT</li>
-<li><a href="https://www.marketwatch.com/story/coreweave-reports-unprecedented-100-billion-backlog-but-that-comes-at-a-cost-98b385c7?mod=mw_rss_topstories" target="_blank" rel="noopener noreferrer">CoreWeave shares plunge. Revenue doubles but AI costs are rising.</a> - https://www.marketwatch.com/rss/topstories Thu, 07 May 2026 22:46:00 GMT</li>
+<li><a href="https://news.google.com/rss/articles/CBMi4wJBVV95cUxNbktLV0ZneVliZk5rS2xQNG9GSVlkZ2NyV0x5N3FDYWlyRlhJcjktak9XV2xLYy13RGIyWGdESDNqbmJhOVpGWEZmZDE0SUFOS1hKdWRrZy04Y2FIYkpKaGVXTkl4UWYtaGNtUEdudjBrVEVDUHgwNS1QNDZoV242bjB2MV85QmpkVVZQdFJPVWhjVzlVaURweGpHMGNDWXc4dzZ4VzZzUW5jcWNrdGh4R0tNVEJ0U2dOZ09wMklqcTNmYWphLUJERWQzdEpUcXRvOFRxY3lkR0Y1QTVXWVFrVGwwUFZpXzRhSmdtNkhFLXR0Q2FYT3pCcVZRM1YxTEpZZjV1b0dUeGNUeHozNHpwZnl5TjJCMkRPcnNEaEg0THRQOE9sNmlsc1A3UTA2QmxxNzUtb2dzc0RRQmhIYnhWMkRiVXhpWVBYaUxTUGFmZlBHYjVWdTdGME9senhpbzhlbTlN?oc=5" target="_blank" rel="noopener noreferrer">輝達Rubin散熱遇瓶頸！奇鋐、健策同摜跌停 投信連砍「這檔」2刀收回近100億元 - Yahoo股市</a> - https://news.google.com/rss/search?q=%E5%A5%87%E9%8B%90%20%E8%BC%9D%E9%81%94%20%E6%95%A3%E7%86%B1%20Rubin%20when%3A7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Wed, 06 May 2026 11:30:00 GMT</li>
+<li><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE1Qejc0cFVHeTJ1QTZ5LVhFR1JibUdnZE9rMU96TnBWY2Vzenlqa2ZjWWJNTlJVZlM3eEtReXhxNmwyYWVJSnpmSERmVy1BXzdhamRhaGVMaUwzWlJKdDBvc05faUFxVVV5VHFsOC1B?oc=5" target="_blank" rel="noopener noreferrer">輝達Rubin驚傳規格大閹割！散熱三雄慘遭血洗拆解奇鋐、健策背後致命一擊- 財經 - 中時新聞網</a> - https://news.google.com/rss/search?q=%E5%A5%87%E9%8B%90%20%E8%BC%9D%E9%81%94%20%E6%95%A3%E7%86%B1%20Rubin%20when%3A7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Wed, 06 May 2026 05:35:06 GMT</li>
+<li><a href="https://news.google.com/rss/articles/CBMisANBVV95cUxQUVdpczJId3BfUnRFcjBKdXRJcWdUamdfMXo1a1U0aXBpelFKMWcwUHFGWDN6ZktaUWRkRkxJNk5Vek9HbEhSOGlPS21EY25wZkk4Slp1YkFYMDZGZ2Z6d1k2QXZxNjBxTE9YOGxDcGpGdTMyT1RtelVRWjE4Z2lqdjkzRC1XbG91MG5qNFBDSC02cGlRM21oM3NidG1kcXJicTFlTmxKZWY2SkhxVXBhcjVNVUVBWVN5YUx4azhjQmRBZFJ1YlhIRmtsXzVHQ1Bxc0c0eU45cTB2V2hhcWNyR213TENWUkVlblRtNWJ6X1lHNFB6ODg2WmVKT096eERrOXFjVDRLZnlLVFZuTzFEN3dNS0tJdUNkbllQTmNYQ200c25ROHI5dU1HRi1NQ3VTQUZLNlBYc3B1RWJaVXZ4RklNeFBKeGVDNlMzYXRKSTlNRmsyNDRlbmhWZk1NamowWHJ1ZkhIQk5KdGVzS1lIcTBIV2JHSXM2MzgzQnkzR1pnR3FhRzlabFJONGRzVFNxQXNWQ2F3ZDI3dmxYTmRUekMzLUJYejl3NFp5TTllcUo?oc=5" target="_blank" rel="noopener noreferrer">輝達Rubin傳改散熱設計！投信出貨奇鋐回收25億 「金融股這檔」遭清倉4.3萬張、連挨17刀 - Yahoo股市</a> - https://news.google.com/rss/search?q=%E5%A5%87%E9%8B%90%20%E8%BC%9D%E9%81%94%20%E6%95%A3%E7%86%B1%20Rubin%20when%3A7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 11:30:00 GMT</li>
 </ul>
 
 <h2>半導體與晶片供應鏈</h2>
 
-<ul>
-<li>熱度分數：5</li>
-<li>話題方向：正向（分數 2）</li>
-<li>中文摘要：半導體與晶片供應鏈 相關新聞集中在：Global semiconductor industry chain sentiment resonates as multiple chip stocks in Hong Kong hit new highs again. - 富途牛牛；Hong Kong Stock Market Review: The Technology Index surged by 3%! Tech stocks and semiconductor shares soared, while oil stocks plummeted, with PetroChina plunging 8.5%. - 富途牛牛；Stocks were bought on expectations of an end to the Middle East conflict and strong earnings from U.S. semiconductor companies, pushing prices to an all-time high. - 富途牛牛</li>
-</ul>
+<p>摘要：半導體與晶片供應鏈 相關新聞集中在：AMD stock soars on Q1 earnings beat, better-than-expected outlook amid strong AI chip demand - Yahoo Finance</p>
 
-<h3>可能相關公司</h3>
+<h3>相關公司</h3>
 
 <table>
-<tr><th>市場</th><th>Ticker</th><th>公司</th><th>關聯類型</th><th>方向性信心</th><th>3日漲幅</th><th>5日漲幅</th><th>價格驗證</th><th>EPS</th><th>本益比</th><th>營收</th><th>營收 YoY</th><th>資料日期</th><th>來源</th></tr>
-<tr><td>US</td><td>INTC</td><td>英特爾 / Intel</td><td>產業/供應鏈推估</td><td>+0.78</td><td>+14.45%</td><td>+16.02%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>TW</td><td>2330</td><td>台積電 / Taiwan Semiconductor Manufacturing</td><td>產業/供應鏈推估</td><td>+0.54</td><td>+1.54%</td><td>+5.96%</td><td>同向</td><td>66.26</td><td>34.87</td><td>415.19B TWD</td><td>45.19%</td><td>2026-04-01</td><td>TWSE OpenAPI BWIBBU_ALL<br>FinMind TaiwanStockMonthRevenue<br>FinMind TaiwanStockFinancialStatements EPS TTM<br>FinMind TaiwanStockPrice</td></tr>
-<tr><td>TW</td><td>2303</td><td>聯電 / United Microelectronics</td><td>產業/供應鏈推估</td><td>+0.54</td><td>+18.84%</td><td>+29.53%</td><td>同向</td><td>4.00</td><td>24.25</td><td>20.83B TWD</td><td>4.89%</td><td>2026-04-01</td><td>TWSE OpenAPI BWIBBU_ALL<br>FinMind TaiwanStockMonthRevenue<br>FinMind TaiwanStockFinancialStatements EPS TTM<br>FinMind TaiwanStockPrice</td></tr>
-<tr><td>US</td><td>NVDA</td><td>輝達 / NVIDIA</td><td>產業/供應鏈推估</td><td>+0.42</td><td>+6.56%</td><td>+5.98%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>US</td><td>AMD</td><td>超微 / Advanced Micro Devices</td><td>產業/供應鏈推估</td><td>+0.42</td><td>+19.59%</td><td>+15.22%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>US</td><td>MU</td><td>美光 / Micron Technology</td><td>產業/供應鏈推估</td><td>+0.42</td><td>+12.17%</td><td>+25.03%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>US</td><td>SNDK</td><td>SanDisk / SanDisk</td><td>產業/供應鏈推估</td><td>+0.42</td><td>+6.70%</td><td>+22.20%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>US</td><td>AVGO</td><td>博通 / Broadcom</td><td>產業/供應鏈推估</td><td>+0.32</td><td>-0.95%</td><td>-1.17%</td><td>未明確</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
+<tr><th>公司</th><th>關聯</th><th>方向性信心</th><th>3日</th><th>5日</th><th>現價</th><th>歷高</th><th>距高點</th><th>驗證</th><th>EPS</th><th>PER</th><th>營收 / YoY</th><th>日期</th></tr>
+<tr><td>AMD 超微</td><td>新聞直接提及</td><td>+0.73</td><td>+87.77%</td><td>+268.88%</td><td>408.46</td><td>408.46</td><td>0.00%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+<tr><td>INTC 英特爾</td><td>產業/供應鏈推估</td><td>+0.31</td><td>+170.27%</td><td>+460.72%</td><td>109.62</td><td>109.62</td><td>0.00%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+<tr><td>2330 台積電</td><td>產業/供應鏈推估</td><td>+0.18</td><td>+1.78%</td><td>+7.26%</td><td>2,290.00</td><td>2,310.00</td><td>-0.87%</td><td>同向</td><td>66.26</td><td>34.87</td><td>410.73B TWD / 17.50%</td><td>2026-05-01</td></tr>
+<tr><td>2303 聯電</td><td>產業/供應鏈推估</td><td>+0.18</td><td>+9.87%</td><td>+18.11%</td><td>91.30</td><td>96.50</td><td>-5.39%</td><td>同向</td><td>4.00</td><td>24.25</td><td>22.66B TWD / 10.80%</td><td>2026-05-01</td></tr>
+<tr><td>NVDA 輝達</td><td>產業/供應鏈推估</td><td>+0.14</td><td>+21.27%</td><td>+10.66%</td><td>211.50</td><td>211.50</td><td>0.00%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+<tr><td>MU 美光</td><td>產業/供應鏈推估</td><td>+0.14</td><td>+173.44%</td><td>+584.55%</td><td>646.63</td><td>646.63</td><td>0.00%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+<tr><td>SNDK SanDisk</td><td>產業/供應鏈推估</td><td>+0.14</td><td>+6.70%</td><td>+22.20%</td><td>1,339.96</td><td>1,409.98</td><td>-4.97%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+<tr><td>AVGO 博通</td><td>產業/供應鏈推估</td><td>+0.14</td><td>+33.29%</td><td>+24.53%</td><td>412.56</td><td>417.43</td><td>-1.17%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
 </table>
 
-<p>關聯理由：</p>
+<p>關聯理由（前 3）：</p>
 <ul>
-<li>INTC：產業/供應鏈推估：公司標籤符合「半導體與晶片供應鏈」關鍵字 CPU, server CPU, x86, foundry；其中 5 篇新聞出現相關標籤。 方向判斷命中詞：strong, surged。</li>
+<li>AMD：新聞直接提及「AMD」，共 1 篇新聞命中。 同時符合主題標籤：semiconductor, chip。 方向判斷命中詞：strong。</li>
 <li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-<li>2330：產業/供應鏈推估：公司標籤符合「半導體與晶片供應鏈」關鍵字 semiconductor, chip, foundry；其中 5 篇新聞出現相關標籤。 方向判斷命中詞：strong, surged。</li>
-<li>2303：產業/供應鏈推估：公司標籤符合「半導體與晶片供應鏈」關鍵字 semiconductor, foundry, chip；其中 5 篇新聞出現相關標籤。 方向判斷命中詞：strong, surged。</li>
-<li>NVDA：產業/供應鏈推估：公司標籤符合「半導體與晶片供應鏈」關鍵字 semiconductor, chip；其中 5 篇新聞出現相關標籤。 方向判斷命中詞：strong, surged。</li>
+<li>INTC：產業/供應鏈推估：公司標籤符合「半導體與晶片供應鏈」關鍵字 CPU, server CPU, x86, foundry；其中 1 篇新聞出現相關標籤。 方向判斷命中詞：strong。</li>
 <li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-<li>AMD：產業/供應鏈推估：公司標籤符合「半導體與晶片供應鏈」關鍵字 semiconductor, chip；其中 5 篇新聞出現相關標籤。 方向判斷命中詞：strong, surged。</li>
+<li>2330：產業/供應鏈推估：公司標籤符合「半導體與晶片供應鏈」關鍵字 semiconductor, chip, foundry；其中 1 篇新聞出現相關標籤。 方向判斷命中詞：strong。</li>
+</ul>
+
+<h3>主要來源</h3>
+
+<ul>
+<li><a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxOQ21TU0pxOWJ5c1NYbHY2R3RLYklyU2dxRU5LcjQ5VmRRQlptR1poSHAwSjdXRVprMC04OTg0N29HbEtpbk9RcjN0Y1V3ckFlLVpIeTFVLU4yMWdGTVc1eEZNUVFZV19WOVNnN2NOUlZEU21oaEdBN2hNM0ZKNG4xRWNiZWFUVzFNakotVDlFWHE0bEJ4aTZMMk5KTlFvVDFFWVJUNnMwWk9YZE9mamctRG9UNHpsbDFsakNweGhKODVIbWE5ajI5YlVwdFp1b29sYzBrcGlva1h1Nl9UaFZ1TkJaQy05cWFZVE8xdnZhVEE?oc=5" target="_blank" rel="noopener noreferrer">AMD stock soars on Q1 earnings beat, better-than-expected outlook amid strong AI chip demand - Yahoo Finance</a> - https://news.google.com/rss/search?q=AMD%20Intel%20INTC%20stock%20AI%20chip%20earnings%20when%3A3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Wed, 06 May 2026 20:21:30 GMT</li>
+</ul>
+
+<h2>AI 伺服器與資料中心</h2>
+
+<p>摘要：AI 伺服器與資料中心 相關新聞集中在：AMD&#x27;s Stock Soars to a Fresh Record as AI Demand Drives Up Sales - Investopedia；AMD stock soars on Q1 earnings beat, better-than-expected outlook amid strong AI chip demand - Yahoo Finance</p>
+
+<h3>相關公司</h3>
+
+<table>
+<tr><th>公司</th><th>關聯</th><th>方向性信心</th><th>3日</th><th>5日</th><th>現價</th><th>歷高</th><th>距高點</th><th>驗證</th><th>EPS</th><th>PER</th><th>營收 / YoY</th><th>日期</th></tr>
+<tr><td>AMD 超微</td><td>新聞直接提及</td><td>+0.90</td><td>+87.77%</td><td>+268.88%</td><td>408.46</td><td>408.46</td><td>0.00%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+<tr><td>INTC 英特爾</td><td>產業/供應鏈推估</td><td>+0.28</td><td>+170.27%</td><td>+460.72%</td><td>109.62</td><td>109.62</td><td>0.00%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+<tr><td>NVDA 輝達</td><td>產業/供應鏈推估</td><td>+0.23</td><td>+21.27%</td><td>+10.66%</td><td>211.50</td><td>211.50</td><td>0.00%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+<tr><td>2330 台積電</td><td>產業/供應鏈推估</td><td>+0.21</td><td>+1.78%</td><td>+7.26%</td><td>2,290.00</td><td>2,310.00</td><td>-0.87%</td><td>同向</td><td>66.26</td><td>34.87</td><td>410.73B TWD / 17.50%</td><td>2026-05-01</td></tr>
+<tr><td>MSFT 微軟</td><td>產業/供應鏈推估</td><td>+0.07</td><td>-14.48%</td><td>-8.60%</td><td>420.77</td><td>506.69</td><td>-16.96%</td><td>背離</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+<tr><td>AVGO 博通</td><td>產業/供應鏈推估</td><td>+0.15</td><td>+33.29%</td><td>+24.53%</td><td>412.56</td><td>417.43</td><td>-1.17%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
+<tr><td>3711 日月光投控</td><td>產業/供應鏈推估</td><td>+0.11</td><td>-0.77%</td><td>+7.95%</td><td>516.00</td><td>540.00</td><td>-4.44%</td><td>未明確</td><td>9.37</td><td>58.13</td><td>61.58B TWD / 14.57%</td><td>2026-04-01</td></tr>
+<tr><td>3017 奇鋐</td><td>產業/供應鏈推估</td><td>0.00</td><td>-9.61%</td><td>-13.76%</td><td>2,445.00</td><td>2,835.00</td><td>-13.76%</td><td>不適用</td><td>49.17</td><td>49.37</td><td>15.63B TWD / 71.62%</td><td>2026-05-01</td></tr>
+</table>
+
+<p>關聯理由（前 3）：</p>
+<ul>
+<li>AMD：新聞直接提及「AMD」，共 2 篇新聞命中。 同時符合主題標籤：AI, GPU, datacenter, AI server。 方向判斷命中詞：strong。</li>
 <li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-<li>MU：產業/供應鏈推估：公司標籤符合「半導體與晶片供應鏈」關鍵字 semiconductor, chip；其中 5 篇新聞出現相關標籤。 方向判斷命中詞：strong, surged。</li>
+<li>INTC：產業/供應鏈推估：公司標籤符合「AI 伺服器與資料中心」關鍵字 AI, CPU, server CPU, x86；其中 2 篇新聞出現相關標籤。 方向判斷命中詞：strong。</li>
 <li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-<li>SNDK：產業/供應鏈推估：公司標籤符合「半導體與晶片供應鏈」關鍵字 semiconductor, chip；其中 5 篇新聞出現相關標籤。 方向判斷命中詞：strong, surged。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；company_universe.csv 未提供 CIK，無法抓取 SEC EDGAR XBRL。</li>
-<li>AVGO：產業/供應鏈推估：公司標籤符合「半導體與晶片供應鏈」關鍵字 semiconductor, chip；其中 5 篇新聞出現相關標籤。 方向判斷命中詞：strong, surged。</li>
+<li>NVDA：產業/供應鏈推估：公司標籤符合「AI 伺服器與資料中心」關鍵字 AI, artificial intelligence, GPU, datacenter；其中 2 篇新聞出現相關標籤。 方向判斷命中詞：strong。</li>
 <li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
 </ul>
 
 <h3>主要來源</h3>
 
 <ul>
-<li><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxNWXRjaTV2QlVOR3pZZHNjMmJiMmJ4M1QxbTl3LVBNN3EtVVg2X0RWdElhY2ZCLS1QMmg2SC1PWDdKOVViaU9ZSzBZUVRzWkViQk9zclYtS0tHZVN5NFl2LXhYTERKWUhHLW9GcnJkSF81UFBCdTZsX1ZNYkpOejc4dHdqeDFNSU5IS0I3TGRqRjVCZWRVcmVyVHVEdmVuWUQwekJ1ajVUUS1YN3BKN1owS0lEQmx1bUNjemptVw?oc=5" target="_blank" rel="noopener noreferrer">Global semiconductor industry chain sentiment resonates as multiple chip stocks in Hong Kong hit new highs again. - 富途牛牛</a> - https://news.google.com/rss/search?q=stock%20market%20AI%20semiconductor%20when:1d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 07:42:06 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxQMmdrUHZlZzM0NUhuXzBEaXYwdDNDRWYwS01ETk15YWkzeVROZE52VVFnVV8zQWZJSnM5SlFMRTZZQzhJZ0hxRzdMclhUMjVobTh2YzhwclN3X1dVR0FMWkQ5alQyQ25VenN2TUdhUmJhWThtN2FKNHcxUmMzSnlyNmkxNmZpb1BCcW5OSUM0VURJMjZ5Yy15cl9RalRtU0FBY0dZ?oc=5" target="_blank" rel="noopener noreferrer">Hong Kong Stock Market Review: The Technology Index surged by 3%! Tech stocks and semiconductor shares soared, while oil stocks plummeted, with PetroChina plunging 8.5%. - 富途牛牛</a> - https://news.google.com/rss/search?q=stock%20market%20AI%20semiconductor%20when:1d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 08:24:43 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxQZWYtNWVtbW04ekp6V3JmSExIWjV3d2RsTkktVXJMckQyT2RtWFJRYUxuYUVDR0Q2UlN6VGJYdFBvYlV3QTJaTHNfWjVsSHNwN2JVMzk4TjV5QXVWRU8wa3NEVzhTV3RZaVkwTk1mTmM2Y3FST3dtc1pGSkVoSnoxZUhNaWYwMzFhWExnSWVWaW9HUGpfY1lB?oc=5" target="_blank" rel="noopener noreferrer">Stocks were bought on expectations of an end to the Middle East conflict and strong earnings from U.S. semiconductor companies, pushing prices to an all-time high. - 富途牛牛</a> - https://news.google.com/rss/search?q=stock%20market%20AI%20semiconductor%20when:1d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 07:54:21 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxORXpHLTMzMWRzRE85UlFXYzlHT3dxWmt3OVE1NVV6TThibnlfZ3dJak9kamtKMHY3eVhZcXNldEUzc0JsRXJIb1o1eXNqN1lQc0d3NEk3ZnJPMW1FaVlfaW9EVDdYRXczVGNCRW9yb29tM2JpY0U3VjZoM1BtZWEwN0VScG9TQTlETVEteEV6c1hCUGpDaDV1eUNtWmkxdlZ2eGZhczhXeXVidw?oc=5" target="_blank" rel="noopener noreferrer">The influx of incremental capital has driven market gains, with a focus on the rotation opportunities within the chip and computing power supply chains. - 富途牛牛</a> - https://news.google.com/rss/search?q=stock%20market%20AI%20semiconductor%20when:1d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 01:53:45 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxQZjBIdnJITEZIX1F5R19lWDhkUjdhM2piS0VWZ0o5anh2ZUdFRDZLaWxxMERtQjZEUG9IZS1MYWY1Vi1GUDhZZ3dBWjRIcEFsdkN0ektXY2VMSHR0M0hyb2E4bjg3MEFvREM1emstdTk4cGNpcGU0c3VYem0tdlUyWEMtU0xBd3NndmhSYmZLdl82RXlUS0I4bzlR?oc=5" target="_blank" rel="noopener noreferrer">S&amp;P 500 dips as chip stocks give up gains - The Standard (HK)</a> - https://news.google.com/rss/search?q=AMD%20Intel%20INTC%20stock%20AI%20chip%20earnings%20when:3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Thu, 07 May 2026 20:04:01 GMT</li>
-</ul>
-
-<h2>記憶體與 HBM 供應鏈</h2>
-
-<ul>
-<li>熱度分數：4</li>
-<li>話題方向：正向（分數 3）</li>
-<li>中文摘要：記憶體與 HBM 供應鏈 相關新聞集中在：INTC, AMD, MU stocks hit 52-week highs today: What&#x27;s triggering the rally? - MSN；Sandisk vs Micron: Which Stock Has a Better Chance of Continuing Its Magical Run? - TIKR.com；Micron vs. SanDisk: Memory AI Stocks Surge to New Peaks — But Which One Faces More Downside Risk Now? - TipRanks</li>
-</ul>
-
-<h3>可能相關公司</h3>
-
-<table>
-<tr><th>市場</th><th>Ticker</th><th>公司</th><th>關聯類型</th><th>方向性信心</th><th>3日漲幅</th><th>5日漲幅</th><th>價格驗證</th><th>EPS</th><th>本益比</th><th>營收</th><th>營收 YoY</th><th>資料日期</th><th>來源</th></tr>
-<tr><td>US</td><td>MU</td><td>美光 / Micron Technology</td><td>新聞直接提及</td><td>+0.95</td><td>+12.17%</td><td>+25.03%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>US</td><td>SNDK</td><td>SanDisk / SanDisk</td><td>新聞直接提及</td><td>+0.95</td><td>+6.70%</td><td>+22.20%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>US</td><td>AMD</td><td>超微 / Advanced Micro Devices</td><td>新聞直接提及</td><td>+0.70</td><td>+19.59%</td><td>+15.22%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>US</td><td>INTC</td><td>英特爾 / Intel</td><td>新聞直接提及</td><td>+0.70</td><td>+14.45%</td><td>+16.02%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>US</td><td>NVDA</td><td>輝達 / NVIDIA</td><td>產業/供應鏈推估</td><td>0.00</td><td>+6.56%</td><td>+5.98%</td><td>不適用</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-</table>
-
-<p>關聯理由：</p>
-<ul>
-<li>MU：新聞直接提及「MU、Micron」，共 4 篇新聞命中。 同時符合主題標籤：AI memory, memory, HBM, HBM4。 方向判斷命中詞：risk, rally, surge, 52-week highs, hit 52-week highs。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-<li>SNDK：新聞直接提及「SanDisk、SNDK」，共 3 篇新聞命中。 同時符合主題標籤：NAND, SSD, flash memory, memory。 方向判斷命中詞：risk, surge。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；company_universe.csv 未提供 CIK，無法抓取 SEC EDGAR XBRL。</li>
-<li>AMD：新聞直接提及「AMD」，共 1 篇新聞命中。 方向判斷命中詞：rally, 52-week highs, hit 52-week highs。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-<li>INTC：新聞直接提及「INTC」，共 1 篇新聞命中。 方向判斷命中詞：rally, 52-week highs, hit 52-week highs。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-<li>NVDA：產業/供應鏈推估：公司標籤符合「記憶體與 HBM 供應鏈」關鍵字 HBM；其中 0 篇新聞出現相關標籤。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-</ul>
-
-<h3>主要來源</h3>
-
-<ul>
-<li><a href="https://news.google.com/rss/articles/CBMi5AFBVV95cUxQY3pZd0tYdUNGcG1tSnlLYzFoUGVhRkxycG1NV05QUEE1X1dxSF9GdG4zSU1DQ0k1T2EzZHZudXBXeUZmZ2lqWVB0MW0zaC1nSGUxOW83bHpUNmNFZTQyUTVnbGZOTENteEZoeEtnVjI4S1NIMm95aC12OW8ySmhLSzlZaGhrTHhiVVEzTW9pYXg4YUl3QjVsTUt5VV92WHBOOXRxN0t6X2p0bnI4REY3d1I0VWpwMC0ySzktNl9NWlotZ0ZUeWp3TTU4NFJoS1Nock5uemxfTWFGWld2R0JJNG5yNkM?oc=5" target="_blank" rel="noopener noreferrer">INTC, AMD, MU stocks hit 52-week highs today: What&#x27;s triggering the rally? - MSN</a> - https://news.google.com/rss/search?q=AMD%20Intel%20INTC%20stock%20AI%20chip%20earnings%20when:3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Thu, 07 May 2026 04:32:29 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxPOEpuY2xIYjFtU2dUcl9XWnlrNHdPLU1EQTMzVUFld01fQVBoMVJZQTFYU2xra05NRGNaeEFBZUZBbVFtQmZCeE9Yb21DOEt6NEI4cUJXb3NBT1o0V1dqSDRCQTEtVWtLLVcxMVkzd1J3OWJGYWwtMHpSZjBsTHhRRklaWjdMeThDLTZEVUtxeEFmNUlCbGxRRHZKc3F4MTRBd0VjM1dfazY?oc=5" target="_blank" rel="noopener noreferrer">Sandisk vs Micron: Which Stock Has a Better Chance of Continuing Its Magical Run? - TIKR.com</a> - https://news.google.com/rss/search?q=Micron%20MU%20SanDisk%20SNDK%20HBM%20memory%20AI%20stock%20when:3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Thu, 07 May 2026 16:08:20 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxQMXd3cC1ieEVUOU10S1FSS1dzbjJ3VkdQQzdsczFKLWVpeThRTF8xbG1LUW5wWWxUakwzR2pJWTNCbThGTDNLV1dTVVdjT2NpdmdfaENTRFVHZUN4Y0hNOGU2V0dBVmZFVnBBdWpLa0R1UEM1VjZ6dTdWSVBHZTA2V1U3YjdCX3RoQnhfTUF0QjRqS2RSRnltNWtldU9paXlaVHh5MHppR19vVG81UzBXdUd0RHFIZFEyUzh2OG85YU9ZTWlz?oc=5" target="_blank" rel="noopener noreferrer">Micron vs. SanDisk: Memory AI Stocks Surge to New Peaks — But Which One Faces More Downside Risk Now? - TipRanks</a> - https://news.google.com/rss/search?q=Micron%20MU%20SanDisk%20SNDK%20HBM%20memory%20AI%20stock%20when:3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Thu, 07 May 2026 04:54:55 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxOOUlTd0p2SlhiY1FXMXA1eFlOX1VrY01HVGM0Y2dZa01fSVZ3WDRzdmFRX0drQUlzbXd4bjV6UllDaUgwbU9lMDBzQmozY0F4NWtfNXNBajRUODZ6dTBCSnpjVWVKSjFpOXRBaGVuZkZ3RmhsTC1GMVRRSmRKakJhSWwxVU5fVXVLWDJYekZsQ1F1SGRIc2tobmxXWGVkRGYydXR3OU5BQ2tMM3ZyYmtxU3czaTFJZ0Z3MW95alhwRFJGSGZxOWFrZG1PYWJzUQ?oc=5" target="_blank" rel="noopener noreferrer">Micron (MU) and SanDisk (SNDK) – Here’s Why a Top Analyst Has Raised Price Targets for These AI Stocks - TipRanks</a> - https://news.google.com/rss/search?q=Micron%20MU%20SanDisk%20SNDK%20HBM%20memory%20AI%20stock%20when:3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Wed, 06 May 2026 10:10:04 GMT</li>
-</ul>
-
-<h2>消費電子與手機</h2>
-
-<ul>
-<li>熱度分數：1</li>
-<li>話題方向：中性（分數 0）</li>
-<li>中文摘要：消費電子與手機 相關新聞集中在：ETF Movement | E Fund AI ETF (03489) rises over 3% as it was added to the Hong Kong Stock Connect list yesterday, with the market accelerating pricing of AI hardware bottleneck sectors. - 富途牛牛</li>
-</ul>
-
-<h3>可能相關公司</h3>
-
-<table>
-<tr><th>市場</th><th>Ticker</th><th>公司</th><th>關聯類型</th><th>方向性信心</th><th>3日漲幅</th><th>5日漲幅</th><th>價格驗證</th><th>EPS</th><th>本益比</th><th>營收</th><th>營收 YoY</th><th>資料日期</th><th>來源</th></tr>
-<tr><td>US</td><td>AAPL</td><td>蘋果 / Apple</td><td>產業/供應鏈推估</td><td>0.00</td><td>+3.83%</td><td>+5.93%</td><td>不適用</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-<tr><td>TW</td><td>2317</td><td>鴻海 / Foxconn</td><td>產業/供應鏈推估</td><td>0.00</td><td>+11.43%</td><td>+12.67%</td><td>不適用</td><td>13.60</td><td>18.69</td><td>832.10B TWD</td><td>29.74%</td><td>2026-05-01</td><td>TWSE OpenAPI BWIBBU_ALL<br>FinMind TaiwanStockMonthRevenue<br>FinMind TaiwanStockFinancialStatements EPS TTM<br>FinMind TaiwanStockPrice</td></tr>
-<tr><td>TW</td><td>2454</td><td>聯發科 / MediaTek</td><td>產業/供應鏈推估</td><td>0.00</td><td>+19.16%</td><td>+32.82%</td><td>不適用</td><td>66.17</td><td>51.83</td><td>63.22B TWD</td><td>12.90%</td><td>2026-04-01</td><td>TWSE OpenAPI BWIBBU_ALL<br>FinMind TaiwanStockMonthRevenue<br>FinMind TaiwanStockFinancialStatements EPS TTM<br>FinMind TaiwanStockPrice</td></tr>
-</table>
-
-<p>關聯理由：</p>
-<ul>
-<li>AAPL：產業/供應鏈推估：公司標籤符合「消費電子與手機」關鍵字 hardware, consumer electronics, smartphone；其中 1 篇新聞出現相關標籤。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-<li>2317：產業/供應鏈推估：公司標籤符合「消費電子與手機」關鍵字 hardware, consumer electronics；其中 1 篇新聞出現相關標籤。</li>
-<li>2454：產業/供應鏈推估：公司標籤符合「消費電子與手機」關鍵字 smartphone；其中 0 篇新聞出現相關標籤。</li>
-</ul>
-
-<h3>主要來源</h3>
-
-<ul>
-<li><a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxNLTlNM2dJTGVIeEp4WUhpZ3gxTWNyNDZnX2hvZDZDZVpST0p2Y3ZzSEJZMmtXSnhFMW5IS19NaV9Xbk12SEVrS3Z1alRwTGwzWXBtQ2dNZnNiZlpoT2hRRU5zVUh5Y3R6VmRlRjJMOXlqU0M0SlNXSG1DTXVxR1p4WEE1NTdLQ2hOOEZQY2stYw?oc=5" target="_blank" rel="noopener noreferrer">ETF Movement | E Fund AI ETF (03489) rises over 3% as it was added to the Hong Kong Stock Connect list yesterday, with the market accelerating pricing of AI hardware bottleneck sectors. - 富途牛牛</a> - https://news.google.com/rss/search?q=stock%20market%20AI%20semiconductor%20when:1d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 07:13:08 GMT</li>
-</ul>
-
-<h2>利率與成長股估值</h2>
-
-<ul>
-<li>熱度分數：1</li>
-<li>話題方向：中性（分數 0）</li>
-<li>中文摘要：利率與成長股估值 相關新聞集中在：There’s a new worry keeping Treasury yields and borrowing costs higher</li>
-</ul>
-
-<h3>可能相關公司</h3>
-
-<table>
-<tr><th>市場</th><th>Ticker</th><th>公司</th><th>關聯類型</th><th>方向性信心</th><th>3日漲幅</th><th>5日漲幅</th><th>價格驗證</th><th>EPS</th><th>本益比</th><th>營收</th><th>營收 YoY</th><th>資料日期</th><th>來源</th></tr>
-<tr><td>US</td><td>MSFT</td><td>微軟 / Microsoft</td><td>產業/供應鏈推估</td><td>0.00</td><td>+1.73%</td><td>+3.19%</td><td>不適用</td><td>N/A</td><td>N/A</td><td>N/A USD</td><td>N/A</td><td>N/A</td><td>Yahoo Finance chart</td></tr>
-</table>
-
-<p>關聯理由：</p>
-<ul>
-<li>MSFT：產業/供應鏈推估：公司標籤符合「利率與成長股估值」關鍵字 rate cut；其中 0 篇新聞出現相關標籤。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-</ul>
-
-<h3>主要來源</h3>
-
-<ul>
-<li><a href="https://www.marketwatch.com/story/theres-a-new-worry-keeping-treasury-yields-and-borrowing-costs-higher-d3595fe1?mod=mw_rss_topstories" target="_blank" rel="noopener noreferrer">There’s a new worry keeping Treasury yields and borrowing costs higher</a> - https://www.marketwatch.com/rss/topstories Thu, 07 May 2026 22:41:00 GMT</li>
+<li><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxQRlU4VHdmV2FZWjh5S09ma1JDZHpFYWJ0b09tYW9kNkVfM0liOHhDNjB0dWdlOS1xVC1keElxdWJOWEdlWl9mQjNSb21uNklzNEdueFU1RlpBb2VsX0llSUR0VDBCUXNaWmZpRnZRYXdzNjVPbzA2dWNqdlZNbGFBbEd2S1F4aHhaMng1MTZUWUpYTWZTR3ZaM01RYjFnNlF1YkE?oc=5" target="_blank" rel="noopener noreferrer">AMD&#x27;s Stock Soars to a Fresh Record as AI Demand Drives Up Sales - Investopedia</a> - https://news.google.com/rss/search?q=AMD%20Intel%20INTC%20stock%20AI%20chip%20earnings%20when%3A3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Wed, 06 May 2026 16:59:17 GMT</li>
+<li><a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxOQ21TU0pxOWJ5c1NYbHY2R3RLYklyU2dxRU5LcjQ5VmRRQlptR1poSHAwSjdXRVprMC04OTg0N29HbEtpbk9RcjN0Y1V3ckFlLVpIeTFVLU4yMWdGTVc1eEZNUVFZV19WOVNnN2NOUlZEU21oaEdBN2hNM0ZKNG4xRWNiZWFUVzFNakotVDlFWHE0bEJ4aTZMMk5KTlFvVDFFWVJUNnMwWk9YZE9mamctRG9UNHpsbDFsakNweGhKODVIbWE5ajI5YlVwdFp1b29sYzBrcGlva1h1Nl9UaFZ1TkJaQy05cWFZVE8xdnZhVEE?oc=5" target="_blank" rel="noopener noreferrer">AMD stock soars on Q1 earnings beat, better-than-expected outlook amid strong AI chip demand - Yahoo Finance</a> - https://news.google.com/rss/search?q=AMD%20Intel%20INTC%20stock%20AI%20chip%20earnings%20when%3A3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Wed, 06 May 2026 20:21:30 GMT</li>
 </ul>
 
 <h2>資料缺口與需人工確認</h2>
 
 <ul>
-<li>GDELT 新聞抓取失敗：Expecting value: line 1 column 1 (char 0)</li>
+<li>RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=intl-markets，原因：HTTP Error 404: Not Found</li>
+<li>RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=news，原因：HTTP Error 404: Not Found</li>
+<li>RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=research，原因：HTTP Error 404: Not Found</li>
+<li>RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=tw-market，原因：HTTP Error 404: Not Found</li>
 </ul>
+<section class="chart">
+<h2>市場確認圖表</h2>
+<p class="muted">分數越高，代表題材方向與近 3 日股價表現越一致；低於 50 代表市場確認偏弱。</p>
+<div class="bar-row"><div>記憶體與 HBM 供應鏈</div><div class="bar-track"><div class="bar " style="width:100.0%"></div></div><strong>100.0</strong></div>
+<div class="bar-row"><div>散熱與液冷供應鏈</div><div class="bar-track"><div class="bar low" style="width:17.5%"></div></div><strong>17.5</strong></div>
+<div class="bar-row"><div>半導體與晶片供應鏈</div><div class="bar-track"><div class="bar " style="width:100.0%"></div></div><strong>100.0</strong></div>
+<div class="bar-row"><div>AI 伺服器與資料中心</div><div class="bar-track"><div class="bar " style="width:80.0%"></div></div><strong>80.0</strong></div>
+</section>
+<section class="chart">
+<h2>每日相關性追蹤</h2>
+<p class="muted">長條為 3 日相關係數，0 在中線；越往右代表方向信心與個股表現越正相關。</p>
+<div class="bar-row"><div>2026-05-08</div><div class="bar-track" style="position:relative"><div style="position:absolute;left:50%;top:0;width:1px;height:100%;background:#64748b"></div><div style="position:absolute;left:50.0%;top:0;width:21.4%;height:100%;background:#0f766e"></div></div><strong>0.43</strong></div>
+</section>
 </main></body></html>

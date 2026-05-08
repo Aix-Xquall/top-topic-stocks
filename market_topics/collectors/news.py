@@ -12,6 +12,15 @@ from .http import HttpError, get_json, get_text
 
 
 GDELT_DOC_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
+GOOGLE_NEWS_RSS_URL = "https://news.google.com/rss/search"
+HISTORICAL_GOOGLE_NEWS_QUERIES = [
+    "台股 個股 半導體 AI 記憶體 台積電",
+    "site:tw.stock.yahoo.com 台股 個股 半導體 AI",
+    "site:news.cnyes.com 台股 個股 記憶體 半導體",
+    "site:moneydj.com 台股 個股 產業",
+    "site:money.udn.com 證券 台股 個股",
+    "AMD Intel INTC Micron MU SanDisk SNDK HBM Nvidia NVDA stock",
+]
 
 
 class NewsCollector:
@@ -38,12 +47,39 @@ class NewsCollector:
         return deduped[:max_articles]
 
     def collect_historical(self, report_date: date, max_articles: int = 120) -> list[Article]:
-        articles = self._fetch_gdelt(
-            max_articles=max_articles,
-            start_date=report_date,
-            end_date=report_date + timedelta(days=1),
-        )
+        articles = self._fetch_google_news_historical(report_date, max_articles=max_articles)
+        if len(articles) < 5:
+            articles.extend(
+                self._fetch_gdelt(
+                    max_articles=max_articles,
+                    start_date=report_date,
+                    end_date=report_date + timedelta(days=1),
+                )
+            )
         return _filter_fresh_articles(_dedupe_articles(articles), report_date)[:max_articles]
+
+    def _fetch_google_news_historical(self, report_date: date, max_articles: int) -> list[Article]:
+        output: list[Article] = []
+        per_query_limit = max(8, max_articles // len(HISTORICAL_GOOGLE_NEWS_QUERIES))
+        next_date = report_date + timedelta(days=1)
+        for query in HISTORICAL_GOOGLE_NEWS_QUERIES:
+            dated_query = f"{query} after:{report_date.isoformat()} before:{next_date.isoformat()}"
+            params = {
+                "q": dated_query,
+                "hl": "zh-TW",
+                "gl": "TW",
+                "ceid": "TW:zh-Hant",
+            }
+            url = f"{GOOGLE_NEWS_RSS_URL}?{urllib.parse.urlencode(params)}"
+            try:
+                text = get_text(url, headers={"User-Agent": "Mozilla/5.0"})
+            except HttpError as exc:
+                self.data_gaps.append(f"Google News 歷史新聞抓取失敗：{report_date.isoformat()}，原因：{exc}")
+                continue
+            output.extend(_parse_rss(text, "Google News historical")[:per_query_limit])
+            if len(output) >= max_articles:
+                break
+        return output[:max_articles]
 
     def _fetch_gdelt(
         self,

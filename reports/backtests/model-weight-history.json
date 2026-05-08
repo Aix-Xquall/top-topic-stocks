@@ -40,5 +40,93 @@
       },
       "changes": {}
     }
+  },
+  {
+    "date": "2026-05-08",
+    "aggregate": {
+      "valid_days": 29,
+      "low_confidence_days": 1,
+      "sample_count_3d": 235,
+      "sample_count_5d": 235,
+      "validated_count": 235,
+      "aligned_count": 188,
+      "diverged_count": 38,
+      "aligned_ratio": 0.8,
+      "correlation_3d": -0.1389,
+      "correlation_5d": -0.1638,
+      "method_quality_score": 57.833,
+      "topic_scores": {
+        "散熱與液冷供應鏈": 100.0,
+        "利率與成長股估值": 100.0,
+        "AI 伺服器與資料中心": 86.5833,
+        "關稅與供應鏈轉移": 82.3189,
+        "半導體與晶片供應鏈": 75.1743,
+        "記憶體與 HBM 供應鏈": 68.6734,
+        "綜合市場情緒": 57.4538
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 151,
+          "aligned": 119,
+          "diverged": 24,
+          "aligned_ratio": 0.7881
+        },
+        "產業/供應鏈推估": {
+          "validated": 84,
+          "aligned": 69,
+          "diverged": 14,
+          "aligned_ratio": 0.8214
+        }
+      },
+      "keyword_returns": {
+        "AI 伺服器與資料中心": 57.3666,
+        "半導體與晶片供應鏈": 33.3062,
+        "關稅與供應鏈轉移": 28.75,
+        "記憶體與 HBM 供應鏈": 19.7907,
+        "利率與成長股估值": 15.768,
+        "散熱與液冷供應鏈": 12.6971,
+        "綜合市場情緒": 4.2556
+      }
+    },
+    "weight_adjustment": {
+      "updated": true,
+      "reason": "近 30 天方向信心與股價呈負相關，降低推估權重並加重背離扣分。",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 0.65,
+        "historical_topic_score_weight": 0.35,
+        "direct_mention_weight": 1.0,
+        "inferred_supply_chain_weight": 0.65,
+        "broad_topic_penalty": 0.85,
+        "price_divergence_penalty": 0.5
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 0.65,
+        "historical_topic_score_weight": 0.35,
+        "direct_mention_weight": 0.95,
+        "inferred_supply_chain_weight": 0.585,
+        "broad_topic_penalty": 0.765,
+        "price_divergence_penalty": 0.45
+      },
+      "changes": {
+        "direct_mention_weight": {
+          "before": 1.0,
+          "after": 0.95
+        },
+        "inferred_supply_chain_weight": {
+          "before": 0.65,
+          "after": 0.585
+        },
+        "broad_topic_penalty": {
+          "before": 0.85,
+          "after": 0.765
+        },
+        "price_divergence_penalty": {
+          "before": 0.5,
+          "after": 0.45
+        }
+      }
+    }
   }
 ]

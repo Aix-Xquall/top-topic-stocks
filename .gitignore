@@ -2,5 +2,6 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 reports/_test_output/
+reports/backtests/news-cache/
 *.log
 /tmp*/

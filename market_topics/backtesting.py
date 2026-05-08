@@ -17,7 +17,7 @@ from .config import (
     load_topic_keywords,
     write_model_weights,
 )
-from .models import Topic
+from .models import Article, Topic
 
 
 MIN_BACKTEST_SAMPLES = 50
@@ -45,7 +45,9 @@ def run_backtest(
     max_companies: int = 8,
 ) -> tuple[Path, Path]:
     output_dir = reports_dir / "backtests"
+    news_cache_dir = output_dir / "news-cache"
     output_dir.mkdir(parents=True, exist_ok=True)
+    news_cache_dir.mkdir(parents=True, exist_ok=True)
     weights_before = load_model_weights(config_dir)
     daily_results = []
     data_gaps: list[str] = []
@@ -62,6 +64,7 @@ def run_backtest(
                 offline_sample=offline_sample,
                 max_topics=max_topics,
                 max_companies=max_companies,
+                news_cache_dir=news_cache_dir,
             )
         )
 
@@ -256,12 +259,22 @@ def _backtest_day(
     offline_sample: bool,
     max_topics: int,
     max_companies: int,
+    news_cache_dir: Path | None = None,
 ) -> dict[str, Any]:
     companies = load_company_universe(config_dir)
     topic_keywords = load_topic_keywords(config_dir)
     sentiment_keywords = load_sentiment_keywords(config_dir)
     collector = NewsCollector(rss_feeds=[], data_gaps=data_gaps)
-    articles = load_sample_articles() if offline_sample else collector.collect_historical(report_date)
+    if offline_sample:
+        articles = load_sample_articles()
+        news_cache_hit = False
+    else:
+        articles = _load_cached_articles(news_cache_dir, report_date) if news_cache_dir else []
+        news_cache_hit = bool(articles)
+        if not articles:
+            articles = collector.collect_historical(report_date)
+            if articles and news_cache_dir:
+                _write_cached_articles(news_cache_dir, report_date, articles)
     topics = TopicAnalyzer(
         topic_keywords=topic_keywords,
         companies=companies,
@@ -281,6 +294,7 @@ def _backtest_day(
     return {
         "date": report_date.isoformat(),
         "article_count": len(articles),
+        "news_cache_hit": news_cache_hit,
         "low_confidence": bool(low_confidence_reasons),
         "low_confidence_reasons": low_confidence_reasons,
         "validation": validation,
@@ -351,6 +365,47 @@ def _aggregate_relation_stats(valid_days: list[dict[str, Any]]) -> dict[str, dic
         }
         for key, value in aggregate.items()
     }
+
+
+def _load_cached_articles(cache_dir: Path | None, report_date: date) -> list[Article]:
+    if cache_dir is None:
+        return []
+    path = cache_dir / f"{report_date.isoformat()}.json"
+    if not path.exists():
+        return []
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+    return [
+        Article(
+            title=str(item.get("title", "")),
+            url=str(item.get("url", "")),
+            source=str(item.get("source", "")),
+            published_at=str(item.get("published_at", "")),
+            summary=str(item.get("summary", "")),
+            language=str(item.get("language", "")),
+        )
+        for item in payload
+        if item.get("title") and item.get("url")
+    ]
+
+
+def _write_cached_articles(cache_dir: Path, report_date: date, articles: list[Article]) -> None:
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    path = cache_dir / f"{report_date.isoformat()}.json"
+    payload = [
+        {
+            "title": article.title,
+            "url": article.url,
+            "source": article.source,
+            "published_at": article.published_at,
+            "summary": article.summary,
+            "language": article.language,
+        }
+        for article in articles
+    ]
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def _aggregate_keyword_returns(valid_days: list[dict[str, Any]]) -> dict[str, float]:

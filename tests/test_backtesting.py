@@ -12,6 +12,23 @@ from market_topics.models import PricePerformance
 
 
 class BacktestingTest(unittest.TestCase):
+    def test_google_news_historical_query_uses_date_range(self) -> None:
+        captured: dict[str, str] = {}
+
+        def fake_get_text(url: str, headers=None):
+            captured.setdefault("url", url)
+            return """<?xml version="1.0" encoding="UTF-8" ?>
+<rss><channel>
+<item><title>台積電 AI 新聞</title><link>https://example.com/a</link><pubDate>Thu, 07 May 2026 08:00:00 GMT</pubDate><description>半導體</description></item>
+</channel></rss>"""
+
+        with patch("market_topics.collectors.news.get_text", fake_get_text):
+            articles = NewsCollector([], []).collect_historical(date(2026, 5, 7))
+
+        self.assertIn("after%3A2026-05-07", captured["url"])
+        self.assertIn("before%3A2026-05-08", captured["url"])
+        self.assertEqual(len(articles), 1)
+
     def test_gdelt_historical_query_uses_start_and_end_datetime(self) -> None:
         captured: dict[str, str] = {}
 
@@ -19,8 +36,9 @@ class BacktestingTest(unittest.TestCase):
             captured["url"] = url
             return {"articles": []}
 
-        with patch("market_topics.collectors.news.get_json", fake_get_json):
-            NewsCollector([], []).collect_historical(date(2026, 5, 7))
+        with patch("market_topics.collectors.news.get_text", return_value="<rss><channel></channel></rss>"):
+            with patch("market_topics.collectors.news.get_json", fake_get_json):
+                NewsCollector([], []).collect_historical(date(2026, 5, 7))
 
         self.assertIn("startdatetime=20260507000000", captured["url"])
         self.assertIn("enddatetime=20260508000000", captured["url"])
