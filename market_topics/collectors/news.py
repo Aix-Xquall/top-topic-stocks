@@ -30,8 +30,7 @@ class NewsCollector:
             return load_sample_articles()
 
         articles: list[Article] = []
-        articles.extend(self._fetch_gdelt(max_articles=max_articles // 2))
-        articles.extend(self._fetch_rss(max_articles=max_articles // 2))
+        articles.extend(self._fetch_rss(max_articles=max_articles))
         deduped = _filter_fresh_articles(_dedupe_articles(articles), report_date)
         if not deduped:
             self.data_gaps.append("未取得符合報告日期的即時新聞，改用內建樣本新聞產生報告。")

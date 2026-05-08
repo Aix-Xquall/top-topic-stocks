@@ -24,6 +24,7 @@ class ReportRenderer:
         data_gaps: list[str],
         validation_history: list[dict] | None = None,
         backtest_summary: dict | None = None,
+        reference_sources: list[dict[str, str]] | None = None,
     ) -> str:
         validation = daily_market_validation(topics)
         lines: list[str] = [
@@ -54,6 +55,7 @@ class ReportRenderer:
         lines.extend(_validation_markdown(validation))
         lines.extend(_history_markdown(validation_history or []))
         lines.extend(_backtest_summary_markdown(backtest_summary or {}))
+        lines.extend(_reference_sources_markdown(reference_sources or []))
 
         for topic in topics:
             lines.extend(
@@ -279,6 +281,35 @@ def _backtest_summary_markdown(summary: dict) -> list[str]:
     ]
     if summary.get("reason"):
         lines.extend([f"調整原因：{summary['reason']}", ""])
+    return lines
+
+
+def _reference_sources_markdown(sources: list[dict[str, str]]) -> list[str]:
+    if not sources:
+        return []
+    lines = [
+        "## 參考來源",
+        "",
+        "| 類別 | 平台 | 用途 | 讀取方式 |",
+        "| --- | --- | --- | --- |",
+    ]
+    for source in sources:
+        name = source.get("name", "")
+        url = source.get("url", "")
+        display_name = f"[{_escape_md(name)}]({url})" if url else _escape_md(name)
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    source.get("category", ""),
+                    display_name,
+                    source.get("usage", ""),
+                    source.get("mode", ""),
+                ]
+            )
+            + " |"
+        )
+    lines.append("")
     return lines
 
 

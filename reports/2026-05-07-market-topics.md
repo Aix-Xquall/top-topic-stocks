@@ -32,13 +32,26 @@
 
 ## 歷史回測摘要
 
-- 回測日期：2026-05-07
+- 回測日期：2026-05-08
 - 近30日 3日相關：N/A
 - 近30日 5日相關：N/A
 - 同向比例：N/A
 - 權重狀態：未調整
 
 調整原因：有效樣本 0 未達 50，不自動調權重。
+
+## 參考來源
+
+| 類別 | 平台 | 用途 | 讀取方式 |
+| --- | --- | --- | --- |
+| 官方資料 | [公開資訊觀測站（MOPS）](https://mops.twse.com.tw/) | 財報、月營收、重大訊息、年報、法說資料 | 人工核對 / 後續可擴充自動抓取 |
+| 官方資料 | [臺灣證券交易所（TWSE）](https://www.twse.com.tw/zh/trading/historical/stock-day.html) | 上市股價、成交資訊、本益比、殖利率、法人與交易統計 | 已部分自動抓取 |
+| 官方資料 | [櫃買中心（TPEx）](https://www.tpex.org.tw/zh-tw/mainboard/trading/info/stock-pricing.html) | 上櫃、興櫃行情、歷史行情、注意股、券商買賣資料 | 人工核對 / 後續可擴充自動抓取 |
+| 看盤＋新聞 | [Yahoo 奇摩股市](https://tw.stock.yahoo.com/) | 個股報價、個股新聞、自選股、行事曆、類股整理 | 已加入 RSS |
+| 財經新聞 | [鉅亨網](https://news.cnyes.com/news/cat/tw_stock_news) | 台股即時新聞、個股新聞、盤後整理 | 已加入 RSS |
+| 財經新聞 | [MoneyDJ 理財網](https://www.moneydj.com/kmdj/common/listnewarticles.aspx?a=X0200000&svc=NW) | 個股情報、台股即時新聞、產業新聞 | Google News RSS 備援 |
+| 財經新聞 | [經濟日報 money](https://money.udn.com/money/cate/5590) | 證券新聞、即時財經、產業與法人觀點 | Google News RSS 備援 |
+| 圖表分析 | [TradingView](https://tw.tradingview.com/markets/stocks-taiwan/market-movers-all-stocks/) | K 線圖、技術分析、財務欄位、股票篩選 | 人工核對 / 圖表參考 |
 
 ## 記憶體與 HBM 供應鏈
 

@@ -9,7 +9,14 @@ from .analysis import TopicAnalyzer
 from .analysis.validation import adjusted_directional_confidence, daily_market_validation
 from .backtesting import latest_backtest_summary, run_backtest
 from .collectors import FundamentalsCollector, NewsCollector, PricePerformanceCollector
-from .config import load_company_universe, load_model_weights, load_rss_feeds, load_sentiment_keywords, load_topic_keywords
+from .config import (
+    load_company_universe,
+    load_model_weights,
+    load_reference_sources,
+    load_rss_feeds,
+    load_sentiment_keywords,
+    load_topic_keywords,
+)
 from .models import RunResult
 from .notification import notify_from_summary, summary_path_for_date
 from .reporting import ReportRenderer
@@ -91,6 +98,7 @@ def run_report(
     sentiment_keywords = load_sentiment_keywords(config_dir)
     model_weights = load_model_weights(config_dir)
     rss_feeds = load_rss_feeds(config_dir)
+    reference_sources = load_reference_sources(config_dir)
 
     articles = NewsCollector(rss_feeds=rss_feeds, data_gaps=data_gaps).collect(
         report_date=report_date,
@@ -121,10 +129,25 @@ def run_report(
     validation_history = load_validation_history(reports_dir, report_date.isoformat(), validation)
     backtest_summary = latest_backtest_summary(reports_dir)
     renderer = ReportRenderer()
-    markdown_text = renderer.render_markdown(report_date, topics, data_gaps, validation_history, backtest_summary)
+    markdown_text = renderer.render_markdown(
+        report_date,
+        topics,
+        data_gaps,
+        validation_history,
+        backtest_summary,
+        reference_sources,
+    )
     html_text = renderer.render_html(markdown_text, topics, validation_history)
     markdown_path, html_path = renderer.write(reports_dir, report_date, markdown_text, html_text)
-    summary_path = write_summary(reports_dir, report_date, topics, data_gaps, validation, backtest_summary)
+    summary_path = write_summary(
+        reports_dir,
+        report_date,
+        topics,
+        data_gaps,
+        validation,
+        backtest_summary,
+        reference_sources,
+    )
 
     return RunResult(
         report_date=report_date,
@@ -143,6 +166,7 @@ def write_summary(
     data_gaps: list[str],
     validation: dict | None = None,
     backtest_summary: dict | None = None,
+    reference_sources: list[dict[str, str]] | None = None,
 ) -> Path:
     reports_dir.mkdir(parents=True, exist_ok=True)
     path = summary_path_for_date(reports_dir, report_date.isoformat())
@@ -151,6 +175,7 @@ def write_summary(
         "topics": [_topic_to_summary(topic) for topic in topics],
         "market_validation": validation or daily_market_validation(topics),
         "backtest_summary": backtest_summary or {},
+        "reference_sources": reference_sources or [],
         "data_gaps": sorted(set(data_gaps)),
     }
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")

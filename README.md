@@ -73,6 +73,17 @@ python -m market_topics backtest --days 30
 
 若有效樣本不足，系統會產生回測報告，但不調整權重。每日報告會讀取最新回測摘要，顯示近 30 日驗證結果與權重是否調整。
 
+## 參考來源
+
+系統目前優先使用台股與官方資料來源：
+
+- 官方資料：公開資訊觀測站、臺灣證券交易所、櫃買中心
+- 看盤與新聞：Yahoo 奇摩股市、鉅亨網
+- 財經新聞備援：MoneyDJ、經濟日報 money
+- 圖表核對：TradingView
+
+每日新聞 RSS 已移除先前讀取不穩定的 MarketWatch / Dow Jones RSS。完整來源清單在 `config/reference_sources.json`。
+
 ## GitHub Actions 每日自動執行
 
 建議建立 public GitHub repository：

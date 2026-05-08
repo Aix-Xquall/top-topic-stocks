@@ -71,6 +71,28 @@ def load_rss_feeds(config_dir: Path = DEFAULT_CONFIG_DIR) -> list[str]:
     ]
 
 
+def load_reference_sources(config_dir: Path = DEFAULT_CONFIG_DIR) -> list[dict[str, str]]:
+    path = config_dir / "reference_sources.json"
+    if not path.exists():
+        return []
+    with path.open("r", encoding="utf-8") as handle:
+        raw = json.load(handle)
+    output: list[dict[str, str]] = []
+    for item in raw:
+        if not isinstance(item, dict):
+            continue
+        output.append(
+            {
+                "category": str(item.get("category", "")),
+                "name": str(item.get("name", "")),
+                "url": str(item.get("url", "")),
+                "usage": str(item.get("usage", "")),
+                "mode": str(item.get("mode", "")),
+            }
+        )
+    return output
+
+
 def load_model_weights(config_dir: Path = DEFAULT_CONFIG_DIR) -> dict[str, float]:
     path = config_dir / "model_weights.json"
     if not path.exists():
