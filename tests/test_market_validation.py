@@ -4,6 +4,7 @@ import unittest
 from datetime import date
 
 from market_topics.analysis.validation import daily_market_validation, topic_market_validation
+from market_topics.cli import optimize_topic_order
 from market_topics.models import Company, CompanyRelation, PricePerformance, Topic
 from market_topics.reporting.renderer import ReportRenderer
 
@@ -65,6 +66,24 @@ class MarketValidationTest(unittest.TestCase):
 
         self.assertIn("市場確認圖表", html)
         self.assertIn("bar-row", html)
+
+    def test_topic_order_uses_current_and_historical_market_confirmation(self) -> None:
+        weak_topic = Topic(name="新聞多但背離", score=3, summary="測試", articles=[])
+        strong_topic = Topic(name="新聞少但同向", score=2, summary="測試", articles=[])
+        validation = {
+            "topics": [
+                {"topic": "新聞多但背離", "market_confirmation_score": 20.0},
+                {"topic": "新聞少但同向", "market_confirmation_score": 95.0},
+            ]
+        }
+
+        ordered = optimize_topic_order(
+            [weak_topic, strong_topic],
+            validation,
+            {"新聞少但同向": 90.0},
+        )
+
+        self.assertEqual(ordered[0].name, "新聞少但同向")
 
 
 def _relation(

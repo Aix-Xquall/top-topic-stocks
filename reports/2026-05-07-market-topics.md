@@ -26,18 +26,22 @@
 | 利率與成長股估值 | N/A | 0/0 | 0 | N/A | N/A |
 | 電動車與電池 | N/A | 0/0 | 0 | N/A | N/A |
 
+### 方法調整建議
+
+- 有效樣本少於 10，先累積多日資料；目前不做大幅調參。
+
 ## 記憶體與 HBM 供應鏈
 
 摘要：記憶體與 HBM 供應鏈 相關新聞集中在：AI server demand lifts Nvidia, TSMC and memory chip suppliers as datacenter spending rises；台股半導體族群受惠先進封裝與 AI 晶片需求，台積電、日月光與記憶體相關個股受關注
 
 ### 相關公司
 
-| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
-| --- | --- | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
-| MU 美光 | 新聞直接提及 | +0.86 | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
-| 2330 台積電 | 新聞直接提及 | +0.82 | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
-| NVDA 輝達 | 新聞直接提及 | +0.77 | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
-| 3711 日月光投控 | 新聞直接提及 | +0.70 | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
+| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 現價 | 歷高 | 距高點 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
+| MU 美光 | 新聞直接提及 | +0.86 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
+| 2330 台積電 | 新聞直接提及 | +0.82 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
+| NVDA 輝達 | 新聞直接提及 | +0.77 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
+| 3711 日月光投控 | 新聞直接提及 | +0.70 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
 
 關聯理由（前 3）：
 - MU：新聞直接提及「memory」，共 1 篇新聞命中。 同時符合主題標籤：AI memory, memory, HBM, HBM4。 方向判斷命中詞：受惠。
@@ -57,12 +61,12 @@
 
 ### 相關公司
 
-| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
-| --- | --- | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
-| AAPL 蘋果 | 新聞直接提及 | +0.77 | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
-| 2330 台積電 | 新聞直接提及 | +0.70 | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
-| 3711 日月光投控 | 新聞直接提及 | +0.70 | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
-| 2317 鴻海 | 產業/供應鏈推估 | +0.39 | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
+| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 現價 | 歷高 | 距高點 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
+| AAPL 蘋果 | 新聞直接提及 | +0.77 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
+| 2330 台積電 | 新聞直接提及 | +0.70 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
+| 3711 日月光投控 | 新聞直接提及 | +0.70 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
+| 2317 鴻海 | 產業/供應鏈推估 | +0.39 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
 
 關聯理由（前 3）：
 - AAPL：新聞直接提及「Apple」，共 1 篇新聞命中。 同時符合主題標籤：tariff, supply chain。
@@ -81,11 +85,11 @@
 
 ### 相關公司
 
-| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
-| --- | --- | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
-| AAPL 蘋果 | 新聞直接提及 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
-| 2317 鴻海 | 產業/供應鏈推估 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
-| 2454 聯發科 | 產業/供應鏈推估 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
+| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 現價 | 歷高 | 距高點 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
+| AAPL 蘋果 | 新聞直接提及 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
+| 2317 鴻海 | 產業/供應鏈推估 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
+| 2454 聯發科 | 產業/供應鏈推估 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A TWD / N/A | N/A |
 
 關聯理由（前 3）：
 - AAPL：新聞直接提及「Apple」，共 1 篇新聞命中。 同時符合主題標籤：hardware, consumer electronics, smartphone。
@@ -103,9 +107,9 @@
 
 ### 相關公司
 
-| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
-| --- | --- | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
-| MSFT 微軟 | 產業/供應鏈推估 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
+| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 現價 | 歷高 | 距高點 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
+| MSFT 微軟 | 產業/供應鏈推估 | 0.00 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
 
 關聯理由（前 3）：
 - MSFT：產業/供應鏈推估：公司標籤符合「利率與成長股估值」關鍵字 rate cut；其中 0 篇新聞出現相關標籤。
@@ -121,9 +125,9 @@
 
 ### 相關公司
 
-| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
-| --- | --- | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
-| TSLA 特斯拉 | 新聞直接提及 | -0.82 | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
+| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 現價 | 歷高 | 距高點 | 驗證 | EPS | PER | 營收 / YoY | 日期 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
+| TSLA 特斯拉 | 新聞直接提及 | -0.82 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A USD / N/A | N/A |
 
 關聯理由（前 3）：
 - TSLA：新聞直接提及「Tesla」，共 1 篇新聞命中。 同時符合主題標籤：EV, electric vehicle, battery, autonomous driving。 方向判斷命中詞：pressure。
@@ -148,9 +152,9 @@
 - FinMind 股價抓取失敗：2454，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>
 - FinMind 股價抓取失敗：3711，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>
 - TWSE PER/PBR 抓取失敗：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>
-- Yahoo Finance 日線抓取失敗：AAPL，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>
-- Yahoo Finance 日線抓取失敗：MSFT，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>
-- Yahoo Finance 日線抓取失敗：MU，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>
-- Yahoo Finance 日線抓取失敗：NVDA，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>
-- Yahoo Finance 日線抓取失敗：TSLA，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>
+- Yahoo Finance 歷史價格抓取失敗：AAPL，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>
+- Yahoo Finance 歷史價格抓取失敗：MSFT，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>
+- Yahoo Finance 歷史價格抓取失敗：MU，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>
+- Yahoo Finance 歷史價格抓取失敗：NVDA，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>
+- Yahoo Finance 歷史價格抓取失敗：TSLA，原因：<urlopen error [WinError 10013] 嘗試存取通訊端被拒絕，因為存取權限不足。>
 - 使用離線樣本新聞，未連線抓取即時新聞。

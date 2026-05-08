@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-import json
 import urllib.parse
-from datetime import date, datetime, time, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from typing import Any
 
 from ..models import Company, PricePerformance
@@ -35,19 +34,7 @@ class PricePerformanceCollector:
         return performance
 
     def _collect_us(self, company: Company, direction: str) -> PricePerformance:
-        start = self.report_date - timedelta(days=14)
-        end = self.report_date + timedelta(days=2)
-        period1 = _epoch_seconds(start)
-        period2 = _epoch_seconds(end)
-        params = urllib.parse.urlencode({"period1": period1, "period2": period2, "interval": "1d"})
-        url = f"{YAHOO_CHART_URL.format(symbol=company.ticker)}?{params}"
-        try:
-            payload = get_json(url, headers={"User-Agent": "Mozilla/5.0"})
-        except HttpError as exc:
-            self.data_gaps.append(f"Yahoo Finance 日線抓取失敗：{company.ticker}，原因：{exc}")
-            return PricePerformance(notes=[str(exc)])
-
-        rows = _parse_yahoo_chart(payload)
+        rows = self._collect_yahoo_rows(company.ticker, company.ticker)
         return _build_performance(rows, direction, "Yahoo Finance chart")
 
     def _collect_tw(self, company: Company, direction: str) -> PricePerformance:
@@ -71,11 +58,21 @@ class PricePerformanceCollector:
             for row in payload.get("data", [])
             if row.get("date") and row.get("close") is not None
         ]
-        return _build_performance(rows, direction, "FinMind TaiwanStockPrice")
+        performance = _build_performance(rows, direction, "FinMind TaiwanStockPrice")
+        history_rows = self._collect_yahoo_rows(f"{company.ticker}.TW", company.ticker)
+        if history_rows:
+            _merge_price_history(performance, history_rows, "Yahoo Finance chart")
+        return performance
 
-
-def _epoch_seconds(value: date) -> int:
-    return int(datetime.combine(value, time.min, tzinfo=timezone.utc).timestamp())
+    def _collect_yahoo_rows(self, symbol: str, ticker: str) -> list[tuple[str, float]]:
+        params = urllib.parse.urlencode({"range": "max", "interval": "1d"})
+        url = f"{YAHOO_CHART_URL.format(symbol=symbol)}?{params}"
+        try:
+            payload = get_json(url, headers={"User-Agent": "Mozilla/5.0"})
+        except HttpError as exc:
+            self.data_gaps.append(f"Yahoo Finance 歷史價格抓取失敗：{ticker}，原因：{exc}")
+            return []
+        return _parse_yahoo_chart(payload)
 
 
 def _parse_yahoo_chart(payload: dict[str, Any]) -> list[tuple[str, float]]:
@@ -105,6 +102,10 @@ def _build_performance(rows: list[tuple[str, float]], direction: str, source: st
     return PricePerformance(
         return_3d=_format_pct(return_3d),
         return_5d=_format_pct(return_5d),
+        current_price=_format_price(clean_rows[-1][1]),
+        all_time_high=_format_price(_max_close(clean_rows)[1]),
+        drawdown_from_high=_format_drawdown(clean_rows[-1][1], _max_close(clean_rows)[1]),
+        all_time_high_date=_max_close(clean_rows)[0],
         as_of_date=clean_rows[-1][0],
         validation=validation,
         source=source,
@@ -128,6 +129,41 @@ def _format_pct(value: float | None) -> str:
     return f"{sign}{value:.2f}%"
 
 
+def _format_price(value: float | None) -> str:
+    if value is None:
+        return "N/A"
+    if abs(value) >= 1000:
+        return f"{value:,.2f}"
+    return f"{value:.2f}"
+
+
+def _format_drawdown(current: float | None, high: float | None) -> str:
+    if current is None or high is None or high <= 0:
+        return "N/A"
+    drawdown = (current / high - 1) * 100
+    return f"{drawdown:.2f}%"
+
+
+def _max_close(rows: list[tuple[str, float]]) -> tuple[str, float]:
+    return max(rows, key=lambda item: item[1])
+
+
+def _merge_price_history(performance: PricePerformance, rows: list[tuple[str, float]], source: str) -> None:
+    clean_rows = [(day, close) for day, close in rows if close > 0]
+    if not clean_rows:
+        return
+    current_day, current_close = clean_rows[-1]
+    high_day, high_close = _max_close(clean_rows)
+    performance.current_price = _format_price(current_close)
+    performance.all_time_high = _format_price(high_close)
+    performance.drawdown_from_high = _format_drawdown(current_close, high_close)
+    performance.all_time_high_date = high_day
+    if performance.as_of_date == "N/A":
+        performance.as_of_date = current_day
+    if source not in performance.source:
+        performance.source = f"{performance.source}<br>{source}" if performance.source != "N/A" else source
+
+
 def _validate_direction(direction: str, recent_return: float | None) -> str:
     if direction == "中性":
         return "不適用"
@@ -140,4 +176,3 @@ def _validate_direction(direction: str, recent_return: float | None) -> str:
     if direction == "負向":
         return "同向" if recent_return < 0 else "背離"
     return "N/A"
-

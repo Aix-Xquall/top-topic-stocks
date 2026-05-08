@@ -66,9 +66,9 @@ class ReportRenderer:
             )
             if topic.related_companies:
                 lines.append(
-                    "| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 驗證 | EPS | PER | 營收 / YoY | 日期 |"
+                    "| 公司 | 關聯 | 方向性信心 | 3日 | 5日 | 現價 | 歷高 | 距高點 | 驗證 | EPS | PER | 營收 / YoY | 日期 |"
                 )
-                lines.append("| --- | --- | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |")
+                lines.append("| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |")
                 for relation in topic.related_companies:
                     company = relation.company
                     metrics = relation.metrics
@@ -86,6 +86,9 @@ class ReportRenderer:
                                 ),
                                 price.return_3d,
                                 price.return_5d,
+                                price.current_price,
+                                price.all_time_high,
+                                price.drawdown_from_high,
                                 price.validation,
                                 metrics.eps,
                                 metrics.pe,
@@ -202,6 +205,26 @@ def _validation_markdown(validation: dict) -> list[str]:
             )
             + " |"
         )
+    lines.append("")
+    lines.extend(_method_suggestions_markdown(validation))
+    return lines
+
+
+def _method_suggestions_markdown(validation: dict) -> list[str]:
+    validated = int(validation.get("validated_count", 0) or 0)
+    correlation = validation.get("correlation_3d")
+    aligned_ratio = validation.get("aligned_ratio")
+    lines = ["### 方法調整建議", ""]
+    if validated < 10:
+        lines.append("- 有效樣本少於 10，先累積多日資料；目前不做大幅調參。")
+    elif correlation is not None and correlation < -0.10:
+        lines.append("- 方向信心與股價呈負相關；應檢查正負向詞庫，並降低新聞直接提及但股價背離的權重。")
+    elif correlation is not None and correlation < 0.10:
+        lines.append("- 相關性偏弱；應提高同向價格確認權重，降低泛 AI、泛半導體等寬標籤推估權重。")
+    else:
+        lines.append("- 方向信心與股價大致正相關；維持目前方法，優先擴充樣本與資料源。")
+    if aligned_ratio is not None and aligned_ratio < 0.45:
+        lines.append("- 同向比例偏低；隔日排序應降低背離題材與低信心供應鏈推估。")
     lines.append("")
     return lines
 

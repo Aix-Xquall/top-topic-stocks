@@ -42,6 +42,10 @@ class CompanyMetrics:
 class PricePerformance:
     return_3d: str = "N/A"
     return_5d: str = "N/A"
+    current_price: str = "N/A"
+    all_time_high: str = "N/A"
+    drawdown_from_high: str = "N/A"
+    all_time_high_date: str = "N/A"
     as_of_date: str = "N/A"
     validation: str = "N/A"
     source: str = "N/A"

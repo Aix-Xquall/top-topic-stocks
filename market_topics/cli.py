@@ -90,6 +90,9 @@ def run_report(
             relation.price_performance = prices.collect_for_company(relation.company, relation.impact_direction)
 
     validation = daily_market_validation(topics)
+    historical_topic_scores = load_historical_topic_scores(reports_dir, report_date.isoformat())
+    topics = optimize_topic_order(topics, validation, historical_topic_scores)
+    validation = daily_market_validation(topics)
     validation_history = load_validation_history(reports_dir, report_date.isoformat(), validation)
     renderer = ReportRenderer()
     markdown_text = renderer.render_markdown(report_date, topics, data_gaps, validation_history)
@@ -153,6 +156,46 @@ def _history_item(report_date: str, validation: dict) -> dict:
     }
 
 
+def load_historical_topic_scores(reports_dir: Path, report_date: str) -> dict[str, float]:
+    scores: dict[str, list[float]] = {}
+    if not reports_dir.exists():
+        return {}
+    for path in reports_dir.glob("*-market-topics.json"):
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if str(payload.get("date", "")) >= report_date:
+            continue
+        validation = payload.get("market_validation", {})
+        for item in validation.get("topics", []) if isinstance(validation, dict) else []:
+            topic = str(item.get("topic", ""))
+            score = item.get("market_confirmation_score")
+            if topic and isinstance(score, (int, float)):
+                scores.setdefault(topic, []).append(float(score))
+    return {topic: sum(values) / len(values) for topic, values in scores.items() if values}
+
+
+def optimize_topic_order(topics: list, validation: dict, historical_topic_scores: dict[str, float]) -> list:
+    current_scores = {
+        item["topic"]: item.get("market_confirmation_score")
+        for item in validation.get("topics", [])
+        if item.get("market_confirmation_score") is not None
+    }
+
+    def sort_key(topic) -> tuple[float, int]:
+        optimized = float(topic.score) * 10.0
+        current_score = current_scores.get(topic.name)
+        history_score = historical_topic_scores.get(topic.name)
+        if isinstance(current_score, (int, float)):
+            optimized += (float(current_score) - 50.0) * 0.65
+        if isinstance(history_score, (int, float)):
+            optimized += (float(history_score) - 50.0) * 0.35
+        return (optimized, topic.score)
+
+    return sorted(topics, key=sort_key, reverse=True)
+
+
 def _topic_to_summary(topic) -> dict:
     return {
         "name": topic.name,
@@ -179,6 +222,10 @@ def _relation_to_summary(relation) -> dict:
         ),
         "return_3d": price.return_3d,
         "return_5d": price.return_5d,
+        "current_price": price.current_price,
+        "all_time_high": price.all_time_high,
+        "drawdown_from_high": price.drawdown_from_high,
+        "all_time_high_date": price.all_time_high_date,
         "price_validation": price.validation,
     }
 
