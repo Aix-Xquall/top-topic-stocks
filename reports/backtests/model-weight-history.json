@@ -145,5 +145,92 @@
         }
       }
     }
+  },
+  {
+    "date": "2026-05-09",
+    "aggregate": {
+      "valid_days": 3,
+      "low_confidence_days": 2,
+      "sample_count_3d": 30,
+      "sample_count_5d": 30,
+      "validated_count": 30,
+      "aligned_count": 25,
+      "diverged_count": 2,
+      "aligned_ratio": 0.8333,
+      "direction_accuracy": 0.8333,
+      "correlation_3d": 0.2114,
+      "correlation_5d": 0.2618,
+      "confidence_calibration": 0.2114,
+      "calibration_strategy": "正相關",
+      "method_quality_score": 69.6754,
+      "topic_scores": {
+        "散熱與液冷供應鏈": 100.0,
+        "記憶體與 HBM 供應鏈": 97.63,
+        "綜合市場情緒": 90.2,
+        "半導體與晶片供應鏈": 80.1133,
+        "AI 伺服器與資料中心": 69.0893
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 20,
+          "aligned": 19,
+          "diverged": 0,
+          "aligned_ratio": 0.95
+        },
+        "產業/供應鏈推估": {
+          "validated": 10,
+          "aligned": 6,
+          "diverged": 2,
+          "aligned_ratio": 0.6
+        }
+      },
+      "keyword_returns": {
+        "散熱與液冷供應鏈": 16.29,
+        "記憶體與 HBM 供應鏈": 11.276,
+        "綜合市場情緒": 9.9414,
+        "半導體與晶片供應鏈": 9.675,
+        "AI 伺服器與資料中心": 8.6618
+      },
+      "overconfident_misses": [],
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": true,
+      "strategy": "正相關",
+      "reason": "近 5 日信心分數與後續報酬呈正相關，提高市場確認、歷史題材與直接提及權重。",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 0.715,
+        "historical_topic_score_weight": 0.3675,
+        "direct_mention_weight": 0.9025,
+        "inferred_supply_chain_weight": 0.4738,
+        "broad_topic_penalty": 0.6197,
+        "price_divergence_penalty": 0.405
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 0.7508,
+        "historical_topic_score_weight": 0.3859,
+        "direct_mention_weight": 0.9296,
+        "inferred_supply_chain_weight": 0.4738,
+        "broad_topic_penalty": 0.6197,
+        "price_divergence_penalty": 0.405
+      },
+      "changes": {
+        "current_market_confirmation_weight": {
+          "before": 0.715,
+          "after": 0.7508
+        },
+        "historical_topic_score_weight": {
+          "before": 0.3675,
+          "after": 0.3859
+        },
+        "direct_mention_weight": {
+          "before": 0.9025,
+          "after": 0.9296
+        }
+      }
+    }
   }
 ]
