@@ -144,7 +144,7 @@ def run_report(
         backtest_summary,
         reference_sources,
     )
-    html_text = renderer.render_html(markdown_text, topics, validation_history)
+    html_text = renderer.render_html(markdown_text, topics, validation_history, backtest_summary)
     markdown_path, html_path = renderer.write(reports_dir, report_date, markdown_text, html_text)
     summary_path = write_summary(
         reports_dir,

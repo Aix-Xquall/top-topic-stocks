@@ -130,7 +130,10 @@ class ReportRenderer:
         markdown_text: str,
         topics: list[Topic] | None = None,
         validation_history: list[dict] | None = None,
+        backtest_summary: dict | None = None,
     ) -> str:
+        if topics:
+            return _compact_html_report(topics, validation_history or [], backtest_summary or {})
         body = _markdown_subset_to_html(markdown_text)
         chart = _validation_chart_html(topics or [])
         history_chart = _history_chart_html(validation_history or [])
@@ -332,6 +335,179 @@ def _reference_sources_markdown(sources: list[dict[str, str]]) -> list[str]:
         )
     lines.append("")
     return lines
+
+
+def _compact_html_report(topics: list[Topic], validation_history: list[dict], backtest_summary: dict) -> str:
+    validation = daily_market_validation(topics)
+    topic_metrics = {item.get("topic"): item for item in validation.get("topics", [])}
+    top_topics = topics[:5]
+    topic_rows = "\n".join(
+        _compact_topic_row(index, topic, topic_metrics.get(topic.name, {}))
+        for index, topic in enumerate(top_topics, start=1)
+    )
+    sections = "\n".join(
+        _compact_topic_section(index, topic, topic_metrics.get(topic.name, {}))
+        for index, topic in enumerate(top_topics, start=1)
+    )
+    validation_chart = _validation_chart_html(topics)
+    history_chart = _history_chart_html(validation_history)
+    backtest_html = _compact_backtest_html(backtest_summary)
+    return "\n".join(
+        [
+            "<!doctype html>",
+            '<html lang="zh-Hant">',
+            "<head>",
+            '<meta charset="utf-8">',
+            '<meta name="viewport" content="width=device-width, initial-scale=1">',
+            "<title>每日股市熱門話題分析</title>",
+            "<style>",
+            "body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;line-height:1.5;margin:0;color:#172033;background:#f6f7f9}",
+            "main{max-width:1120px;margin:0 auto;padding:22px 16px 40px}",
+            "header{margin-bottom:18px}.eyebrow{color:#667085;font-size:13px;margin:0 0 6px}h1{font-size:26px;margin:0;color:#101828}h2{font-size:19px;margin:22px 0 10px}h3{font-size:16px;margin:0 0 6px}",
+            ".summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}.metric,.topic-card,.panel{background:#fff;border:1px solid #e3e7ee;border-radius:8px;padding:12px}.metric strong{display:block;font-size:20px;color:#101828}.metric span{color:#667085;font-size:13px}",
+            "table{border-collapse:collapse;width:100%;font-size:13px;background:#fff}th,td{border-bottom:1px solid #e5e7eb;padding:8px;text-align:left;vertical-align:top}th{color:#475467;background:#f8fafc;font-weight:600}.topic-table td:first-child{font-weight:700}",
+            ".topic-card{margin:12px 0}.topic-head{display:flex;gap:10px;justify-content:space-between;align-items:flex-start}.topic-title{display:flex;gap:8px;align-items:center}.rank{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:#172033;color:#fff;font-size:12px}.muted{color:#667085}.compact-note{font-size:13px;color:#475467;margin:4px 0 10px}",
+            ".badge{display:inline-block;border-radius:999px;padding:2px 8px;font-size:12px;background:#eef4ff;color:#175cd3}.pos{color:#087443}.neg{color:#b42318}.flat{color:#667085}details{margin-top:8px}summary{cursor:pointer;color:#175cd3;font-size:13px}.sources{margin:8px 0 0;padding-left:18px;font-size:13px}",
+            ".chart{margin:16px 0 24px;padding:14px;border:1px solid #e5e7eb;border-radius:8px;background:#fff}.bar-row{display:grid;grid-template-columns:minmax(120px,220px) 1fr 64px;gap:10px;align-items:center;margin:8px 0}.bar-track{height:12px;background:#e5e7eb;border-radius:999px;overflow:hidden}.bar{height:100%;background:#0f766e}.bar.low{background:#b45309}.bar.mid{background:#2563eb}",
+            "@media(max-width:760px){.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.topic-head{display:block}table{font-size:12px}th,td{padding:7px 6px}}",
+            "</style>",
+            "</head>",
+            "<body><main>",
+            "<header>",
+            '<p class="eyebrow">研究輔助，不構成投資建議</p>',
+            "<h1>每日股市熱門話題分析</h1>",
+            "</header>",
+            _compact_summary_grid(validation, backtest_summary),
+            "<h2>熱門題材排行</h2>",
+            f'<table class="topic-table"><tr><th>#</th><th>題材</th><th>方向</th><th>市場確認</th><th>同向</th><th>前三家公司</th></tr>{topic_rows}</table>',
+            backtest_html,
+            validation_chart,
+            "<h2>題材摘要</h2>",
+            sections,
+            history_chart,
+            "</main></body></html>",
+        ]
+    )
+
+
+def _compact_summary_grid(validation: dict, backtest_summary: dict) -> str:
+    aligned_ratio = validation.get("aligned_ratio")
+    backtest_ratio = backtest_summary.get("direction_accuracy", backtest_summary.get("aligned_ratio"))
+    items = [
+        ("今日 3日相關", format_optional_number(validation.get("correlation_3d"))),
+        ("今日同向比例", format_optional_percent(aligned_ratio * 100 if aligned_ratio is not None else None)),
+        ("近5日信心排序", format_optional_number(backtest_summary.get("confidence_calibration"))),
+        ("近5日方向準確", format_optional_percent(backtest_ratio * 100 if backtest_ratio is not None else None)),
+    ]
+    return '<section class="summary-grid">' + "".join(
+        f'<div class="metric"><strong>{html.escape(value)}</strong><span>{html.escape(label)}</span></div>'
+        for label, value in items
+    ) + "</section>"
+
+
+def _compact_topic_row(index: int, topic: Topic, metrics: dict) -> str:
+    top_companies = "、".join(
+        f"{relation.company.ticker} {relation.company.name_zh}" for relation in topic.related_companies[:3]
+    ) or "待確認"
+    aligned = f"{metrics.get('aligned_count', 0)}/{metrics.get('validated_count', 0)}"
+    return (
+        "<tr>"
+        f"<td>{index}</td>"
+        f"<td>{html.escape(topic.name)}</td>"
+        f"<td>{html.escape(topic.direction)}</td>"
+        f"<td>{html.escape(format_optional_number(metrics.get('market_confirmation_score')))}</td>"
+        f"<td>{html.escape(aligned)}</td>"
+        f"<td>{html.escape(top_companies)}</td>"
+        "</tr>"
+    )
+
+
+def _compact_topic_section(index: int, topic: Topic, metrics: dict) -> str:
+    company_rows = "\n".join(_compact_company_row(relation) for relation in topic.related_companies[:3])
+    if not company_rows:
+        company_rows = '<tr><td colspan="7">目前未對應到可驗證公司</td></tr>'
+    source_rows = "\n".join(
+        f'<li><a href="{html.escape(article.url)}" target="_blank" rel="noopener noreferrer">{html.escape(article.title)}</a></li>'
+        for article in topic.articles[:2]
+    )
+    details_rows = "\n".join(_detail_company_row(relation) for relation in topic.related_companies[3:])
+    details = ""
+    if details_rows:
+        details = (
+            "<details><summary>更多公司</summary>"
+            f"<table><tr><th>公司</th><th>方向性信心</th><th>3日</th><th>5日</th><th>現價</th><th>高點跌幅</th></tr>{details_rows}</table>"
+            "</details>"
+        )
+    return (
+        '<section class="topic-card">'
+        '<div class="topic-head">'
+        f'<div class="topic-title"><span class="rank">{index}</span><div><h3>{html.escape(topic.name)}</h3>'
+        f'<div class="muted">方向：{html.escape(topic.direction)}｜熱度：{topic.score}｜市場確認：{html.escape(format_optional_number(metrics.get("market_confirmation_score")))}</div></div></div>'
+        f'<span class="badge">同向 {metrics.get("aligned_count", 0)}/{metrics.get("validated_count", 0)}</span>'
+        "</div>"
+        f'<p class="compact-note">{html.escape(_short_text(topic.summary, 120))}</p>'
+        f"<table><tr><th>公司</th><th>關聯</th><th>方向性信心</th><th>3日</th><th>5日</th><th>高點跌幅</th><th>驗證</th></tr>{company_rows}</table>"
+        f"{details}"
+        f'<details><summary>主要來源</summary><ul class="sources">{source_rows or "<li>無來源</li>"}</ul></details>'
+        "</section>"
+    )
+
+
+def _compact_company_row(relation) -> str:
+    company = relation.company
+    price = relation.price_performance
+    confidence = _directional_confidence(relation.impact_direction, relation.confidence, price.validation)
+    confidence_class = "pos" if confidence.startswith("+") else "neg" if confidence.startswith("-") else "flat"
+    return (
+        "<tr>"
+        f"<td>{html.escape(company.ticker)} {html.escape(company.name_zh)}</td>"
+        f"<td>{html.escape(relation.relation_type)}</td>"
+        f'<td class="{confidence_class}">{html.escape(confidence)}</td>'
+        f"<td>{html.escape(price.return_3d)}</td>"
+        f"<td>{html.escape(price.return_5d)}</td>"
+        f"<td>{html.escape(price.drawdown_from_high)}</td>"
+        f"<td>{html.escape(price.validation)}</td>"
+        "</tr>"
+    )
+
+
+def _detail_company_row(relation) -> str:
+    company = relation.company
+    price = relation.price_performance
+    confidence = _directional_confidence(relation.impact_direction, relation.confidence, price.validation)
+    confidence_class = "pos" if confidence.startswith("+") else "neg" if confidence.startswith("-") else "flat"
+    return (
+        "<tr>"
+        f"<td>{html.escape(company.ticker)} {html.escape(company.name_zh)}</td>"
+        f'<td class="{confidence_class}">{html.escape(confidence)}</td>'
+        f"<td>{html.escape(price.return_3d)}</td>"
+        f"<td>{html.escape(price.return_5d)}</td>"
+        f"<td>{html.escape(price.current_price)}</td>"
+        f"<td>{html.escape(price.drawdown_from_high)}</td>"
+        "</tr>"
+    )
+
+
+def _compact_backtest_html(summary: dict) -> str:
+    if not summary:
+        return ""
+    return (
+        '<section class="panel">'
+        "<h2>近5日方法驗證</h2>"
+        f"<p>診斷：{html.escape(str(summary.get('calibration_strategy') or summary.get('adjustment_strategy') or 'N/A'))}｜"
+        f"3日相關 {html.escape(format_optional_number(summary.get('correlation_3d')))}｜"
+        f"5日相關 {html.escape(format_optional_number(summary.get('correlation_5d')))}｜"
+        f"樣本 {html.escape(str(summary.get('validated_count', 0)))}</p>"
+        f'<p class="muted">{html.escape(str(summary.get("reason", "")))}</p>'
+        "</section>"
+    )
+
+
+def _short_text(value: str, limit: int) -> str:
+    clean = " ".join(str(value).split())
+    if len(clean) <= limit:
+        return clean
+    return clean[: limit - 1] + "…"
 
 
 def _validation_chart_html(topics: list[Topic]) -> str:
