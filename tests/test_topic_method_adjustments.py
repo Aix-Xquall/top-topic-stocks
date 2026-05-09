@@ -139,6 +139,67 @@ class TopicMethodAdjustmentsTest(unittest.TestCase):
         self.assertEqual(topics[0].name, "新興題材：CoPoS")
         self.assertEqual(topics[0].related_companies[0].company.ticker, "2330")
 
+    def test_source_discovery_ignores_publisher_names(self) -> None:
+        analyzer = TopicAnalyzer(
+            topic_keywords={},
+            companies=[],
+        )
+
+        topics = analyzer.analyze(
+            [
+                Article(
+                    title="Chip stocks rise as AI demand expands - Reuters",
+                    url="https://example.com/reuters",
+                    source="sample",
+                    summary="來源層級：financial_news；來源名稱：Reuters Markets；來源權重：1.05",
+                ),
+                Article(
+                    title="Semiconductor stocks mixed after earnings - TechNews",
+                    url="https://example.com/technews",
+                    source="sample",
+                    summary="來源層級：financial_news；來源名稱：TechNews 科技新報；來源權重：0.95",
+                ),
+            ]
+        )
+
+        names = {topic.name for topic in topics}
+        self.assertNotIn("新興題材：Reuters", names)
+        self.assertNotIn("新興題材：TechNews", names)
+        self.assertNotIn("新興題材：Stock", names)
+        self.assertNotIn("新興題材：Wall", names)
+        self.assertNotIn("新興題材：TradingView", names)
+        self.assertNotIn("新興題材：TipRanks", names)
+
+    def test_source_discovery_ignores_article_ids(self) -> None:
+        analyzer = TopicAnalyzer(topic_keywords={}, companies=[])
+
+        topics = analyzer.analyze(
+            [
+                Article(
+                    title="Semiconductor stocks mixed FD533747 after earnings",
+                    url="https://example.com/id",
+                    source="sample",
+                )
+            ]
+        )
+
+        self.assertNotIn("新興題材：FD533747", {topic.name for topic in topics})
+
+    def test_source_discovery_strips_title_publisher_suffix(self) -> None:
+        analyzer = TopicAnalyzer(topic_keywords={}, companies=[])
+
+        topics = analyzer.analyze(
+            [
+                Article(
+                    title="Micron stock rises as HBM demand grows - TipRanks",
+                    url="https://example.com/tipranks",
+                    source="sample",
+                )
+            ]
+        )
+
+        self.assertNotIn("新興題材：TipRanks", {topic.name for topic in topics})
+
 
 if __name__ == "__main__":
     unittest.main()

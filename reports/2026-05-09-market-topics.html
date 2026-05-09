@@ -5,185 +5,69 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>每日股市熱門話題分析</title>
 <style>
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;line-height:1.55;margin:24px;color:#1f2937;background:#f8fafc}
-main{max-width:1180px;margin:0 auto;background:#fff;padding:24px;border:1px solid #e5e7eb;border-radius:8px}
-h1,h2,h3{line-height:1.25;color:#111827} h1{margin-top:0} table{border-collapse:collapse;width:100%;font-size:13px;margin:10px 0 18px}
-th,td{border:1px solid #d1d5db;padding:7px;vertical-align:top} th{background:#f3f4f6;text-align:left}
-a{color:#0f766e} code{background:#f3f4f6;padding:2px 4px;border-radius:4px} .chart{margin:16px 0 24px;padding:14px;border:1px solid #e5e7eb;border-radius:8px;background:#fbfdff}.bar-row{display:grid;grid-template-columns:minmax(120px,220px) 1fr 64px;gap:10px;align-items:center;margin:8px 0}.bar-track{height:14px;background:#e5e7eb;border-radius:999px;overflow:hidden}.bar{height:100%;background:#0f766e}.bar.low{background:#b45309}.bar.mid{background:#2563eb}.muted{color:#6b7280;font-size:13px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;line-height:1.5;margin:0;color:#172033;background:#f6f7f9}
+main{max-width:1120px;margin:0 auto;padding:22px 16px 40px}
+header{margin-bottom:18px}.eyebrow{color:#667085;font-size:13px;margin:0 0 6px}h1{font-size:26px;margin:0;color:#101828}h2{font-size:19px;margin:22px 0 10px}h3{font-size:16px;margin:0 0 6px}
+.summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}.metric,.topic-card,.panel{background:#fff;border:1px solid #e3e7ee;border-radius:8px;padding:12px}.metric strong{display:block;font-size:20px;color:#101828}.metric span{color:#667085;font-size:13px}
+table{border-collapse:collapse;width:100%;font-size:13px;background:#fff}th,td{border-bottom:1px solid #e5e7eb;padding:8px;text-align:left;vertical-align:top}th{color:#475467;background:#f8fafc;font-weight:600}.topic-table td:first-child{font-weight:700}
+.topic-card{margin:12px 0}.topic-head{display:flex;gap:10px;justify-content:space-between;align-items:flex-start}.topic-title{display:flex;gap:8px;align-items:center}.rank{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:#172033;color:#fff;font-size:12px}.muted{color:#667085}.compact-note{font-size:13px;color:#475467;margin:4px 0 10px}
+.badge{display:inline-block;border-radius:999px;padding:2px 8px;font-size:12px;background:#eef4ff;color:#175cd3}.pos{color:#087443}.neg{color:#b42318}.flat{color:#667085}details{margin-top:8px}summary{cursor:pointer;color:#175cd3;font-size:13px}.sources{margin:8px 0 0;padding-left:18px;font-size:13px}
+.chart{margin:16px 0 24px;padding:14px;border:1px solid #e5e7eb;border-radius:8px;background:#fff}.bar-row{display:grid;grid-template-columns:minmax(120px,220px) 1fr 64px;gap:10px;align-items:center;margin:8px 0}.bar-track{height:12px;background:#e5e7eb;border-radius:999px;overflow:hidden}.bar{height:100%;background:#0f766e}.bar.low{background:#b45309}.bar.mid{background:#2563eb}
+@media(max-width:760px){.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.topic-head{display:block}table{font-size:12px}th,td{padding:7px 6px}}
 </style>
 </head>
 <body><main>
-<h1>每日股市熱門話題分析 - 2026-05-09</h1>
-
-<p>本報告由自動化流程產生，僅供研究輔助，不構成任何投資建議。</p>
-
-<h2>重點摘要</h2>
-
-<ol>
-<li>記憶體與 HBM 供應鏈｜正向｜熱度 9｜市場確認 100.00｜同向 1/1</li>
-<li>散熱與液冷供應鏈｜負向｜熱度 5｜市場確認 14.33｜同向 1/2</li>
-<li>綜合市場情緒｜正向｜熱度 23｜市場確認 N/A｜同向 0/0</li>
-</ol>
-
-<h2>市場驗證</h2>
-
-<p>為避免循環驗證，相關係數使用「價格調整前」方向信心與股價報酬計算。</p>
-
-<ul>
-<li>3日相關係數：0.21（樣本 3）</li>
-<li>5日相關係數：0.85（樣本 3）</li>
-<li>同向比例：2/3</li>
-</ul>
-
-<table>
-<tr><th>話題</th><th>市場確認</th><th>同向</th><th>背離</th><th>3日方向報酬</th><th>5日方向報酬</th></tr>
-<tr><td>記憶體與 HBM 供應鏈</td><td>100.00</td><td>1/1</td><td>0</td><td>+11.09%</td><td>+31.62%</td></tr>
-<tr><td>散熱與液冷供應鏈</td><td>14.33</td><td>1/2</td><td>1</td><td>-6.89%</td><td>+0.58%</td></tr>
-<tr><td>綜合市場情緒</td><td>N/A</td><td>0/0</td><td>0</td><td>N/A</td><td>N/A</td></tr>
-</table>
-
-<h3>方法調整建議</h3>
-
-<ul>
-<li>有效樣本少於 10，先累積多日資料；目前不做大幅調參。</li>
-</ul>
-
-<h2>每日迭代追蹤</h2>
-
-<p>此表用來觀察每日模型分數是否逐步貼近市場表現。</p>
-
-<table>
-<tr><th>日期</th><th>3日相關</th><th>5日相關</th><th>同向比例</th><th>樣本</th></tr>
-<tr><td>2026-05-08</td><td>0.03</td><td>0.48</td><td>+76.92%</td><td>13</td></tr>
-<tr><td>2026-05-09</td><td>0.21</td><td>0.85</td><td>+66.67%</td><td>3</td></tr>
-</table>
-
-<h2>歷史回測摘要</h2>
-
-<ul>
-<li>回測日期：2026-05-09</li>
-<li>近5日 3日相關：0.21</li>
-<li>近5日 5日相關：0.26</li>
-<li>同向比例：+83.33%</li>
-<li>權重狀態：已調整</li>
-</ul>
-
-<ul>
-<li>方向準確度：+83.33%</li>
-<li>信心排序準確度：0.21</li>
-<li>診斷：正相關</li>
-</ul>
-
-<p>調整原因：近 5 日信心分數與後續報酬呈正相關，提高市場確認、歷史題材與直接提及權重。</p>
-
-<h2>參考來源</h2>
-
-<table>
-<tr><th>類別</th><th>平台</th><th>用途</th><th>讀取方式</th></tr>
-<tr><td>官方資料</td><td><a href="https://mops.twse.com.tw/" target="_blank" rel="noopener noreferrer">公開資訊觀測站（MOPS）</a></td><td>財報、月營收、重大訊息、年報、法說資料</td><td>人工核對 / 後續可擴充自動抓取</td></tr>
-<tr><td>官方資料</td><td><a href="https://www.twse.com.tw/zh/trading/historical/stock-day.html" target="_blank" rel="noopener noreferrer">臺灣證券交易所（TWSE）</a></td><td>上市股價、成交資訊、本益比、殖利率、法人與交易統計</td><td>已部分自動抓取</td></tr>
-<tr><td>官方資料</td><td><a href="https://www.tpex.org.tw/zh-tw/mainboard/trading/info/stock-pricing.html" target="_blank" rel="noopener noreferrer">櫃買中心（TPEx）</a></td><td>上櫃、興櫃行情、歷史行情、注意股、券商買賣資料</td><td>人工核對 / 後續可擴充自動抓取</td></tr>
-<tr><td>看盤＋新聞</td><td><a href="https://tw.stock.yahoo.com/" target="_blank" rel="noopener noreferrer">Yahoo 奇摩股市</a></td><td>個股報價、個股新聞、自選股、行事曆、類股整理</td><td>已加入 RSS</td></tr>
-<tr><td>財經新聞</td><td><a href="https://news.cnyes.com/news/cat/tw_stock_news" target="_blank" rel="noopener noreferrer">鉅亨網</a></td><td>台股即時新聞、個股新聞、盤後整理</td><td>已加入 RSS</td></tr>
-<tr><td>財經新聞</td><td><a href="https://www.moneydj.com/kmdj/common/listnewarticles.aspx?a=X0200000&amp;svc=NW" target="_blank" rel="noopener noreferrer">MoneyDJ 理財網</a></td><td>個股情報、台股即時新聞、產業新聞</td><td>Google News RSS 備援</td></tr>
-<tr><td>財經新聞</td><td><a href="https://money.udn.com/money/cate/5590" target="_blank" rel="noopener noreferrer">經濟日報 money</a></td><td>證券新聞、即時財經、產業與法人觀點</td><td>Google News RSS 備援</td></tr>
-<tr><td>圖表分析</td><td><a href="https://tw.tradingview.com/markets/stocks-taiwan/market-movers-all-stocks/" target="_blank" rel="noopener noreferrer">TradingView</a></td><td>K 線圖、技術分析、財務欄位、股票篩選</td><td>人工核對 / 圖表參考</td></tr>
-</table>
-
-<h2>記憶體與 HBM 供應鏈</h2>
-
-<p>摘要：記憶體與 HBM 供應鏈 相關新聞集中在：INTC, AMD, MU stocks hit 52-week highs today: What&#x27;s triggering the rally? - MSN；Micron Rockets 11%, SanDisk Rallies 11%, Western Digital Up 3% on AI Memory Supercycle Bull Case - 24/7 Wall St.；Micron Stock vs. Sandisk Stock: One Is a Much Better Buy, According to a Wall Street Analyst - AOL.com</p>
-
-<h3>相關公司</h3>
-
-<table>
-<tr><th>公司</th><th>關聯</th><th>方向性信心</th><th>3日</th><th>5日</th><th>現價</th><th>歷高</th><th>距高點</th><th>驗證</th><th>EPS</th><th>PER</th><th>營收 / YoY</th><th>日期</th></tr>
-<tr><td>MU 美光</td><td>新聞直接提及</td><td>+0.88</td><td>N/A</td><td>N/A</td><td>746.81</td><td>746.81</td><td>0.00%</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
-<tr><td>SNDK SanDisk</td><td>新聞直接提及</td><td>+0.88</td><td>+11.09%</td><td>+31.62%</td><td>1,562.34</td><td>1,562.34</td><td>0.00%</td><td>同向</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
-<tr><td>AMD 超微</td><td>新聞直接提及</td><td>+0.65</td><td>N/A</td><td>N/A</td><td>455.19</td><td>455.19</td><td>0.00%</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
-<tr><td>INTC 英特爾</td><td>新聞直接提及</td><td>+0.65</td><td>N/A</td><td>N/A</td><td>124.92</td><td>124.92</td><td>0.00%</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
-<tr><td>NVDA 輝達</td><td>產業/供應鏈推估</td><td>0.00</td><td>+23.39%</td><td>+12.59%</td><td>215.20</td><td>215.20</td><td>0.00%</td><td>不適用</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
-</table>
-
-<p>關聯理由（前 3）：</p>
-<ul>
-<li>MU：新聞直接提及「MU、Micron」，共 6 篇新聞命中。 同時符合主題標籤：AI memory, memory, HBM, HBM4。 方向判斷命中詞：rally, 52-week highs, hit 52-week highs, rockets。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-<li>SNDK：新聞直接提及「SanDisk、SNDK」，共 4 篇新聞命中。 同時符合主題標籤：NAND, SSD, flash memory, memory。 方向判斷命中詞：rally, rockets。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；company_universe.csv 未提供 CIK，無法抓取 SEC EDGAR XBRL。</li>
-<li>AMD：新聞直接提及「AMD」，共 1 篇新聞命中。 方向判斷命中詞：rally, 52-week highs, hit 52-week highs。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-</ul>
-
-<h3>主要來源</h3>
-
-<ul>
-<li><a href="https://news.google.com/rss/articles/CBMimANBVV95cUxNWnBwXy11U0pvUXdLcE5sSkpudVFPVVRVRVhCc1RBVEVHdFRFVG1KSWlnWGt0bFo3ZkJNSFlwR2JPNXFkcERmLTJLYXJsTlpGRUZIcjRpOWROVFN2YVU2d1AxY2U1ZldUUk9abDBzN0hyZ0RPZG1KaWh0Y1dmYTcwb3piNzZFWF9zMUdjSWFSVVVndlNPYVpJSjJtNlc4YmZLc3N3cjJtTXNsYU5jQjFGQjA2Z213aUUwRE1nc0J3ZVVNb1Z0TmlnUU9LamRrNjhWR28yM3Q2UjBpZEdQUlJfQTlZQlRycnExTGdiSEZBTmxmUHFPTjMwTFFRR1RqVkZWYmFFTVZUeHBycE9VdndfcWwtTW84YlF6UGVPbGcwdmpzSTVURGxOc21PZ2ZrOFJCQ2NEVG9IY2JZWnF6eng5MDFkemhiNWUwRWpfU243MjF1Vnpuc2FrcWJyMnBWNENhVnVjOHFGQTdEVlJsZ0tSRHYzdzFkel9lZXI1LWhhZlVtTFBYWURBOVdROFVzZzZTRWxBQXlVOVY?oc=5" target="_blank" rel="noopener noreferrer">INTC, AMD, MU stocks hit 52-week highs today: What&#x27;s triggering the rally? - MSN</a> - https://news.google.com/rss/search?q=AMD%20Intel%20INTC%20stock%20AI%20chip%20earnings%20when%3A3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Fri, 08 May 2026 09:40:07 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxNdVdEUVVPNy1QXzdMaF9veS1EWk54NC1FM2VPR2hicTJ1T1pabS1CMTJaN3hMcEJabnFZVVFleHNBNERIQXFtVHZfTnBNbDE1djdNbWlTSXJjb3VmTmU0b0RwdUVjYkwtZ2kzeFUyS0pTQUxYdTJndVRVQ1hLYzg0cmJDUU8wUXBGekxncW9ma3JieG16Nlp6R1luUFJGUm5CVUF2SEQ0VkVkejZGak5zcGd0RkdkdVZHZEVRSHBkU2NRU2szdmV6UlRORFJBeXNZ?oc=5" target="_blank" rel="noopener noreferrer">Micron Rockets 11%, SanDisk Rallies 11%, Western Digital Up 3% on AI Memory Supercycle Bull Case - 24/7 Wall St.</a> - https://news.google.com/rss/search?q=Micron%20MU%20SanDisk%20SNDK%20HBM%20memory%20AI%20stock%20when%3A3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Fri, 08 May 2026 15:49:24 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE5QRzZySzBiVmxvaEZtRXdPa3l0OU9oYzZIWjBHZndTRkhfVk8yRnVxQUpSb3J2eEhid0Z0OVpmQW82S2VGWkFUT0JfTWxIM0RfQWliS3lRcjZsRElGLW80SHo2a0NobkJ2ejNTNlhWSHhyeG1wenpMM0FsdzZpUQ?oc=5" target="_blank" rel="noopener noreferrer">Micron Stock vs. Sandisk Stock: One Is a Much Better Buy, According to a Wall Street Analyst - AOL.com</a> - https://news.google.com/rss/search?q=Micron%20MU%20SanDisk%20SNDK%20HBM%20memory%20AI%20stock%20when%3A3d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en Fri, 08 May 2026 17:58:17 GMT</li>
-</ul>
-
-<h2>散熱與液冷供應鏈</h2>
-
-<p>摘要：散熱與液冷供應鏈 相關新聞集中在：輝達Rubin傳改散熱設計！投信出貨奇鋐回收25億 「金融股這檔」遭清倉4.3萬張、連挨17刀 - Yahoo股市；散熱三雄遭血洗！Rubin設計變更傳言衝擊，市場不需要散熱了嗎? - CMoney投資網誌；〈焦點股〉市場傳輝達Rubin修改散熱設計 健策再吞跌停 - news.cnyes.com</p>
-
-<h3>相關公司</h3>
-
-<table>
-<tr><th>公司</th><th>關聯</th><th>方向性信心</th><th>3日</th><th>5日</th><th>現價</th><th>歷高</th><th>距高點</th><th>驗證</th><th>EPS</th><th>PER</th><th>營收 / YoY</th><th>日期</th></tr>
-<tr><td>3017 奇鋐</td><td>新聞直接提及</td><td>-0.88</td><td>-9.61%</td><td>-13.76%</td><td>2,445.00</td><td>2,835.00</td><td>-13.76%</td><td>同向</td><td>49.17</td><td>49.98</td><td>15.63B TWD / 71.62%</td><td>2026-05-01</td></tr>
-<tr><td>NVDA 輝達</td><td>新聞直接提及</td><td>-0.38</td><td>+23.39%</td><td>+12.59%</td><td>215.20</td><td>215.20</td><td>0.00%</td><td>背離</td><td>N/A</td><td>N/A</td><td>N/A USD / N/A</td><td>N/A</td></tr>
-</table>
-
-<p>關聯理由（前 3）：</p>
-<ul>
-<li>3017：新聞直接提及「奇鋐、散熱、3017」，共 5 篇新聞命中。 同時符合主題標籤：thermal。 方向判斷命中詞：利空, 跌停, 衝擊。</li>
-<li>NVDA：新聞直接提及「輝達」，共 2 篇新聞命中。 方向判斷命中詞：跌停。</li>
-<li>資料備註：未設定 ALPHAVANTAGE_API_KEY，跳過 Alpha Vantage 估值補充。；未設定 SEC_USER_AGENT，跳過 SEC EDGAR XBRL。</li>
-</ul>
-
-<h3>主要來源</h3>
-
-<ul>
-<li><a href="https://news.google.com/rss/articles/CBMisANBVV95cUxQUVdpczJId3BfUnRFcjBKdXRJcWdUamdfMXo1a1U0aXBpelFKMWcwUHFGWDN6ZktaUWRkRkxJNk5Vek9HbEhSOGlPS21EY25wZkk4Slp1YkFYMDZGZ2Z6d1k2QXZxNjBxTE9YOGxDcGpGdTMyT1RtelVRWjE4Z2lqdjkzRC1XbG91MG5qNFBDSC02cGlRM21oM3NidG1kcXJicTFlTmxKZWY2SkhxVXBhcjVNVUVBWVN5YUx4azhjQmRBZFJ1YlhIRmtsXzVHQ1Bxc0c0eU45cTB2V2hhcWNyR213TENWUkVlblRtNWJ6X1lHNFB6ODg2WmVKT096eERrOXFjVDRLZnlLVFZuTzFEN3dNS0tJdUNkbllQTmNYQ200c25ROHI5dU1HRi1NQ3VTQUZLNlBYc3B1RWJaVXZ4RklNeFBKeGVDNlMzYXRKSTlNRmsyNDRlbmhWZk1NamowWHJ1ZkhIQk5KdGVzS1lIcTBIV2JHSXM2MzgzQnkzR1pnR3FhRzlabFJONGRzVFNxQXNWQ2F3ZDI3dmxYTmRUekMzLUJYejl3NFp5TTllcUo?oc=5" target="_blank" rel="noopener noreferrer">輝達Rubin傳改散熱設計！投信出貨奇鋐回收25億 「金融股這檔」遭清倉4.3萬張、連挨17刀 - Yahoo股市</a> - https://news.google.com/rss/search?q=%E5%A5%87%E9%8B%90%20%E8%BC%9D%E9%81%94%20%E6%95%A3%E7%86%B1%20Rubin%20when%3A7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 11:30:00 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE9RalFwM2o4STVKZU5iV2wwdlRfMmxwTjF1OXJCd1RGa2pEeDRQcFg1SjIzVUdwWEptUHlrZEs4RlU1MVpPR2wtWUZRVkdXaEZGMVNibl8tUW9CZEV0WnJqamtLODNVazZLSUU5WkJXelNHb2wxMllvT2YwRHZGUQ?oc=5" target="_blank" rel="noopener noreferrer">散熱三雄遭血洗！Rubin設計變更傳言衝擊，市場不需要散熱了嗎? - CMoney投資網誌</a> - https://news.google.com/rss/search?q=%E5%A5%87%E9%8B%90%20%E8%BC%9D%E9%81%94%20%E6%95%A3%E7%86%B1%20Rubin%20when%3A7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Fri, 08 May 2026 08:26:50 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBqMnEwOWsycmg4NUpSbHJmSzJXOWsyaWZOLTRVaDNQNnRZUkxPSEdqX0I5NFA5UVdxSFYzTjZWb0ZuYzVQc3QycjRFTzZjYVU?oc=5" target="_blank" rel="noopener noreferrer">〈焦點股〉市場傳輝達Rubin修改散熱設計 健策再吞跌停 - news.cnyes.com</a> - https://news.google.com/rss/search?q=%E5%A5%87%E9%8B%90%20%E8%BC%9D%E9%81%94%20%E6%95%A3%E7%86%B1%20Rubin%20when%3A7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Thu, 07 May 2026 03:37:34 GMT</li>
-</ul>
-
-<h2>綜合市場情緒</h2>
-
-<p>摘要：綜合市場情緒 相關新聞集中在：《台股盤後》收跌329點、守5日線，週K翻紅- 新聞 - MoneyDJ理財網；國票證券：台股多方氣勢強盛 - 台股 - 新聞 - MoneyDJ理財網；個股動態報導內容-FD533747-C852-4D42-935F-1F7C3E1C03CC - MoneyDJ理財網</p>
-
-<h3>相關公司</h3>
-
-<p>目前沒有足夠依據推估相關公司。</p>
-
-<h3>主要來源</h3>
-
-<ul>
-<li><a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxOZkE2bUJKemtyX1lrWVBUYVFISFA3ZXVSakRDOGh5LXdERVN2aEd6YkdHWXI1Ny1heHlaOXF3NkRMY3I3S21sZzBOTWEwV2puU2RQNDVnLWpyVlNsbzV5YlhxdkhJcmxpUmlDT0FnR3U0UXNYLUxyRmJfOHYtTVpMS19VTkZFWERJY0Y4bkVvN0lKdw?oc=5" target="_blank" rel="noopener noreferrer">《台股盤後》收跌329點、守5日線，週K翻紅- 新聞 - MoneyDJ理財網</a> - https://news.google.com/rss/search?q=site%3Amoneydj.com%20%E5%8F%B0%E8%82%A1%20OR%20%E5%80%8B%E8%82%A1%20when%3A7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Fri, 08 May 2026 07:53:00 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxNR19kRWFlZVNUYjEzN2dyMUxPRGJYOFduLTlBWFZCbHRTcFJHdk94MkJvMndwNU96SGpoTzh0RmhUcU9qeFdfQS1TMVFENXYydWswTHFkU1Azb3lfUVRocXE3REhObGM3QzM0Sk9Nam1UMDBzMVgtM2ZCRWQycUhBR0ZOMEVFcFFTeU9WekZreU9PM1JIckEzN3Jwbw?oc=5" target="_blank" rel="noopener noreferrer">國票證券：台股多方氣勢強盛 - 台股 - 新聞 - MoneyDJ理財網</a> - https://news.google.com/rss/search?q=site%3Amoneydj.com%20%E5%8F%B0%E8%82%A1%20OR%20%E5%80%8B%E8%82%A1%20when%3A7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Fri, 08 May 2026 00:54:00 GMT</li>
-<li><a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxOUXlLWkliRGZlSVFKMkxtUTNBaGl4akVCNWhRTHVqbHlHczQ4VV91MHl1Sms1MDVienBWNmNiZmhsRUsyLXVlMkdnX3pIQmg3QkdGaUt5aGJNaGFLaHR0YnVYZGFMWklWcmgyeEs0Z2NEckk5eHA1WG1YRzRWT2dqTVJGWkZEdDBNZWhSWGFGUVFnMlBk?oc=5" target="_blank" rel="noopener noreferrer">個股動態報導內容-FD533747-C852-4D42-935F-1F7C3E1C03CC - MoneyDJ理財網</a> - https://news.google.com/rss/search?q=site%3Amoneydj.com%20%E5%8F%B0%E8%82%A1%20OR%20%E5%80%8B%E8%82%A1%20when%3A7d&amp;hl=zh-TW&amp;gl=TW&amp;ceid=TW:zh-Hant Fri, 08 May 2026 10:36:36 GMT</li>
-</ul>
-
-<h2>資料缺口與需人工確認</h2>
-
-<ul>
-<li>RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=intl-markets，原因：HTTP Error 404: Not Found</li>
-<li>RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=news，原因：HTTP Error 404: Not Found</li>
-<li>RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=research，原因：HTTP Error 404: Not Found</li>
-<li>RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=tw-market，原因：HTTP Error 404: Not Found</li>
-</ul>
+<header>
+<p class="eyebrow">研究輔助，不構成投資建議</p>
+<h1>每日股市熱門話題分析</h1>
+</header>
+<section class="summary-grid"><div class="metric"><strong>-0.03</strong><span>今日 3日相關</span></div><div class="metric"><strong>+33.33%</strong><span>今日同向比例</span></div><div class="metric"><strong>0.21</strong><span>近5日信心排序</span></div><div class="metric"><strong>+83.33%</strong><span>近5日方向準確</span></div></section>
+<h2>熱門題材排行</h2>
+<table class="topic-table"><tr><th>#</th><th>題材</th><th>方向</th><th>市場確認</th><th>同向</th><th>前三家公司</th></tr><tr><td>1</td><td>記憶體與 HBM 供應鏈</td><td>正向</td><td>100.00</td><td>1/1</td><td>MU 美光、SNDK SanDisk、AMD 超微</td></tr>
+<tr><td>2</td><td>半導體與晶片供應鏈</td><td>中性</td><td>N/A</td><td>0/0</td><td>INTC 英特爾、AAPL 蘋果、2330 台積電</td></tr>
+<tr><td>3</td><td>關稅與供應鏈轉移</td><td>中性</td><td>N/A</td><td>0/0</td><td>AAPL 蘋果、2317 鴻海</td></tr>
+<tr><td>4</td><td>先進封裝與 CoPoS</td><td>中性</td><td>N/A</td><td>0/0</td><td>3711 日月光投控、2330 台積電</td></tr>
+<tr><td>5</td><td>AI 伺服器與資料中心</td><td>負向</td><td>0.00</td><td>1/6</td><td>NVDA 輝達、INTC 英特爾、AMD 超微</td></tr></table>
+<section class="panel"><h2>近5日方法驗證</h2><p>診斷：正相關｜3日相關 0.21｜5日相關 0.26｜樣本 30</p><p class="muted">近 5 日信心分數與後續報酬呈正相關，提高市場確認、歷史題材與直接提及權重。</p></section>
 <section class="chart">
 <h2>市場確認圖表</h2>
 <p class="muted">分數越高，代表題材方向與近 3 日股價表現越一致；低於 50 代表市場確認偏弱。</p>
 <div class="bar-row"><div>記憶體與 HBM 供應鏈</div><div class="bar-track"><div class="bar " style="width:100.0%"></div></div><strong>100.0</strong></div>
+<div class="bar-row"><div>AI 伺服器與資料中心</div><div class="bar-track"><div class="bar low" style="width:0.0%"></div></div><strong>0.0</strong></div>
 <div class="bar-row"><div>散熱與液冷供應鏈</div><div class="bar-track"><div class="bar low" style="width:14.3%"></div></div><strong>14.3</strong></div>
 </section>
+<h2>題材摘要</h2>
+<section class="topic-card"><div class="topic-head"><div class="topic-title"><span class="rank">1</span><div><h3>記憶體與 HBM 供應鏈</h3><div class="muted">方向：正向｜熱度：13｜市場確認：100.00</div></div></div><span class="badge">同向 1/1</span></div><p class="compact-note">記憶體與 HBM 供應鏈 相關新聞集中在：INTC, AMD, MU stocks hit 52-week highs today: What&#x27;s triggering the rally? - MSN；Micron Has The Be…</p><table><tr><th>公司</th><th>關聯</th><th>方向性信心</th><th>3日</th><th>5日</th><th>高點跌幅</th><th>驗證</th></tr><tr><td>MU 美光</td><td>新聞直接提及</td><td class="pos">+0.88</td><td>N/A</td><td>N/A</td><td>0.00%</td><td>N/A</td></tr>
+<tr><td>SNDK SanDisk</td><td>新聞直接提及</td><td class="pos">+0.88</td><td>+11.09%</td><td>+31.62%</td><td>0.00%</td><td>同向</td></tr>
+<tr><td>AMD 超微</td><td>新聞直接提及</td><td class="pos">+0.65</td><td>N/A</td><td>N/A</td><td>0.00%</td><td>N/A</td></tr></table><details><summary>更多公司</summary><table><tr><th>公司</th><th>方向性信心</th><th>3日</th><th>5日</th><th>現價</th><th>高點跌幅</th></tr><tr><td>INTC 英特爾</td><td class="pos">+0.65</td><td>N/A</td><td>N/A</td><td>124.92</td><td>0.00%</td></tr>
+<tr><td>NVDA 輝達</td><td class="flat">0.00</td><td>+23.39%</td><td>+12.59%</td><td>215.20</td><td>0.00%</td></tr></table></details><details><summary>主要來源</summary><ul class="sources"><li><a href="https://news.google.com/rss/articles/CBMi5AFBVV95cUxQY3pZd0tYdUNGcG1tSnlLYzFoUGVhRkxycG1NV05QUEE1X1dxSF9GdG4zSU1DQ0k1T2EzZHZudXBXeUZmZ2lqWVB0MW0zaC1nSGUxOW83bHpUNmNFZTQyUTVnbGZOTENteEZoeEtnVjI4S1NIMm95aC12OW8ySmhLSzlZaGhrTHhiVVEzTW9pYXg4YUl3QjVsTUt5VV92WHBOOXRxN0t6X2p0bnI4REY3d1I0VWpwMC0ySzktNl9NWlotZ0ZUeWp3TTU4NFJoS1Nock5uemxfTWFGWld2R0JJNG5yNkM?oc=5" target="_blank" rel="noopener noreferrer">INTC, AMD, MU stocks hit 52-week highs today: What&#x27;s triggering the rally? - MSN</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxPd0ZFd1h0S2xPWDdWWFBOcnR1cmFWU3JqTllFQ1h2aGVQajA3dG9MeTJ4WU1xZHhqVWtXNi1wZlVWOUhGRm1LUURfUGV3dXZWX0RHbEZzWXBpMmowMWpVd1RyeXQxR0VkSjlZaUpYcUx4NVBCUkh1bDN4dFdUdlJjem9sTlRYcGpiOFpQSnNKMGZoUjVQY1IwdnlZbnozM1ItRXc?oc=5" target="_blank" rel="noopener noreferrer">Micron Has The Better Scarcity, Sandisk Has The Hotter Trade (NASDAQ:SNDK) - Seeking Alpha</a></li></ul></details></section>
+<section class="topic-card"><div class="topic-head"><div class="topic-title"><span class="rank">2</span><div><h3>半導體與晶片供應鏈</h3><div class="muted">方向：中性｜熱度：4｜市場確認：N/A</div></div></div><span class="badge">同向 0/0</span></div><p class="compact-note">半導體與晶片供應鏈 相關新聞集中在：How High Is Donald Trump’s 10% INTC Stake After the Apple-Intel Chip-Making Deal? - Coinpaper；Intel (…</p><table><tr><th>公司</th><th>關聯</th><th>方向性信心</th><th>3日</th><th>5日</th><th>高點跌幅</th><th>驗證</th></tr><tr><td>INTC 英特爾</td><td>新聞直接提及</td><td class="flat">0.00</td><td>N/A</td><td>N/A</td><td>0.00%</td><td>不適用</td></tr>
+<tr><td>AAPL 蘋果</td><td>新聞直接提及</td><td class="flat">0.00</td><td>+5.19%</td><td>+46.04%</td><td>0.00%</td><td>不適用</td></tr>
+<tr><td>2330 台積電</td><td>產業/供應鏈推估</td><td class="flat">0.00</td><td>+1.78%</td><td>+7.26%</td><td>0.00%</td><td>不適用</td></tr></table><details><summary>更多公司</summary><table><tr><th>公司</th><th>方向性信心</th><th>3日</th><th>5日</th><th>現價</th><th>高點跌幅</th></tr><tr><td>2303 聯電</td><td class="flat">0.00</td><td>+9.87%</td><td>+18.11%</td><td>91.30</td><td>0.00%</td></tr>
+<tr><td>NVDA 輝達</td><td class="flat">0.00</td><td>+23.39%</td><td>+12.59%</td><td>215.20</td><td>0.00%</td></tr>
+<tr><td>AMD 超微</td><td class="flat">0.00</td><td>N/A</td><td>N/A</td><td>455.19</td><td>0.00%</td></tr>
+<tr><td>MU 美光</td><td class="flat">0.00</td><td>N/A</td><td>N/A</td><td>746.81</td><td>0.00%</td></tr>
+<tr><td>SNDK SanDisk</td><td class="flat">0.00</td><td>+11.09%</td><td>+31.62%</td><td>1,562.34</td><td>0.00%</td></tr></table></details><details><summary>主要來源</summary><ul class="sources"><li><a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxPZkszQjl5OEtwZ1BfUXgyb2VVZEo5UGYxU3VGa0tmTTl5S0l2Rzd4S3BBQlJ2Rk9sQXVIZGMzOVZWY3RwSDU2QWlGZWg4ajVxMk9mRGJGR25vUF9BZ1k1OFVOV3lkUmlaNk9PdnRjbWFqRnhFVXdEY1FGVWFyNGZIdG5rY2tYUTFzdEU2TE1KUExXWjJnaGI5emJ4NEx4MWpfaVBmTzRmU1NBcDQ?oc=5" target="_blank" rel="noopener noreferrer">How High Is Donald Trump’s 10% INTC Stake After the Apple-Intel Chip-Making Deal? - Coinpaper</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMiR0FVX3lxTE1JaGFRNl9nQWRoSjZBeFJhZmNSdnZsbHUyMWd6eXd2eFpvdDJYQU9pc0djN1lrVkZhR0RjY0Z4NlZWMmNNNVow?oc=5" target="_blank" rel="noopener noreferrer">Intel (INTC) Stock Hits All-Time Highs After Apple Chip Deal Breaks Through - MEXC Exchange</a></li></ul></details></section>
+<section class="topic-card"><div class="topic-head"><div class="topic-title"><span class="rank">3</span><div><h3>關稅與供應鏈轉移</h3><div class="muted">方向：中性｜熱度：2｜市場確認：N/A</div></div></div><span class="badge">同向 0/0</span></div><p class="compact-note">關稅與供應鏈轉移 相關新聞集中在：駐馬代表：台馬半導體供應鏈互補拓展區域市場| 產經 - 中央社 CNA；AI晶片引爆N3應用占比衝40% 法人看好3利多點火台股供應鏈 - news.cnyes.com</p><table><tr><th>公司</th><th>關聯</th><th>方向性信心</th><th>3日</th><th>5日</th><th>高點跌幅</th><th>驗證</th></tr><tr><td>AAPL 蘋果</td><td>產業/供應鏈推估</td><td class="flat">0.00</td><td>+5.19%</td><td>+46.04%</td><td>0.00%</td><td>不適用</td></tr>
+<tr><td>2317 鴻海</td><td>產業/供應鏈推估</td><td class="flat">0.00</td><td>+4.38%</td><td>+13.90%</td><td>-2.91%</td><td>不適用</td></tr></table><details><summary>主要來源</summary><ul class="sources"><li><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE5Ta2I0emx3Z0M3UkRfcm9RaE51NTBFQlR1V1FKR2ZBY1R3N0lFTjhMYXlyWEZhLUMyaEE4anJmdnltWDlwUGY4QUg0UWc3bldIMXMtcmdnV3ZES2lGM0E?oc=5" target="_blank" rel="noopener noreferrer">駐馬代表：台馬半導體供應鏈互補拓展區域市場| 產經 - 中央社 CNA</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBFQ0pwY3NKOXFCc010ajZpci1SSGdsU3Q3NXJtTl9NTFRNaVRQTzVjbHU2NTY4YUJEeFZlaUZDcWRPeFNoV3Bma3hQcm5iYnc?oc=5" target="_blank" rel="noopener noreferrer">AI晶片引爆N3應用占比衝40% 法人看好3利多點火台股供應鏈 - news.cnyes.com</a></li></ul></details></section>
+<section class="topic-card"><div class="topic-head"><div class="topic-title"><span class="rank">4</span><div><h3>先進封裝與 CoPoS</h3><div class="muted">方向：中性｜熱度：2｜市場確認：N/A</div></div></div><span class="badge">同向 0/0</span></div><p class="compact-note">先進封裝與 CoPoS 相關新聞集中在：日月光攜手楠梓電擴廠打造先進封裝產能新據點- 產業 - 工商時報；產品線都漲價，這檔半導體今年營收季季高，擁FCBGA+FOPLP，從280元拉回到222被低估了嗎？ - 經濟日報</p><table><tr><th>公司</th><th>關聯</th><th>方向性信心</th><th>3日</th><th>5日</th><th>高點跌幅</th><th>驗證</th></tr><tr><td>3711 日月光投控</td><td>新聞直接提及</td><td class="flat">0.00</td><td>-0.77%</td><td>+7.95%</td><td>0.00%</td><td>不適用</td></tr>
+<tr><td>2330 台積電</td><td>產業/供應鏈推估</td><td class="flat">0.00</td><td>+1.78%</td><td>+7.26%</td><td>0.00%</td><td>不適用</td></tr></table><details><summary>主要來源</summary><ul class="sources"><li><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE9MMWxVY0Fyek5VdlFVSXF3QUMydm5nU1NpeDd3aHdxV1RFc240WlpMRFJiLXJ6Yi10bUNHcEF6ZWJZaGVYOWZURFJkcWUyMlp2Q3JFUjZwTjYydWNkY1Q4?oc=5" target="_blank" rel="noopener noreferrer">日月光攜手楠梓電擴廠打造先進封裝產能新據點- 產業 - 工商時報</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE9rN0JOZUZmSE9iUk80VVlUYktiMkZOOXNuQmlzb21HVVptUEdJYnk4NWdXSlE5M0FxUGt0Z3RMdHRWWlFoT2xkbW9UTjd0UHJKSGtDSHhFZndmd9IBX0FVX3lxTE1iWWJ3MWdBZHROQkEtekhkc0hydEluMS1fU0hYN0VTc2hJX2E5VG1oNFBWM0FIN1RucEpYbk5mT09hVGNNOEVOODJqWWMzOGlMQ3hvbDFfRFpDMW1oMW5n?oc=5" target="_blank" rel="noopener noreferrer">產品線都漲價，這檔半導體今年營收季季高，擁FCBGA+FOPLP，從280元拉回到222被低估了嗎？ - 經濟日報</a></li></ul></details></section>
+<section class="topic-card"><div class="topic-head"><div class="topic-title"><span class="rank">5</span><div><h3>AI 伺服器與資料中心</h3><div class="muted">方向：負向｜熱度：10｜市場確認：0.00</div></div></div><span class="badge">同向 1/6</span></div><p class="compact-note">AI 伺服器與資料中心 相關新聞集中在：賓大數學創新如何挑戰現有 AI 算力擴張趨勢？ - TechNews 科技新報；Replit 靠「非工程師」市場大賺 90% 毛利，揭開 AI 獲利的生存密碼 - TechNews 科技新報；S&amp;P…</p><table><tr><th>公司</th><th>關聯</th><th>方向性信心</th><th>3日</th><th>5日</th><th>高點跌幅</th><th>驗證</th></tr><tr><td>NVDA 輝達</td><td>新聞直接提及</td><td class="neg">-0.42</td><td>+23.39%</td><td>+12.59%</td><td>0.00%</td><td>背離</td></tr>
+<tr><td>INTC 英特爾</td><td>產業/供應鏈推估</td><td class="neg">-0.22</td><td>N/A</td><td>N/A</td><td>0.00%</td><td>N/A</td></tr>
+<tr><td>AMD 超微</td><td>產業/供應鏈推估</td><td class="neg">-0.17</td><td>N/A</td><td>N/A</td><td>0.00%</td><td>N/A</td></tr></table><details><summary>更多公司</summary><table><tr><th>公司</th><th>方向性信心</th><th>3日</th><th>5日</th><th>現價</th><th>高點跌幅</th></tr><tr><td>2330 台積電</td><td class="neg">-0.09</td><td>+1.78%</td><td>+7.26%</td><td>2,290.00</td><td>0.00%</td></tr>
+<tr><td>MSFT 微軟</td><td class="neg">-0.12</td><td>-15.63%</td><td>-9.83%</td><td>415.12</td><td>-18.07%</td></tr>
+<tr><td>AVGO 博通</td><td class="neg">-0.06</td><td>+38.93%</td><td>+29.79%</td><td>430.00</td><td>0.00%</td></tr>
+<tr><td>3711 日月光投控</td><td class="neg">-0.09</td><td>-0.77%</td><td>+7.95%</td><td>516.00</td><td>0.00%</td></tr>
+<tr><td>2454 聯發科</td><td class="neg">-0.06</td><td>+15.06%</td><td>+39.08%</td><td>3,630.00</td><td>0.00%</td></tr></table></details><details><summary>主要來源</summary><ul class="sources"><li><a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxPMzJUTUN3MXJDS1RaOVR6bmdNWEREaEQ0SWJWS0R2THdiMnNBTk1vV2xDRXB2NDVJN2pndWhTRG80clVqQnBFUWhXLS03ekZ5U2plXy1qQ2tOc0dTNC0zQ2ZidWJxNFQ3TWNPd1VUQ2dZSG4xanM4S1R2amlRb0w4SGZ6M0hwRjZNQ3hCcGhXZmRuN0NxZTE5Mk9B?oc=5" target="_blank" rel="noopener noreferrer">賓大數學創新如何挑戰現有 AI 算力擴張趨勢？ - TechNews 科技新報</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxQWV9kUzhMSVFrNFdvaWgwQ3dTZzVOYWwwQ0pLQTV4RTNUR1VCZlYweGRtbldDcjB4bVpNbEMtZElIOUdQSnVUVkJaZTV5eHNYQmk4ejJwdHhVLUp6TEJOQXJLZ0g1SUFvZE12RkpTakYwaXhmZTR4cDR0R0FQQnEtaG5iT1kzOFZvdHFtdXJBazcxRWc2TE1SUTZZazkxeG41LTdFZS1mZThOQQ?oc=5" target="_blank" rel="noopener noreferrer">Replit 靠「非工程師」市場大賺 90% 毛利，揭開 AI 獲利的生存密碼 - TechNews 科技新報</a></li></ul></details></section>
 <section class="chart">
 <h2>每日相關性追蹤</h2>
 <p class="muted">長條為 3 日相關係數，0 在中線；越往右代表方向信心與個股表現越正相關。</p>
 <div class="bar-row"><div>2026-05-08</div><div class="bar-track" style="position:relative"><div style="position:absolute;left:50%;top:0;width:1px;height:100%;background:#64748b"></div><div style="position:absolute;left:50.0%;top:0;width:1.4%;height:100%;background:#0f766e"></div></div><strong>0.03</strong></div>
-<div class="bar-row"><div>2026-05-09</div><div class="bar-track" style="position:relative"><div style="position:absolute;left:50%;top:0;width:1px;height:100%;background:#64748b"></div><div style="position:absolute;left:50.0%;top:0;width:10.3%;height:100%;background:#0f766e"></div></div><strong>0.21</strong></div>
+<div class="bar-row"><div>2026-05-09</div><div class="bar-track" style="position:relative"><div style="position:absolute;left:50%;top:0;width:1px;height:100%;background:#64748b"></div><div style="position:absolute;left:48.6%;top:0;width:1.4%;height:100%;background:#b91c1c"></div></div><strong>-0.03</strong></div>
 </section>
 </main></body></html>

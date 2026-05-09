@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from collections import Counter, defaultdict
+from collections import defaultdict
 
 from ..models import Article, Company, CompanyRelation, Topic
 
@@ -70,12 +70,17 @@ BROAD_TOPICS = {
 
 SOURCE_TOPIC_STOPWORDS = {
     "AI",
+    "Anue",
+    "Bloomberg",
+    "CNA",
+    "CNBC",
     "CEO",
     "EPS",
     "ETF",
     "GDP",
     "Google",
     "IPO",
+    "Markets",
     "MSN",
     "News",
     "PER",
@@ -83,6 +88,12 @@ SOURCE_TOPIC_STOPWORDS = {
     "Q2",
     "Q3",
     "Q4",
+    "Reuters",
+    "Stock",
+    "Stocks",
+    "TechNews",
+    "TipRanks",
+    "TradingView",
     "US",
     "USA",
     "Yahoo",
@@ -106,6 +117,7 @@ SOURCE_TOPIC_SUFFIXES = (
     "跌停",
     "伺服器",
 )
+SOURCE_TOPIC_STOPWORDS_UPPER = {item.upper() for item in SOURCE_TOPIC_STOPWORDS}
 
 
 class TopicAnalyzer:
@@ -246,24 +258,44 @@ class TopicAnalyzer:
 
 
 def _article_text(article: Article) -> str:
-    return f"{article.title} {article.summary}".lower()
+    return f"{_clean_article_title(article.title)} {_clean_article_summary(article.summary)}".lower()
+
+
+def _clean_article_title(title: str) -> str:
+    text = str(title)
+    if " - " not in text:
+        return text
+    head, tail = text.rsplit(" - ", 1)
+    if 1 <= len(tail) <= 32 and not re.search(r"[\u4e00-\u9fff]", tail):
+        return head
+    return text
+
+
+def _clean_article_summary(summary: str) -> str:
+    lines = []
+    for line in str(summary).splitlines():
+        stripped = line.strip()
+        if stripped.startswith("來源層級：") or stripped.startswith("來源名稱：") or stripped.startswith("來源權重："):
+            continue
+        if "來源層級：" in stripped and "來源權重：" in stripped:
+            continue
+        lines.append(stripped)
+    return " ".join(lines)
 
 
 def _discover_source_topics(articles: list[Article], topic_keywords: dict[str, list[str]]) -> dict[str, list[str]]:
     article_terms: dict[str, list[str]] = {}
-    counts: Counter[str] = Counter()
     for article in articles:
         key = article.url or article.title
         terms = _source_topic_terms(article)
         article_terms[key] = terms
-        counts.update(set(terms))
 
     output: dict[str, list[str]] = {}
     for article in articles:
         key = article.url or article.title
         topics: list[str] = []
         for term in article_terms.get(key, []):
-            if counts[term] < 2 and not _specific_source_term(term):
+            if not _valid_source_topic_term(term):
                 continue
             topics.append(_topic_for_source_term(term, topic_keywords))
         if topics:
@@ -272,10 +304,10 @@ def _discover_source_topics(articles: list[Article], topic_keywords: dict[str, l
 
 
 def _source_topic_terms(article: Article) -> list[str]:
-    text = f"{article.title} {article.summary}"
+    text = f"{_clean_article_title(article.title)} {_clean_article_summary(article.summary)}"
     terms: list[str] = []
     for value in re.findall(r"\b[A-Z][A-Za-z0-9]{2,12}\b", text):
-        if value.upper() not in SOURCE_TOPIC_STOPWORDS:
+        if value.upper() not in SOURCE_TOPIC_STOPWORDS_UPPER:
             terms.append(value)
     suffix_pattern = "|".join(re.escape(item) for item in SOURCE_TOPIC_SUFFIXES)
     for value in re.findall(rf"[\u4e00-\u9fffA-Za-z0-9]{{2,12}}(?:{suffix_pattern})", text):
@@ -284,7 +316,15 @@ def _source_topic_terms(article: Article) -> list[str]:
 
 
 def _specific_source_term(term: str) -> bool:
-    return bool(re.search(r"[A-Z][a-z]+[A-Z]|[A-Z]{2,}\d|[A-Z]\d|Co[A-Za-z]+|FOPLP|HBM\d*", term))
+    return bool(re.search(r"[A-Z][a-z]+[A-Z]|Co(?:PoS|WoS)|FOPLP|HBM\d*[A-Z]*|GDDR\d+|MI\d+|H\d{3}|B\d{3}", term))
+
+
+def _valid_source_topic_term(term: str) -> bool:
+    if re.fullmatch(r"\d+年\d+月營收", term):
+        return False
+    if re.search(r"[\u4e00-\u9fff]", term):
+        return True
+    return _specific_source_term(term)
 
 
 def _topic_for_source_term(term: str, topic_keywords: dict[str, list[str]]) -> str:
