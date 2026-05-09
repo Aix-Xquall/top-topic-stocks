@@ -109,5 +109,36 @@ class TopicMethodAdjustmentsTest(unittest.TestCase):
         self.assertNotIn("AI 伺服器與資料中心", topic_names)
 
 
+    def test_source_discovery_creates_new_topic_without_predefined_keyword(self) -> None:
+        analyzer = TopicAnalyzer(
+            topic_keywords={},
+            sentiment_keywords={"positive": ["ramp", "demand"], "negative": []},
+            companies=[
+                Company(
+                    market="TW",
+                    ticker="2330",
+                    name_zh="台積電",
+                    name_en="Taiwan Semiconductor Manufacturing",
+                    aliases=("TSMC",),
+                    industry="半導體",
+                    tags=("CoPoS", "advanced packaging"),
+                )
+            ],
+        )
+
+        topics = analyzer.analyze(
+            [
+                Article(
+                    title="TSMC CoPoS pilot line ramps as advanced packaging demand rises",
+                    url="https://example.com/copos",
+                    source="sample",
+                )
+            ]
+        )
+
+        self.assertEqual(topics[0].name, "新興題材：CoPoS")
+        self.assertEqual(topics[0].related_companies[0].company.ticker, "2330")
+
+
 if __name__ == "__main__":
     unittest.main()

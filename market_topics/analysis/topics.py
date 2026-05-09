@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 from ..models import Article, Company, CompanyRelation, Topic
 
@@ -68,6 +68,46 @@ BROAD_TOPICS = {
 }
 
 
+SOURCE_TOPIC_STOPWORDS = {
+    "AI",
+    "CEO",
+    "EPS",
+    "ETF",
+    "GDP",
+    "Google",
+    "IPO",
+    "MSN",
+    "News",
+    "PER",
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "US",
+    "USA",
+    "Yahoo",
+}
+
+
+SOURCE_TOPIC_SUFFIXES = (
+    "封裝",
+    "供應鏈",
+    "需求",
+    "產能",
+    "散熱",
+    "液冷",
+    "記憶體",
+    "晶片",
+    "關稅",
+    "降息",
+    "法說",
+    "營收",
+    "漲價",
+    "跌停",
+    "伺服器",
+)
+
+
 class TopicAnalyzer:
     def __init__(
         self,
@@ -113,12 +153,15 @@ class TopicAnalyzer:
 
     def _group_articles_by_topic(self, articles: list[Article]) -> dict[str, list[Article]]:
         grouped: dict[str, list[Article]] = defaultdict(list)
+        source_topics = _discover_source_topics(articles, self.topic_keywords)
         for article in articles:
             text = _article_text(article)
             matched_topics: list[str] = []
             for topic, keywords in self.topic_keywords.items():
                 if any(_contains_keyword(text, keyword) for keyword in keywords):
                     matched_topics.append(topic)
+            matched_topics.extend(source_topics.get(article.url or article.title, []))
+            matched_topics = _unique_preserve_order(matched_topics)
             if not matched_topics:
                 grouped["綜合市場情緒"].append(article)
                 continue
@@ -136,7 +179,7 @@ class TopicAnalyzer:
         return f"{topic_name} 相關新聞集中在：{joined}"
 
     def _related_companies(self, topic: Topic, limit: int) -> list[CompanyRelation]:
-        topic_keywords = self.topic_keywords.get(topic.name, [])
+        topic_keywords = _keywords_for_topic(topic.name, self.topic_keywords)
         candidates: list[tuple[float, int, int, CompanyRelation]] = []
 
         for company in self.companies:
@@ -204,6 +247,60 @@ class TopicAnalyzer:
 
 def _article_text(article: Article) -> str:
     return f"{article.title} {article.summary}".lower()
+
+
+def _discover_source_topics(articles: list[Article], topic_keywords: dict[str, list[str]]) -> dict[str, list[str]]:
+    article_terms: dict[str, list[str]] = {}
+    counts: Counter[str] = Counter()
+    for article in articles:
+        key = article.url or article.title
+        terms = _source_topic_terms(article)
+        article_terms[key] = terms
+        counts.update(set(terms))
+
+    output: dict[str, list[str]] = {}
+    for article in articles:
+        key = article.url or article.title
+        topics: list[str] = []
+        for term in article_terms.get(key, []):
+            if counts[term] < 2 and not _specific_source_term(term):
+                continue
+            topics.append(_topic_for_source_term(term, topic_keywords))
+        if topics:
+            output[key] = _unique_preserve_order(topics)[:3]
+    return output
+
+
+def _source_topic_terms(article: Article) -> list[str]:
+    text = f"{article.title} {article.summary}"
+    terms: list[str] = []
+    for value in re.findall(r"\b[A-Z][A-Za-z0-9]{2,12}\b", text):
+        if value.upper() not in SOURCE_TOPIC_STOPWORDS:
+            terms.append(value)
+    suffix_pattern = "|".join(re.escape(item) for item in SOURCE_TOPIC_SUFFIXES)
+    for value in re.findall(rf"[\u4e00-\u9fffA-Za-z0-9]{{2,12}}(?:{suffix_pattern})", text):
+        terms.append(value[-12:])
+    return _unique_preserve_order([term.strip(" -:：,，") for term in terms if len(term.strip()) >= 3])
+
+
+def _specific_source_term(term: str) -> bool:
+    return bool(re.search(r"[A-Z][a-z]+[A-Z]|[A-Z]{2,}\d|[A-Z]\d|Co[A-Za-z]+|FOPLP|HBM\d*", term))
+
+
+def _topic_for_source_term(term: str, topic_keywords: dict[str, list[str]]) -> str:
+    term_lower = term.lower()
+    for topic, keywords in topic_keywords.items():
+        if any(term_lower == keyword.lower() for keyword in keywords):
+            return topic
+    return f"新興題材：{term}"
+
+
+def _keywords_for_topic(topic_name: str, topic_keywords: dict[str, list[str]]) -> list[str]:
+    if topic_name in topic_keywords:
+        return topic_keywords[topic_name]
+    if topic_name.startswith("新興題材："):
+        return [topic_name.split("：", 1)[1]]
+    return []
 
 
 def _contains_keyword(text: str, keyword: str) -> bool:

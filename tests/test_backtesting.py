@@ -44,6 +44,23 @@ class BacktestingTest(unittest.TestCase):
         self.assertIn("enddatetime=20260508000000", captured["url"])
         self.assertNotIn("timespan=1d", captured["url"])
 
+    def test_current_news_uses_google_source_discovery_when_rss_is_empty(self) -> None:
+        captured: dict[str, str] = {}
+
+        def fake_get_text(url: str, headers=None):
+            captured.setdefault("url", url)
+            return """<?xml version="1.0" encoding="UTF-8" ?>
+<rss><channel>
+<item><title>CoPoS packaging becomes market focus</title><link>https://example.com/copos</link><pubDate>Fri, 08 May 2026 08:00:00 GMT</pubDate><description>TSMC advanced packaging demand.</description></item>
+</channel></rss>"""
+
+        with patch("market_topics.collectors.news.get_text", fake_get_text):
+            articles = NewsCollector([], []).collect(date(2026, 5, 8), max_articles=10)
+
+        self.assertIn("news.google.com", captured["url"])
+        self.assertIn("site%3Atw.stock.yahoo.com", captured["url"])
+        self.assertEqual(len(articles), 1)
+
     def test_low_sample_backtest_does_not_update_weights(self) -> None:
         adjustment = adjust_model_weights(
             {"direct_mention_weight": 1.0, "inferred_supply_chain_weight": 0.65},
