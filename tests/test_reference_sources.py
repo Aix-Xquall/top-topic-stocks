@@ -11,14 +11,16 @@ class ReferenceSourcesTest(unittest.TestCase):
     def test_reference_sources_include_requested_platforms(self) -> None:
         names = {item["name"] for item in load_reference_sources(Path("config"))}
 
-        self.assertIn("公開資訊觀測站（MOPS）", names)
-        self.assertIn("臺灣證券交易所（TWSE）", names)
-        self.assertIn("櫃買中心（TPEx）", names)
+        self.assertIn("公開資訊觀測站 MOPS", names)
+        self.assertIn("臺灣證券交易所 TWSE", names)
+        self.assertIn("櫃買中心 TPEx", names)
         self.assertIn("Yahoo 奇摩股市", names)
         self.assertIn("鉅亨網", names)
-        self.assertIn("MoneyDJ 理財網", names)
+        self.assertIn("MoneyDJ", names)
         self.assertIn("經濟日報 money", names)
-        self.assertIn("TradingView", names)
+        self.assertIn("中央社財經", names)
+        self.assertIn("TechNews 科技新報", names)
+        self.assertIn("Reuters Markets", names)
 
     def test_unstable_old_rss_feeds_are_removed(self) -> None:
         feeds = "\n".join(load_rss_feeds(Path("config")))

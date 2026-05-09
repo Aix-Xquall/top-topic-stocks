@@ -1,58 +1,107 @@
 [
   {
     "category": "官方資料",
-    "name": "公開資訊觀測站（MOPS）",
+    "name": "公開資訊觀測站 MOPS",
     "url": "https://mops.twse.com.tw/",
-    "usage": "財報、月營收、重大訊息、年報、法說資料",
-    "mode": "人工核對 / 後續可擴充自動抓取"
+    "usage": "重大訊息、月營收、財報、法說、年報",
+    "mode": "事實驗證 / 基本面來源"
   },
   {
     "category": "官方資料",
-    "name": "臺灣證券交易所（TWSE）",
-    "url": "https://www.twse.com.tw/zh/trading/historical/stock-day.html",
-    "usage": "上市股價、成交資訊、本益比、殖利率、法人與交易統計",
-    "mode": "已部分自動抓取"
+    "name": "臺灣證券交易所 TWSE",
+    "url": "https://www.twse.com.tw/",
+    "usage": "上市股價、法人、注意股、產業統計",
+    "mode": "價格與市場驗證"
   },
   {
     "category": "官方資料",
-    "name": "櫃買中心（TPEx）",
-    "url": "https://www.tpex.org.tw/zh-tw/mainboard/trading/info/stock-pricing.html",
-    "usage": "上櫃、興櫃行情、歷史行情、注意股、券商買賣資料",
-    "mode": "人工核對 / 後續可擴充自動抓取"
+    "name": "櫃買中心 TPEx",
+    "url": "https://www.tpex.org.tw/",
+    "usage": "上櫃、興櫃公告與交易資料",
+    "mode": "價格與市場驗證"
   },
   {
-    "category": "看盤＋新聞",
+    "category": "官方資料",
+    "name": "SEC EDGAR",
+    "url": "https://www.sec.gov/edgar/search/",
+    "usage": "美股 10-K、10-Q、8-K、S-1 與公司申報",
+    "mode": "美股事實驗證 / 財報來源"
+  },
+  {
+    "category": "財經新聞",
     "name": "Yahoo 奇摩股市",
-    "url": "https://tw.stock.yahoo.com/",
-    "usage": "個股報價、個股新聞、自選股、行事曆、類股整理",
-    "mode": "已加入 RSS"
+    "url": "https://tw.stock.yahoo.com/news",
+    "usage": "台股、美股、個股新聞與熱門排行",
+    "mode": "題材熱度來源"
   },
   {
     "category": "財經新聞",
     "name": "鉅亨網",
     "url": "https://news.cnyes.com/news/cat/tw_stock_news",
-    "usage": "台股即時新聞、個股新聞、盤後整理",
-    "mode": "已加入 RSS"
+    "usage": "台股即時新聞、盤後整理、產業與法人動向",
+    "mode": "題材熱度來源"
   },
   {
     "category": "財經新聞",
-    "name": "MoneyDJ 理財網",
+    "name": "MoneyDJ",
     "url": "https://www.moneydj.com/kmdj/common/listnewarticles.aspx?a=X0200000&svc=NW",
-    "usage": "個股情報、台股即時新聞、產業新聞",
-    "mode": "Google News RSS 備援"
+    "usage": "個股情報、產業新聞、供應鏈脈絡",
+    "mode": "題材熱度來源"
   },
   {
     "category": "財經新聞",
     "name": "經濟日報 money",
     "url": "https://money.udn.com/money/cate/5590",
-    "usage": "證券新聞、即時財經、產業與法人觀點",
-    "mode": "Google News RSS 備援"
+    "usage": "證券、產業與法人觀點",
+    "mode": "題材熱度來源"
   },
   {
-    "category": "圖表分析",
-    "name": "TradingView",
-    "url": "https://tw.tradingview.com/markets/stocks-taiwan/market-movers-all-stocks/",
-    "usage": "K 線圖、技術分析、財務欄位、股票篩選",
-    "mode": "人工核對 / 圖表參考"
+    "category": "財經新聞",
+    "name": "中央社財經",
+    "url": "https://www.cna.com.tw/list/afe.aspx",
+    "usage": "公司公告、政策、產業新聞",
+    "mode": "高可信新聞來源"
+  },
+  {
+    "category": "財經新聞",
+    "name": "工商時報",
+    "url": "https://www.ctee.com.tw/",
+    "usage": "台股、產業、法人與供應鏈新聞",
+    "mode": "題材熱度來源"
+  },
+  {
+    "category": "科技產業",
+    "name": "TechNews 科技新報",
+    "url": "https://technews.tw/",
+    "usage": "半導體、AI、晶片、先進封裝與供應鏈",
+    "mode": "產業題材來源"
+  },
+  {
+    "category": "國際財經",
+    "name": "Reuters Markets",
+    "url": "https://www.reuters.com/markets/",
+    "usage": "美股、國際市場、公司與總經事件",
+    "mode": "高可信新聞來源"
+  },
+  {
+    "category": "國際財經",
+    "name": "CNBC Markets",
+    "url": "https://www.cnbc.com/markets/",
+    "usage": "美股、科技股、盤中市場題材",
+    "mode": "題材熱度來源"
+  },
+  {
+    "category": "事件日曆",
+    "name": "Nasdaq Earnings Calendar",
+    "url": "https://www.nasdaq.com/market-activity/earnings",
+    "usage": "美股財報日程、股利、IPO、拆併股",
+    "mode": "事件校正來源"
+  },
+  {
+    "category": "事件日曆",
+    "name": "Investing.com Economic Calendar",
+    "url": "https://www.investing.com/economic-calendar",
+    "usage": "CPI、利率、PMI、GDP 等總經事件",
+    "mode": "總經事件校正"
   }
 ]

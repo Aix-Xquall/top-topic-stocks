@@ -7,7 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from market_topics.backtesting import aggregate_backtest, adjust_model_weights, normalize_backtest_days, run_backtest
-from market_topics.collectors.news import NewsCollector
+from market_topics.collectors.news import DEFAULT_SOURCE_TIERS, NewsCollector
 from market_topics.models import PricePerformance
 
 
@@ -58,8 +58,32 @@ class BacktestingTest(unittest.TestCase):
             articles = NewsCollector([], []).collect(date(2026, 5, 8), max_articles=10)
 
         self.assertIn("news.google.com", captured["url"])
-        self.assertIn("site%3Atw.stock.yahoo.com", captured["url"])
+        self.assertIn("site%3Amops.twse.com.tw", captured["url"])
         self.assertEqual(len(articles), 1)
+
+    def test_source_discovery_includes_recommended_financial_sources(self) -> None:
+        domains = {str(item["domain"]) for item in DEFAULT_SOURCE_TIERS}
+
+        self.assertIn("cna.com.tw", domains)
+        self.assertIn("ctee.com.tw", domains)
+        self.assertIn("technews.tw", domains)
+        self.assertIn("reuters.com", domains)
+        self.assertIn("cnbc.com", domains)
+        self.assertIn("nasdaq.com", domains)
+        self.assertIn("investing.com", domains)
+
+    def test_source_discovery_tags_article_source_tier(self) -> None:
+        def fake_get_text(url: str, headers=None):
+            return """<?xml version="1.0" encoding="UTF-8" ?>
+<rss><channel>
+<item><title>CoPoS packaging becomes market focus</title><link>https://example.com/copos</link><pubDate>Fri, 08 May 2026 08:00:00 GMT</pubDate><description>TSMC advanced packaging demand.</description></item>
+</channel></rss>"""
+
+        with patch("market_topics.collectors.news.get_text", fake_get_text):
+            articles = NewsCollector([], []).collect(date(2026, 5, 8), max_articles=10)
+
+        self.assertIn("來源層級", articles[0].summary)
+        self.assertIn("來源權重", articles[0].summary)
 
     def test_low_sample_backtest_does_not_update_weights(self) -> None:
         adjustment = adjust_model_weights(

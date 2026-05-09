@@ -13,13 +13,23 @@ from .http import HttpError, get_json, get_text
 
 GDELT_DOC_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
 GOOGLE_NEWS_RSS_URL = "https://news.google.com/rss/search"
-SOURCE_DISCOVERY_QUERIES = [
-    "site:tw.stock.yahoo.com 台股 OR 個股 OR 美股 OR 半導體 OR 財報 OR 營收",
-    "site:news.cnyes.com 台股 OR 個股 OR 美股 OR 半導體 OR 財報 OR 營收",
-    "site:moneydj.com 台股 OR 個股 OR 產業 OR 半導體 OR 財報 OR 營收",
-    "site:money.udn.com 證券 OR 台股 OR 個股 OR 美股 OR 半導體 OR 財報",
-    "stock market OR earnings OR revenue OR semiconductor OR AI stock",
+DEFAULT_SOURCE_TIERS = [
+    {"tier": "official", "name": "MOPS", "domain": "mops.twse.com.tw", "weight": 1.25, "query": "重大訊息 OR 月營收 OR 財報 OR 法說會"},
+    {"tier": "official", "name": "TWSE", "domain": "twse.com.tw", "weight": 1.20, "query": "上市公司 OR 注意股票 OR 法人 OR 成交資訊"},
+    {"tier": "official", "name": "TPEx", "domain": "tpex.org.tw", "weight": 1.20, "query": "上櫃 OR 興櫃 OR 注意股票 OR 公告"},
+    {"tier": "financial_news", "name": "Yahoo 奇摩股市", "domain": "tw.stock.yahoo.com", "weight": 1.00, "query": "台股 OR 個股 OR 美股 OR 半導體 OR 財報 OR 營收"},
+    {"tier": "financial_news", "name": "鉅亨網", "domain": "news.cnyes.com", "weight": 1.00, "query": "台股 OR 個股 OR 美股 OR 半導體 OR 財報 OR 營收"},
+    {"tier": "financial_news", "name": "MoneyDJ", "domain": "moneydj.com", "weight": 0.95, "query": "台股 OR 個股 OR 產業 OR 半導體 OR 財報 OR 營收"},
+    {"tier": "financial_news", "name": "經濟日報 money", "domain": "money.udn.com", "weight": 0.95, "query": "證券 OR 台股 OR 個股 OR 美股 OR 半導體 OR 財報"},
+    {"tier": "financial_news", "name": "中央社財經", "domain": "cna.com.tw", "weight": 1.05, "query": "財經 OR 證券 OR 台股 OR 半導體 OR 公司"},
+    {"tier": "financial_news", "name": "工商時報", "domain": "ctee.com.tw", "weight": 0.95, "query": "台股 OR 個股 OR 產業 OR 半導體 OR 法人"},
+    {"tier": "financial_news", "name": "TechNews 科技新報", "domain": "technews.tw", "weight": 0.95, "query": "半導體 OR AI OR 晶片 OR 先進封裝 OR 伺服器"},
+    {"tier": "financial_news", "name": "Reuters Markets", "domain": "reuters.com", "weight": 1.05, "query": "markets OR stocks OR earnings OR revenue OR semiconductor OR AI"},
+    {"tier": "financial_news", "name": "CNBC Markets", "domain": "cnbc.com", "weight": 0.95, "query": "markets OR stocks OR earnings OR semiconductor OR AI"},
+    {"tier": "event_calendar", "name": "Nasdaq Earnings", "domain": "nasdaq.com", "weight": 0.70, "query": "earnings OR dividend OR IPO OR split"},
+    {"tier": "event_calendar", "name": "Investing.com Calendar", "domain": "investing.com", "weight": 0.65, "query": "economic calendar OR CPI OR rate decision OR PMI OR GDP"},
 ]
+SOURCE_DISCOVERY_QUERIES = [f"site:{item['domain']} {item['query']}" for item in DEFAULT_SOURCE_TIERS]
 HISTORICAL_GOOGLE_NEWS_QUERIES = SOURCE_DISCOVERY_QUERIES
 
 
@@ -27,6 +37,7 @@ class NewsCollector:
     def __init__(self, rss_feeds: list[str], data_gaps: list[str]) -> None:
         self.rss_feeds = rss_feeds
         self.data_gaps = data_gaps
+        self.source_tiers = DEFAULT_SOURCE_TIERS
 
     def collect(
         self,
@@ -52,8 +63,9 @@ class NewsCollector:
         if max_articles <= 0:
             return []
         output: list[Article] = []
-        per_query_limit = max(5, max_articles // len(SOURCE_DISCOVERY_QUERIES))
-        for query in SOURCE_DISCOVERY_QUERIES:
+        per_query_limit = max(5, max_articles // len(self.source_tiers))
+        for source in self.source_tiers:
+            query = f"site:{source['domain']} {source['query']}"
             params = {
                 "q": f"{query} when:3d",
                 "hl": "zh-TW",
@@ -66,7 +78,7 @@ class NewsCollector:
             except HttpError as exc:
                 self.data_gaps.append(f"Google News 財經來源抓取失敗：{query}，原因：{exc}")
                 continue
-            output.extend(_parse_rss(text, "Google News source discovery")[:per_query_limit])
+            output.extend(_tag_articles(_parse_rss(text, "Google News source discovery"), source)[:per_query_limit])
             if len(output) >= max_articles:
                 break
         return output[:max_articles]
@@ -202,6 +214,28 @@ def _parse_rss(text: str, feed_url: str) -> list[Article]:
                 source=feed_url,
                 published_at=(item.findtext("pubDate") or "").strip(),
                 summary=(item.findtext("description") or "").strip(),
+            )
+        )
+    return output
+
+
+def _tag_articles(articles: list[Article], source: dict[str, object]) -> list[Article]:
+    suffix = (
+        f"來源層級：{source.get('tier', '')}；"
+        f"來源名稱：{source.get('name', '')}；"
+        f"來源權重：{source.get('weight', 1.0)}"
+    )
+    output: list[Article] = []
+    for article in articles:
+        summary = f"{article.summary}\n{suffix}".strip()
+        output.append(
+            Article(
+                title=article.title,
+                url=article.url,
+                source=f"{article.source} | {source.get('name', '')}",
+                published_at=article.published_at,
+                summary=summary,
+                language=article.language,
             )
         )
     return output
