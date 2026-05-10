@@ -491,6 +491,17 @@ def _detail_company_row(relation) -> str:
 def _compact_backtest_html(summary: dict) -> str:
     if not summary:
         return ""
+    learning = summary.get("keyword_company_learning", {})
+    learning_html = ""
+    if isinstance(learning, dict) and learning:
+        hit_rate = learning.get("hit_rate_5d")
+        learning_html = (
+            "<p>"
+            f"樣本學習：有效 {html.escape(str(learning.get('valid_sample_count', 0)))} 筆，"
+            f"5日同向 {html.escape(format_optional_percent(float(hit_rate) * 100 if isinstance(hit_rate, (int, float)) else None))}，"
+            f"信心排序 {html.escape(format_optional_number(learning.get('confidence_correlation_5d')))}"
+            "</p>"
+        )
     return (
         '<section class="panel">'
         "<h2>近5日方法驗證</h2>"
@@ -498,6 +509,7 @@ def _compact_backtest_html(summary: dict) -> str:
         f"3日相關 {html.escape(format_optional_number(summary.get('correlation_3d')))}｜"
         f"5日相關 {html.escape(format_optional_number(summary.get('correlation_5d')))}｜"
         f"樣本 {html.escape(str(summary.get('validated_count', 0)))}</p>"
+        f"{learning_html}"
         f'<p class="muted">{html.escape(str(summary.get("reason", "")))}</p>'
         "</section>"
     )

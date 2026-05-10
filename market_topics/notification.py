@@ -36,6 +36,13 @@ def build_line_message(summary: dict[str, Any], report_url: str) -> str:
         correlation_text = "N/A" if correlation is None else f"{float(correlation):+.2f}"
         updated_text = "已調整" if backtest.get("updated") else "未調整"
         lines.append(f"近{days}日驗證：3日相關 {correlation_text}，同向 {aligned_text}，權重{updated_text}")
+    if backtest:
+        learning = backtest.get("keyword_company_learning", {})
+        if isinstance(learning, dict) and learning:
+            valid = int(learning.get("valid_sample_count", 0) or 0)
+            hit_rate = learning.get("hit_rate_5d")
+            hit_text = f"{float(hit_rate) * 100:.0f}%" if isinstance(hit_rate, (int, float)) else "N/A"
+            lines.append(f"樣本學習：有效 {valid} 筆，5日同向 {hit_text}")
     lines.append("")
 
     for index, topic in enumerate(summary.get("topics", [])[:3], start=1):

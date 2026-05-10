@@ -13,6 +13,7 @@ DEFAULT_MODEL_WEIGHTS = {
     "news_heat_weight": 1.0,
     "current_market_confirmation_weight": 0.65,
     "historical_topic_score_weight": 0.35,
+    "keyword_company_score_weight": 0.20,
     "direct_mention_weight": 1.0,
     "inferred_supply_chain_weight": 0.65,
     "broad_topic_penalty": 0.85,

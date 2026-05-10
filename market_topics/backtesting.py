@@ -18,6 +18,16 @@ from .config import (
     write_model_weights,
 )
 from .models import Article, Topic
+from .samples import (
+    SAMPLES_FILE,
+    STATS_FILE,
+    aggregate_keyword_company_stats,
+    build_keyword_company_samples,
+    keyword_learning_adjustment_factor,
+    load_samples,
+    upsert_samples,
+    write_samples,
+)
 
 
 DEFAULT_BACKTEST_DAYS = 5
@@ -30,6 +40,7 @@ WEIGHT_BOUNDS = {
     "news_heat_weight": (0.50, 1.50),
     "current_market_confirmation_weight": (0.00, 1.50),
     "historical_topic_score_weight": (0.00, 1.50),
+    "keyword_company_score_weight": (0.00, 0.60),
     "direct_mention_weight": (0.60, 1.30),
     "inferred_supply_chain_weight": (0.20, 1.30),
     "broad_topic_penalty": (0.50, 1.00),
@@ -71,7 +82,22 @@ def run_backtest(
             )
         )
 
+    sample_path = output_dir / SAMPLES_FILE
+    existing_samples = load_samples(sample_path)
+    new_samples = [
+        sample
+        for day in daily_results
+        for sample in day.get("keyword_company_samples", [])
+        if isinstance(sample, dict)
+    ]
+    samples = upsert_samples(existing_samples, new_samples)
+    write_samples(sample_path, samples)
+    keyword_stats = aggregate_keyword_company_stats(samples, end_date=end_date)
+    keyword_stats_path = output_dir / STATS_FILE
+    keyword_stats_path.write_text(json.dumps(keyword_stats, ensure_ascii=False, indent=2), encoding="utf-8")
+
     aggregate = aggregate_backtest(daily_results)
+    aggregate["keyword_company_learning"] = _keyword_learning_summary(keyword_stats)
     aggregate["days"] = days
     aggregate["minimum_required_samples"] = minimum_required_samples(days)
     adjustment = adjust_model_weights(weights_before, aggregate)
@@ -193,6 +219,15 @@ def adjust_model_weights(weights_before: dict[str, float], aggregate: dict[str, 
         factors["broad_topic_penalty"] = 0.90
         factors["price_divergence_penalty"] = 0.90
 
+    keyword_factor = keyword_learning_adjustment_factor(aggregate)
+    learning = aggregate.get("keyword_company_learning", {})
+    if keyword_factor != 1.0:
+        factors["keyword_company_score_weight"] = keyword_factor
+        valid_count = int(learning.get("valid_sample_count", 0) or 0) if isinstance(learning, dict) else 0
+        reasons.append(f"關鍵詞×公司後續 5 日樣本有效 {valid_count} 筆，保守調整歷史樣本權重")
+    elif isinstance(learning, dict) and int(learning.get("valid_sample_count", 0) or 0) < 30:
+        reasons.append(f"關鍵詞×公司後續樣本有效 {int(learning.get('valid_sample_count', 0) or 0)} 筆，未達 30 筆，不調整樣本權重")
+
     weights_after = {key: _bounded_weight(key, value * factors[key]) for key, value in weights.items()}
     if weights_after["inferred_supply_chain_weight"] > weights_after["direct_mention_weight"]:
         weights_after["inferred_supply_chain_weight"] = weights_after["direct_mention_weight"]
@@ -237,6 +272,17 @@ def render_backtest_html(payload: dict[str, Any]) -> str:
         "</tr>"
         for item in aggregate.get("overconfident_misses", [])[:12]
     ) or '<tr><td colspan="7">無明顯高信心錯配樣本</td></tr>'
+    learning = aggregate.get("keyword_company_learning", {})
+    edge_rows = "\n".join(
+        "<tr>"
+        f"<td>{_html(item.get('key', ''))}</td>"
+        f"<td>{_html(item.get('valid_count', 0))}</td>"
+        f"<td>{_html(item.get('hit_rate_5d', 'N/A'))}</td>"
+        f"<td>{_html(item.get('avg_directional_return_5d', 'N/A'))}</td>"
+        f"<td>{_html(item.get('edge_score_5d', 'N/A'))}</td>"
+        "</tr>"
+        for item in learning.get("top_edges", [])[:8]
+    ) or '<tr><td colspan="5">N/A</td></tr>'
     return f"""<!doctype html>
 <html lang="zh-Hant">
 <head>
@@ -266,6 +312,14 @@ table{{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0 20px}}th
 <li>信心排序準確度：{aggregate.get('confidence_calibration')}</li>
 <li>診斷：{_html(aggregate.get('calibration_strategy', 'N/A'))}</li>
 </ul>
+<section>
+<h2>關鍵詞 × 公司後續報酬學習</h2>
+<ul>
+<li>總樣本：{_html(learning.get('sample_count', 0))}，有效樣本：{_html(learning.get('valid_sample_count', 0))}，待補價格：{_html(learning.get('pending_sample_count', 0))}</li>
+<li>5 日同向比例：{_html(learning.get('hit_rate_5d', 'N/A'))}，信心排序相關：{_html(learning.get('confidence_correlation_5d', 'N/A'))}</li>
+</ul>
+<table><tr><th>關鍵詞 × 公司</th><th>有效樣本</th><th>5日同向</th><th>平均方向報酬</th><th>歷史分數</th></tr>{edge_rows}</table>
+</section>
 <p>{_html(adjustment['reason'])}</p>
 <table><tr><th>權重</th><th>調整前</th><th>調整後</th></tr>{change_rows}</table>
 <h2>題材市場確認分數</h2>
@@ -302,6 +356,21 @@ def latest_backtest_summary(reports_dir: Path) -> dict[str, Any]:
         "updated": adjustment.get("updated", False),
         "adjustment_strategy": adjustment.get("strategy", ""),
         "reason": adjustment.get("reason", ""),
+        "keyword_company_learning": aggregate.get("keyword_company_learning", {}),
+    }
+
+
+def _keyword_learning_summary(stats: dict[str, Any]) -> dict[str, Any]:
+    overall = stats.get("overall", {}) if isinstance(stats.get("overall"), dict) else {}
+    return {
+        "sample_count": stats.get("sample_count", 0),
+        "valid_sample_count": stats.get("valid_sample_count", 0),
+        "pending_sample_count": stats.get("pending_sample_count", 0),
+        "hit_rate_5d": overall.get("hit_rate_5d"),
+        "confidence_correlation_5d": overall.get("confidence_correlation_5d"),
+        "avg_directional_return_5d": overall.get("avg_directional_return_5d"),
+        "top_edges": stats.get("top_keyword_company_edges", [])[:5],
+        "weak_edges": stats.get("weak_keyword_company_edges", [])[:5],
     }
 
 
@@ -348,6 +417,13 @@ def _backtest_day(
         for relation in topic.related_companies:
             relation.price_performance = prices.collect_for_company(relation.company, relation.impact_direction)
     validation = daily_market_validation(topics)
+    keyword_company_samples = build_keyword_company_samples(
+        topics=topics,
+        topic_keywords=topic_keywords,
+        signal_date=report_date,
+        data_gaps=data_gaps,
+        article_count=len(articles),
+    )
     low_confidence_reasons = []
     if len(articles) < MIN_DAILY_ARTICLES:
         low_confidence_reasons.append(f"新聞樣本 {len(articles)} 少於 {MIN_DAILY_ARTICLES}")
@@ -363,6 +439,7 @@ def _backtest_day(
         "relation_stats": _relation_stats(topics),
         "relations": _relation_snapshots(topics),
         "keyword_returns": _keyword_returns(topics),
+        "keyword_company_samples": keyword_company_samples,
     }
 
 

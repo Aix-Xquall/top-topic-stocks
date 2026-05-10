@@ -38,6 +38,11 @@ jobs:
       - name: Run tests
         run: python -m unittest discover -s tests
 
+      - name: Refresh keyword-company samples
+        env:
+          FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
+        run: python -m market_topics samples --days 10 --end-date "${{ steps.date.outputs.report_date }}"
+
       - name: Backtest and update model weights
         env:
           FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}

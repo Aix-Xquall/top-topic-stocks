@@ -21,6 +21,14 @@ from .config import (
 from .models import RunResult
 from .notification import notify_from_summary, summary_path_for_date
 from .reporting import ReportRenderer
+from .samples import (
+    DEFAULT_SAMPLE_DAYS,
+    historical_edge_for_relation,
+    historical_edge_for_topic,
+    keyword_company_learning_summary,
+    load_keyword_company_stats,
+    run_samples,
+)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -53,6 +61,15 @@ def main(argv: list[str] | None = None) -> int:
     backtest_parser.add_argument("--offline-sample", action="store_true", help="使用內建樣本新聞測試回測流程")
     backtest_parser.add_argument("--max-topics", type=int, default=8, help="每日最多話題數")
     backtest_parser.add_argument("--max-companies", type=int, default=8, help="每個話題最多公司數")
+
+    samples_parser = subparsers.add_parser("samples", help="建立熱門關鍵詞、公司與後續報酬歷史樣本")
+    samples_parser.add_argument("--days", type=int, default=DEFAULT_SAMPLE_DAYS, help="回補樣本天數")
+    samples_parser.add_argument("--end-date", default=date.today().isoformat(), help="樣本結束日期 YYYY-MM-DD")
+    samples_parser.add_argument("--config-dir", default="config", help="設定檔目錄")
+    samples_parser.add_argument("--reports-dir", default="reports", help="報告輸出目錄")
+    samples_parser.add_argument("--offline-sample", action="store_true", help="使用內建樣本新聞測試樣本流程")
+    samples_parser.add_argument("--max-topics", type=int, default=8, help="每日最多話題數")
+    samples_parser.add_argument("--max-companies", type=int, default=8, help="每個話題最多公司數")
 
     args = parser.parse_args(argv)
     if args.command == "run":
@@ -87,6 +104,19 @@ def main(argv: list[str] | None = None) -> int:
         print(f"已產生回測 JSON：{json_path}")
         print(f"已產生回測 HTML：{html_path}")
         return 0
+    if args.command == "samples":
+        samples_path, stats_path = run_samples(
+            days=args.days,
+            end_date=date.fromisoformat(args.end_date),
+            config_dir=Path(args.config_dir),
+            reports_dir=Path(args.reports_dir),
+            offline_sample=args.offline_sample,
+            max_topics=args.max_topics,
+            max_companies=args.max_companies,
+        )
+        print(f"已產生樣本表：{samples_path}")
+        print(f"已產生樣本統計：{stats_path}")
+        return 0
     return 1
 
 
@@ -120,6 +150,8 @@ def run_report(
         max_topics=max_topics,
         max_companies_per_topic=max_companies,
     )
+    keyword_company_stats = load_keyword_company_stats(reports_dir)
+    _calibrate_relation_confidence(topics, keyword_company_stats)
 
     fundamentals = FundamentalsCollector(data_gaps=data_gaps, report_date=report_date)
     prices = PricePerformanceCollector(data_gaps=data_gaps, report_date=report_date)
@@ -132,7 +164,16 @@ def run_report(
     historical_topic_scores = load_historical_topic_scores(reports_dir, report_date.isoformat())
     backtest_summary = latest_backtest_summary(reports_dir)
     backtest_topic_scores = load_backtest_topic_scores(reports_dir)
-    topics = optimize_topic_order(topics, validation, historical_topic_scores, model_weights, backtest_topic_scores)
+    if keyword_company_stats:
+        backtest_summary.setdefault("keyword_company_learning", keyword_company_learning_summary(reports_dir))
+    topics = optimize_topic_order(
+        topics,
+        validation,
+        historical_topic_scores,
+        model_weights,
+        backtest_topic_scores,
+        keyword_company_stats,
+    )
     validation = daily_market_validation(topics)
     validation_history = load_validation_history(reports_dir, report_date.isoformat(), validation)
     renderer = ReportRenderer()
@@ -154,6 +195,7 @@ def run_report(
         validation,
         backtest_summary,
         reference_sources,
+        keyword_company_learning_summary(reports_dir),
     )
 
     return RunResult(
@@ -174,6 +216,7 @@ def write_summary(
     validation: dict | None = None,
     backtest_summary: dict | None = None,
     reference_sources: list[dict[str, str]] | None = None,
+    keyword_company_learning: dict | None = None,
 ) -> Path:
     reports_dir.mkdir(parents=True, exist_ok=True)
     path = summary_path_for_date(reports_dir, report_date.isoformat())
@@ -182,6 +225,7 @@ def write_summary(
         "topics": [_topic_to_summary(topic) for topic in topics],
         "market_validation": validation or daily_market_validation(topics),
         "backtest_summary": backtest_summary or {},
+        "keyword_company_learning": keyword_company_learning or {},
         "reference_sources": reference_sources or [],
         "data_gaps": sorted(set(data_gaps)),
     }
@@ -259,6 +303,7 @@ def optimize_topic_order(
     historical_topic_scores: dict[str, float],
     model_weights: dict[str, float] | None = None,
     backtest_topic_scores: dict[str, float] | None = None,
+    keyword_company_stats: dict | None = None,
 ) -> list:
     weights = model_weights or {}
     calibration_scores = backtest_topic_scores or {}
@@ -286,6 +331,9 @@ def optimize_topic_order(
             optimized += (float(calibration_score) - 50.0) * float(
                 weights.get("historical_topic_score_weight", 0.35)
             )
+        keyword_edge = historical_edge_for_topic(topic, keyword_company_stats or {})
+        if isinstance(keyword_edge, (int, float)):
+            optimized += (float(keyword_edge) - 50.0) * float(weights.get("keyword_company_score_weight", 0.20))
         if topic.name in BROAD_TOPICS and (not isinstance(current_score, (int, float)) or float(current_score) < 70.0):
             optimized *= float(weights.get("broad_topic_penalty", 0.65))
         if not getattr(topic, "related_companies", []):
@@ -293,6 +341,18 @@ def optimize_topic_order(
         return (optimized, topic.score)
 
     return sorted(topics, key=sort_key, reverse=True)
+
+
+def _calibrate_relation_confidence(topics: list, keyword_company_stats: dict) -> None:
+    if not keyword_company_stats:
+        return
+    for topic in topics:
+        for relation in getattr(topic, "related_companies", []):
+            edge = historical_edge_for_relation(topic.name, relation, keyword_company_stats)
+            if not isinstance(edge, (int, float)):
+                continue
+            factor = 1.0 + max(-0.15, min(0.15, (float(edge) - 50.0) / 100.0))
+            relation.confidence = round(max(0.0, min(0.95, float(relation.confidence) * factor)), 2)
 
 
 def _topic_to_summary(topic) -> dict:

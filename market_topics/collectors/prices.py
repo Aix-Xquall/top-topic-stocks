@@ -5,6 +5,7 @@ from datetime import date, datetime, timedelta, timezone
 from typing import Any
 
 from ..models import Company, PricePerformance
+from ..analysis.validation import direction_sign
 from .fundamentals import FINMIND_URL
 from .http import HttpError, get_json
 
@@ -33,6 +34,36 @@ class PricePerformanceCollector:
 
         self._cache[key] = performance
         return performance
+
+    def collect_forward_returns(
+        self,
+        company: Company,
+        direction: str,
+        signal_date: date | None = None,
+    ) -> dict[str, Any]:
+        signal = signal_date or self.report_date
+        if direction_sign(direction) == 0:
+            return {
+                "outcome_status": "neutral",
+                "source": "N/A",
+                "base_date": "N/A",
+                "target_date_3d": "N/A",
+                "target_date_5d": "N/A",
+                "forward_return_3d": None,
+                "forward_return_5d": None,
+            }
+        if company.market.upper() == "US":
+            rows = self._collect_yahoo_rows(company.ticker, company.ticker)
+            source = "Yahoo Finance chart"
+        elif company.market.upper() == "TW":
+            rows = self._collect_yahoo_rows(f"{company.ticker}.TW", company.ticker)
+            source = "Yahoo Finance chart"
+            if not rows:
+                rows = self._collect_yahoo_rows(f"{company.ticker}.TWO", company.ticker)
+        else:
+            rows = []
+            source = "N/A"
+        return _build_forward_returns(rows, signal, source)
 
     def _collect_us(self, company: Company, direction: str) -> PricePerformance:
         rows = self._collect_yahoo_rows(company.ticker, company.ticker)
@@ -130,6 +161,61 @@ def _period_return(rows: list[tuple[str, float]], trading_days: int) -> float | 
     if abs(value) > MAX_RECENT_RETURN_ABS:
         return None
     return value
+
+
+def _build_forward_returns(rows: list[tuple[str, float]], signal_date: date, source: str) -> dict[str, Any]:
+    clean_rows = sorted((day, close) for day, close in rows if close > 0)
+    if not clean_rows:
+        return {
+            "outcome_status": "missing_price",
+            "source": source,
+            "base_date": "N/A",
+            "target_date_3d": "N/A",
+            "target_date_5d": "N/A",
+            "forward_return_3d": None,
+            "forward_return_5d": None,
+        }
+    signal_text = signal_date.isoformat()
+    base_index = next((index for index, (day, _) in enumerate(clean_rows) if day >= signal_text), None)
+    if base_index is None:
+        return {
+            "outcome_status": "pending",
+            "source": source,
+            "base_date": "N/A",
+            "target_date_3d": "N/A",
+            "target_date_5d": "N/A",
+            "forward_return_3d": None,
+            "forward_return_5d": None,
+        }
+    base_date, base_close = clean_rows[base_index]
+    return_3d, target_3d = _forward_return(clean_rows, base_index, base_close, 3)
+    return_5d, target_5d = _forward_return(clean_rows, base_index, base_close, 5)
+    status = "valid" if return_5d is not None else "pending"
+    return {
+        "outcome_status": status,
+        "source": source,
+        "base_date": base_date,
+        "target_date_3d": target_3d or "N/A",
+        "target_date_5d": target_5d or "N/A",
+        "forward_return_3d": None if return_3d is None else round(return_3d, 4),
+        "forward_return_5d": None if return_5d is None else round(return_5d, 4),
+    }
+
+
+def _forward_return(
+    rows: list[tuple[str, float]],
+    base_index: int,
+    base_close: float,
+    trading_days: int,
+) -> tuple[float | None, str | None]:
+    target_index = base_index + trading_days
+    if target_index >= len(rows) or base_close == 0:
+        return None, None
+    target_date, target_close = rows[target_index]
+    value = (target_close / base_close - 1) * 100
+    if abs(value) > MAX_RECENT_RETURN_ABS:
+        return None, target_date
+    return value, target_date
 
 
 def _format_pct(value: float | None) -> str:

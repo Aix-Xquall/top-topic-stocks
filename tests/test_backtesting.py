@@ -98,6 +98,7 @@ class BacktestingTest(unittest.TestCase):
             "news_heat_weight": 1.0,
             "current_market_confirmation_weight": 1.0,
             "historical_topic_score_weight": 1.0,
+            "keyword_company_score_weight": 0.2,
             "direct_mention_weight": 0.8,
             "inferred_supply_chain_weight": 0.8,
             "broad_topic_penalty": 0.8,
@@ -112,6 +113,32 @@ class BacktestingTest(unittest.TestCase):
         after = adjustment["weights_after"]
         self.assertLessEqual(after["current_market_confirmation_weight"], 1.1)
         self.assertLessEqual(after["inferred_supply_chain_weight"], after["direct_mention_weight"])
+        self.assertLessEqual(after["keyword_company_score_weight"], 0.22)
+
+    def test_keyword_company_learning_adjusts_weight_only_with_enough_samples(self) -> None:
+        weights = {
+            "news_heat_weight": 1.0,
+            "current_market_confirmation_weight": 0.65,
+            "historical_topic_score_weight": 0.35,
+            "keyword_company_score_weight": 0.2,
+            "direct_mention_weight": 0.95,
+            "inferred_supply_chain_weight": 0.65,
+            "broad_topic_penalty": 0.75,
+            "price_divergence_penalty": 0.5,
+        }
+        adjustment = adjust_model_weights(
+            weights,
+            {
+                "days": 5,
+                "minimum_required_samples": 15,
+                "sample_count_3d": 80,
+                "correlation_3d": 0.25,
+                "keyword_company_learning": {"valid_sample_count": 40, "hit_rate_5d": 0.62},
+            },
+        )
+
+        self.assertTrue(adjustment["updated"])
+        self.assertEqual(adjustment["weights_after"]["keyword_company_score_weight"], 0.22)
 
     def test_high_direction_accuracy_negative_correlation_triggers_confidence_calibration(self) -> None:
         weights = {
@@ -223,22 +250,36 @@ class BacktestingTest(unittest.TestCase):
                 source="test",
             )
 
+        fake_forward = {
+            "outcome_status": "valid",
+            "source": "test",
+            "base_date": "2026-05-07",
+            "target_date_3d": "2026-05-12",
+            "target_date_5d": "2026-05-14",
+            "forward_return_3d": 2.0,
+            "forward_return_5d": 3.0,
+        }
         with patch("market_topics.collectors.prices.PricePerformanceCollector.collect_for_company", fake_price):
-            json_path, html_path = run_backtest(
-                days=2,
-                end_date=date(2026, 5, 7),
-                config_dir=Path("config"),
-                reports_dir=reports_dir,
-                offline_sample=True,
-                max_topics=3,
-                max_companies=3,
-            )
+            with patch(
+                "market_topics.collectors.prices.PricePerformanceCollector.collect_forward_returns",
+                return_value=fake_forward,
+            ):
+                json_path, html_path = run_backtest(
+                    days=2,
+                    end_date=date(2026, 5, 7),
+                    config_dir=Path("config"),
+                    reports_dir=reports_dir,
+                    offline_sample=True,
+                    max_topics=3,
+                    max_companies=3,
+                )
 
         payload = json.loads(json_path.read_text(encoding="utf-8"))
         self.assertTrue(json_path.exists())
         self.assertTrue(html_path.exists())
         self.assertIn("aggregate", payload)
         self.assertIn("weight_adjustment", payload)
+        self.assertIn("keyword_company_learning", payload["aggregate"])
 
 
 if __name__ == "__main__":

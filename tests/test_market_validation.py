@@ -140,6 +140,41 @@ class MarketValidationTest(unittest.TestCase):
         self.assertEqual(ordered[0].name, "記憶體與 HBM 供應鏈")
 
 
+    def test_topic_order_uses_keyword_company_history(self) -> None:
+        weak_topic = Topic(
+            name="Topic A",
+            score=3,
+            summary="test",
+            articles=[],
+            related_companies=[_relation("AAA", "正向", "+1.00%", "同向")],
+        )
+        learned_topic = Topic(
+            name="Topic B",
+            score=2,
+            summary="test",
+            articles=[],
+            related_companies=[_relation("BBB", "正向", "+1.00%", "同向")],
+        )
+        stats = {
+            "groups": {
+                "topic_ticker": {
+                    "Topic B|BBB": {"valid_count": 6, "edge_score_5d": 95.0},
+                }
+            }
+        }
+
+        ordered = optimize_topic_order(
+            [weak_topic, learned_topic],
+            {"topics": []},
+            {},
+            {"news_heat_weight": 1.0, "keyword_company_score_weight": 1.0},
+            {},
+            stats,
+        )
+
+        self.assertEqual(ordered[0].name, "Topic B")
+
+
 def _relation(
     ticker: str,
     direction: str,
