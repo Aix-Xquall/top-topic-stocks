@@ -226,11 +226,11 @@
       "diverged_count": 6,
       "aligned_ratio": 0.3846,
       "direction_accuracy": 0.3846,
-      "correlation_3d": 0.1467,
-      "correlation_5d": -0.0037,
-      "confidence_calibration": 0.1467,
+      "correlation_3d": 0.1583,
+      "correlation_5d": 0.0506,
+      "confidence_calibration": 0.1583,
       "calibration_strategy": "弱正相關",
-      "method_quality_score": 49.7863,
+      "method_quality_score": 50.1338,
       "topic_scores": {
         "AI 伺服器與資料中心": 36.8359,
         "記憶體與 HBM 供應鏈": 0.0
@@ -254,6 +254,16 @@
         "記憶體與 HBM 供應鏈": -1.78
       },
       "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 450,
+        "valid_sample_count": 0,
+        "pending_sample_count": 97,
+        "hit_rate_5d": null,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": null,
+        "top_edges": [],
+        "weak_edges": []
+      },
       "days": 5,
       "minimum_required_samples": 15
     },
@@ -265,6 +275,7 @@
         "news_heat_weight": 1.0,
         "current_market_confirmation_weight": 0.7508,
         "historical_topic_score_weight": 0.3859,
+        "keyword_company_score_weight": 0.2,
         "direct_mention_weight": 0.9296,
         "inferred_supply_chain_weight": 0.4738,
         "broad_topic_penalty": 0.6197,
@@ -274,6 +285,7 @@
         "news_heat_weight": 1.0,
         "current_market_confirmation_weight": 0.7508,
         "historical_topic_score_weight": 0.3859,
+        "keyword_company_score_weight": 0.2,
         "direct_mention_weight": 0.9296,
         "inferred_supply_chain_weight": 0.4738,
         "broad_topic_penalty": 0.6197,

@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-05-10",
+  "sample_count": 450,
+  "valid_sample_count": 0,
+  "pending_sample_count": 97,
+  "missing_price_sample_count": 0,
+  "neutral_sample_count": 353,
+  "overall": {
+    "valid_count": 0,
+    "hit_rate_3d": null,
+    "hit_rate_5d": null,
+    "shrunk_hit_rate_5d": null,
+    "avg_directional_return_3d": null,
+    "avg_directional_return_5d": null,
+    "confidence_correlation_5d": null,
+    "overconfident_miss_rate_5d": null,
+    "edge_score_5d": null,
+    "last_seen": ""
+  },
+  "groups": {
+    "keyword": {},
+    "topic": {},
+    "keyword_ticker": {},
+    "topic_ticker": {},
+    "relation_type": {}
+  },
+  "top_keyword_company_edges": [],
+  "weak_keyword_company_edges": []
+}
