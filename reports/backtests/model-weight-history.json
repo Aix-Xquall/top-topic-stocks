@@ -644,5 +644,94 @@
         }
       }
     }
+  },
+  {
+    "date": "2026-05-14",
+    "aggregate": {
+      "valid_days": 3,
+      "low_confidence_days": 2,
+      "sample_count_3d": 18,
+      "sample_count_5d": 18,
+      "validated_count": 18,
+      "aligned_count": 9,
+      "diverged_count": 9,
+      "aligned_ratio": 0.5,
+      "direction_accuracy": 0.5,
+      "correlation_3d": -0.12,
+      "correlation_5d": -0.0815,
+      "confidence_calibration": -0.12,
+      "calibration_strategy": "方向與信心皆需修正",
+      "method_quality_score": 46.399,
+      "topic_scores": {
+        "AI 伺服器與資料中心": 27.345
+      },
+      "relation_stats": {
+        "產業/供應鏈推估": {
+          "validated": 18,
+          "aligned": 9,
+          "diverged": 9,
+          "aligned_ratio": 0.5
+        }
+      },
+      "keyword_returns": {
+        "AI 伺服器與資料中心": -2.5517
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 758,
+        "valid_sample_count": 4,
+        "pending_sample_count": 221,
+        "hit_rate_5d": 1.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": 3.2496,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": true,
+      "strategy": "方向與信心皆需修正",
+      "reason": "近 5 日方向與信心排序皆偏弱，降低方向詞與供應鏈推估權重，並加重背離扣分。；關鍵詞×公司後續樣本有效 4 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 0.8259,
+        "historical_topic_score_weight": 0.4052,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.8831,
+        "inferred_supply_chain_weight": 0.3838,
+        "broad_topic_penalty": 0.5019,
+        "price_divergence_penalty": 0.3645
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 0.8259,
+        "historical_topic_score_weight": 0.4052,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.8389,
+        "inferred_supply_chain_weight": 0.3454,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.3281
+      },
+      "changes": {
+        "direct_mention_weight": {
+          "before": 0.8831,
+          "after": 0.8389
+        },
+        "inferred_supply_chain_weight": {
+          "before": 0.3838,
+          "after": 0.3454
+        },
+        "broad_topic_penalty": {
+          "before": 0.5019,
+          "after": 0.5
+        },
+        "price_divergence_penalty": {
+          "before": 0.3645,
+          "after": 0.3281
+        }
+      }
+    }
   }
 ]
