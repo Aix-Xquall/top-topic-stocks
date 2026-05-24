@@ -1,10 +1,10 @@
 {
   "news_heat_weight": 1.0,
-  "current_market_confirmation_weight": 0.9085,
-  "historical_topic_score_weight": 0.4255,
+  "current_market_confirmation_weight": 0.9994,
+  "historical_topic_score_weight": 0.4468,
   "keyword_company_score_weight": 0.2,
   "direct_mention_weight": 0.797,
-  "inferred_supply_chain_weight": 0.2798,
+  "inferred_supply_chain_weight": 0.2518,
   "broad_topic_penalty": 0.5,
   "price_divergence_penalty": 0.2953
 }
