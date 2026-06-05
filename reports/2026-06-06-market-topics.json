@@ -1,0 +1,729 @@
+{
+  "date": "2026-06-06",
+  "topics": [
+    {
+      "name": "記憶體與 HBM 供應鏈",
+      "score": 8,
+      "direction": "負向",
+      "sentiment_score": -4,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "MU",
+          "name_zh": "美光",
+          "name_en": "Micron Technology",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "-0.72",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "current_price": "864.01",
+          "all_time_high": "996.00",
+          "drawdown_from_high": "-13.25%",
+          "all_time_high_date": "2026-06-01",
+          "price_validation": "N/A"
+        },
+        {
+          "market": "US",
+          "ticker": "SNDK",
+          "name_zh": "SanDisk",
+          "name_en": "SanDisk",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "-0.72",
+          "return_3d": "-9.15%",
+          "return_5d": "-8.00%",
+          "current_price": "1,559.32",
+          "all_time_high": "1,831.50",
+          "drawdown_from_high": "-14.86%",
+          "all_time_high_date": "2026-06-03",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "AVGO",
+          "name_zh": "博通",
+          "name_en": "Broadcom",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "-0.62",
+          "return_3d": "-7.59%",
+          "return_5d": "+20.71%",
+          "current_price": "385.73",
+          "all_time_high": "446.77",
+          "drawdown_from_high": "-13.66%",
+          "all_time_high_date": "2026-05-01",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "name_en": "NVIDIA",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "-0.28",
+          "return_3d": "+2.77%",
+          "return_5d": "+15.75%",
+          "current_price": "205.10",
+          "all_time_high": "218.66",
+          "drawdown_from_high": "-6.20%",
+          "all_time_high_date": "2026-06-01",
+          "price_validation": "背離"
+        },
+        {
+          "market": "US",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "name_en": "Intel",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "-0.53",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "current_price": "99.17",
+          "all_time_high": "114.68",
+          "drawdown_from_high": "-13.52%",
+          "all_time_high_date": "2026-03-01",
+          "price_validation": "N/A"
+        }
+      ]
+    },
+    {
+      "name": "新興題材：OpenAI",
+      "score": 2,
+      "direction": "中性",
+      "sentiment_score": 0,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "MSFT",
+          "name_zh": "微軟",
+          "name_en": "Microsoft",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "0.00",
+          "return_3d": "+6.09%",
+          "return_5d": "-17.77%",
+          "current_price": "416.67",
+          "all_time_high": "506.69",
+          "drawdown_from_high": "-17.77%",
+          "all_time_high_date": "2025-06-01",
+          "price_validation": "不適用"
+        }
+      ]
+    },
+    {
+      "name": "散熱與液冷供應鏈",
+      "score": 3,
+      "direction": "中性",
+      "sentiment_score": 0,
+      "companies": [
+        {
+          "market": "TW",
+          "ticker": "3017",
+          "name_zh": "奇鋐",
+          "name_en": "AVC",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "0.00",
+          "return_3d": "-3.70%",
+          "return_5d": "-2.44%",
+          "current_price": "2,600.00",
+          "all_time_high": "2,835.00",
+          "drawdown_from_high": "-8.29%",
+          "all_time_high_date": "2026-03-31",
+          "price_validation": "不適用"
+        }
+      ]
+    },
+    {
+      "name": "半導體與晶片供應鏈",
+      "score": 7,
+      "direction": "中性",
+      "sentiment_score": 0,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "AVGO",
+          "name_zh": "博通",
+          "name_en": "Broadcom",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "0.00",
+          "return_3d": "-7.59%",
+          "return_5d": "+20.71%",
+          "current_price": "385.73",
+          "all_time_high": "446.77",
+          "drawdown_from_high": "-13.66%",
+          "all_time_high_date": "2026-05-01",
+          "price_validation": "不適用"
+        },
+        {
+          "market": "US",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "name_en": "Intel",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "0.00",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "current_price": "99.17",
+          "all_time_high": "114.68",
+          "drawdown_from_high": "-13.52%",
+          "all_time_high_date": "2026-03-01",
+          "price_validation": "不適用"
+        },
+        {
+          "market": "US",
+          "ticker": "AMD",
+          "name_zh": "超微",
+          "name_en": "Advanced Micro Devices",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "0.00",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "current_price": "466.38",
+          "all_time_high": "523.20",
+          "drawdown_from_high": "-10.86%",
+          "all_time_high_date": "2026-06-01",
+          "price_validation": "不適用"
+        },
+        {
+          "market": "TW",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "name_en": "Taiwan Semiconductor Manufacturing",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "-0.63%",
+          "return_5d": "+0.42%",
+          "current_price": "2,365.00",
+          "all_time_high": "2,385.00",
+          "drawdown_from_high": "-0.84%",
+          "all_time_high_date": "2026-05-31",
+          "price_validation": "不適用"
+        },
+        {
+          "market": "TW",
+          "ticker": "2303",
+          "name_zh": "聯電",
+          "name_en": "United Microelectronics",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "-7.07%",
+          "return_5d": "-9.00%",
+          "current_price": "131.50",
+          "all_time_high": "144.50",
+          "drawdown_from_high": "-9.00%",
+          "all_time_high_date": "2026-04-30",
+          "price_validation": "不適用"
+        },
+        {
+          "market": "US",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "name_en": "NVIDIA",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "+2.77%",
+          "return_5d": "+15.75%",
+          "current_price": "205.10",
+          "all_time_high": "218.66",
+          "drawdown_from_high": "-6.20%",
+          "all_time_high_date": "2026-06-01",
+          "price_validation": "不適用"
+        },
+        {
+          "market": "US",
+          "ticker": "MU",
+          "name_zh": "美光",
+          "name_en": "Micron Technology",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "current_price": "864.01",
+          "all_time_high": "996.00",
+          "drawdown_from_high": "-13.25%",
+          "all_time_high_date": "2026-06-01",
+          "price_validation": "不適用"
+        },
+        {
+          "market": "US",
+          "ticker": "SNDK",
+          "name_zh": "SanDisk",
+          "name_en": "SanDisk",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "-9.15%",
+          "return_5d": "-8.00%",
+          "current_price": "1,559.32",
+          "all_time_high": "1,831.50",
+          "drawdown_from_high": "-14.86%",
+          "all_time_high_date": "2026-06-03",
+          "price_validation": "不適用"
+        }
+      ]
+    },
+    {
+      "name": "AI 伺服器與資料中心",
+      "score": 18,
+      "direction": "正向",
+      "sentiment_score": 4,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "AVGO",
+          "name_zh": "博通",
+          "name_en": "Broadcom",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.36",
+          "return_3d": "-7.59%",
+          "return_5d": "+20.71%",
+          "current_price": "385.73",
+          "all_time_high": "446.77",
+          "drawdown_from_high": "-13.66%",
+          "all_time_high_date": "2026-05-01",
+          "price_validation": "背離"
+        },
+        {
+          "market": "US",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "name_en": "Intel",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.69",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "current_price": "99.17",
+          "all_time_high": "114.68",
+          "drawdown_from_high": "-13.52%",
+          "all_time_high_date": "2026-03-01",
+          "price_validation": "N/A"
+        },
+        {
+          "market": "US",
+          "ticker": "AMD",
+          "name_zh": "超微",
+          "name_en": "Advanced Micro Devices",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.67",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "current_price": "466.38",
+          "all_time_high": "523.20",
+          "drawdown_from_high": "-10.86%",
+          "all_time_high_date": "2026-06-01",
+          "price_validation": "N/A"
+        },
+        {
+          "market": "US",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "name_en": "NVIDIA",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.07",
+          "return_3d": "+2.77%",
+          "return_5d": "+15.75%",
+          "current_price": "205.10",
+          "all_time_high": "218.66",
+          "drawdown_from_high": "-6.20%",
+          "all_time_high_date": "2026-06-01",
+          "price_validation": "同向"
+        },
+        {
+          "market": "TW",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "name_en": "Taiwan Semiconductor Manufacturing",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.05",
+          "return_3d": "-0.63%",
+          "return_5d": "+0.42%",
+          "current_price": "2,365.00",
+          "all_time_high": "2,385.00",
+          "drawdown_from_high": "-0.84%",
+          "all_time_high_date": "2026-05-31",
+          "price_validation": "未明確"
+        },
+        {
+          "market": "US",
+          "ticker": "MSFT",
+          "name_zh": "微軟",
+          "name_en": "Microsoft",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.05",
+          "return_3d": "+6.09%",
+          "return_5d": "-17.77%",
+          "current_price": "416.67",
+          "all_time_high": "506.69",
+          "drawdown_from_high": "-17.77%",
+          "all_time_high_date": "2025-06-01",
+          "price_validation": "同向"
+        },
+        {
+          "market": "TW",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "name_en": "ASE Technology",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.03",
+          "return_3d": "-2.20%",
+          "return_5d": "-5.56%",
+          "current_price": "577.00",
+          "all_time_high": "611.00",
+          "drawdown_from_high": "-5.56%",
+          "all_time_high_date": "2026-04-30",
+          "price_validation": "背離"
+        },
+        {
+          "market": "TW",
+          "ticker": "2454",
+          "name_zh": "聯發科",
+          "name_en": "MediaTek",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.03",
+          "return_3d": "-4.97%",
+          "return_5d": "-0.23%",
+          "current_price": "4,300.00",
+          "all_time_high": "4,430.00",
+          "drawdown_from_high": "-2.93%",
+          "all_time_high_date": "2026-05-31",
+          "price_validation": "背離"
+        }
+      ]
+    },
+    {
+      "name": "新興題材：TradingKey",
+      "score": 2,
+      "direction": "負向",
+      "sentiment_score": -2,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "name_en": "NVIDIA",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "-0.27",
+          "return_3d": "+2.77%",
+          "return_5d": "+15.75%",
+          "current_price": "205.10",
+          "all_time_high": "218.66",
+          "drawdown_from_high": "-6.20%",
+          "all_time_high_date": "2026-06-01",
+          "price_validation": "背離"
+        },
+        {
+          "market": "US",
+          "ticker": "INTC",
+          "name_zh": "英特爾",
+          "name_en": "Intel",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "-0.53",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "current_price": "99.17",
+          "all_time_high": "114.68",
+          "drawdown_from_high": "-13.52%",
+          "all_time_high_date": "2026-03-01",
+          "price_validation": "N/A"
+        },
+        {
+          "market": "US",
+          "ticker": "MU",
+          "name_zh": "美光",
+          "name_en": "Micron Technology",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "-0.53",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "current_price": "864.01",
+          "all_time_high": "996.00",
+          "drawdown_from_high": "-13.25%",
+          "all_time_high_date": "2026-06-01",
+          "price_validation": "N/A"
+        },
+        {
+          "market": "US",
+          "ticker": "SNDK",
+          "name_zh": "SanDisk",
+          "name_en": "SanDisk",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "-0.53",
+          "return_3d": "-9.15%",
+          "return_5d": "-8.00%",
+          "current_price": "1,559.32",
+          "all_time_high": "1,831.50",
+          "drawdown_from_high": "-14.86%",
+          "all_time_high_date": "2026-06-03",
+          "price_validation": "同向"
+        }
+      ]
+    },
+    {
+      "name": "綜合市場情緒",
+      "score": 48,
+      "direction": "負向",
+      "sentiment_score": -1,
+      "companies": []
+    },
+    {
+      "name": "新興題材：MoneyDJ",
+      "score": 7,
+      "direction": "負向",
+      "sentiment_score": -1,
+      "companies": []
+    }
+  ],
+  "market_validation": {
+    "sample_count_3d": 11,
+    "sample_count_5d": 11,
+    "correlation_3d": 0.124,
+    "correlation_5d": 0.0622,
+    "aligned_count": 5,
+    "diverged_count": 5,
+    "unclear_count": 1,
+    "validated_count": 11,
+    "aligned_ratio": 0.4545,
+    "topics": [
+      {
+        "topic": "記憶體與 HBM 供應鏈",
+        "company_count": 5,
+        "validated_count": 3,
+        "aligned_count": 2,
+        "diverged_count": 1,
+        "unclear_count": 0,
+        "aligned_ratio": 0.6667,
+        "avg_directional_return_3d": 4.6567,
+        "avg_directional_return_5d": -9.4867,
+        "market_confirmation_score": 60.6367
+      },
+      {
+        "topic": "新興題材：OpenAI",
+        "company_count": 1,
+        "validated_count": 0,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "aligned_ratio": null,
+        "avg_directional_return_3d": null,
+        "avg_directional_return_5d": null,
+        "market_confirmation_score": null
+      },
+      {
+        "topic": "散熱與液冷供應鏈",
+        "company_count": 1,
+        "validated_count": 0,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "aligned_ratio": null,
+        "avg_directional_return_3d": null,
+        "avg_directional_return_5d": null,
+        "market_confirmation_score": null
+      },
+      {
+        "topic": "半導體與晶片供應鏈",
+        "company_count": 8,
+        "validated_count": 0,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "aligned_ratio": null,
+        "avg_directional_return_3d": null,
+        "avg_directional_return_5d": null,
+        "market_confirmation_score": null
+      },
+      {
+        "topic": "AI 伺服器與資料中心",
+        "company_count": 8,
+        "validated_count": 6,
+        "aligned_count": 2,
+        "diverged_count": 3,
+        "unclear_count": 1,
+        "aligned_ratio": 0.3333,
+        "avg_directional_return_3d": -1.0883,
+        "avg_directional_return_5d": 2.22,
+        "market_confirmation_score": 20.0683
+      },
+      {
+        "topic": "新興題材：TradingKey",
+        "company_count": 4,
+        "validated_count": 2,
+        "aligned_count": 1,
+        "diverged_count": 1,
+        "unclear_count": 0,
+        "aligned_ratio": 0.5,
+        "avg_directional_return_3d": 3.19,
+        "avg_directional_return_5d": -3.875,
+        "market_confirmation_score": 44.57
+      },
+      {
+        "topic": "綜合市場情緒",
+        "company_count": 0,
+        "validated_count": 0,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "aligned_ratio": null,
+        "avg_directional_return_3d": null,
+        "avg_directional_return_5d": null,
+        "market_confirmation_score": null
+      },
+      {
+        "topic": "新興題材：MoneyDJ",
+        "company_count": 0,
+        "validated_count": 0,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "aligned_ratio": null,
+        "avg_directional_return_3d": null,
+        "avg_directional_return_5d": null,
+        "market_confirmation_score": null
+      }
+    ]
+  },
+  "backtest_summary": {
+    "date": "2026-06-06",
+    "days": 5,
+    "correlation_3d": 0.1373,
+    "correlation_5d": 0.1234,
+    "aligned_ratio": 0.4,
+    "direction_accuracy": 0.4,
+    "confidence_calibration": 0.1373,
+    "calibration_strategy": "弱正相關",
+    "overconfident_misses": [],
+    "validated_count": 15,
+    "updated": true,
+    "adjustment_strategy": "弱正相關",
+    "reason": "近 5 日方向與信心排序皆偏弱，降低方向詞與供應鏈推估權重，並加重背離扣分。；關鍵詞×公司後續樣本有效 4 筆，未達 30 筆，不調整樣本權重",
+    "keyword_company_learning": {
+      "sample_count": 2952,
+      "valid_sample_count": 4,
+      "pending_sample_count": 570,
+      "hit_rate_5d": 1.0,
+      "confidence_correlation_5d": null,
+      "avg_directional_return_5d": 3.2496,
+      "top_edges": [],
+      "weak_edges": []
+    }
+  },
+  "keyword_company_learning": {
+    "sample_count": 2952,
+    "valid_sample_count": 4,
+    "pending_sample_count": 570,
+    "hit_rate_5d": 1.0,
+    "confidence_correlation_5d": null,
+    "avg_directional_return_5d": 3.2496,
+    "top_edges": [],
+    "weak_edges": []
+  },
+  "reference_sources": [
+    {
+      "category": "官方資料",
+      "name": "公開資訊觀測站 MOPS",
+      "url": "https://mops.twse.com.tw/",
+      "usage": "重大訊息、月營收、財報、法說、年報",
+      "mode": "事實驗證 / 基本面來源"
+    },
+    {
+      "category": "官方資料",
+      "name": "臺灣證券交易所 TWSE",
+      "url": "https://www.twse.com.tw/",
+      "usage": "上市股價、法人、注意股、產業統計",
+      "mode": "價格與市場驗證"
+    },
+    {
+      "category": "官方資料",
+      "name": "櫃買中心 TPEx",
+      "url": "https://www.tpex.org.tw/",
+      "usage": "上櫃、興櫃公告與交易資料",
+      "mode": "價格與市場驗證"
+    },
+    {
+      "category": "官方資料",
+      "name": "SEC EDGAR",
+      "url": "https://www.sec.gov/edgar/search/",
+      "usage": "美股 10-K、10-Q、8-K、S-1 與公司申報",
+      "mode": "美股事實驗證 / 財報來源"
+    },
+    {
+      "category": "財經新聞",
+      "name": "Yahoo 奇摩股市",
+      "url": "https://tw.stock.yahoo.com/news",
+      "usage": "台股、美股、個股新聞與熱門排行",
+      "mode": "題材熱度來源"
+    },
+    {
+      "category": "財經新聞",
+      "name": "鉅亨網",
+      "url": "https://news.cnyes.com/news/cat/tw_stock_news",
+      "usage": "台股即時新聞、盤後整理、產業與法人動向",
+      "mode": "題材熱度來源"
+    },
+    {
+      "category": "財經新聞",
+      "name": "MoneyDJ",
+      "url": "https://www.moneydj.com/kmdj/common/listnewarticles.aspx?a=X0200000&svc=NW",
+      "usage": "個股情報、產業新聞、供應鏈脈絡",
+      "mode": "題材熱度來源"
+    },
+    {
+      "category": "財經新聞",
+      "name": "經濟日報 money",
+      "url": "https://money.udn.com/money/cate/5590",
+      "usage": "證券、產業與法人觀點",
+      "mode": "題材熱度來源"
+    },
+    {
+      "category": "財經新聞",
+      "name": "中央社財經",
+      "url": "https://www.cna.com.tw/list/afe.aspx",
+      "usage": "公司公告、政策、產業新聞",
+      "mode": "高可信新聞來源"
+    },
+    {
+      "category": "財經新聞",
+      "name": "工商時報",
+      "url": "https://www.ctee.com.tw/",
+      "usage": "台股、產業、法人與供應鏈新聞",
+      "mode": "題材熱度來源"
+    },
+    {
+      "category": "科技產業",
+      "name": "TechNews 科技新報",
+      "url": "https://technews.tw/",
+      "usage": "半導體、AI、晶片、先進封裝與供應鏈",
+      "mode": "產業題材來源"
+    },
+    {
+      "category": "國際財經",
+      "name": "Reuters Markets",
+      "url": "https://www.reuters.com/markets/",
+      "usage": "美股、國際市場、公司與總經事件",
+      "mode": "高可信新聞來源"
+    },
+    {
+      "category": "國際財經",
+      "name": "CNBC Markets",
+      "url": "https://www.cnbc.com/markets/",
+      "usage": "美股、科技股、盤中市場題材",
+      "mode": "題材熱度來源"
+    },
+    {
+      "category": "事件日曆",
+      "name": "Nasdaq Earnings Calendar",
+      "url": "https://www.nasdaq.com/market-activity/earnings",
+      "usage": "美股財報日程、股利、IPO、拆併股",
+      "mode": "事件校正來源"
+    },
+    {
+      "category": "事件日曆",
+      "name": "Investing.com Economic Calendar",
+      "url": "https://www.investing.com/economic-calendar",
+      "usage": "CPI、利率、PMI、GDP 等總經事件",
+      "mode": "總經事件校正"
+    }
+  ],
+  "data_gaps": [
+    "RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=intl-markets，原因：HTTP Error 404: Not Found",
+    "RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=news，原因：HTTP Error 404: Not Found",
+    "RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=research，原因：HTTP Error 404: Not Found",
+    "RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=tw-market，原因：HTTP Error 404: Not Found"
+  ]
+}
