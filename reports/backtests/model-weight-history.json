@@ -2890,5 +2890,100 @@
       },
       "changes": {}
     }
+  },
+  {
+    "date": "2026-06-11",
+    "aggregate": {
+      "valid_days": 3,
+      "low_confidence_days": 2,
+      "sample_count_3d": 19,
+      "sample_count_5d": 19,
+      "validated_count": 19,
+      "aligned_count": 6,
+      "diverged_count": 12,
+      "aligned_ratio": 0.3158,
+      "direction_accuracy": 0.3158,
+      "correlation_3d": 0.1077,
+      "correlation_5d": -0.2638,
+      "confidence_calibration": 0.1077,
+      "calibration_strategy": "弱正相關",
+      "method_quality_score": 45.8623,
+      "topic_scores": {
+        "AI 伺服器與資料中心": 29.224,
+        "散熱與液冷供應鏈": 0.0,
+        "新興題材：5月營收": 0.0
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 3,
+          "aligned": 1,
+          "diverged": 2,
+          "aligned_ratio": 0.3333
+        },
+        "產業/供應鏈推估": {
+          "validated": 16,
+          "aligned": 5,
+          "diverged": 10,
+          "aligned_ratio": 0.3125
+        }
+      },
+      "keyword_returns": {
+        "AI 伺服器與資料中心": 1.2612,
+        "新興題材：5月營收": -4.65,
+        "散熱與液冷供應鏈": -6.09
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 3376,
+        "valid_sample_count": 4,
+        "pending_sample_count": 720,
+        "hit_rate_5d": 1.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": 3.2496,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": true,
+      "strategy": "弱正相關",
+      "reason": "近 5 日方向與信心排序皆偏弱，降低方向詞與供應鏈推估權重，並加重背離扣分。；關鍵詞×公司後續樣本有效 4 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.0993,
+        "historical_topic_score_weight": 0.4691,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.7571,
+        "inferred_supply_chain_weight": 0.2039,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2658
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.0993,
+        "historical_topic_score_weight": 0.4691,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.7192,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2392
+      },
+      "changes": {
+        "direct_mention_weight": {
+          "before": 0.7571,
+          "after": 0.7192
+        },
+        "inferred_supply_chain_weight": {
+          "before": 0.2039,
+          "after": 0.2
+        },
+        "price_divergence_penalty": {
+          "before": 0.2658,
+          "after": 0.2392
+        }
+      }
+    }
   }
 ]
