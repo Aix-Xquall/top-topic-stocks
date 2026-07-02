@@ -1,48 +1,24 @@
 {
-  "generated_at": "2026-07-02",
+  "generated_at": "2026-07-03",
   "sample_count": 5000,
-  "valid_sample_count": 4,
-  "pending_sample_count": 1005,
+  "valid_sample_count": 2,
+  "pending_sample_count": 961,
   "missing_price_sample_count": 0,
-  "neutral_sample_count": 3991,
+  "neutral_sample_count": 4037,
   "overall": {
-    "valid_count": 4,
+    "valid_count": 2,
     "hit_rate_3d": 1.0,
     "hit_rate_5d": 1.0,
-    "shrunk_hit_rate_5d": 0.6667,
+    "shrunk_hit_rate_5d": 0.6,
     "avg_directional_return_3d": 11.0942,
     "avg_directional_return_5d": 3.2496,
     "confidence_correlation_5d": null,
     "overconfident_miss_rate_5d": 0.0,
-    "edge_score_5d": 71.7907,
+    "edge_score_5d": 66.124,
     "last_seen": "2026-05-05"
   },
   "groups": {
     "keyword": {
-      "HBM": {
-        "valid_count": 1,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.5556,
-        "avg_directional_return_3d": 11.0942,
-        "avg_directional_return_5d": 3.2496,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": 0.0,
-        "edge_score_5d": 62.0129,
-        "last_seen": "2026-05-05"
-      },
-      "美光": {
-        "valid_count": 1,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.5556,
-        "avg_directional_return_3d": 11.0942,
-        "avg_directional_return_5d": 3.2496,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": 0.0,
-        "edge_score_5d": 62.0129,
-        "last_seen": "2026-05-05"
-      },
       "記憶體": {
         "valid_count": 1,
         "hit_rate_3d": 1.0,
@@ -70,43 +46,19 @@
     },
     "topic": {
       "記憶體與 HBM 供應鏈": {
-        "valid_count": 4,
+        "valid_count": 2,
         "hit_rate_3d": 1.0,
         "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.6667,
+        "shrunk_hit_rate_5d": 0.6,
         "avg_directional_return_3d": 11.0942,
         "avg_directional_return_5d": 3.2496,
         "confidence_correlation_5d": null,
         "overconfident_miss_rate_5d": 0.0,
-        "edge_score_5d": 71.7907,
+        "edge_score_5d": 66.124,
         "last_seen": "2026-05-05"
       }
     },
     "keyword_ticker": {
-      "HBM|SNDK": {
-        "valid_count": 1,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.5556,
-        "avg_directional_return_3d": 11.0942,
-        "avg_directional_return_5d": 3.2496,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": 0.0,
-        "edge_score_5d": 62.0129,
-        "last_seen": "2026-05-05"
-      },
-      "美光|SNDK": {
-        "valid_count": 1,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.5556,
-        "avg_directional_return_3d": 11.0942,
-        "avg_directional_return_5d": 3.2496,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": 0.0,
-        "edge_score_5d": 62.0129,
-        "last_seen": "2026-05-05"
-      },
       "記憶體|SNDK": {
         "valid_count": 1,
         "hit_rate_3d": 1.0,
@@ -134,29 +86,29 @@
     },
     "topic_ticker": {
       "記憶體與 HBM 供應鏈|SNDK": {
-        "valid_count": 4,
+        "valid_count": 2,
         "hit_rate_3d": 1.0,
         "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.6667,
+        "shrunk_hit_rate_5d": 0.6,
         "avg_directional_return_3d": 11.0942,
         "avg_directional_return_5d": 3.2496,
         "confidence_correlation_5d": null,
         "overconfident_miss_rate_5d": 0.0,
-        "edge_score_5d": 71.7907,
+        "edge_score_5d": 66.124,
         "last_seen": "2026-05-05"
       }
     },
     "relation_type": {
       "新聞直接提及": {
-        "valid_count": 4,
+        "valid_count": 2,
         "hit_rate_3d": 1.0,
         "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.6667,
+        "shrunk_hit_rate_5d": 0.6,
         "avg_directional_return_3d": 11.0942,
         "avg_directional_return_5d": 3.2496,
         "confidence_correlation_5d": null,
         "overconfident_miss_rate_5d": 0.0,
-        "edge_score_5d": 71.7907,
+        "edge_score_5d": 66.124,
         "last_seen": "2026-05-05"
       }
     }
