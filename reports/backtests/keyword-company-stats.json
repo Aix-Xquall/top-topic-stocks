@@ -1,117 +1,28 @@
 {
-  "generated_at": "2026-07-03",
+  "generated_at": "2026-07-04",
   "sample_count": 5000,
-  "valid_sample_count": 2,
-  "pending_sample_count": 961,
+  "valid_sample_count": 0,
+  "pending_sample_count": 950,
   "missing_price_sample_count": 0,
-  "neutral_sample_count": 4037,
+  "neutral_sample_count": 4050,
   "overall": {
-    "valid_count": 2,
-    "hit_rate_3d": 1.0,
-    "hit_rate_5d": 1.0,
-    "shrunk_hit_rate_5d": 0.6,
-    "avg_directional_return_3d": 11.0942,
-    "avg_directional_return_5d": 3.2496,
+    "valid_count": 0,
+    "hit_rate_3d": null,
+    "hit_rate_5d": null,
+    "shrunk_hit_rate_5d": null,
+    "avg_directional_return_3d": null,
+    "avg_directional_return_5d": null,
     "confidence_correlation_5d": null,
-    "overconfident_miss_rate_5d": 0.0,
-    "edge_score_5d": 66.124,
-    "last_seen": "2026-05-05"
+    "overconfident_miss_rate_5d": null,
+    "edge_score_5d": null,
+    "last_seen": ""
   },
   "groups": {
-    "keyword": {
-      "記憶體": {
-        "valid_count": 1,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.5556,
-        "avg_directional_return_3d": 11.0942,
-        "avg_directional_return_5d": 3.2496,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": 0.0,
-        "edge_score_5d": 62.0129,
-        "last_seen": "2026-05-05"
-      },
-      "SanDisk": {
-        "valid_count": 1,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.5556,
-        "avg_directional_return_3d": 11.0942,
-        "avg_directional_return_5d": 3.2496,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": 0.0,
-        "edge_score_5d": 62.0129,
-        "last_seen": "2026-05-05"
-      }
-    },
-    "topic": {
-      "記憶體與 HBM 供應鏈": {
-        "valid_count": 2,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.6,
-        "avg_directional_return_3d": 11.0942,
-        "avg_directional_return_5d": 3.2496,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": 0.0,
-        "edge_score_5d": 66.124,
-        "last_seen": "2026-05-05"
-      }
-    },
-    "keyword_ticker": {
-      "記憶體|SNDK": {
-        "valid_count": 1,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.5556,
-        "avg_directional_return_3d": 11.0942,
-        "avg_directional_return_5d": 3.2496,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": 0.0,
-        "edge_score_5d": 62.0129,
-        "last_seen": "2026-05-05"
-      },
-      "SanDisk|SNDK": {
-        "valid_count": 1,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.5556,
-        "avg_directional_return_3d": 11.0942,
-        "avg_directional_return_5d": 3.2496,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": 0.0,
-        "edge_score_5d": 62.0129,
-        "last_seen": "2026-05-05"
-      }
-    },
-    "topic_ticker": {
-      "記憶體與 HBM 供應鏈|SNDK": {
-        "valid_count": 2,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.6,
-        "avg_directional_return_3d": 11.0942,
-        "avg_directional_return_5d": 3.2496,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": 0.0,
-        "edge_score_5d": 66.124,
-        "last_seen": "2026-05-05"
-      }
-    },
-    "relation_type": {
-      "新聞直接提及": {
-        "valid_count": 2,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.6,
-        "avg_directional_return_3d": 11.0942,
-        "avg_directional_return_5d": 3.2496,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": 0.0,
-        "edge_score_5d": 66.124,
-        "last_seen": "2026-05-05"
-      }
-    }
+    "keyword": {},
+    "topic": {},
+    "keyword_ticker": {},
+    "topic_ticker": {},
+    "relation_type": {}
   },
   "top_keyword_company_edges": [],
   "weak_keyword_company_edges": []
