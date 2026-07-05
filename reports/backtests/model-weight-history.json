@@ -4860,5 +4860,94 @@
         }
       }
     }
+  },
+  {
+    "date": "2026-07-06",
+    "aggregate": {
+      "valid_days": 3,
+      "low_confidence_days": 2,
+      "sample_count_3d": 19,
+      "sample_count_5d": 19,
+      "validated_count": 19,
+      "aligned_count": 6,
+      "diverged_count": 7,
+      "aligned_ratio": 0.3158,
+      "direction_accuracy": 0.3158,
+      "correlation_3d": 0.1949,
+      "correlation_5d": 0.4401,
+      "confidence_calibration": 0.1949,
+      "calibration_strategy": "弱正相關",
+      "method_quality_score": 48.4794,
+      "topic_scores": {
+        "記憶體與 HBM 供應鏈": 100.0,
+        "AI 伺服器與資料中心": 16.175
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 3,
+          "aligned": 1,
+          "diverged": 1,
+          "aligned_ratio": 0.3333
+        },
+        "產業/供應鏈推估": {
+          "validated": 16,
+          "aligned": 5,
+          "diverged": 6,
+          "aligned_ratio": 0.3125
+        }
+      },
+      "keyword_returns": {
+        "記憶體與 HBM 供應鏈": 16.83,
+        "AI 伺服器與資料中心": -1.5028
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 0,
+        "pending_sample_count": 942,
+        "hit_rate_5d": null,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": null,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": true,
+      "strategy": "弱正相關",
+      "reason": "近 5 日方向與信心排序皆偏弱，降低方向詞與供應鏈推估權重，並加重背離扣分。；關鍵詞×公司後續樣本有效 0 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.4631,
+        "historical_topic_score_weight": 0.5431,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6832,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2153
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.4631,
+        "historical_topic_score_weight": 0.5431,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.649,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {
+        "direct_mention_weight": {
+          "before": 0.6832,
+          "after": 0.649
+        },
+        "price_divergence_penalty": {
+          "before": 0.2153,
+          "after": 0.2
+        }
+      }
+    }
   }
 ]

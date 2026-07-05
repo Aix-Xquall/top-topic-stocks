@@ -3,8 +3,8 @@
   "current_market_confirmation_weight": 1.4631,
   "historical_topic_score_weight": 0.5431,
   "keyword_company_score_weight": 0.2,
-  "direct_mention_weight": 0.6832,
+  "direct_mention_weight": 0.649,
   "inferred_supply_chain_weight": 0.2,
   "broad_topic_penalty": 0.5,
-  "price_divergence_penalty": 0.2153
+  "price_divergence_penalty": 0.2
 }
