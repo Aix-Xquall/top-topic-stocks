@@ -1,0 +1,205 @@
+{
+  "date": "2026-07-19",
+  "days": 5,
+  "start_date": "2026-07-15",
+  "end_date": "2026-07-19",
+  "aggregate": {
+    "valid_days": 0,
+    "low_confidence_days": 5,
+    "sample_count_3d": 0,
+    "sample_count_5d": 0,
+    "validated_count": 0,
+    "aligned_count": 0,
+    "diverged_count": 0,
+    "aligned_ratio": null,
+    "direction_accuracy": null,
+    "correlation_3d": null,
+    "correlation_5d": null,
+    "confidence_calibration": null,
+    "calibration_strategy": "樣本不足",
+    "method_quality_score": null,
+    "topic_scores": {},
+    "relation_stats": {},
+    "keyword_returns": {},
+    "overconfident_misses": [],
+    "keyword_company_learning": {
+      "sample_count": 5000,
+      "valid_sample_count": 5,
+      "pending_sample_count": 937,
+      "hit_rate_5d": 0.0,
+      "confidence_correlation_5d": null,
+      "avg_directional_return_5d": -9.7948,
+      "top_edges": [],
+      "weak_edges": []
+    },
+    "days": 5,
+    "minimum_required_samples": 15
+  },
+  "weight_adjustment": {
+    "updated": false,
+    "strategy": "樣本不足",
+    "reason": "近 5 日有效樣本 0 筆，低於 15 筆門檻，暫不調整權重。",
+    "weights_before": {
+      "news_heat_weight": 1.0,
+      "current_market_confirmation_weight": 1.5,
+      "historical_topic_score_weight": 0.5988,
+      "keyword_company_score_weight": 0.2,
+      "direct_mention_weight": 0.6166,
+      "inferred_supply_chain_weight": 0.2,
+      "broad_topic_penalty": 0.5,
+      "price_divergence_penalty": 0.2
+    },
+    "weights_after": {
+      "news_heat_weight": 1.0,
+      "current_market_confirmation_weight": 1.5,
+      "historical_topic_score_weight": 0.5988,
+      "keyword_company_score_weight": 0.2,
+      "direct_mention_weight": 0.6166,
+      "inferred_supply_chain_weight": 0.2,
+      "broad_topic_penalty": 0.5,
+      "price_divergence_penalty": 0.2
+    },
+    "changes": {}
+  },
+  "daily_results": [
+    {
+      "date": "2026-07-15",
+      "article_count": 0,
+      "news_cache_hit": false,
+      "low_confidence": true,
+      "low_confidence_reasons": [
+        "新聞樣本 0 少於 5",
+        "價格驗證樣本 0 少於 3"
+      ],
+      "validation": {
+        "sample_count_3d": 0,
+        "sample_count_5d": 0,
+        "correlation_3d": null,
+        "correlation_5d": null,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "validated_count": 0,
+        "aligned_ratio": null,
+        "topics": []
+      },
+      "relation_stats": {},
+      "relations": [],
+      "keyword_returns": {},
+      "keyword_company_samples": []
+    },
+    {
+      "date": "2026-07-16",
+      "article_count": 0,
+      "news_cache_hit": false,
+      "low_confidence": true,
+      "low_confidence_reasons": [
+        "新聞樣本 0 少於 5",
+        "價格驗證樣本 0 少於 3"
+      ],
+      "validation": {
+        "sample_count_3d": 0,
+        "sample_count_5d": 0,
+        "correlation_3d": null,
+        "correlation_5d": null,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "validated_count": 0,
+        "aligned_ratio": null,
+        "topics": []
+      },
+      "relation_stats": {},
+      "relations": [],
+      "keyword_returns": {},
+      "keyword_company_samples": []
+    },
+    {
+      "date": "2026-07-17",
+      "article_count": 0,
+      "news_cache_hit": false,
+      "low_confidence": true,
+      "low_confidence_reasons": [
+        "新聞樣本 0 少於 5",
+        "價格驗證樣本 0 少於 3"
+      ],
+      "validation": {
+        "sample_count_3d": 0,
+        "sample_count_5d": 0,
+        "correlation_3d": null,
+        "correlation_5d": null,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "validated_count": 0,
+        "aligned_ratio": null,
+        "topics": []
+      },
+      "relation_stats": {},
+      "relations": [],
+      "keyword_returns": {},
+      "keyword_company_samples": []
+    },
+    {
+      "date": "2026-07-18",
+      "article_count": 0,
+      "news_cache_hit": false,
+      "low_confidence": true,
+      "low_confidence_reasons": [
+        "新聞樣本 0 少於 5",
+        "價格驗證樣本 0 少於 3"
+      ],
+      "validation": {
+        "sample_count_3d": 0,
+        "sample_count_5d": 0,
+        "correlation_3d": null,
+        "correlation_5d": null,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "validated_count": 0,
+        "aligned_ratio": null,
+        "topics": []
+      },
+      "relation_stats": {},
+      "relations": [],
+      "keyword_returns": {},
+      "keyword_company_samples": []
+    },
+    {
+      "date": "2026-07-19",
+      "article_count": 0,
+      "news_cache_hit": false,
+      "low_confidence": true,
+      "low_confidence_reasons": [
+        "新聞樣本 0 少於 5",
+        "價格驗證樣本 0 少於 3"
+      ],
+      "validation": {
+        "sample_count_3d": 0,
+        "sample_count_5d": 0,
+        "correlation_3d": null,
+        "correlation_5d": null,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "validated_count": 0,
+        "aligned_ratio": null,
+        "topics": []
+      },
+      "relation_stats": {},
+      "relations": [],
+      "keyword_returns": {},
+      "keyword_company_samples": []
+    }
+  ],
+  "data_gaps": [
+    "GDELT 新聞抓取失敗：Expecting value: line 1 column 1 (char 0)",
+    "GDELT 新聞抓取失敗：HTTP Error 429: Too Many Requests",
+    "Google News 歷史新聞抓取失敗：2026-07-15，原因：HTTP Error 503: Service Unavailable",
+    "Google News 歷史新聞抓取失敗：2026-07-16，原因：HTTP Error 503: Service Unavailable",
+    "Google News 歷史新聞抓取失敗：2026-07-17，原因：HTTP Error 503: Service Unavailable",
+    "Google News 歷史新聞抓取失敗：2026-07-18，原因：HTTP Error 503: Service Unavailable",
+    "Google News 歷史新聞抓取失敗：2026-07-19，原因：HTTP Error 503: Service Unavailable"
+  ]
+}
