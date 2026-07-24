@@ -6318,5 +6318,85 @@
       },
       "changes": {}
     }
+  },
+  {
+    "date": "2026-07-25",
+    "aggregate": {
+      "valid_days": 1,
+      "low_confidence_days": 4,
+      "sample_count_3d": 7,
+      "sample_count_5d": 7,
+      "validated_count": 7,
+      "aligned_count": 3,
+      "diverged_count": 4,
+      "aligned_ratio": 0.4286,
+      "direction_accuracy": 0.4286,
+      "correlation_3d": 0.0374,
+      "correlation_5d": 0.0658,
+      "confidence_calibration": 0.0374,
+      "calibration_strategy": "低相關",
+      "method_quality_score": 48.2649,
+      "topic_scores": {
+        "新興題材：頎邦股價一字鎖跌停": 79.48,
+        "AI 伺服器與資料中心": 9.6883
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 2,
+          "aligned": 1,
+          "diverged": 1,
+          "aligned_ratio": 0.5
+        },
+        "產業/供應鏈推估": {
+          "validated": 5,
+          "aligned": 2,
+          "diverged": 3,
+          "aligned_ratio": 0.4
+        }
+      },
+      "keyword_returns": {
+        "新興題材：頎邦股價一字鎖跌停": 3.16,
+        "AI 伺服器與資料中心": -4.5483
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 5,
+        "pending_sample_count": 931,
+        "hit_rate_5d": 0.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": -9.7948,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": false,
+      "strategy": "樣本不足",
+      "reason": "近 5 日有效樣本 7 筆，低於 15 筆門檻，暫不調整權重。",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6287,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6166,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6287,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6166,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {}
+    }
   }
 ]
