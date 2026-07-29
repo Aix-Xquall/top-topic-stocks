@@ -6733,5 +6733,83 @@
       },
       "changes": {}
     }
+  },
+  {
+    "date": "2026-07-30",
+    "aggregate": {
+      "valid_days": 1,
+      "low_confidence_days": 4,
+      "sample_count_3d": 5,
+      "sample_count_5d": 5,
+      "validated_count": 5,
+      "aligned_count": 3,
+      "diverged_count": 1,
+      "aligned_ratio": 0.6,
+      "direction_accuracy": 0.6,
+      "correlation_3d": 0.7073,
+      "correlation_5d": 0.7282,
+      "confidence_calibration": 0.7073,
+      "calibration_strategy": "正相關",
+      "method_quality_score": 75.219,
+      "topic_scores": {
+        "先進封裝與 CoPoS": 100.0,
+        "新興題材：國巨再吞跌停": 100.0,
+        "新興題材：MoneyDJ": 0.0,
+        "新興題材：全年營收": 0.0
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 5,
+          "aligned": 3,
+          "diverged": 1,
+          "aligned_ratio": 0.6
+        }
+      },
+      "keyword_returns": {
+        "先進封裝與 CoPoS": 19.92,
+        "新興題材：國巨再吞跌停": 19.26,
+        "新興題材：全年營收": -0.56,
+        "新興題材：MoneyDJ": -18.0
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 5,
+        "pending_sample_count": 1044,
+        "hit_rate_5d": 0.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": -9.7948,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": false,
+      "strategy": "樣本不足",
+      "reason": "近 5 日有效樣本 5 筆，低於 15 筆門檻，暫不調整權重。",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6287,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6287,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {}
+    }
   }
 ]
