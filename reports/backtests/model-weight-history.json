@@ -1,47 +1,5 @@
 [
   {
-    "date": "2026-05-07",
-    "aggregate": {
-      "valid_days": 0,
-      "low_confidence_days": 2,
-      "sample_count_3d": 0,
-      "sample_count_5d": 0,
-      "validated_count": 0,
-      "aligned_count": 0,
-      "diverged_count": 0,
-      "aligned_ratio": null,
-      "correlation_3d": null,
-      "correlation_5d": null,
-      "method_quality_score": null,
-      "topic_scores": {},
-      "relation_stats": {},
-      "keyword_returns": {}
-    },
-    "weight_adjustment": {
-      "updated": false,
-      "reason": "有效樣本 0 未達 50，不自動調權重。",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.65,
-        "historical_topic_score_weight": 0.35,
-        "direct_mention_weight": 1.0,
-        "inferred_supply_chain_weight": 0.65,
-        "broad_topic_penalty": 0.85,
-        "price_divergence_penalty": 0.5
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.65,
-        "historical_topic_score_weight": 0.35,
-        "direct_mention_weight": 1.0,
-        "inferred_supply_chain_weight": 0.65,
-        "broad_topic_penalty": 0.85,
-        "price_divergence_penalty": 0.5
-      },
-      "changes": {}
-    }
-  },
-  {
     "date": "2026-05-08",
     "aggregate": {
       "valid_days": 5,
@@ -7149,6 +7107,67 @@
       "updated": false,
       "strategy": "樣本不足",
       "reason": "近 5 日有效樣本 13 筆，低於 15 筆門檻，暫不調整權重。",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6287,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6287,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {}
+    }
+  },
+  {
+    "date": "2026-08-05",
+    "aggregate": {
+      "valid_days": 0,
+      "low_confidence_days": 5,
+      "sample_count_3d": 0,
+      "sample_count_5d": 0,
+      "validated_count": 0,
+      "aligned_count": 0,
+      "diverged_count": 0,
+      "aligned_ratio": null,
+      "direction_accuracy": null,
+      "correlation_3d": null,
+      "correlation_5d": null,
+      "confidence_calibration": null,
+      "calibration_strategy": "樣本不足",
+      "method_quality_score": null,
+      "topic_scores": {},
+      "relation_stats": {},
+      "keyword_returns": {},
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 5,
+        "pending_sample_count": 959,
+        "hit_rate_5d": 0.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": -9.7948,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": false,
+      "strategy": "樣本不足",
+      "reason": "近 5 日有效樣本 0 筆，低於 15 筆門檻，暫不調整權重。",
       "weights_before": {
         "news_heat_weight": 1.0,
         "current_market_confirmation_weight": 1.5,
