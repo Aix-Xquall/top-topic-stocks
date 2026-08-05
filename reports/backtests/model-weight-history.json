@@ -1,110 +1,5 @@
 [
   {
-    "date": "2026-05-08",
-    "aggregate": {
-      "valid_days": 5,
-      "low_confidence_days": 0,
-      "sample_count_3d": 36,
-      "sample_count_5d": 36,
-      "validated_count": 36,
-      "aligned_count": 32,
-      "diverged_count": 1,
-      "aligned_ratio": 0.8889,
-      "direction_accuracy": 0.8889,
-      "correlation_3d": 0.0443,
-      "correlation_5d": 0.2471,
-      "confidence_calibration": 0.0443,
-      "calibration_strategy": "低相關",
-      "method_quality_score": 66.8831,
-      "topic_scores": {
-        "散熱與液冷供應鏈": 100.0,
-        "綜合市場情緒": 95.599,
-        "記憶體與 HBM 供應鏈": 92.2262,
-        "AI 伺服器與資料中心": 74.3811,
-        "半導體與晶片供應鏈": 50.0
-      },
-      "relation_stats": {
-        "新聞直接提及": {
-          "validated": 31,
-          "aligned": 28,
-          "diverged": 0,
-          "aligned_ratio": 0.9032
-        },
-        "產業/供應鏈推估": {
-          "validated": 5,
-          "aligned": 4,
-          "diverged": 1,
-          "aligned_ratio": 0.8
-        }
-      },
-      "keyword_returns": {
-        "散熱與液冷供應鏈": 16.29,
-        "綜合市場情緒": 11.0618,
-        "半導體與晶片供應鏈": 10.45,
-        "AI 伺服器與資料中心": 10.0233,
-        "記憶體與 HBM 供應鏈": 9.1775
-      },
-      "overconfident_misses": [
-        {
-          "date": "2026-05-07",
-          "topic": "AI 伺服器與資料中心",
-          "ticker": "3711",
-          "name_zh": "日月光投控",
-          "relation_type": "新聞直接提及",
-          "impact_direction": "正向",
-          "confidence": 0.73,
-          "return_3d": "-0.77%",
-          "return_5d": "+7.95%",
-          "directional_return_3d": -0.77,
-          "price_validation": "未明確"
-        }
-      ],
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": true,
-      "strategy": "低相關",
-      "reason": "近 5 日信心分數與股價關係偏低，提高價格確認，降低寬題材推估。",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.65,
-        "historical_topic_score_weight": 0.35,
-        "direct_mention_weight": 0.9025,
-        "inferred_supply_chain_weight": 0.5265,
-        "broad_topic_penalty": 0.6885,
-        "price_divergence_penalty": 0.405
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.715,
-        "historical_topic_score_weight": 0.3675,
-        "direct_mention_weight": 0.9025,
-        "inferred_supply_chain_weight": 0.4738,
-        "broad_topic_penalty": 0.6197,
-        "price_divergence_penalty": 0.405
-      },
-      "changes": {
-        "current_market_confirmation_weight": {
-          "before": 0.65,
-          "after": 0.715
-        },
-        "historical_topic_score_weight": {
-          "before": 0.35,
-          "after": 0.3675
-        },
-        "inferred_supply_chain_weight": {
-          "before": 0.5265,
-          "after": 0.4738
-        },
-        "broad_topic_penalty": {
-          "before": 0.6885,
-          "after": 0.6197
-        }
-      }
-    }
-  },
-  {
     "date": "2026-05-09",
     "aggregate": {
       "valid_days": 2,
@@ -7168,6 +7063,86 @@
       "updated": false,
       "strategy": "樣本不足",
       "reason": "近 5 日有效樣本 0 筆，低於 15 筆門檻，暫不調整權重。",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6287,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6287,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {}
+    }
+  },
+  {
+    "date": "2026-08-06",
+    "aggregate": {
+      "valid_days": 1,
+      "low_confidence_days": 4,
+      "sample_count_3d": 8,
+      "sample_count_5d": 8,
+      "validated_count": 8,
+      "aligned_count": 3,
+      "diverged_count": 2,
+      "aligned_ratio": 0.375,
+      "direction_accuracy": 0.375,
+      "correlation_3d": 0.0619,
+      "correlation_5d": -0.059,
+      "confidence_calibration": 0.0619,
+      "calibration_strategy": "低相關",
+      "method_quality_score": 46.857,
+      "topic_scores": {
+        "記憶體與 HBM 供應鏈": 39.425,
+        "AI 伺服器與資料中心": 24.9933
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 3,
+          "aligned": 1,
+          "diverged": 0,
+          "aligned_ratio": 0.3333
+        },
+        "產業/供應鏈推估": {
+          "validated": 5,
+          "aligned": 2,
+          "diverged": 2,
+          "aligned_ratio": 0.4
+        }
+      },
+      "keyword_returns": {
+        "記憶體與 HBM 供應鏈": 1.475,
+        "AI 伺服器與資料中心": 0.5533
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 5,
+        "pending_sample_count": 962,
+        "hit_rate_5d": 0.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": -9.7948,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": false,
+      "strategy": "樣本不足",
+      "reason": "近 5 日有效樣本 8 筆，低於 15 筆門檻，暫不調整權重。",
       "weights_before": {
         "news_heat_weight": 1.0,
         "current_market_confirmation_weight": 1.5,
