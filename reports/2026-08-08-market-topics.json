@@ -1,0 +1,681 @@
+{
+  "date": "2026-08-08",
+  "topics": [
+    {
+      "name": "電動車與電池",
+      "score": 1,
+      "direction": "負向",
+      "sentiment_score": -1,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "TSLA",
+          "name_zh": "特斯拉",
+          "name_en": "Tesla",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "-0.49",
+          "return_3d": "-21.88%",
+          "return_5d": "-13.90%",
+          "current_price": "328.58",
+          "all_time_high": "456.56",
+          "drawdown_from_high": "-28.03%",
+          "all_time_high_date": "2025-10-01",
+          "price_validation": "同向"
+        }
+      ]
+    },
+    {
+      "name": "關稅與供應鏈轉移",
+      "score": 2,
+      "direction": "正向",
+      "sentiment_score": 1,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "AAPL",
+          "name_zh": "蘋果",
+          "name_en": "Apple",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.46",
+          "return_3d": "+18.60%",
+          "return_5d": "+34.97%",
+          "current_price": "313.33",
+          "all_time_high": "313.33",
+          "drawdown_from_high": "0.00%",
+          "all_time_high_date": "2026-08-07",
+          "price_validation": "同向"
+        },
+        {
+          "market": "TW",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "name_en": "Taiwan Semiconductor Manufacturing",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.42",
+          "return_3d": "+2.16%",
+          "return_5d": "-2.27%",
+          "current_price": "2,370.00",
+          "all_time_high": "2,425.00",
+          "drawdown_from_high": "-2.27%",
+          "all_time_high_date": "2026-06-30",
+          "price_validation": "同向"
+        },
+        {
+          "market": "TW",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "name_en": "ASE Technology",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.32",
+          "return_3d": "0.00%",
+          "return_5d": "+5.41%",
+          "current_price": "585.00",
+          "all_time_high": "680.00",
+          "drawdown_from_high": "-13.97%",
+          "all_time_high_date": "2026-05-31",
+          "price_validation": "未明確"
+        },
+        {
+          "market": "TW",
+          "ticker": "2317",
+          "name_zh": "鴻海",
+          "name_en": "Foxconn",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.08",
+          "return_3d": "+4.00%",
+          "return_5d": "+3.79%",
+          "current_price": "260.00",
+          "all_time_high": "289.00",
+          "drawdown_from_high": "-10.03%",
+          "all_time_high_date": "2026-04-30",
+          "price_validation": "同向"
+        }
+      ]
+    },
+    {
+      "name": "利率與成長股估值",
+      "score": 1,
+      "direction": "正向",
+      "sentiment_score": 1,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "MSFT",
+          "name_zh": "微軟",
+          "name_en": "Microsoft",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "+27.31%",
+          "return_5d": "-1.32%",
+          "current_price": "499.99",
+          "all_time_high": "506.69",
+          "drawdown_from_high": "-1.32%",
+          "all_time_high_date": "2025-06-01",
+          "price_validation": "不適用"
+        }
+      ]
+    },
+    {
+      "name": "先進封裝與 CoPoS",
+      "score": 2,
+      "direction": "正向",
+      "sentiment_score": 1,
+      "companies": [
+        {
+          "market": "TW",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "name_en": "Taiwan Semiconductor Manufacturing",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.57",
+          "return_3d": "+2.16%",
+          "return_5d": "-2.27%",
+          "current_price": "2,370.00",
+          "all_time_high": "2,425.00",
+          "drawdown_from_high": "-2.27%",
+          "all_time_high_date": "2026-06-30",
+          "price_validation": "同向"
+        },
+        {
+          "market": "TW",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "name_en": "ASE Technology",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.36",
+          "return_3d": "0.00%",
+          "return_5d": "+5.41%",
+          "current_price": "585.00",
+          "all_time_high": "680.00",
+          "drawdown_from_high": "-13.97%",
+          "all_time_high_date": "2026-05-31",
+          "price_validation": "未明確"
+        },
+        {
+          "market": "US",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "name_en": "NVIDIA",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.42",
+          "return_3d": "+11.93%",
+          "return_5d": "+12.22%",
+          "current_price": "223.96",
+          "all_time_high": "223.96",
+          "drawdown_from_high": "0.00%",
+          "all_time_high_date": "2026-08-07",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "MU",
+          "name_zh": "美光",
+          "name_en": "Micron Technology",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.42",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "current_price": "877.57",
+          "all_time_high": "971.00",
+          "drawdown_from_high": "-9.62%",
+          "all_time_high_date": "2026-03-01",
+          "price_validation": "N/A"
+        }
+      ]
+    },
+    {
+      "name": "消費電子與手機",
+      "score": 1,
+      "direction": "中性",
+      "sentiment_score": 0,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "AAPL",
+          "name_zh": "蘋果",
+          "name_en": "Apple",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "0.00",
+          "return_3d": "+18.60%",
+          "return_5d": "+34.97%",
+          "current_price": "313.33",
+          "all_time_high": "313.33",
+          "drawdown_from_high": "0.00%",
+          "all_time_high_date": "2026-08-07",
+          "price_validation": "不適用"
+        },
+        {
+          "market": "TW",
+          "ticker": "2317",
+          "name_zh": "鴻海",
+          "name_en": "Foxconn",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "+4.00%",
+          "return_5d": "+3.79%",
+          "current_price": "260.00",
+          "all_time_high": "289.00",
+          "drawdown_from_high": "-10.03%",
+          "all_time_high_date": "2026-04-30",
+          "price_validation": "不適用"
+        },
+        {
+          "market": "TW",
+          "ticker": "2454",
+          "name_zh": "聯發科",
+          "name_en": "MediaTek",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "0.00",
+          "return_3d": "+0.91%",
+          "return_5d": "+9.70%",
+          "current_price": "3,900.00",
+          "all_time_high": "4,310.00",
+          "drawdown_from_high": "-9.51%",
+          "all_time_high_date": "2026-04-30",
+          "price_validation": "不適用"
+        }
+      ]
+    },
+    {
+      "name": "記憶體與 HBM 供應鏈",
+      "score": 2,
+      "direction": "正向",
+      "sentiment_score": 1,
+      "companies": [
+        {
+          "market": "US",
+          "ticker": "MU",
+          "name_zh": "美光",
+          "name_en": "Micron Technology",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.44",
+          "return_3d": "N/A",
+          "return_5d": "N/A",
+          "current_price": "877.57",
+          "all_time_high": "971.00",
+          "drawdown_from_high": "-9.62%",
+          "all_time_high_date": "2026-03-01",
+          "price_validation": "N/A"
+        },
+        {
+          "market": "TW",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "name_en": "Taiwan Semiconductor Manufacturing",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.42",
+          "return_3d": "+2.16%",
+          "return_5d": "-2.27%",
+          "current_price": "2,370.00",
+          "all_time_high": "2,425.00",
+          "drawdown_from_high": "-2.27%",
+          "all_time_high_date": "2026-06-30",
+          "price_validation": "同向"
+        },
+        {
+          "market": "US",
+          "ticker": "NVDA",
+          "name_zh": "輝達",
+          "name_en": "NVIDIA",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.39",
+          "return_3d": "+11.93%",
+          "return_5d": "+12.22%",
+          "current_price": "223.96",
+          "all_time_high": "223.96",
+          "drawdown_from_high": "0.00%",
+          "all_time_high_date": "2026-08-07",
+          "price_validation": "同向"
+        },
+        {
+          "market": "TW",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "name_en": "ASE Technology",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.27",
+          "return_3d": "0.00%",
+          "return_5d": "+5.41%",
+          "current_price": "585.00",
+          "all_time_high": "680.00",
+          "drawdown_from_high": "-13.97%",
+          "all_time_high_date": "2026-05-31",
+          "price_validation": "未明確"
+        },
+        {
+          "market": "US",
+          "ticker": "SNDK",
+          "name_zh": "SanDisk",
+          "name_en": "SanDisk",
+          "relation_type": "產業/供應鏈推估",
+          "directional_confidence": "+0.06",
+          "return_3d": "-15.09%",
+          "return_5d": "-0.22%",
+          "current_price": "1,212.21",
+          "all_time_high": "2,335.00",
+          "drawdown_from_high": "-48.09%",
+          "all_time_high_date": "2026-06-25",
+          "price_validation": "背離"
+        }
+      ]
+    },
+    {
+      "name": "新興題材：股半導體族群受惠先進封裝",
+      "score": 1,
+      "direction": "正向",
+      "sentiment_score": 1,
+      "companies": [
+        {
+          "market": "TW",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "name_en": "Taiwan Semiconductor Manufacturing",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.42",
+          "return_3d": "+2.16%",
+          "return_5d": "-2.27%",
+          "current_price": "2,370.00",
+          "all_time_high": "2,425.00",
+          "drawdown_from_high": "-2.27%",
+          "all_time_high_date": "2026-06-30",
+          "price_validation": "同向"
+        },
+        {
+          "market": "TW",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "name_en": "ASE Technology",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.32",
+          "return_3d": "0.00%",
+          "return_5d": "+5.41%",
+          "current_price": "585.00",
+          "all_time_high": "680.00",
+          "drawdown_from_high": "-13.97%",
+          "all_time_high_date": "2026-05-31",
+          "price_validation": "未明確"
+        }
+      ]
+    },
+    {
+      "name": "新興題材：晶片需求",
+      "score": 1,
+      "direction": "正向",
+      "sentiment_score": 1,
+      "companies": [
+        {
+          "market": "TW",
+          "ticker": "2330",
+          "name_zh": "台積電",
+          "name_en": "Taiwan Semiconductor Manufacturing",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.42",
+          "return_3d": "+2.16%",
+          "return_5d": "-2.27%",
+          "current_price": "2,370.00",
+          "all_time_high": "2,425.00",
+          "drawdown_from_high": "-2.27%",
+          "all_time_high_date": "2026-06-30",
+          "price_validation": "同向"
+        },
+        {
+          "market": "TW",
+          "ticker": "3711",
+          "name_zh": "日月光投控",
+          "name_en": "ASE Technology",
+          "relation_type": "新聞直接提及",
+          "directional_confidence": "+0.32",
+          "return_3d": "0.00%",
+          "return_5d": "+5.41%",
+          "current_price": "585.00",
+          "all_time_high": "680.00",
+          "drawdown_from_high": "-13.97%",
+          "all_time_high_date": "2026-05-31",
+          "price_validation": "未明確"
+        }
+      ]
+    }
+  ],
+  "market_validation": {
+    "sample_count_3d": 16,
+    "sample_count_5d": 16,
+    "correlation_3d": 0.718,
+    "correlation_5d": 0.4509,
+    "aligned_count": 10,
+    "diverged_count": 1,
+    "unclear_count": 5,
+    "validated_count": 16,
+    "aligned_ratio": 0.625,
+    "topics": [
+      {
+        "topic": "電動車與電池",
+        "company_count": 1,
+        "validated_count": 1,
+        "aligned_count": 1,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "aligned_ratio": 1.0,
+        "avg_directional_return_3d": 21.88,
+        "avg_directional_return_5d": 13.9,
+        "market_confirmation_score": 100.0
+      },
+      {
+        "topic": "關稅與供應鏈轉移",
+        "company_count": 4,
+        "validated_count": 4,
+        "aligned_count": 3,
+        "diverged_count": 0,
+        "unclear_count": 1,
+        "aligned_ratio": 0.75,
+        "avg_directional_return_3d": 6.19,
+        "avg_directional_return_5d": 10.475,
+        "market_confirmation_score": 71.07
+      },
+      {
+        "topic": "利率與成長股估值",
+        "company_count": 1,
+        "validated_count": 0,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "aligned_ratio": null,
+        "avg_directional_return_3d": null,
+        "avg_directional_return_5d": null,
+        "market_confirmation_score": null
+      },
+      {
+        "topic": "先進封裝與 CoPoS",
+        "company_count": 4,
+        "validated_count": 3,
+        "aligned_count": 2,
+        "diverged_count": 0,
+        "unclear_count": 1,
+        "aligned_ratio": 0.6667,
+        "avg_directional_return_3d": 4.6967,
+        "avg_directional_return_5d": 5.12,
+        "market_confirmation_score": 60.7567
+      },
+      {
+        "topic": "消費電子與手機",
+        "company_count": 3,
+        "validated_count": 0,
+        "aligned_count": 0,
+        "diverged_count": 0,
+        "unclear_count": 0,
+        "aligned_ratio": null,
+        "avg_directional_return_3d": null,
+        "avg_directional_return_5d": null,
+        "market_confirmation_score": null
+      },
+      {
+        "topic": "記憶體與 HBM 供應鏈",
+        "company_count": 5,
+        "validated_count": 4,
+        "aligned_count": 2,
+        "diverged_count": 1,
+        "unclear_count": 1,
+        "aligned_ratio": 0.5,
+        "avg_directional_return_3d": -0.25,
+        "avg_directional_return_5d": 3.785,
+        "market_confirmation_score": 34.25
+      },
+      {
+        "topic": "新興題材：股半導體族群受惠先進封裝",
+        "company_count": 2,
+        "validated_count": 2,
+        "aligned_count": 1,
+        "diverged_count": 0,
+        "unclear_count": 1,
+        "aligned_ratio": 0.5,
+        "avg_directional_return_3d": 1.08,
+        "avg_directional_return_5d": 1.57,
+        "market_confirmation_score": 38.24
+      },
+      {
+        "topic": "新興題材：晶片需求",
+        "company_count": 2,
+        "validated_count": 2,
+        "aligned_count": 1,
+        "diverged_count": 0,
+        "unclear_count": 1,
+        "aligned_ratio": 0.5,
+        "avg_directional_return_3d": 1.08,
+        "avg_directional_return_5d": 1.57,
+        "market_confirmation_score": 38.24
+      }
+    ]
+  },
+  "backtest_summary": {
+    "date": "2026-08-08",
+    "days": 5,
+    "correlation_3d": null,
+    "correlation_5d": null,
+    "aligned_ratio": null,
+    "direction_accuracy": null,
+    "confidence_calibration": null,
+    "calibration_strategy": "樣本不足",
+    "overconfident_misses": [],
+    "validated_count": 0,
+    "updated": false,
+    "adjustment_strategy": "樣本不足",
+    "reason": "近 5 日有效樣本 0 筆，低於 15 筆門檻，暫不調整權重。",
+    "keyword_company_learning": {
+      "sample_count": 5000,
+      "valid_sample_count": 5,
+      "pending_sample_count": 983,
+      "hit_rate_5d": 0.0,
+      "confidence_correlation_5d": null,
+      "avg_directional_return_5d": -9.7948,
+      "top_edges": [],
+      "weak_edges": []
+    }
+  },
+  "keyword_company_learning": {
+    "sample_count": 5000,
+    "valid_sample_count": 5,
+    "pending_sample_count": 983,
+    "hit_rate_5d": 0.0,
+    "confidence_correlation_5d": null,
+    "avg_directional_return_5d": -9.7948,
+    "top_edges": [],
+    "weak_edges": []
+  },
+  "reference_sources": [
+    {
+      "category": "官方資料",
+      "name": "公開資訊觀測站 MOPS",
+      "url": "https://mops.twse.com.tw/",
+      "usage": "重大訊息、月營收、財報、法說、年報",
+      "mode": "事實驗證 / 基本面來源"
+    },
+    {
+      "category": "官方資料",
+      "name": "臺灣證券交易所 TWSE",
+      "url": "https://www.twse.com.tw/",
+      "usage": "上市股價、法人、注意股、產業統計",
+      "mode": "價格與市場驗證"
+    },
+    {
+      "category": "官方資料",
+      "name": "櫃買中心 TPEx",
+      "url": "https://www.tpex.org.tw/",
+      "usage": "上櫃、興櫃公告與交易資料",
+      "mode": "價格與市場驗證"
+    },
+    {
+      "category": "官方資料",
+      "name": "SEC EDGAR",
+      "url": "https://www.sec.gov/edgar/search/",
+      "usage": "美股 10-K、10-Q、8-K、S-1 與公司申報",
+      "mode": "美股事實驗證 / 財報來源"
+    },
+    {
+      "category": "財經新聞",
+      "name": "Yahoo 奇摩股市",
+      "url": "https://tw.stock.yahoo.com/news",
+      "usage": "台股、美股、個股新聞與熱門排行",
+      "mode": "題材熱度來源"
+    },
+    {
+      "category": "財經新聞",
+      "name": "鉅亨網",
+      "url": "https://news.cnyes.com/news/cat/tw_stock_news",
+      "usage": "台股即時新聞、盤後整理、產業與法人動向",
+      "mode": "題材熱度來源"
+    },
+    {
+      "category": "財經新聞",
+      "name": "MoneyDJ",
+      "url": "https://www.moneydj.com/kmdj/common/listnewarticles.aspx?a=X0200000&svc=NW",
+      "usage": "個股情報、產業新聞、供應鏈脈絡",
+      "mode": "題材熱度來源"
+    },
+    {
+      "category": "財經新聞",
+      "name": "經濟日報 money",
+      "url": "https://money.udn.com/money/cate/5590",
+      "usage": "證券、產業與法人觀點",
+      "mode": "題材熱度來源"
+    },
+    {
+      "category": "財經新聞",
+      "name": "中央社財經",
+      "url": "https://www.cna.com.tw/list/afe.aspx",
+      "usage": "公司公告、政策、產業新聞",
+      "mode": "高可信新聞來源"
+    },
+    {
+      "category": "財經新聞",
+      "name": "工商時報",
+      "url": "https://www.ctee.com.tw/",
+      "usage": "台股、產業、法人與供應鏈新聞",
+      "mode": "題材熱度來源"
+    },
+    {
+      "category": "科技產業",
+      "name": "TechNews 科技新報",
+      "url": "https://technews.tw/",
+      "usage": "半導體、AI、晶片、先進封裝與供應鏈",
+      "mode": "產業題材來源"
+    },
+    {
+      "category": "國際財經",
+      "name": "Reuters Markets",
+      "url": "https://www.reuters.com/markets/",
+      "usage": "美股、國際市場、公司與總經事件",
+      "mode": "高可信新聞來源"
+    },
+    {
+      "category": "國際財經",
+      "name": "CNBC Markets",
+      "url": "https://www.cnbc.com/markets/",
+      "usage": "美股、科技股、盤中市場題材",
+      "mode": "題材熱度來源"
+    },
+    {
+      "category": "事件日曆",
+      "name": "Nasdaq Earnings Calendar",
+      "url": "https://www.nasdaq.com/market-activity/earnings",
+      "usage": "美股財報日程、股利、IPO、拆併股",
+      "mode": "事件校正來源"
+    },
+    {
+      "category": "事件日曆",
+      "name": "Investing.com Economic Calendar",
+      "url": "https://www.investing.com/economic-calendar",
+      "usage": "CPI、利率、PMI、GDP 等總經事件",
+      "mode": "總經事件校正"
+    }
+  ],
+  "data_gaps": [
+    "Google News 財經來源抓取失敗：site:cna.com.tw 財經 OR 證券 OR 台股 OR 半導體 OR 公司，原因：HTTP Error 503: Service Unavailable",
+    "Google News 財經來源抓取失敗：site:cnbc.com markets OR stocks OR earnings OR semiconductor OR AI，原因：HTTP Error 503: Service Unavailable",
+    "Google News 財經來源抓取失敗：site:ctee.com.tw 台股 OR 個股 OR 產業 OR 半導體 OR 法人，原因：HTTP Error 503: Service Unavailable",
+    "Google News 財經來源抓取失敗：site:investing.com economic calendar OR CPI OR rate decision OR PMI OR GDP，原因：HTTP Error 503: Service Unavailable",
+    "Google News 財經來源抓取失敗：site:money.udn.com 證券 OR 台股 OR 個股 OR 美股 OR 半導體 OR 財報，原因：HTTP Error 503: Service Unavailable",
+    "Google News 財經來源抓取失敗：site:moneydj.com 台股 OR 個股 OR 產業 OR 半導體 OR 財報 OR 營收，原因：HTTP Error 503: Service Unavailable",
+    "Google News 財經來源抓取失敗：site:mops.twse.com.tw 重大訊息 OR 月營收 OR 財報 OR 法說會，原因：HTTP Error 503: Service Unavailable",
+    "Google News 財經來源抓取失敗：site:nasdaq.com earnings OR dividend OR IPO OR split，原因：HTTP Error 503: Service Unavailable",
+    "Google News 財經來源抓取失敗：site:news.cnyes.com 台股 OR 個股 OR 美股 OR 半導體 OR 財報 OR 營收，原因：HTTP Error 503: Service Unavailable",
+    "Google News 財經來源抓取失敗：site:reuters.com markets OR stocks OR earnings OR revenue OR semiconductor OR AI，原因：HTTP Error 503: Service Unavailable",
+    "Google News 財經來源抓取失敗：site:technews.tw 半導體 OR AI OR 晶片 OR 先進封裝 OR 伺服器，原因：HTTP Error 503: Service Unavailable",
+    "Google News 財經來源抓取失敗：site:tpex.org.tw 上櫃 OR 興櫃 OR 注意股票 OR 公告，原因：HTTP Error 503: Service Unavailable",
+    "Google News 財經來源抓取失敗：site:tw.stock.yahoo.com 台股 OR 個股 OR 美股 OR 半導體 OR 財報 OR 營收，原因：HTTP Error 503: Service Unavailable",
+    "Google News 財經來源抓取失敗：site:twse.com.tw 上市公司 OR 注意股票 OR 法人 OR 成交資訊，原因：HTTP Error 503: Service Unavailable",
+    "RSS 抓取失敗：https://news.google.com/rss/search?q=%E5%A5%87%E9%8B%90%20%E8%BC%9D%E9%81%94%20%E6%95%A3%E7%86%B1%20Rubin%20when%3A7d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant，原因：HTTP Error 503: Service Unavailable",
+    "RSS 抓取失敗：https://news.google.com/rss/search?q=AMD%20Intel%20INTC%20stock%20AI%20chip%20earnings%20when%3A3d&hl=en-US&gl=US&ceid=US:en，原因：HTTP Error 503: Service Unavailable",
+    "RSS 抓取失敗：https://news.google.com/rss/search?q=Micron%20MU%20SanDisk%20SNDK%20HBM%20memory%20AI%20stock%20when%3A3d&hl=en-US&gl=US&ceid=US:en，原因：HTTP Error 503: Service Unavailable",
+    "RSS 抓取失敗：https://news.google.com/rss/search?q=site%3Acna.com.tw%20%E8%B2%A1%E7%B6%93%20OR%20%E8%AD%89%E5%88%B8%20OR%20%E5%8F%B0%E8%82%A1%20OR%20%E5%8D%8A%E5%B0%8E%E9%AB%94%20when%3A3d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant，原因：HTTP Error 503: Service Unavailable",
+    "RSS 抓取失敗：https://news.google.com/rss/search?q=site%3Acnbc.com%20markets%20OR%20stocks%20OR%20earnings%20OR%20semiconductor%20OR%20AI%20when%3A3d&hl=en-US&gl=US&ceid=US:en，原因：HTTP Error 503: Service Unavailable",
+    "RSS 抓取失敗：https://news.google.com/rss/search?q=site%3Actee.com.tw%20%E5%8F%B0%E8%82%A1%20OR%20%E5%80%8B%E8%82%A1%20OR%20%E7%94%A2%E6%A5%AD%20OR%20%E5%8D%8A%E5%B0%8E%E9%AB%94%20when%3A3d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant，原因：HTTP Error 503: Service Unavailable",
+    "RSS 抓取失敗：https://news.google.com/rss/search?q=site%3Amoney.udn.com%20%E8%AD%89%E5%88%B8%20OR%20%E5%8F%B0%E8%82%A1%20when%3A7d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant，原因：HTTP Error 503: Service Unavailable",
+    "RSS 抓取失敗：https://news.google.com/rss/search?q=site%3Amoneydj.com%20%E5%8F%B0%E8%82%A1%20OR%20%E5%80%8B%E8%82%A1%20when%3A7d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant，原因：HTTP Error 503: Service Unavailable",
+    "RSS 抓取失敗：https://news.google.com/rss/search?q=site%3Areuters.com%20markets%20OR%20stocks%20OR%20earnings%20OR%20semiconductor%20OR%20AI%20when%3A3d&hl=en-US&gl=US&ceid=US:en，原因：HTTP Error 503: Service Unavailable",
+    "RSS 抓取失敗：https://news.google.com/rss/search?q=site%3Atechnews.tw%20%E5%8D%8A%E5%B0%8E%E9%AB%94%20OR%20AI%20OR%20%E6%99%B6%E7%89%87%20OR%20%E5%85%88%E9%80%B2%E5%B0%81%E8%A3%9D%20when%3A3d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant，原因：HTTP Error 503: Service Unavailable",
+    "RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=intl-markets，原因：HTTP Error 404: Not Found",
+    "RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=news，原因：HTTP Error 404: Not Found",
+    "RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=research，原因：HTTP Error 404: Not Found",
+    "RSS 抓取失敗：https://tw.stock.yahoo.com/rss?category=tw-market，原因：HTTP Error 404: Not Found",
+    "未取得符合報告日期的即時新聞，改用內建樣本新聞產生報告。"
+  ]
+}
