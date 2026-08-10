@@ -1,146 +1,5 @@
 [
   {
-    "date": "2026-05-13",
-    "aggregate": {
-      "valid_days": 2,
-      "low_confidence_days": 3,
-      "sample_count_3d": 17,
-      "sample_count_5d": 17,
-      "validated_count": 17,
-      "aligned_count": 10,
-      "diverged_count": 4,
-      "aligned_ratio": 0.5882,
-      "direction_accuracy": 0.5882,
-      "correlation_3d": -0.2163,
-      "correlation_5d": -0.2794,
-      "confidence_calibration": -0.2163,
-      "calibration_strategy": "方向與信心皆需修正",
-      "method_quality_score": 47.0397,
-      "topic_scores": {
-        "AI 伺服器與資料中心": 72.2217,
-        "記憶體與 HBM 供應鏈": 50.63,
-        "關稅與供應鏈轉移": 46.16,
-        "半導體與晶片供應鏈": 0.0
-      },
-      "relation_stats": {
-        "新聞直接提及": {
-          "validated": 6,
-          "aligned": 2,
-          "diverged": 2,
-          "aligned_ratio": 0.3333
-        },
-        "產業/供應鏈推估": {
-          "validated": 11,
-          "aligned": 8,
-          "diverged": 2,
-          "aligned_ratio": 0.7273
-        }
-      },
-      "keyword_returns": {
-        "AI 伺服器與資料中心": 8.5183,
-        "記憶體與 HBM 供應鏈": 5.21,
-        "關稅與供應鏈轉移": 3.72,
-        "半導體與晶片供應鏈": -2.38
-      },
-      "overconfident_misses": [
-        {
-          "date": "2026-05-11",
-          "topic": "AI 伺服器與資料中心",
-          "ticker": "2330",
-          "name_zh": "台積電",
-          "relation_type": "新聞直接提及",
-          "impact_direction": "正向",
-          "confidence": 0.82,
-          "return_3d": "-2.38%",
-          "return_5d": "+0.22%",
-          "directional_return_3d": -2.38,
-          "price_validation": "背離"
-        },
-        {
-          "date": "2026-05-11",
-          "topic": "半導體與晶片供應鏈",
-          "ticker": "2330",
-          "name_zh": "台積電",
-          "relation_type": "新聞直接提及",
-          "impact_direction": "正向",
-          "confidence": 0.72,
-          "return_3d": "-2.38%",
-          "return_5d": "+0.22%",
-          "directional_return_3d": -2.38,
-          "price_validation": "背離"
-        },
-        {
-          "date": "2026-05-09",
-          "topic": "關稅與供應鏈轉移",
-          "ticker": "2317",
-          "name_zh": "鴻海",
-          "relation_type": "新聞直接提及",
-          "impact_direction": "正向",
-          "confidence": 0.7,
-          "return_3d": "0.00%",
-          "return_5d": "+10.77%",
-          "directional_return_3d": 0.0,
-          "price_validation": "未明確"
-        }
-      ],
-      "keyword_company_learning": {
-        "sample_count": 659,
-        "valid_sample_count": 0,
-        "pending_sample_count": 200,
-        "hit_rate_5d": null,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": null,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": true,
-      "strategy": "方向與信心皆需修正",
-      "reason": "近 5 日方向與信心排序皆偏弱，降低方向詞與供應鏈推估權重，並加重背離扣分。；關鍵詞×公司後續樣本有效 0 筆，未達 30 筆，不調整樣本權重",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.8259,
-        "historical_topic_score_weight": 0.4052,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.9296,
-        "inferred_supply_chain_weight": 0.4264,
-        "broad_topic_penalty": 0.5577,
-        "price_divergence_penalty": 0.405
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.8259,
-        "historical_topic_score_weight": 0.4052,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.8831,
-        "inferred_supply_chain_weight": 0.3838,
-        "broad_topic_penalty": 0.5019,
-        "price_divergence_penalty": 0.3645
-      },
-      "changes": {
-        "direct_mention_weight": {
-          "before": 0.9296,
-          "after": 0.8831
-        },
-        "inferred_supply_chain_weight": {
-          "before": 0.4264,
-          "after": 0.3838
-        },
-        "broad_topic_penalty": {
-          "before": 0.5577,
-          "after": 0.5019
-        },
-        "price_divergence_penalty": {
-          "before": 0.405,
-          "after": 0.3645
-        }
-      }
-    }
-  },
-  {
     "date": "2026-05-14",
     "aggregate": {
       "valid_days": 3,
@@ -7062,6 +6921,67 @@
       "updated": false,
       "strategy": "方向與信心皆需修正",
       "reason": "近 5 日方向與信心排序皆偏弱，降低方向詞與供應鏈推估權重，並加重背離扣分。；關鍵詞×公司後續樣本有效 5 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6287,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6287,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {}
+    }
+  },
+  {
+    "date": "2026-08-11",
+    "aggregate": {
+      "valid_days": 0,
+      "low_confidence_days": 5,
+      "sample_count_3d": 0,
+      "sample_count_5d": 0,
+      "validated_count": 0,
+      "aligned_count": 0,
+      "diverged_count": 0,
+      "aligned_ratio": null,
+      "direction_accuracy": null,
+      "correlation_3d": null,
+      "correlation_5d": null,
+      "confidence_calibration": null,
+      "calibration_strategy": "樣本不足",
+      "method_quality_score": null,
+      "topic_scores": {},
+      "relation_stats": {},
+      "keyword_returns": {},
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 5,
+        "pending_sample_count": 939,
+        "hit_rate_5d": 0.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": -9.7948,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": false,
+      "strategy": "樣本不足",
+      "reason": "近 5 日有效樣本 0 筆，低於 15 筆門檻，暫不調整權重。",
       "weights_before": {
         "news_heat_weight": 1.0,
         "current_market_confirmation_weight": 1.5,
