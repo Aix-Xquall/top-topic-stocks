@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-12",
+  "generated_at": "2026-08-13",
   "sample_count": 5000,
   "valid_sample_count": 5,
-  "pending_sample_count": 936,
+  "pending_sample_count": 923,
   "missing_price_sample_count": 0,
-  "neutral_sample_count": 4059,
+  "neutral_sample_count": 4072,
   "overall": {
     "valid_count": 5,
     "hit_rate_3d": 1.0,

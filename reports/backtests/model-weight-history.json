@@ -1,120 +1,5 @@
 [
   {
-    "date": "2026-05-15",
-    "aggregate": {
-      "valid_days": 3,
-      "low_confidence_days": 2,
-      "sample_count_3d": 23,
-      "sample_count_5d": 23,
-      "validated_count": 23,
-      "aligned_count": 11,
-      "diverged_count": 10,
-      "aligned_ratio": 0.4783,
-      "direction_accuracy": 0.4783,
-      "correlation_3d": -0.2602,
-      "correlation_5d": -0.2079,
-      "confidence_calibration": -0.2602,
-      "calibration_strategy": "方向與信心皆需修正",
-      "method_quality_score": 41.3234,
-      "topic_scores": {
-        "AI 伺服器與資料中心": 50.0811,
-        "半導體與晶片供應鏈": 0.0,
-        "散熱與液冷供應鏈": 0.0,
-        "新興題材：鴻海法說": 0.0,
-        "新興題材：Q2營收": 0.0,
-        "新興題材：奇鋐看好今年營收": 0.0
-      },
-      "relation_stats": {
-        "產業/供應鏈推估": {
-          "validated": 18,
-          "aligned": 11,
-          "diverged": 7,
-          "aligned_ratio": 0.6111
-        },
-        "新聞直接提及": {
-          "validated": 5,
-          "aligned": 0,
-          "diverged": 3,
-          "aligned_ratio": 0.0
-        }
-      },
-      "keyword_returns": {
-        "AI 伺服器與資料中心": 2.4344,
-        "散熱與液冷供應鏈": 0.0,
-        "新興題材：奇鋐看好今年營收": 0.0,
-        "新興題材：鴻海法說": -2.98,
-        "新興題材：Q2營收": -2.98,
-        "半導體與晶片供應鏈": -12.24
-      },
-      "overconfident_misses": [
-        {
-          "date": "2026-05-14",
-          "topic": "散熱與液冷供應鏈",
-          "ticker": "3017",
-          "name_zh": "奇鋐",
-          "relation_type": "新聞直接提及",
-          "impact_direction": "正向",
-          "confidence": 0.8,
-          "return_3d": "0.00%",
-          "return_5d": "+5.80%",
-          "directional_return_3d": 0.0,
-          "price_validation": "未明確"
-        }
-      ],
-      "keyword_company_learning": {
-        "sample_count": 860,
-        "valid_sample_count": 4,
-        "pending_sample_count": 247,
-        "hit_rate_5d": 1.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": 3.2496,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": true,
-      "strategy": "方向與信心皆需修正",
-      "reason": "近 5 日方向與信心排序皆偏弱，降低方向詞與供應鏈推估權重，並加重背離扣分。；關鍵詞×公司後續樣本有效 4 筆，未達 30 筆，不調整樣本權重",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.8259,
-        "historical_topic_score_weight": 0.4052,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.8389,
-        "inferred_supply_chain_weight": 0.3454,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.3281
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.8259,
-        "historical_topic_score_weight": 0.4052,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.797,
-        "inferred_supply_chain_weight": 0.3109,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2953
-      },
-      "changes": {
-        "direct_mention_weight": {
-          "before": 0.8389,
-          "after": 0.797
-        },
-        "inferred_supply_chain_weight": {
-          "before": 0.3454,
-          "after": 0.3109
-        },
-        "price_divergence_penalty": {
-          "before": 0.3281,
-          "after": 0.2953
-        }
-      }
-    }
-  },
-  {
     "date": "2026-05-16",
     "aggregate": {
       "valid_days": 2,
@@ -6994,6 +6879,95 @@
         "price_divergence_penalty": 0.2
       },
       "changes": {}
+    }
+  },
+  {
+    "date": "2026-08-13",
+    "aggregate": {
+      "valid_days": 2,
+      "low_confidence_days": 3,
+      "sample_count_3d": 15,
+      "sample_count_5d": 15,
+      "validated_count": 15,
+      "aligned_count": 10,
+      "diverged_count": 5,
+      "aligned_ratio": 0.6667,
+      "direction_accuracy": 0.6667,
+      "correlation_3d": 0.0979,
+      "correlation_5d": -0.0762,
+      "confidence_calibration": 0.0979,
+      "calibration_strategy": "低相關",
+      "method_quality_score": 59.6043,
+      "topic_scores": {
+        "綜合市場情緒": 81.55,
+        "新興題材：鴻海法說": 81.55,
+        "新興題材：AI需求": 81.55,
+        "AI 伺服器與資料中心": 53.4433
+      },
+      "relation_stats": {
+        "產業/供應鏈推估": {
+          "validated": 11,
+          "aligned": 6,
+          "diverged": 5,
+          "aligned_ratio": 0.5455
+        },
+        "新聞直接提及": {
+          "validated": 4,
+          "aligned": 4,
+          "diverged": 0,
+          "aligned_ratio": 1.0
+        }
+      },
+      "keyword_returns": {
+        "AI 伺服器與資料中心": 4.2033,
+        "綜合市場情緒": 3.85,
+        "新興題材：鴻海法說": 3.85,
+        "新興題材：AI需求": 3.85
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 5,
+        "pending_sample_count": 923,
+        "hit_rate_5d": 0.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": -9.7948,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": true,
+      "strategy": "低相關",
+      "reason": "近 5 日信心分數與股價關係偏低，提高價格確認，降低寬題材推估。；關鍵詞×公司後續樣本有效 5 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6287,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6601,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {
+        "historical_topic_score_weight": {
+          "before": 0.6287,
+          "after": 0.6601
+        }
+      }
     }
   }
 ]
