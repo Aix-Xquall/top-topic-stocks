@@ -1,85 +1,5 @@
 [
   {
-    "date": "2026-05-16",
-    "aggregate": {
-      "valid_days": 2,
-      "low_confidence_days": 3,
-      "sample_count_3d": 14,
-      "sample_count_5d": 14,
-      "validated_count": 14,
-      "aligned_count": 6,
-      "diverged_count": 4,
-      "aligned_ratio": 0.4286,
-      "direction_accuracy": 0.4286,
-      "correlation_3d": 0.0366,
-      "correlation_5d": -0.1052,
-      "confidence_calibration": 0.0366,
-      "calibration_strategy": "低相關",
-      "method_quality_score": 48.2404,
-      "topic_scores": {
-        "半導體與晶片供應鏈": 65.0,
-        "AI 伺服器與資料中心": 31.9892
-      },
-      "relation_stats": {
-        "新聞直接提及": {
-          "validated": 3,
-          "aligned": 1,
-          "diverged": 0,
-          "aligned_ratio": 0.3333
-        },
-        "產業/供應鏈推估": {
-          "validated": 11,
-          "aligned": 5,
-          "diverged": 4,
-          "aligned_ratio": 0.4545
-        }
-      },
-      "keyword_returns": {
-        "半導體與晶片供應鏈": 16.74,
-        "AI 伺服器與資料中心": 0.9408
-      },
-      "overconfident_misses": [],
-      "keyword_company_learning": {
-        "sample_count": 933,
-        "valid_sample_count": 4,
-        "pending_sample_count": 277,
-        "hit_rate_5d": 1.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": 3.2496,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": false,
-      "strategy": "樣本不足",
-      "reason": "近 5 日有效樣本 14 筆，低於 15 筆門檻，暫不調整權重。",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.8259,
-        "historical_topic_score_weight": 0.4052,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.797,
-        "inferred_supply_chain_weight": 0.3109,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2953
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.8259,
-        "historical_topic_score_weight": 0.4052,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.797,
-        "inferred_supply_chain_weight": 0.3109,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2953
-      },
-      "changes": {}
-    }
-  },
-  {
     "date": "2026-05-17",
     "aggregate": {
       "valid_days": 1,
@@ -6968,6 +6888,67 @@
           "after": 0.6601
         }
       }
+    }
+  },
+  {
+    "date": "2026-08-14",
+    "aggregate": {
+      "valid_days": 0,
+      "low_confidence_days": 5,
+      "sample_count_3d": 0,
+      "sample_count_5d": 0,
+      "validated_count": 0,
+      "aligned_count": 0,
+      "diverged_count": 0,
+      "aligned_ratio": null,
+      "direction_accuracy": null,
+      "correlation_3d": null,
+      "correlation_5d": null,
+      "confidence_calibration": null,
+      "calibration_strategy": "樣本不足",
+      "method_quality_score": null,
+      "topic_scores": {},
+      "relation_stats": {},
+      "keyword_returns": {},
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 5,
+        "pending_sample_count": 911,
+        "hit_rate_5d": 0.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": -9.7948,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": false,
+      "strategy": "樣本不足",
+      "reason": "近 5 日有效樣本 0 筆，低於 15 筆門檻，暫不調整權重。",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6601,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6601,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {}
     }
   }
 ]
