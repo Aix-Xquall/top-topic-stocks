@@ -1,77 +1,5 @@
 [
   {
-    "date": "2026-05-19",
-    "aggregate": {
-      "valid_days": 2,
-      "low_confidence_days": 3,
-      "sample_count_3d": 6,
-      "sample_count_5d": 6,
-      "validated_count": 6,
-      "aligned_count": 4,
-      "diverged_count": 2,
-      "aligned_ratio": 0.6667,
-      "direction_accuracy": 0.6667,
-      "correlation_3d": 0.3798,
-      "correlation_5d": 0.3097,
-      "confidence_calibration": 0.3798,
-      "calibration_strategy": "正相關",
-      "method_quality_score": 68.0607,
-      "topic_scores": {
-        "AI 伺服器與資料中心": 76.6667
-      },
-      "relation_stats": {
-        "產業/供應鏈推估": {
-          "validated": 6,
-          "aligned": 4,
-          "diverged": 2,
-          "aligned_ratio": 0.6667
-        }
-      },
-      "keyword_returns": {
-        "AI 伺服器與資料中心": 15.4967
-      },
-      "overconfident_misses": [],
-      "keyword_company_learning": {
-        "sample_count": 1203,
-        "valid_sample_count": 4,
-        "pending_sample_count": 288,
-        "hit_rate_5d": 1.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": 3.2496,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": false,
-      "strategy": "樣本不足",
-      "reason": "近 5 日有效樣本 6 筆，低於 15 筆門檻，暫不調整權重。",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.8259,
-        "historical_topic_score_weight": 0.4052,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.797,
-        "inferred_supply_chain_weight": 0.3109,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2953
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.8259,
-        "historical_topic_score_weight": 0.4052,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.797,
-        "inferred_supply_chain_weight": 0.3109,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2953
-      },
-      "changes": {}
-    }
-  },
-  {
     "date": "2026-05-20",
     "aggregate": {
       "valid_days": 1,
@@ -6916,6 +6844,88 @@
       "updated": false,
       "strategy": "方向與信心皆需修正",
       "reason": "近 5 日方向與信心排序皆偏弱，降低方向詞與供應鏈推估權重，並加重背離扣分。；關鍵詞×公司後續樣本有效 5 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6601,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6601,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {}
+    }
+  },
+  {
+    "date": "2026-08-17",
+    "aggregate": {
+      "valid_days": 2,
+      "low_confidence_days": 3,
+      "sample_count_3d": 10,
+      "sample_count_5d": 10,
+      "validated_count": 10,
+      "aligned_count": 3,
+      "diverged_count": 4,
+      "aligned_ratio": 0.3,
+      "direction_accuracy": 0.3,
+      "correlation_3d": 0.3357,
+      "correlation_5d": 0.1786,
+      "confidence_calibration": 0.3357,
+      "calibration_strategy": "正相關",
+      "method_quality_score": 52.0722,
+      "topic_scores": {
+        "半導體與晶片供應鏈": 46.9475,
+        "AI 伺服器與資料中心": 0.0,
+        "新興題材：外媒盛讚台積電晶片": 0.0
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 5,
+          "aligned": 2,
+          "diverged": 1,
+          "aligned_ratio": 0.4
+        },
+        "產業/供應鏈推估": {
+          "validated": 5,
+          "aligned": 1,
+          "diverged": 3,
+          "aligned_ratio": 0.2
+        }
+      },
+      "keyword_returns": {
+        "半導體與晶片供應鏈": 3.9825,
+        "新興題材：外媒盛讚台積電晶片": 0.0,
+        "AI 伺服器與資料中心": -8.126
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 5,
+        "pending_sample_count": 935,
+        "hit_rate_5d": 0.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": -9.7948,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": false,
+      "strategy": "樣本不足",
+      "reason": "近 5 日有效樣本 10 筆，低於 15 筆門檻，暫不調整權重。",
       "weights_before": {
         "news_heat_weight": 1.0,
         "current_market_confirmation_weight": 1.5,
