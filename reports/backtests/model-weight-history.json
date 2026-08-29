@@ -1,66 +1,5 @@
 [
   {
-    "date": "2026-05-31",
-    "aggregate": {
-      "valid_days": 0,
-      "low_confidence_days": 5,
-      "sample_count_3d": 0,
-      "sample_count_5d": 0,
-      "validated_count": 0,
-      "aligned_count": 0,
-      "diverged_count": 0,
-      "aligned_ratio": null,
-      "direction_accuracy": null,
-      "correlation_3d": null,
-      "correlation_5d": null,
-      "confidence_calibration": null,
-      "calibration_strategy": "樣本不足",
-      "method_quality_score": null,
-      "topic_scores": {},
-      "relation_stats": {},
-      "keyword_returns": {},
-      "overconfident_misses": [],
-      "keyword_company_learning": {
-        "sample_count": 2416,
-        "valid_sample_count": 4,
-        "pending_sample_count": 434,
-        "hit_rate_5d": 1.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": 3.2496,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": false,
-      "strategy": "樣本不足",
-      "reason": "近 5 日有效樣本 0 筆，低於 15 筆門檻，暫不調整權重。",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.9994,
-        "historical_topic_score_weight": 0.4468,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.797,
-        "inferred_supply_chain_weight": 0.2518,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2953
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.9994,
-        "historical_topic_score_weight": 0.4468,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.797,
-        "inferred_supply_chain_weight": 0.2518,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2953
-      },
-      "changes": {}
-    }
-  },
-  {
     "date": "2026-06-01",
     "aggregate": {
       "valid_days": 2,
@@ -6885,6 +6824,101 @@
         "historical_topic_score_weight": {
           "before": 0.6601,
           "after": 0.6931
+        }
+      }
+    }
+  },
+  {
+    "date": "2026-08-29",
+    "aggregate": {
+      "valid_days": 4,
+      "low_confidence_days": 1,
+      "sample_count_3d": 24,
+      "sample_count_5d": 24,
+      "validated_count": 24,
+      "aligned_count": 9,
+      "diverged_count": 11,
+      "aligned_ratio": 0.375,
+      "direction_accuracy": 0.375,
+      "correlation_3d": 0.2322,
+      "correlation_5d": 0.4572,
+      "confidence_calibration": 0.2322,
+      "calibration_strategy": "正相關",
+      "method_quality_score": 51.9646,
+      "topic_scores": {
+        "新興題材：法人看營收": 90.715,
+        "新興題材：輝達營收": 48.215,
+        "AI 伺服器與資料中心": 23.3134,
+        "半導體與晶片供應鏈": 0.0,
+        "綜合市場情緒": 0.0
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 7,
+          "aligned": 4,
+          "diverged": 1,
+          "aligned_ratio": 0.5714
+        },
+        "產業/供應鏈推估": {
+          "validated": 17,
+          "aligned": 5,
+          "diverged": 10,
+          "aligned_ratio": 0.2941
+        }
+      },
+      "keyword_returns": {
+        "新興題材：法人看營收": 6.905,
+        "新興題材：輝達營收": 4.405,
+        "AI 伺服器與資料中心": -0.0067,
+        "綜合市場情緒": -0.83,
+        "半導體與晶片供應鏈": -2.2
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 5,
+        "pending_sample_count": 915,
+        "hit_rate_5d": 0.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": -9.7948,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": true,
+      "strategy": "正相關",
+      "reason": "近 5 日信心分數與後續報酬呈正相關，提高市場確認、歷史題材與直接提及權重。；關鍵詞×公司後續樣本有效 5 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.6931,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.7278,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.618,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {
+        "historical_topic_score_weight": {
+          "before": 0.6931,
+          "after": 0.7278
+        },
+        "direct_mention_weight": {
+          "before": 0.6,
+          "after": 0.618
         }
       }
     }
