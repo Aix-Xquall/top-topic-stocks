@@ -1,87 +1,5 @@
 [
   {
-    "date": "2026-06-05",
-    "aggregate": {
-      "valid_days": 2,
-      "low_confidence_days": 3,
-      "sample_count_3d": 11,
-      "sample_count_5d": 11,
-      "validated_count": 11,
-      "aligned_count": 5,
-      "diverged_count": 3,
-      "aligned_ratio": 0.4545,
-      "direction_accuracy": 0.4545,
-      "correlation_3d": 0.1854,
-      "correlation_5d": 0.7039,
-      "confidence_calibration": 0.1854,
-      "calibration_strategy": "弱正相關",
-      "method_quality_score": 53.7441,
-      "topic_scores": {
-        "AI 伺服器與資料中心": 65.0,
-        "半導體與晶片供應鏈": 50.0,
-        "新興題材：博通重挫拖累晶片": 0.0
-      },
-      "relation_stats": {
-        "新聞直接提及": {
-          "validated": 7,
-          "aligned": 3,
-          "diverged": 1,
-          "aligned_ratio": 0.4286
-        },
-        "產業/供應鏈推估": {
-          "validated": 4,
-          "aligned": 2,
-          "diverged": 2,
-          "aligned_ratio": 0.5
-        }
-      },
-      "keyword_returns": {
-        "半導體與晶片供應鏈": 13.6225,
-        "AI 伺服器與資料中心": 10.7683,
-        "新興題材：博通重挫拖累晶片": -0.35
-      },
-      "overconfident_misses": [],
-      "keyword_company_learning": {
-        "sample_count": 2891,
-        "valid_sample_count": 4,
-        "pending_sample_count": 558,
-        "hit_rate_5d": 1.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": 3.2496,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": false,
-      "strategy": "樣本不足",
-      "reason": "近 5 日有效樣本 11 筆，低於 15 筆門檻，暫不調整權重。",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.9994,
-        "historical_topic_score_weight": 0.4468,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.797,
-        "inferred_supply_chain_weight": 0.2518,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2953
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.9994,
-        "historical_topic_score_weight": 0.4468,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.797,
-        "inferred_supply_chain_weight": 0.2518,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2953
-      },
-      "changes": {}
-    }
-  },
-  {
     "date": "2026-06-06",
     "aggregate": {
       "valid_days": 2,
@@ -6977,6 +6895,91 @@
         "historical_topic_score_weight": {
           "before": 0.7642,
           "after": 0.8024
+        }
+      }
+    }
+  },
+  {
+    "date": "2026-09-03",
+    "aggregate": {
+      "valid_days": 2,
+      "low_confidence_days": 3,
+      "sample_count_3d": 16,
+      "sample_count_5d": 14,
+      "validated_count": 16,
+      "aligned_count": 9,
+      "diverged_count": 6,
+      "aligned_ratio": 0.5625,
+      "direction_accuracy": 0.5625,
+      "correlation_3d": 0.0993,
+      "correlation_5d": -0.3418,
+      "confidence_calibration": 0.0993,
+      "calibration_strategy": "低相關",
+      "method_quality_score": 55.4775,
+      "topic_scores": {
+        "AI 伺服器與資料中心": 49.2334,
+        "關稅與供應鏈轉移": 0.0
+      },
+      "relation_stats": {
+        "產業/供應鏈推估": {
+          "validated": 14,
+          "aligned": 9,
+          "diverged": 4,
+          "aligned_ratio": 0.6429
+        },
+        "新聞直接提及": {
+          "validated": 2,
+          "aligned": 0,
+          "diverged": 2,
+          "aligned_ratio": 0.0
+        }
+      },
+      "keyword_returns": {
+        "AI 伺服器與資料中心": 1.4314,
+        "關稅與供應鏈轉移": -8.105
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 5,
+        "pending_sample_count": 909,
+        "hit_rate_5d": 0.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": -9.7948,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": true,
+      "strategy": "低相關",
+      "reason": "近 5 日信心分數與股價關係偏低，提高價格確認，降低寬題材推估。；關鍵詞×公司後續樣本有效 5 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.8024,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.8425,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {
+        "historical_topic_score_weight": {
+          "before": 0.8024,
+          "after": 0.8425
         }
       }
     }
