@@ -1,102 +1,5 @@
 [
   {
-    "date": "2026-06-06",
-    "aggregate": {
-      "valid_days": 2,
-      "low_confidence_days": 3,
-      "sample_count_3d": 15,
-      "sample_count_5d": 15,
-      "validated_count": 15,
-      "aligned_count": 6,
-      "diverged_count": 7,
-      "aligned_ratio": 0.4,
-      "direction_accuracy": 0.4,
-      "correlation_3d": 0.1373,
-      "correlation_5d": 0.1234,
-      "confidence_calibration": 0.1373,
-      "calibration_strategy": "弱正相關",
-      "method_quality_score": 50.1184,
-      "topic_scores": {
-        "新興題材：SpaceX": 100.0,
-        "新興題材：OpenAI": 100.0,
-        "AI 伺服器與資料中心": 31.5158,
-        "新興題材：博通重申AI晶片": 0.0
-      },
-      "relation_stats": {
-        "新聞直接提及": {
-          "validated": 4,
-          "aligned": 2,
-          "diverged": 2,
-          "aligned_ratio": 0.5
-        },
-        "產業/供應鏈推估": {
-          "validated": 11,
-          "aligned": 4,
-          "diverged": 5,
-          "aligned_ratio": 0.3636
-        }
-      },
-      "keyword_returns": {
-        "新興題材：SpaceX": 13.0,
-        "新興題材：OpenAI": 13.0,
-        "AI 伺服器與資料中心": 2.7275,
-        "新興題材：博通重申AI晶片": -35.35
-      },
-      "overconfident_misses": [],
-      "keyword_company_learning": {
-        "sample_count": 2952,
-        "valid_sample_count": 4,
-        "pending_sample_count": 570,
-        "hit_rate_5d": 1.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": 3.2496,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": true,
-      "strategy": "弱正相關",
-      "reason": "近 5 日方向與信心排序皆偏弱，降低方向詞與供應鏈推估權重，並加重背離扣分。；關鍵詞×公司後續樣本有效 4 筆，未達 30 筆，不調整樣本權重",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.9994,
-        "historical_topic_score_weight": 0.4468,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.797,
-        "inferred_supply_chain_weight": 0.2518,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2953
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.9994,
-        "historical_topic_score_weight": 0.4468,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.7571,
-        "inferred_supply_chain_weight": 0.2266,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2658
-      },
-      "changes": {
-        "direct_mention_weight": {
-          "before": 0.797,
-          "after": 0.7571
-        },
-        "inferred_supply_chain_weight": {
-          "before": 0.2518,
-          "after": 0.2266
-        },
-        "price_divergence_penalty": {
-          "before": 0.2953,
-          "after": 0.2658
-        }
-      }
-    }
-  },
-  {
     "date": "2026-06-07",
     "aggregate": {
       "valid_days": 1,
@@ -6982,6 +6885,67 @@
           "after": 0.8425
         }
       }
+    }
+  },
+  {
+    "date": "2026-09-04",
+    "aggregate": {
+      "valid_days": 0,
+      "low_confidence_days": 5,
+      "sample_count_3d": 0,
+      "sample_count_5d": 0,
+      "validated_count": 0,
+      "aligned_count": 0,
+      "diverged_count": 0,
+      "aligned_ratio": null,
+      "direction_accuracy": null,
+      "correlation_3d": null,
+      "correlation_5d": null,
+      "confidence_calibration": null,
+      "calibration_strategy": "樣本不足",
+      "method_quality_score": null,
+      "topic_scores": {},
+      "relation_stats": {},
+      "keyword_returns": {},
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 5,
+        "pending_sample_count": 864,
+        "hit_rate_5d": 0.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": -9.7948,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": false,
+      "strategy": "樣本不足",
+      "reason": "近 5 日有效樣本 0 筆，低於 15 筆門檻，暫不調整權重。",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.8425,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.8425,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {}
     }
   }
 ]
