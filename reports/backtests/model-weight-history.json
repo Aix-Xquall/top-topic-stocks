@@ -1,108 +1,5 @@
 [
   {
-    "date": "2026-06-08",
-    "aggregate": {
-      "valid_days": 2,
-      "low_confidence_days": 3,
-      "sample_count_3d": 24,
-      "sample_count_5d": 24,
-      "validated_count": 24,
-      "aligned_count": 8,
-      "diverged_count": 13,
-      "aligned_ratio": 0.3333,
-      "direction_accuracy": 0.3333,
-      "correlation_3d": -0.0537,
-      "correlation_5d": -0.1671,
-      "confidence_calibration": -0.0537,
-      "calibration_strategy": "低相關",
-      "method_quality_score": 41.7208,
-      "topic_scores": {
-        "半導體與晶片供應鏈": 53.43,
-        "記憶體與 HBM 供應鏈": 39.155,
-        "AI 伺服器與資料中心": 20.0683,
-        "新興題材：5月營收": 0.0,
-        "新興題材：看好載板需求": 0.0,
-        "先進封裝與 CoPoS": 0.0,
-        "新興題材：17億元衝歷史次高記憶體": 0.0
-      },
-      "relation_stats": {
-        "新聞直接提及": {
-          "validated": 8,
-          "aligned": 1,
-          "diverged": 6,
-          "aligned_ratio": 0.125
-        },
-        "產業/供應鏈推估": {
-          "validated": 16,
-          "aligned": 7,
-          "diverged": 7,
-          "aligned_ratio": 0.4375
-        }
-      },
-      "keyword_returns": {
-        "半導體與晶片供應鏈": 3.81,
-        "記憶體與 HBM 供應鏈": 0.285,
-        "AI 伺服器與資料中心": -1.0883,
-        "先進封裝與 CoPoS": -2.2,
-        "新興題材：17億元衝歷史次高記憶體": -2.2,
-        "新興題材：5月營收": -3.255,
-        "新興題材：看好載板需求": -4.31
-      },
-      "overconfident_misses": [],
-      "keyword_company_learning": {
-        "sample_count": 3165,
-        "valid_sample_count": 4,
-        "pending_sample_count": 634,
-        "hit_rate_5d": 1.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": 3.2496,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": true,
-      "strategy": "低相關",
-      "reason": "近 5 日信心分數與股價關係偏低，提高價格確認，降低寬題材推估。；關鍵詞×公司後續樣本有效 4 筆，未達 30 筆，不調整樣本權重",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 0.9994,
-        "historical_topic_score_weight": 0.4468,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.7571,
-        "inferred_supply_chain_weight": 0.2266,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2658
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.0993,
-        "historical_topic_score_weight": 0.4691,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.7571,
-        "inferred_supply_chain_weight": 0.2039,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2658
-      },
-      "changes": {
-        "current_market_confirmation_weight": {
-          "before": 0.9994,
-          "after": 1.0993
-        },
-        "historical_topic_score_weight": {
-          "before": 0.4468,
-          "after": 0.4691
-        },
-        "inferred_supply_chain_weight": {
-          "before": 0.2266,
-          "after": 0.2039
-        }
-      }
-    }
-  },
-  {
     "date": "2026-06-09",
     "aggregate": {
       "valid_days": 2,
@@ -6946,6 +6843,101 @@
         "price_divergence_penalty": 0.2
       },
       "changes": {}
+    }
+  },
+  {
+    "date": "2026-09-06",
+    "aggregate": {
+      "valid_days": 3,
+      "low_confidence_days": 2,
+      "sample_count_3d": 23,
+      "sample_count_5d": 19,
+      "validated_count": 23,
+      "aligned_count": 13,
+      "diverged_count": 7,
+      "aligned_ratio": 0.5652,
+      "direction_accuracy": 0.5652,
+      "correlation_3d": -0.0203,
+      "correlation_5d": -0.3206,
+      "confidence_calibration": -0.0203,
+      "calibration_strategy": "低相關",
+      "method_quality_score": 52.0009,
+      "topic_scores": {
+        "記憶體與 HBM 供應鏈": 94.735,
+        "散熱與液冷供應鏈": 84.07,
+        "AI 伺服器與資料中心": 47.0388,
+        "新興題材：鴻海8月營收": 0.0,
+        "半導體與晶片供應鏈": 0.0,
+        "新興題材：能見度優於上月AI需求": 0.0,
+        "新興題材：創同期新高AI伺服器需求": 0.0
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 6,
+          "aligned": 2,
+          "diverged": 1,
+          "aligned_ratio": 0.3333
+        },
+        "產業/供應鏈推估": {
+          "validated": 17,
+          "aligned": 11,
+          "diverged": 6,
+          "aligned_ratio": 0.6471
+        }
+      },
+      "keyword_returns": {
+        "記憶體與 HBM 供應鏈": 8.245,
+        "散熱與液冷供應鏈": 4.69,
+        "AI 伺服器與資料中心": 1.0963,
+        "新興題材：鴻海8月營收": 0.0,
+        "新興題材：能見度優於上月AI需求": 0.0,
+        "新興題材：創同期新高AI伺服器需求": 0.0,
+        "半導體與晶片供應鏈": -2.32
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 0,
+        "pending_sample_count": 889,
+        "hit_rate_5d": null,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": null,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": true,
+      "strategy": "低相關",
+      "reason": "近 5 日信心分數與股價關係偏低，提高價格確認，降低寬題材推估。；關鍵詞×公司後續樣本有效 0 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.8425,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 0.8846,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {
+        "historical_topic_score_weight": {
+          "before": 0.8425,
+          "after": 0.8846
+        }
+      }
     }
   }
 ]
