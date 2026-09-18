@@ -1,66 +1,5 @@
 [
   {
-    "date": "2026-06-21",
-    "aggregate": {
-      "valid_days": 0,
-      "low_confidence_days": 5,
-      "sample_count_3d": 0,
-      "sample_count_5d": 0,
-      "validated_count": 0,
-      "aligned_count": 0,
-      "diverged_count": 0,
-      "aligned_ratio": null,
-      "direction_accuracy": null,
-      "correlation_3d": null,
-      "correlation_5d": null,
-      "confidence_calibration": null,
-      "calibration_strategy": "樣本不足",
-      "method_quality_score": null,
-      "topic_scores": {},
-      "relation_stats": {},
-      "keyword_returns": {},
-      "overconfident_misses": [],
-      "keyword_company_learning": {
-        "sample_count": 4159,
-        "valid_sample_count": 4,
-        "pending_sample_count": 793,
-        "hit_rate_5d": 1.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": 3.2496,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": false,
-      "strategy": "樣本不足",
-      "reason": "近 5 日有效樣本 0 筆，低於 15 筆門檻，暫不調整權重。",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.2092,
-        "historical_topic_score_weight": 0.4926,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6832,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2153
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.2092,
-        "historical_topic_score_weight": 0.4926,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6832,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2153
-      },
-      "changes": {}
-    }
-  },
-  {
     "date": "2026-06-22",
     "aggregate": {
       "valid_days": 1,
@@ -6939,6 +6878,88 @@
       "updated": false,
       "strategy": "樣本不足",
       "reason": "近 5 日有效樣本 7 筆，低於 15 筆門檻，暫不調整權重。",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.129,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.129,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {}
+    }
+  },
+  {
+    "date": "2026-09-19",
+    "aggregate": {
+      "valid_days": 2,
+      "low_confidence_days": 3,
+      "sample_count_3d": 14,
+      "sample_count_5d": 14,
+      "validated_count": 14,
+      "aligned_count": 6,
+      "diverged_count": 7,
+      "aligned_ratio": 0.4286,
+      "direction_accuracy": 0.4286,
+      "correlation_3d": 0.1923,
+      "correlation_5d": 0.2276,
+      "confidence_calibration": 0.1923,
+      "calibration_strategy": "弱正相關",
+      "method_quality_score": 52.9104,
+      "topic_scores": {
+        "半導體與晶片供應鏈": 100.0,
+        "新興題材：MoneyDJ": 79.27,
+        "AI 伺服器與資料中心": 24.8
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 4,
+          "aligned": 3,
+          "diverged": 1,
+          "aligned_ratio": 0.75
+        },
+        "產業/供應鏈推估": {
+          "validated": 10,
+          "aligned": 3,
+          "diverged": 6,
+          "aligned_ratio": 0.3
+        }
+      },
+      "keyword_returns": {
+        "半導體與晶片供應鏈": 12.64,
+        "新興題材：MoneyDJ": 3.09,
+        "AI 伺服器與資料中心": -1.3608
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 4,
+        "pending_sample_count": 903,
+        "hit_rate_5d": 1.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": 4.6201,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": false,
+      "strategy": "樣本不足",
+      "reason": "近 5 日有效樣本 14 筆，低於 15 筆門檻，暫不調整權重。",
       "weights_before": {
         "news_heat_weight": 1.0,
         "current_market_confirmation_weight": 1.5,
