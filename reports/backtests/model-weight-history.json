@@ -1,93 +1,5 @@
 [
   {
-    "date": "2026-06-27",
-    "aggregate": {
-      "valid_days": 3,
-      "low_confidence_days": 2,
-      "sample_count_3d": 13,
-      "sample_count_5d": 13,
-      "validated_count": 13,
-      "aligned_count": 11,
-      "diverged_count": 2,
-      "aligned_ratio": 0.8462,
-      "direction_accuracy": 0.8462,
-      "correlation_3d": -0.0496,
-      "correlation_5d": 0.3299,
-      "confidence_calibration": -0.0496,
-      "calibration_strategy": "信心校準問題",
-      "method_quality_score": 62.3586,
-      "topic_scores": {
-        "新興題材：聯發科跌停": 100.0,
-        "新興題材：聯發科被嚇到跌停": 100.0,
-        "新興題材：台塑全跌停": 100.0,
-        "新興題材：OpenAI": 85.09,
-        "新興題材：MoneyDJ": 84.34,
-        "AI 伺服器與資料中心": 50.0567
-      },
-      "relation_stats": {
-        "新聞直接提及": {
-          "validated": 8,
-          "aligned": 8,
-          "diverged": 0,
-          "aligned_ratio": 1.0
-        },
-        "產業/供應鏈推估": {
-          "validated": 5,
-          "aligned": 3,
-          "diverged": 2,
-          "aligned_ratio": 0.6
-        }
-      },
-      "keyword_returns": {
-        "新興題材：聯發科被嚇到跌停": 14.44,
-        "新興題材：台塑全跌停": 14.44,
-        "新興題材：聯發科跌停": 11.6333,
-        "新興題材：OpenAI": 5.03,
-        "新興題材：MoneyDJ": 4.78,
-        "AI 伺服器與資料中心": 1.13
-      },
-      "overconfident_misses": [],
-      "keyword_company_learning": {
-        "sample_count": 4745,
-        "valid_sample_count": 4,
-        "pending_sample_count": 907,
-        "hit_rate_5d": 1.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": 3.2496,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": false,
-      "strategy": "樣本不足",
-      "reason": "近 5 日有效樣本 13 筆，低於 15 筆門檻，暫不調整權重。",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.2092,
-        "historical_topic_score_weight": 0.4926,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6832,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2153
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.2092,
-        "historical_topic_score_weight": 0.4926,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6832,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2153
-      },
-      "changes": {}
-    }
-  },
-  {
     "date": "2026-06-28",
     "aggregate": {
       "valid_days": 1,
@@ -6988,6 +6900,88 @@
       "updated": false,
       "strategy": "樣本不足",
       "reason": "近 5 日有效樣本 8 筆，低於 15 筆門檻，暫不調整權重。",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.307,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.307,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {}
+    }
+  },
+  {
+    "date": "2026-09-25",
+    "aggregate": {
+      "valid_days": 1,
+      "low_confidence_days": 4,
+      "sample_count_3d": 10,
+      "sample_count_5d": 8,
+      "validated_count": 10,
+      "aligned_count": 1,
+      "diverged_count": 6,
+      "aligned_ratio": 0.1,
+      "direction_accuracy": 0.1,
+      "correlation_3d": -0.3206,
+      "correlation_5d": -0.3925,
+      "confidence_calibration": -0.3206,
+      "calibration_strategy": "方向與信心皆需修正",
+      "method_quality_score": 24.382,
+      "topic_scores": {
+        "新興題材：9月30日開募鴻海法說": 0.6,
+        "新興題材：登場AI伺服器": 0.6,
+        "AI 伺服器與資料中心": 0.0
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 3,
+          "aligned": 0,
+          "diverged": 1,
+          "aligned_ratio": 0.0
+        },
+        "產業/供應鏈推估": {
+          "validated": 7,
+          "aligned": 1,
+          "diverged": 5,
+          "aligned_ratio": 0.1429
+        }
+      },
+      "keyword_returns": {
+        "新興題材：9月30日開募鴻海法說": 0.2,
+        "新興題材：登場AI伺服器": 0.2,
+        "AI 伺服器與資料中心": -7.2938
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 4,
+        "pending_sample_count": 921,
+        "hit_rate_5d": 1.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": 4.6201,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": false,
+      "strategy": "樣本不足",
+      "reason": "近 5 日有效樣本 10 筆，低於 15 筆門檻，暫不調整權重。",
       "weights_before": {
         "news_heat_weight": 1.0,
         "current_market_confirmation_weight": 1.5,
