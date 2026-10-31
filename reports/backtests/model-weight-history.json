@@ -1,66 +1,5 @@
 [
   {
-    "date": "2026-08-02",
-    "aggregate": {
-      "valid_days": 0,
-      "low_confidence_days": 5,
-      "sample_count_3d": 0,
-      "sample_count_5d": 0,
-      "validated_count": 0,
-      "aligned_count": 0,
-      "diverged_count": 0,
-      "aligned_ratio": null,
-      "direction_accuracy": null,
-      "correlation_3d": null,
-      "correlation_5d": null,
-      "confidence_calibration": null,
-      "calibration_strategy": "樣本不足",
-      "method_quality_score": null,
-      "topic_scores": {},
-      "relation_stats": {},
-      "keyword_returns": {},
-      "overconfident_misses": [],
-      "keyword_company_learning": {
-        "sample_count": 5000,
-        "valid_sample_count": 5,
-        "pending_sample_count": 1007,
-        "hit_rate_5d": 0.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": -9.7948,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": false,
-      "strategy": "樣本不足",
-      "reason": "近 5 日有效樣本 0 筆，低於 15 筆門檻，暫不調整權重。",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.5,
-        "historical_topic_score_weight": 0.6287,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.5,
-        "historical_topic_score_weight": 0.6287,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2
-      },
-      "changes": {}
-    }
-  },
-  {
     "date": "2026-08-03",
     "aggregate": {
       "valid_days": 1,
@@ -7054,6 +6993,105 @@
         "price_divergence_penalty": 0.2
       },
       "changes": {}
+    }
+  },
+  {
+    "date": "2026-10-31",
+    "aggregate": {
+      "valid_days": 3,
+      "low_confidence_days": 2,
+      "sample_count_3d": 17,
+      "sample_count_5d": 17,
+      "validated_count": 17,
+      "aligned_count": 11,
+      "diverged_count": 6,
+      "aligned_ratio": 0.6471,
+      "direction_accuracy": 0.6471,
+      "correlation_3d": 0.2779,
+      "correlation_5d": -0.1297,
+      "confidence_calibration": 0.2779,
+      "calibration_strategy": "正相關",
+      "method_quality_score": 64.2204,
+      "topic_scores": {
+        "新興題材：全球晶片": 100.0,
+        "記憶體與 HBM 供應鏈": 100.0,
+        "半導體與晶片供應鏈": 88.915,
+        "新興題材：先進封裝需求": 77.83,
+        "新興題材：對日月光未來營收": 77.83,
+        "AI 伺服器與資料中心": 50.13,
+        "先進封裝與 CoPoS": 25.445,
+        "新興題材：MoneyDJ": 0.0,
+        "新興題材：聯發科法說": 0.0
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 12,
+          "aligned": 8,
+          "diverged": 4,
+          "aligned_ratio": 0.6667
+        },
+        "產業/供應鏈推估": {
+          "validated": 5,
+          "aligned": 3,
+          "diverged": 2,
+          "aligned_ratio": 0.6
+        }
+      },
+      "keyword_returns": {
+        "新興題材：全球晶片": 42.66,
+        "記憶體與 HBM 供應鏈": 42.66,
+        "半導體與晶片供應鏈": 17.5267,
+        "AI 伺服器與資料中心": 5.0433,
+        "新興題材：先進封裝需求": 2.61,
+        "新興題材：對日月光未來營收": 2.61,
+        "新興題材：MoneyDJ": -1.14,
+        "新興題材：聯發科法說": -1.14,
+        "先進封裝與 CoPoS": -3.185
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 4,
+        "pending_sample_count": 964,
+        "hit_rate_5d": 1.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": 4.6201,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": true,
+      "strategy": "正相關",
+      "reason": "近 5 日信心分數與後續報酬呈正相關，提高市場確認、歷史題材與直接提及權重。；關鍵詞×公司後續樣本有效 4 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.5,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.618,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.5,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6365,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {
+        "direct_mention_weight": {
+          "before": 0.618,
+          "after": 0.6365
+        }
+      }
     }
   }
 ]
