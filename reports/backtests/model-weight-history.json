@@ -1,77 +1,5 @@
 [
   {
-    "date": "2026-08-09",
-    "aggregate": {
-      "valid_days": 2,
-      "low_confidence_days": 3,
-      "sample_count_3d": 12,
-      "sample_count_5d": 12,
-      "validated_count": 12,
-      "aligned_count": 3,
-      "diverged_count": 5,
-      "aligned_ratio": 0.25,
-      "direction_accuracy": 0.25,
-      "correlation_3d": 0.476,
-      "correlation_5d": 0.0418,
-      "confidence_calibration": 0.476,
-      "calibration_strategy": "正相關",
-      "method_quality_score": 54.28,
-      "topic_scores": {
-        "AI 伺服器與資料中心": 19.1275
-      },
-      "relation_stats": {
-        "產業/供應鏈推估": {
-          "validated": 12,
-          "aligned": 3,
-          "diverged": 5,
-          "aligned_ratio": 0.25
-        }
-      },
-      "keyword_returns": {
-        "AI 伺服器與資料中心": -4.0867
-      },
-      "overconfident_misses": [],
-      "keyword_company_learning": {
-        "sample_count": 5000,
-        "valid_sample_count": 5,
-        "pending_sample_count": 974,
-        "hit_rate_5d": 0.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": -9.7948,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": false,
-      "strategy": "樣本不足",
-      "reason": "近 5 日有效樣本 12 筆，低於 15 筆門檻，暫不調整權重。",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.5,
-        "historical_topic_score_weight": 0.6287,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.5,
-        "historical_topic_score_weight": 0.6287,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2
-      },
-      "changes": {}
-    }
-  },
-  {
     "date": "2026-08-10",
     "aggregate": {
       "valid_days": 3,
@@ -7185,6 +7113,97 @@
         "direct_mention_weight": {
           "before": 0.6,
           "after": 0.618
+        }
+      }
+    }
+  },
+  {
+    "date": "2026-11-07",
+    "aggregate": {
+      "valid_days": 2,
+      "low_confidence_days": 3,
+      "sample_count_3d": 19,
+      "sample_count_5d": 17,
+      "validated_count": 19,
+      "aligned_count": 16,
+      "diverged_count": 3,
+      "aligned_ratio": 0.8421,
+      "direction_accuracy": 0.8421,
+      "correlation_3d": 0.3614,
+      "correlation_5d": -0.3745,
+      "confidence_calibration": 0.3614,
+      "calibration_strategy": "正相關",
+      "method_quality_score": 74.5272,
+      "topic_scores": {
+        "新興題材：兆元營收": 95.65,
+        "新興題材：綠燈中鴻海逆勢苦撐未跌停": 95.65,
+        "新興題材：台積電跌停": 90.91,
+        "新興題材：台積電一度跌停": 90.91,
+        "AI 伺服器與資料中心": 74.3085
+      },
+      "relation_stats": {
+        "產業/供應鏈推估": {
+          "validated": 15,
+          "aligned": 12,
+          "diverged": 3,
+          "aligned_ratio": 0.8
+        },
+        "新聞直接提及": {
+          "validated": 4,
+          "aligned": 4,
+          "diverged": 0,
+          "aligned_ratio": 1.0
+        }
+      },
+      "keyword_returns": {
+        "新興題材：兆元營收": 8.55,
+        "新興題材：綠燈中鴻海逆勢苦撐未跌停": 8.55,
+        "AI 伺服器與資料中心": 8.472,
+        "新興題材：台積電跌停": 6.97,
+        "新興題材：台積電一度跌停": 6.97
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 4,
+        "pending_sample_count": 1037,
+        "hit_rate_5d": 1.0,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": 4.6201,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": true,
+      "strategy": "正相關",
+      "reason": "近 5 日信心分數與後續報酬呈正相關，提高市場確認、歷史題材與直接提及權重。；關鍵詞×公司後續樣本有效 4 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.5,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.618,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.5,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6365,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {
+        "direct_mention_weight": {
+          "before": 0.618,
+          "after": 0.6365
         }
       }
     }
