@@ -1,60 +1,24 @@
 {
-  "generated_at": "2026-11-11",
+  "generated_at": "2026-11-12",
   "sample_count": 5000,
-  "valid_sample_count": 4,
-  "pending_sample_count": 1002,
+  "valid_sample_count": 1,
+  "pending_sample_count": 991,
   "missing_price_sample_count": 0,
-  "neutral_sample_count": 3994,
+  "neutral_sample_count": 4008,
   "overall": {
-    "valid_count": 4,
+    "valid_count": 1,
     "hit_rate_3d": 1.0,
     "hit_rate_5d": 1.0,
-    "shrunk_hit_rate_5d": 0.6667,
+    "shrunk_hit_rate_5d": 0.5556,
     "avg_directional_return_3d": 9.5531,
     "avg_directional_return_5d": 4.6201,
     "confidence_correlation_5d": null,
     "overconfident_miss_rate_5d": null,
-    "edge_score_5d": 75.2169,
+    "edge_score_5d": 65.4391,
     "last_seen": "2026-09-10"
   },
   "groups": {
     "keyword": {
-      "記憶體": {
-        "valid_count": 1,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.5556,
-        "avg_directional_return_3d": 9.5531,
-        "avg_directional_return_5d": 4.6201,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": null,
-        "edge_score_5d": 65.4391,
-        "last_seen": "2026-09-10"
-      },
-      "NAND": {
-        "valid_count": 1,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.5556,
-        "avg_directional_return_3d": 9.5531,
-        "avg_directional_return_5d": 4.6201,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": null,
-        "edge_score_5d": 65.4391,
-        "last_seen": "2026-09-10"
-      },
-      "HBM": {
-        "valid_count": 1,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.5556,
-        "avg_directional_return_3d": 9.5531,
-        "avg_directional_return_5d": 4.6201,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": null,
-        "edge_score_5d": 65.4391,
-        "last_seen": "2026-09-10"
-      },
       "美光": {
         "valid_count": 1,
         "hit_rate_3d": 1.0,
@@ -70,55 +34,19 @@
     },
     "topic": {
       "記憶體與 HBM 供應鏈": {
-        "valid_count": 4,
+        "valid_count": 1,
         "hit_rate_3d": 1.0,
         "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.6667,
+        "shrunk_hit_rate_5d": 0.5556,
         "avg_directional_return_3d": 9.5531,
         "avg_directional_return_5d": 4.6201,
         "confidence_correlation_5d": null,
         "overconfident_miss_rate_5d": null,
-        "edge_score_5d": 75.2169,
+        "edge_score_5d": 65.4391,
         "last_seen": "2026-09-10"
       }
     },
     "keyword_ticker": {
-      "記憶體|SNDK": {
-        "valid_count": 1,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.5556,
-        "avg_directional_return_3d": 9.5531,
-        "avg_directional_return_5d": 4.6201,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": null,
-        "edge_score_5d": 65.4391,
-        "last_seen": "2026-09-10"
-      },
-      "NAND|SNDK": {
-        "valid_count": 1,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.5556,
-        "avg_directional_return_3d": 9.5531,
-        "avg_directional_return_5d": 4.6201,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": null,
-        "edge_score_5d": 65.4391,
-        "last_seen": "2026-09-10"
-      },
-      "HBM|SNDK": {
-        "valid_count": 1,
-        "hit_rate_3d": 1.0,
-        "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.5556,
-        "avg_directional_return_3d": 9.5531,
-        "avg_directional_return_5d": 4.6201,
-        "confidence_correlation_5d": null,
-        "overconfident_miss_rate_5d": null,
-        "edge_score_5d": 65.4391,
-        "last_seen": "2026-09-10"
-      },
       "美光|SNDK": {
         "valid_count": 1,
         "hit_rate_3d": 1.0,
@@ -134,29 +62,29 @@
     },
     "topic_ticker": {
       "記憶體與 HBM 供應鏈|SNDK": {
-        "valid_count": 4,
+        "valid_count": 1,
         "hit_rate_3d": 1.0,
         "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.6667,
+        "shrunk_hit_rate_5d": 0.5556,
         "avg_directional_return_3d": 9.5531,
         "avg_directional_return_5d": 4.6201,
         "confidence_correlation_5d": null,
         "overconfident_miss_rate_5d": null,
-        "edge_score_5d": 75.2169,
+        "edge_score_5d": 65.4391,
         "last_seen": "2026-09-10"
       }
     },
     "relation_type": {
       "新聞直接提及": {
-        "valid_count": 4,
+        "valid_count": 1,
         "hit_rate_3d": 1.0,
         "hit_rate_5d": 1.0,
-        "shrunk_hit_rate_5d": 0.6667,
+        "shrunk_hit_rate_5d": 0.5556,
         "avg_directional_return_3d": 9.5531,
         "avg_directional_return_5d": 4.6201,
         "confidence_correlation_5d": null,
         "overconfident_miss_rate_5d": null,
-        "edge_score_5d": 75.2169,
+        "edge_score_5d": 65.4391,
         "last_seen": "2026-09-10"
       }
     }
