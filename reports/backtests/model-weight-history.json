@@ -1,77 +1,5 @@
 [
   {
-    "date": "2026-08-15",
-    "aggregate": {
-      "valid_days": 1,
-      "low_confidence_days": 4,
-      "sample_count_3d": 6,
-      "sample_count_5d": 6,
-      "validated_count": 6,
-      "aligned_count": 4,
-      "diverged_count": 1,
-      "aligned_ratio": 0.6667,
-      "direction_accuracy": 0.6667,
-      "correlation_3d": -0.0965,
-      "correlation_5d": 0.4245,
-      "confidence_calibration": -0.0965,
-      "calibration_strategy": "低相關",
-      "method_quality_score": 53.7717,
-      "topic_scores": {
-        "AI 伺服器與資料中心": 69.3467
-      },
-      "relation_stats": {
-        "產業/供應鏈推估": {
-          "validated": 6,
-          "aligned": 4,
-          "diverged": 1,
-          "aligned_ratio": 0.6667
-        }
-      },
-      "keyword_returns": {
-        "AI 伺服器與資料中心": 7.56
-      },
-      "overconfident_misses": [],
-      "keyword_company_learning": {
-        "sample_count": 5000,
-        "valid_sample_count": 5,
-        "pending_sample_count": 925,
-        "hit_rate_5d": 0.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": -9.7948,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": false,
-      "strategy": "樣本不足",
-      "reason": "近 5 日有效樣本 6 筆，低於 15 筆門檻，暫不調整權重。",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.5,
-        "historical_topic_score_weight": 0.6601,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.5,
-        "historical_topic_score_weight": 0.6601,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2
-      },
-      "changes": {}
-    }
-  },
-  {
     "date": "2026-08-16",
     "aggregate": {
       "valid_days": 3,
@@ -7231,6 +7159,84 @@
       "updated": false,
       "strategy": "低相關",
       "reason": "近 5 日信心分數與股價關係偏低，提高價格確認，降低寬題材推估。；關鍵詞×公司後續樣本有效 1 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.5,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6047,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.5,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6047,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {}
+    }
+  },
+  {
+    "date": "2026-11-13",
+    "aggregate": {
+      "valid_days": 4,
+      "low_confidence_days": 1,
+      "sample_count_3d": 29,
+      "sample_count_5d": 25,
+      "validated_count": 29,
+      "aligned_count": 11,
+      "diverged_count": 18,
+      "aligned_ratio": 0.3793,
+      "direction_accuracy": 0.3793,
+      "correlation_3d": 0.0867,
+      "correlation_5d": 0.1411,
+      "confidence_calibration": 0.0867,
+      "calibration_strategy": "低相關",
+      "method_quality_score": 47.7731,
+      "topic_scores": {
+        "AI 伺服器與資料中心": 27.0019
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 7,
+          "aligned": 3,
+          "diverged": 4,
+          "aligned_ratio": 0.4286
+        },
+        "產業/供應鏈推估": {
+          "validated": 22,
+          "aligned": 8,
+          "diverged": 14,
+          "aligned_ratio": 0.3636
+        }
+      },
+      "keyword_returns": {
+        "AI 伺服器與資料中心": -0.7914
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 0,
+        "pending_sample_count": 1028,
+        "hit_rate_5d": null,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": null,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": false,
+      "strategy": "低相關",
+      "reason": "近 5 日信心分數與股價關係偏低，提高價格確認，降低寬題材推估。；關鍵詞×公司後續樣本有效 0 筆，未達 30 筆，不調整樣本權重",
       "weights_before": {
         "news_heat_weight": 1.0,
         "current_market_confirmation_weight": 1.5,
