@@ -1,83 +1,5 @@
 [
   {
-    "date": "2026-08-16",
-    "aggregate": {
-      "valid_days": 3,
-      "low_confidence_days": 2,
-      "sample_count_3d": 18,
-      "sample_count_5d": 18,
-      "validated_count": 18,
-      "aligned_count": 8,
-      "diverged_count": 5,
-      "aligned_ratio": 0.4444,
-      "direction_accuracy": 0.4444,
-      "correlation_3d": -0.142,
-      "correlation_5d": 0.024,
-      "confidence_calibration": -0.142,
-      "calibration_strategy": "方向與信心皆需修正",
-      "method_quality_score": 43.5168,
-      "topic_scores": {
-        "AI 伺服器與資料中心": 38.6711
-      },
-      "relation_stats": {
-        "產業/供應鏈推估": {
-          "validated": 17,
-          "aligned": 8,
-          "diverged": 5,
-          "aligned_ratio": 0.4706
-        },
-        "新聞直接提及": {
-          "validated": 1,
-          "aligned": 0,
-          "diverged": 0,
-          "aligned_ratio": 0.0
-        }
-      },
-      "keyword_returns": {
-        "AI 伺服器與資料中心": 2.52
-      },
-      "overconfident_misses": [],
-      "keyword_company_learning": {
-        "sample_count": 5000,
-        "valid_sample_count": 5,
-        "pending_sample_count": 951,
-        "hit_rate_5d": 0.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": -9.7948,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": false,
-      "strategy": "方向與信心皆需修正",
-      "reason": "近 5 日方向與信心排序皆偏弱，降低方向詞與供應鏈推估權重，並加重背離扣分。；關鍵詞×公司後續樣本有效 5 筆，未達 30 筆，不調整樣本權重",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.5,
-        "historical_topic_score_weight": 0.6601,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.5,
-        "historical_topic_score_weight": 0.6601,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2
-      },
-      "changes": {}
-    }
-  },
-  {
     "date": "2026-08-17",
     "aggregate": {
       "valid_days": 2,
@@ -7237,6 +7159,90 @@
       "updated": false,
       "strategy": "低相關",
       "reason": "近 5 日信心分數與股價關係偏低，提高價格確認，降低寬題材推估。；關鍵詞×公司後續樣本有效 0 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.5,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6047,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.5,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6047,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {}
+    }
+  },
+  {
+    "date": "2026-11-14",
+    "aggregate": {
+      "valid_days": 2,
+      "low_confidence_days": 3,
+      "sample_count_3d": 10,
+      "sample_count_5d": 9,
+      "validated_count": 10,
+      "aligned_count": 4,
+      "diverged_count": 6,
+      "aligned_ratio": 0.4,
+      "direction_accuracy": 0.4,
+      "correlation_3d": 0.046,
+      "correlation_5d": -0.1852,
+      "confidence_calibration": 0.046,
+      "calibration_strategy": "低相關",
+      "method_quality_score": 47.38,
+      "topic_scores": {
+        "新興題材：OpenAI": 100.0,
+        "新興題材：單季營收": 100.0,
+        "AI 伺服器與資料中心": 0.0,
+        "新興題材：MoneyDJ": 0.0
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 4,
+          "aligned": 2,
+          "diverged": 2,
+          "aligned_ratio": 0.5
+        },
+        "產業/供應鏈推估": {
+          "validated": 6,
+          "aligned": 2,
+          "diverged": 4,
+          "aligned_ratio": 0.3333
+        }
+      },
+      "keyword_returns": {
+        "新興題材：OpenAI": 16.36,
+        "新興題材：單季營收": 16.36,
+        "新興題材：MoneyDJ": -1.16,
+        "AI 伺服器與資料中心": -7.6471
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 0,
+        "pending_sample_count": 974,
+        "hit_rate_5d": null,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": null,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": false,
+      "strategy": "樣本不足",
+      "reason": "近 5 日有效樣本 10 筆，低於 15 筆門檻，暫不調整權重。",
       "weights_before": {
         "news_heat_weight": 1.0,
         "current_market_confirmation_weight": 1.5,
