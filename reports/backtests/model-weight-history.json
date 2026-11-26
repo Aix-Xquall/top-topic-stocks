@@ -1,92 +1,5 @@
 [
   {
-    "date": "2026-08-28",
-    "aggregate": {
-      "valid_days": 2,
-      "low_confidence_days": 3,
-      "sample_count_3d": 15,
-      "sample_count_5d": 15,
-      "validated_count": 15,
-      "aligned_count": 5,
-      "diverged_count": 10,
-      "aligned_ratio": 0.3333,
-      "direction_accuracy": 0.3333,
-      "correlation_3d": 0.0619,
-      "correlation_5d": 0.1153,
-      "confidence_calibration": 0.0619,
-      "calibration_strategy": "低相關",
-      "method_quality_score": 45.1915,
-      "topic_scores": {
-        "新興題材：輝達預計2028年營收": 93.94,
-        "新興題材：輝達營收": 84.175,
-        "AI 伺服器與資料中心": 11.6067
-      },
-      "relation_stats": {
-        "產業/供應鏈推估": {
-          "validated": 12,
-          "aligned": 2,
-          "diverged": 10,
-          "aligned_ratio": 0.1667
-        },
-        "新聞直接提及": {
-          "validated": 3,
-          "aligned": 3,
-          "diverged": 0,
-          "aligned_ratio": 1.0
-        }
-      },
-      "keyword_returns": {
-        "新興題材：輝達預計2028年營收": 7.98,
-        "新興題材：輝達營收": 4.725,
-        "AI 伺服器與資料中心": -0.02
-      },
-      "overconfident_misses": [],
-      "keyword_company_learning": {
-        "sample_count": 5000,
-        "valid_sample_count": 5,
-        "pending_sample_count": 902,
-        "hit_rate_5d": 0.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": -9.7948,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": true,
-      "strategy": "低相關",
-      "reason": "近 5 日信心分數與股價關係偏低，提高價格確認，降低寬題材推估。；關鍵詞×公司後續樣本有效 5 筆，未達 30 筆，不調整樣本權重",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.5,
-        "historical_topic_score_weight": 0.6601,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.5,
-        "historical_topic_score_weight": 0.6931,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2
-      },
-      "changes": {
-        "historical_topic_score_weight": {
-          "before": 0.6601,
-          "after": 0.6931
-        }
-      }
-    }
-  },
-  {
     "date": "2026-08-29",
     "aggregate": {
       "valid_days": 4,
@@ -7377,6 +7290,86 @@
       "updated": false,
       "strategy": "信心校準問題",
       "reason": "近 5 日方向判斷多數同向，但信心分數與後續報酬呈負相關；判定為信心校準問題，優先降低高信心膨脹、寬題材推估與背離容忍。；關鍵詞×公司後續樣本有效 0 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.5,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6805,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.5,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6805,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {}
+    }
+  },
+  {
+    "date": "2026-11-26",
+    "aggregate": {
+      "valid_days": 1,
+      "low_confidence_days": 4,
+      "sample_count_3d": 9,
+      "sample_count_5d": 8,
+      "validated_count": 9,
+      "aligned_count": 4,
+      "diverged_count": 5,
+      "aligned_ratio": 0.4444,
+      "direction_accuracy": 0.4444,
+      "correlation_3d": -0.0711,
+      "correlation_5d": -0.0522,
+      "confidence_calibration": -0.0711,
+      "calibration_strategy": "低相關",
+      "method_quality_score": 45.6448,
+      "topic_scores": {
+        "AI 伺服器與資料中心": 5.0,
+        "關稅與供應鏈轉移": 0.0
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 4,
+          "aligned": 2,
+          "diverged": 2,
+          "aligned_ratio": 0.5
+        },
+        "產業/供應鏈推估": {
+          "validated": 5,
+          "aligned": 2,
+          "diverged": 3,
+          "aligned_ratio": 0.4
+        }
+      },
+      "keyword_returns": {
+        "關稅與供應鏈轉移": -7.5,
+        "AI 伺服器與資料中心": -10.4638
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 0,
+        "pending_sample_count": 1112,
+        "hit_rate_5d": null,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": null,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": false,
+      "strategy": "樣本不足",
+      "reason": "近 5 日有效樣本 9 筆，低於 15 筆門檻，暫不調整權重。",
       "weights_before": {
         "news_heat_weight": 1.0,
         "current_market_confirmation_weight": 1.5,
