@@ -1,100 +1,5 @@
 [
   {
-    "date": "2026-08-29",
-    "aggregate": {
-      "valid_days": 4,
-      "low_confidence_days": 1,
-      "sample_count_3d": 24,
-      "sample_count_5d": 24,
-      "validated_count": 24,
-      "aligned_count": 9,
-      "diverged_count": 11,
-      "aligned_ratio": 0.375,
-      "direction_accuracy": 0.375,
-      "correlation_3d": 0.2322,
-      "correlation_5d": 0.4572,
-      "confidence_calibration": 0.2322,
-      "calibration_strategy": "正相關",
-      "method_quality_score": 51.9646,
-      "topic_scores": {
-        "新興題材：法人看營收": 90.715,
-        "新興題材：輝達營收": 48.215,
-        "AI 伺服器與資料中心": 23.3134,
-        "半導體與晶片供應鏈": 0.0,
-        "綜合市場情緒": 0.0
-      },
-      "relation_stats": {
-        "新聞直接提及": {
-          "validated": 7,
-          "aligned": 4,
-          "diverged": 1,
-          "aligned_ratio": 0.5714
-        },
-        "產業/供應鏈推估": {
-          "validated": 17,
-          "aligned": 5,
-          "diverged": 10,
-          "aligned_ratio": 0.2941
-        }
-      },
-      "keyword_returns": {
-        "新興題材：法人看營收": 6.905,
-        "新興題材：輝達營收": 4.405,
-        "AI 伺服器與資料中心": -0.0067,
-        "綜合市場情緒": -0.83,
-        "半導體與晶片供應鏈": -2.2
-      },
-      "overconfident_misses": [],
-      "keyword_company_learning": {
-        "sample_count": 5000,
-        "valid_sample_count": 5,
-        "pending_sample_count": 915,
-        "hit_rate_5d": 0.0,
-        "confidence_correlation_5d": null,
-        "avg_directional_return_5d": -9.7948,
-        "top_edges": [],
-        "weak_edges": []
-      },
-      "days": 5,
-      "minimum_required_samples": 15
-    },
-    "weight_adjustment": {
-      "updated": true,
-      "strategy": "正相關",
-      "reason": "近 5 日信心分數與後續報酬呈正相關，提高市場確認、歷史題材與直接提及權重。；關鍵詞×公司後續樣本有效 5 筆，未達 30 筆，不調整樣本權重",
-      "weights_before": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.5,
-        "historical_topic_score_weight": 0.6931,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.6,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2
-      },
-      "weights_after": {
-        "news_heat_weight": 1.0,
-        "current_market_confirmation_weight": 1.5,
-        "historical_topic_score_weight": 0.7278,
-        "keyword_company_score_weight": 0.2,
-        "direct_mention_weight": 0.618,
-        "inferred_supply_chain_weight": 0.2,
-        "broad_topic_penalty": 0.5,
-        "price_divergence_penalty": 0.2
-      },
-      "changes": {
-        "historical_topic_score_weight": {
-          "before": 0.6931,
-          "after": 0.7278
-        },
-        "direct_mention_weight": {
-          "before": 0.6,
-          "after": 0.618
-        }
-      }
-    }
-  },
-  {
     "date": "2026-08-30",
     "aggregate": {
       "valid_days": 4,
@@ -7391,6 +7296,95 @@
         "price_divergence_penalty": 0.2
       },
       "changes": {}
+    }
+  },
+  {
+    "date": "2026-11-27",
+    "aggregate": {
+      "valid_days": 2,
+      "low_confidence_days": 3,
+      "sample_count_3d": 20,
+      "sample_count_5d": 17,
+      "validated_count": 20,
+      "aligned_count": 10,
+      "diverged_count": 9,
+      "aligned_ratio": 0.5,
+      "direction_accuracy": 0.5,
+      "correlation_3d": 0.1266,
+      "correlation_5d": 0.2646,
+      "confidence_calibration": 0.1266,
+      "calibration_strategy": "弱正相關",
+      "method_quality_score": 53.7981,
+      "topic_scores": {
+        "關稅與供應鏈轉移": 65.0,
+        "記憶體與 HBM 供應鏈": 65.0,
+        "AI 伺服器與資料中心": 28.4565,
+        "利率與成長股估值": 0.0
+      },
+      "relation_stats": {
+        "新聞直接提及": {
+          "validated": 8,
+          "aligned": 4,
+          "diverged": 3,
+          "aligned_ratio": 0.5
+        },
+        "產業/供應鏈推估": {
+          "validated": 12,
+          "aligned": 6,
+          "diverged": 6,
+          "aligned_ratio": 0.5
+        }
+      },
+      "keyword_returns": {
+        "記憶體與 HBM 供應鏈": 16.03,
+        "關稅與供應鏈轉移": 14.48,
+        "利率與成長股估值": -5.67,
+        "AI 伺服器與資料中心": -5.7073
+      },
+      "overconfident_misses": [],
+      "keyword_company_learning": {
+        "sample_count": 5000,
+        "valid_sample_count": 0,
+        "pending_sample_count": 1134,
+        "hit_rate_5d": null,
+        "confidence_correlation_5d": null,
+        "avg_directional_return_5d": null,
+        "top_edges": [],
+        "weak_edges": []
+      },
+      "days": 5,
+      "minimum_required_samples": 15
+    },
+    "weight_adjustment": {
+      "updated": true,
+      "strategy": "弱正相關",
+      "reason": "近 5 日方向與信心排序皆偏弱，降低方向詞與供應鏈推估權重，並加重背離扣分。；關鍵詞×公司後續樣本有效 0 筆，未達 30 筆，不調整樣本權重",
+      "weights_before": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.5,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6805,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "weights_after": {
+        "news_heat_weight": 1.0,
+        "current_market_confirmation_weight": 1.5,
+        "historical_topic_score_weight": 1.5,
+        "keyword_company_score_weight": 0.2,
+        "direct_mention_weight": 0.6465,
+        "inferred_supply_chain_weight": 0.2,
+        "broad_topic_penalty": 0.5,
+        "price_divergence_penalty": 0.2
+      },
+      "changes": {
+        "direct_mention_weight": {
+          "before": 0.6805,
+          "after": 0.6465
+        }
+      }
     }
   }
 ]
